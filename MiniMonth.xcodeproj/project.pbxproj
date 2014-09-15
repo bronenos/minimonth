@@ -19,6 +19,7 @@
 		D411EE1919C2A5CD0054439F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
 		D411EE1B19C2A5CD0054439F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D411EE1E19C2A5CD0054439F /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D4A5112819C6F78000555E1C /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		D411EE1719C2A5CD0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D411EE1819C2A5CD0054439F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		D4A5112719C6F78000555E1C /* TodayWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayWeekView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				D411EE1819C2A5CD0054439F /* TodayViewController.swift */,
 				D4073B2A19C2AD5B00056370 /* TodayMonthLabel.swift */,
 				D4073B2E19C377A600056370 /* TodayWeekdayLabel.swift */,
+				D4A5112719C6F78000555E1C /* TodayWeekView.swift */,
 				D4073B2C19C2ADB400056370 /* TodayDayLabel.swift */,
 			);
 			path = Today;
@@ -343,6 +346,7 @@
 				D411EE1919C2A5CD0054439F /* TodayViewController.swift in Sources */,
 				D4073B2F19C377A600056370 /* TodayWeekdayLabel.swift in Sources */,
 				D4073B2B19C2AD5B00056370 /* TodayMonthLabel.swift in Sources */,
+				D4A5112819C6F78000555E1C /* TodayWeekView.swift in Sources */,
 				D4073B2D19C2ADB400056370 /* TodayDayLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

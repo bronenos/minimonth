@@ -14,16 +14,17 @@ class TodayViewController : UIViewController {
 	@IBOutlet var _weekdaysView: UIView!
 	var weekdaysView: UIView! { return _weekdaysView }
 	
-	@IBOutlet var _daysView: UIView!
-	var daysView: UIView! { return _daysView }
+	@IBOutlet var _weeksView: UIView!
+	var weeksView: UIView! { return _weeksView }
 	
-	@IBOutlet var _heightConstraint: NSLayoutConstraint!
-	var heightConstraint: NSLayoutConstraint! { return _heightConstraint }
+	@IBOutlet var _weeksHeightConstraint: NSLayoutConstraint!
+	var weeksHeightConstraint: NSLayoutConstraint! { return _weeksHeightConstraint }
 	
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.generateWeekdays()
+		self.generateWeekdayTitles()
+		self.generateCalendar()
     }
 	
 	
@@ -38,77 +39,138 @@ class TodayViewController : UIViewController {
     }
 	
 	
-	func generateWeekdays() {
+	func autoLayout(view: UIView, verticalMode: Bool) {
+		var lastView: UIView!
+		
+		let views = view.superview!.subviews
+		if views.count > 1 {
+			lastView = views[views.count - 2] as? UIView
+		}
+		
+		view.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		var c = NSLayoutConstraint(
+			item: view, attribute: (verticalMode ? .Leading : .Top),
+			relatedBy: .Equal,
+			toItem: view.superview, attribute: (verticalMode ? .Leading : .Top),
+			multiplier: 1, constant: 0)
+		view.superview!.addConstraint(c)
+		
+		c = NSLayoutConstraint(
+			item: view, attribute: (verticalMode ? .Trailing : .Bottom),
+			relatedBy: .Equal,
+			toItem: view.superview, attribute: (verticalMode ? .Trailing : .Bottom),
+			multiplier: 1, constant: 0)
+		view.superview!.addConstraint(c)
+		
+		if lastView == nil {
+			c = NSLayoutConstraint(
+				item: view, attribute: (verticalMode ? .Top : .Leading),
+				relatedBy: .Equal,
+				toItem: view.superview, attribute: (verticalMode ? .Top : .Leading),
+				multiplier: 1, constant: 0)
+			view.superview!.addConstraint(c)
+		}
+		else {
+			c = NSLayoutConstraint(
+				item: view, attribute: (verticalMode ? .Top : .Left),
+				relatedBy: .Equal,
+				toItem: lastView, attribute: (verticalMode ? .Bottom : .Right),
+				multiplier: 1, constant: 0)
+			view.superview!.addConstraint(c)
+		}
+	}
+	
+	
+	func generateWeekdayTitles() {
 		let weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 		
-		var prevLabel: TodayWeekdayLabel!
-		var c: NSLayoutConstraint!
-		
 		for weekday in weekdays {
+			var prevLabel: TodayWeekdayLabel!
+			if let $ = self.weekdaysView.subviews.last as? TodayWeekdayLabel {
+				prevLabel = $
+			}
+			
 			var label = TodayWeekdayLabel(frame: CGRectZero)
 			label.text = weekday
 			self.weekdaysView.addSubview(label)
 			
-			c = NSLayoutConstraint(
-				item: label,
-				attribute: NSLayoutAttribute.Top,
-				relatedBy: NSLayoutRelation.Equal,
-				toItem: label.superview,
-				attribute: NSLayoutAttribute.Top,
-				multiplier: 1,
-				constant: 0)
+			self.autoLayout(label, verticalMode: false)
+			
+			var c = NSLayoutConstraint(
+				item: label, attribute: .Width,
+				relatedBy: .Equal,
+				toItem: label.superview, attribute: .Width,
+				multiplier: 0.1428, constant: 0)
 			self.weekdaysView.addConstraint(c)
-			
-			c = NSLayoutConstraint(
-				item: label,
-				attribute: NSLayoutAttribute.Bottom,
-				relatedBy: NSLayoutRelation.Equal,
-				toItem: label.superview,
-				attribute: NSLayoutAttribute.Bottom,
-				multiplier: 1,
-				constant: 0)
-			self.weekdaysView.addConstraint(c)
-			
-			c = NSLayoutConstraint(
-				item: label,
-				attribute: NSLayoutAttribute.Width,
-				relatedBy: NSLayoutRelation.Equal,
-				toItem: label.superview,
-				attribute: NSLayoutAttribute.Width,
-				multiplier: 0.1428,
-				constant: 0)
-			self.weekdaysView.addConstraint(c)
-			
-			if prevLabel == nil {
-				c = NSLayoutConstraint(
-					item: label,
-					attribute: NSLayoutAttribute.Leading,
-					relatedBy: NSLayoutRelation.Equal,
-					toItem: label.superview,
-					attribute: NSLayoutAttribute.Leading,
-					multiplier: 1,
-					constant: 0)
-				self.weekdaysView.addConstraint(c)
-			}
-			else {
-				c = NSLayoutConstraint(
-					item: label,
-					attribute: NSLayoutAttribute.Left,
-					relatedBy: NSLayoutRelation.Equal,
-					toItem: prevLabel,
-					attribute: NSLayoutAttribute.Right,
-					multiplier: 1,
-					constant: 0)
-				self.weekdaysView.addConstraint(c)
-				
-				println(c)
-			}
-			
-			prevLabel = label
 		}
 		
 		self.weekdaysView.updateConstraintsIfNeeded()
 		self.weekdaysView.layoutIfNeeded()
 	}
-    
+	
+	
+	func generateWeek() -> UIView {
+		let weekView = TodayWeekView()
+		self.weeksView.addSubview(weekView)
+		
+		self.autoLayout(weekView, verticalMode: true)
+		
+		let c = NSLayoutConstraint(
+			item: weekView, attribute: .Height,
+			relatedBy: .Equal,
+			toItem: nil, attribute: .NotAnAttribute,
+			multiplier: 1, constant: 25)
+		self.weeksView.addConstraint(c)
+		
+		self.weeksView.updateConstraintsIfNeeded()
+		self.weeksView.layoutIfNeeded()
+		
+		if let $ = self.weeksView.subviews.last as? TodayWeekView {
+			var f = $.frame
+			self.weeksHeightConstraint.constant = CGRectGetMaxY(f)
+			
+			self.weeksView.updateConstraintsIfNeeded()
+			self.weeksView.layoutIfNeeded()
+		}
+		
+		return weekView
+	}
+	
+	
+	func generateWeekdaysForWeek(weekView: UIView) {
+		for i in 1...7 {
+			let weekdayView = TodayDayLabel()
+			weekdayView.tag = i
+			weekView.addSubview(weekdayView)
+			
+			self.autoLayout(weekdayView, verticalMode: false)
+			
+			let c = NSLayoutConstraint(
+				item: weekdayView, attribute: .Width,
+				relatedBy: .Equal,
+				toItem: weekdayView.superview, attribute: .Width,
+				multiplier: 1.0 / 7.0,
+				constant: 0)
+			weekView.addConstraint(c)
+		}
+		
+		weekView.updateConstraintsIfNeeded()
+		weekView.layoutIfNeeded()
+	}
+	
+	
+	func generateCalendar() {
+		let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+		let units = NSCalendarUnit.WeekdayCalendarUnit | NSCalendarUnit.DayCalendarUnit
+		let comps = cal.components(units, fromDate: NSDate())
+		
+		let wday = self.unitWeekdayToRealWeekday(comps.weekday)
+		let day = comps.day
+	}
+	
+	
+	func unitWeekdayToRealWeekday(weekday: Int) -> Int {
+		return (weekday == 1 ? 7 : weekday - 1)
+	}
 }

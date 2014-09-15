@@ -33,25 +33,25 @@
                                     <constraint firstAttribute="height" constant="25" id="TBo-6D-5jf"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SP6-GL-VYP" userLabel="Days">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hd-Dm-BJU" userLabel="Weeks">
                                 <rect key="frame" x="0.0" y="60" width="320" height="179"/>
                                 <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="750" constant="179" id="1Hb-0u-eIk"/>
+                                    <constraint firstAttribute="height" priority="750" constant="180" id="Qky-BO-0mx"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="SP6-GL-VYP" firstAttribute="top" secondItem="EIm-oe-olx" secondAttribute="bottom" id="5Hj-Wp-FTq"/>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="7Co-E7-D0C"/>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="trailing" secondItem="EIm-oe-olx" secondAttribute="trailing" id="FdS-Wh-60w"/>
-                            <constraint firstItem="mCR-Ld-0st" firstAttribute="leading" secondItem="SP6-GL-VYP" secondAttribute="leading" id="KEn-Id-2rG"/>
+                            <constraint firstItem="EIm-oe-olx" firstAttribute="trailing" secondItem="9hd-Dm-BJU" secondAttribute="trailing" id="P8d-Mk-0HC"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="9hd-Dm-BJU" secondAttribute="bottom" id="PXM-d6-xH7"/>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="leading" secondItem="EIm-oe-olx" secondAttribute="leading" id="QJi-8M-gxC"/>
                             <constraint firstAttribute="trailing" secondItem="mCR-Ld-0st" secondAttribute="trailing" id="XC9-Bo-tHr"/>
-                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="SP6-GL-VYP" secondAttribute="bottom" id="XJA-DO-QuG"/>
-                            <constraint firstItem="mCR-Ld-0st" firstAttribute="trailing" secondItem="SP6-GL-VYP" secondAttribute="trailing" id="Y7Y-y6-bBP"/>
+                            <constraint firstItem="EIm-oe-olx" firstAttribute="leading" secondItem="9hd-Dm-BJU" secondAttribute="leading" id="c0Z-B4-tnI"/>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="dh8-C6-EeM"/>
                             <constraint firstItem="EIm-oe-olx" firstAttribute="top" secondItem="mCR-Ld-0st" secondAttribute="bottom" id="yWw-tN-Dbf"/>
+                            <constraint firstItem="9hd-Dm-BJU" firstAttribute="top" secondItem="EIm-oe-olx" secondAttribute="bottom" id="ysG-gI-twT"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -61,9 +61,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="239"/>
                     <connections>
-                        <outlet property="_daysView" destination="SP6-GL-VYP" id="UmU-ax-0XI"/>
-                        <outlet property="_heightConstraint" destination="1Hb-0u-eIk" id="J96-SV-kFh"/>
-                        <outlet property="_weekdaysView" destination="EIm-oe-olx" id="Vzu-CM-n9z"/>
+                        <outlet property="_weekdaysView" destination="EIm-oe-olx" id="U4x-fi-Smc"/>
+                        <outlet property="_weeksHeightConstraint" destination="Qky-BO-0mx" id="r30-le-UI6"/>
+                        <outlet property="_weeksView" destination="9hd-Dm-BJU" id="TvG-ca-G1U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
