@@ -11,5 +11,21 @@ import UIKit
 
 
 class TodayDayLabel : UILabel {
+	override init() {
+		super.init()
+	}
 	
+	
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		
+		self.font =  UIFont(name: "HelveticaNeue", size: 11)
+		self.textAlignment = .Center
+		self.contentMode = .Center
+	}
+	
+	
+	required init(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
+	}
 }

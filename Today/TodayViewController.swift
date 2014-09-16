@@ -11,6 +11,9 @@ import NotificationCenter
 
 
 class TodayViewController : UIViewController {
+	@IBOutlet var _monthLabel: TodayMonthLabel!
+	var monthLabel: TodayMonthLabel! { return _monthLabel }
+	
 	@IBOutlet var _weekdaysView: UIView!
 	var weekdaysView: UIView! { return _weekdaysView }
 	
@@ -138,10 +141,11 @@ class TodayViewController : UIViewController {
 	}
 	
 	
-	func generateWeekdaysForWeek(weekView: UIView) {
+	func generateWeekdaysForWeek(weekView: UIView, baseTag: Int) {
 		for i in 1...7 {
 			let weekdayView = TodayDayLabel()
-			weekdayView.tag = i
+			weekdayView.tag = baseTag + i
+			weekdayView.textColor = (i <= 5 ? UIColor.blackColor() : UIColor.brownColor())
 			weekView.addSubview(weekdayView)
 			
 			self.autoLayout(weekdayView, verticalMode: false)
@@ -161,16 +165,48 @@ class TodayViewController : UIViewController {
 	
 	
 	func generateCalendar() {
+		let today = NSDate()
+		
 		let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
 		let units = NSCalendarUnit.WeekdayCalendarUnit | NSCalendarUnit.DayCalendarUnit
-		let comps = cal.components(units, fromDate: NSDate())
+		let comps = cal.components(units, fromDate: today)
 		
 		let wday = self.unitWeekdayToRealWeekday(comps.weekday)
 		let day = comps.day
+		let totalWeeks = cal.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, inUnit: NSCalendarUnit.MonthCalendarUnit, forDate: today)
+		let totalDays = cal.rangeOfUnit(.DayCalendarUnit, inUnit: .MonthCalendarUnit, forDate: today)
+		let swday = self.calculateStartWeekdayWithCurrentWeekday(wday, andDay: day)
+		
+		let df = NSDateFormatter()
+		df.dateFormat = "MMMM"
+		self.monthLabel.text = df.stringFromDate(today)
+		
+		for i in 0..<totalWeeks.length {
+			let weekDay = self.generateWeek()
+			self.generateWeekdaysForWeek(weekDay, baseTag: i * 7)
+		}
+		
+		for i in 1...totalDays.length {
+			let dayLabel = (self.weeksView.viewWithTag(i) as? TodayDayLabel)!
+			dayLabel.text = "\(i)"
+		}
 	}
 	
 	
 	func unitWeekdayToRealWeekday(weekday: Int) -> Int {
 		return (weekday == 1 ? 7 : weekday - 1)
+	}
+	
+	
+	func calculateStartWeekdayWithCurrentWeekday(wday: Int, andDay day: Int) -> Int {
+		var local_day = day
+		var local_wday = wday
+		
+		while local_day > 1 {
+			local_day--
+			local_wday = (local_wday == 0 ? 7 : local_wday - 1)
+		}
+		
+		return wday
 	}
 }

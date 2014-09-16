@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCR-Ld-0st">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCR-Ld-0st" customClass="TodayMonthLabel" customModule="Today" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                 <color key="backgroundColor" red="0.66238839285714279" green="0.20617653725247428" blue="0.16146196551612413" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -61,6 +61,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="239"/>
                     <connections>
+                        <outlet property="_monthLabel" destination="mCR-Ld-0st" id="84l-si-Tjc"/>
                         <outlet property="_weekdaysView" destination="EIm-oe-olx" id="U4x-fi-Smc"/>
                         <outlet property="_weeksHeightConstraint" destination="Qky-BO-0mx" id="r30-le-UI6"/>
                         <outlet property="_weeksView" destination="9hd-Dm-BJU" id="TvG-ca-G1U"/>
