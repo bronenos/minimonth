@@ -88,14 +88,15 @@ class TodayViewController : UIViewController {
 	func generateWeekdayTitles() {
 		let weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 		
-		for weekday in weekdays {
+		for i in 1...weekdays.count {
 			var prevLabel: TodayWeekdayLabel!
 			if let $ = self.weekdaysView.subviews.last as? TodayWeekdayLabel {
 				prevLabel = $
 			}
 			
 			var label = TodayWeekdayLabel(frame: CGRectZero)
-			label.text = weekday
+			label.text = weekdays[i - 1]
+			label.textColor = (i <= 5 ? UIColor.grayColor() : UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 1.0))
 			self.weekdaysView.addSubview(label)
 			
 			self.autoLayout(label, verticalMode: false)
@@ -145,7 +146,7 @@ class TodayViewController : UIViewController {
 		for i in 1...7 {
 			let weekdayView = TodayDayLabel()
 			weekdayView.tag = baseTag + i
-			weekdayView.textColor = (i <= 5 ? UIColor.blackColor() : UIColor.brownColor())
+			weekdayView.textColor = (i <= 5 ? UIColor.grayColor() : UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 1.0))
 			weekView.addSubview(weekdayView)
 			
 			self.autoLayout(weekdayView, verticalMode: false)
@@ -190,6 +191,19 @@ class TodayViewController : UIViewController {
 			let dayLabel = (self.weeksView.viewWithTag(i) as? TodayDayLabel)!
 			dayLabel.text = "\(i)"
 		}
+		
+		if let todayView = self.weeksView.viewWithTag(day) {
+			var hlRect = todayView.bounds
+			hlRect = CGRectInset(hlRect, hlRect.size.width * 0.25, hlRect.size.height * 0.1)
+			hlRect.origin.x *= 0.75
+			
+			let hlView = UIView(frame: hlRect)
+			hlView.layer.borderColor = UIColor.greenColor().colorWithAlphaComponent(0.65).CGColor
+			hlView.layer.borderWidth = 1
+			hlView.layer.cornerRadius = 10
+			todayView.addSubview(hlView)
+		}
+		
 	}
 	
 	

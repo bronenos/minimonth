@@ -19,7 +19,7 @@ class TodayDayLabel : UILabel {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		self.font =  UIFont(name: "HelveticaNeue", size: 11)
+		self.font =  UIFont(name: "HelveticaNeue-Bold", size: 12)
 		self.textAlignment = .Center
 		self.contentMode = .Center
 	}
