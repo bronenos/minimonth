@@ -125,21 +125,16 @@ class TodayViewController : UIViewController {
 		let df = NSDateFormatter()
 		df.calendar = self.calendar
 		
-		let weekdays = df.shortWeekdaySymbols as [String]
-		for i in 1...weekdays.count {
-			var prevLabel: TodayWeekdayLabel!
-			if let $ = self.weekdaysView.subviews.last as? TodayWeekdayLabel {
-				prevLabel = $
-			}
-			
-			var weekdayIndex = df.calendar.firstWeekday + i - 2
-			if (weekdayIndex >= 7) {
-				weekdayIndex -= 7
-			}
-			
+		var weekdays = df.shortWeekdaySymbols as [String]
+		
+		let fwd = df.calendar.firstWeekday
+		let wc = weekdays.count
+		weekdays = Array(weekdays[(fwd-1)..<wc]) + Array(weekdays[0..<fwd])
+		
+		for i in 0..<weekdays.count {
 			var label = TodayWeekdayLabel(frame: CGRectZero)
-			label.text = weekdays[weekdayIndex]
-			label.textColor = (i <= 5 ? self.dayColor : self.weekendColor).colorWithAlphaComponent(0.6)
+			label.text = weekdays[i]
+			label.textColor = (i < 5 ? self.dayColor : self.weekendColor).colorWithAlphaComponent(0.6)
 			self.weekdaysView.addSubview(label)
 			
 			self.autoLayout(label, verticalMode: false)
@@ -186,10 +181,10 @@ class TodayViewController : UIViewController {
 	
 	
 	func generateWeekdaysForWeek(weekView: UIView, baseTag: Int) {
-		for i in 1...7 {
+		for i in 0..<7 {
 			let weekdayView = TodayDayLabel()
-			weekdayView.tag = baseTag + i
-			weekdayView.textColor = (i <= 5 ? self.dayColor : self.weekendColor)
+			weekdayView.tag = baseTag + i + 1
+			weekdayView.textColor = (i < 5 ? self.dayColor : self.weekendColor)
 			weekView.addSubview(weekdayView)
 			
 			self.autoLayout(weekdayView, verticalMode: false)
@@ -232,7 +227,7 @@ class TodayViewController : UIViewController {
 		}
 		
 		for i in 1...totalDays.length {
-			let dayLabel = (self.weeksView.viewWithTag(i) as? TodayDayLabel)!
+			let dayLabel = (self.weeksView.viewWithTag(swday - 1 + i) as? TodayDayLabel)!
 			dayLabel.text = "\(i)"
 		}
 		
@@ -251,20 +246,28 @@ class TodayViewController : UIViewController {
 	
 	
 	func unitWeekdayToRealWeekday(weekday: Int) -> Int {
-		return (weekday == 1 ? 7 : weekday - 1)
+		let fwd = self.calendar.firstWeekday
+		let wc = self.calendar.weekdaySymbols.count
+		
+		return (weekday > fwd ? weekday : wc) - (fwd - 1)
 	}
 	
 	
 	func calculateStartWeekdayWithCurrentWeekday(wday: Int, andDay day: Int) -> Int {
+		let wc = self.calendar.weekdaySymbols.count
+		
 		var local_day = day
 		var local_wday = wday
 		
 		while local_day > 1 {
 			local_day--
-			local_wday = (local_wday == 0 ? 7 : local_wday - 1)
+			
+			if --local_wday == 0 {
+				local_wday = wc
+			}
 		}
 		
-		return wday
+		return local_wday
 	}
 	
 	
