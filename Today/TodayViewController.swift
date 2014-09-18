@@ -11,6 +11,15 @@ import NotificationCenter
 
 
 class TodayViewController : UIViewController {
+	let monthColor = UIColor.whiteColor()
+	let dayColor = UIColor.whiteColor()
+	let weekendColor = UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 1.0)
+	let todayColor = UIColor.greenColor().colorWithAlphaComponent(0.65).CGColor
+	
+	
+	let lastDatePrefKey = "lastDate"
+	
+	
 	@IBOutlet var _monthLabel: TodayMonthLabel!
 	var monthLabel: TodayMonthLabel! { return _monthLabel }
 	
@@ -24,6 +33,15 @@ class TodayViewController : UIViewController {
 	var weeksHeightConstraint: NSLayoutConstraint! { return _weeksHeightConstraint }
 	
 	
+	let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+	
+	
+	required init(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		self.calendar.firstWeekday = 2
+	}
+	
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.generateWeekdayTitles()
@@ -31,15 +49,33 @@ class TodayViewController : UIViewController {
     }
 	
 	
+	override func preferredStatusBarStyle() -> UIStatusBarStyle {
+		return .LightContent
+	}
+	
+	
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
-        // Perform any setup necessary in order to update the view.
-
-        // If an error is encoutered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-
-        completionHandler(NCUpdateResult.NewData)
+		let defs = NSUserDefaults.standardUserDefaults()
+		let newDate = self.dateStamp()
+		
+		if let lastDate = defs.objectForKey(self.lastDatePrefKey) as? String {
+			completionHandler(newDate == lastDate ? .NoData : .NewData)
+		}
+		else {
+			completionHandler(NCUpdateResult.NewData)
+		}
+		
+		defs.setObject(newDate, forKey: self.lastDatePrefKey)
+		defs.synchronize()
     }
+	
+	
+	func dateStamp() -> String {
+		let df = NSDateFormatter()
+		df.dateStyle = .ShortStyle
+		df.timeStyle = .NoStyle
+		return df.stringFromDate(NSDate())
+	}
 	
 	
 	func autoLayout(view: UIView, verticalMode: Bool) {
@@ -86,17 +122,24 @@ class TodayViewController : UIViewController {
 	
 	
 	func generateWeekdayTitles() {
-		let weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+		let df = NSDateFormatter()
+		df.calendar = self.calendar
 		
+		let weekdays = df.shortWeekdaySymbols as [String]
 		for i in 1...weekdays.count {
 			var prevLabel: TodayWeekdayLabel!
 			if let $ = self.weekdaysView.subviews.last as? TodayWeekdayLabel {
 				prevLabel = $
 			}
 			
+			var weekdayIndex = df.calendar.firstWeekday + i - 2
+			if (weekdayIndex >= 7) {
+				weekdayIndex -= 7
+			}
+			
 			var label = TodayWeekdayLabel(frame: CGRectZero)
-			label.text = weekdays[i - 1]
-			label.textColor = (i <= 5 ? UIColor.grayColor() : UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 1.0))
+			label.text = weekdays[weekdayIndex]
+			label.textColor = (i <= 5 ? self.dayColor : self.weekendColor).colorWithAlphaComponent(0.6)
 			self.weekdaysView.addSubview(label)
 			
 			self.autoLayout(label, verticalMode: false)
@@ -146,7 +189,7 @@ class TodayViewController : UIViewController {
 		for i in 1...7 {
 			let weekdayView = TodayDayLabel()
 			weekdayView.tag = baseTag + i
-			weekdayView.textColor = (i <= 5 ? UIColor.grayColor() : UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 1.0))
+			weekdayView.textColor = (i <= 5 ? self.dayColor : self.weekendColor)
 			weekView.addSubview(weekdayView)
 			
 			self.autoLayout(weekdayView, verticalMode: false)
@@ -169,9 +212,10 @@ class TodayViewController : UIViewController {
 		let today = NSDate()
 		
 		let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-		let units = NSCalendarUnit.WeekdayCalendarUnit | NSCalendarUnit.DayCalendarUnit
+		let units = NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.WeekdayCalendarUnit | NSCalendarUnit.DayCalendarUnit
 		let comps = cal.components(units, fromDate: today)
 		
+		let month = comps.month
 		let wday = self.unitWeekdayToRealWeekday(comps.weekday)
 		let day = comps.day
 		let totalWeeks = cal.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, inUnit: NSCalendarUnit.MonthCalendarUnit, forDate: today)
@@ -179,8 +223,8 @@ class TodayViewController : UIViewController {
 		let swday = self.calculateStartWeekdayWithCurrentWeekday(wday, andDay: day)
 		
 		let df = NSDateFormatter()
-		df.dateFormat = "MMMM"
-		self.monthLabel.text = df.stringFromDate(today)
+		df.locale = NSLocale.currentLocale()
+		self.monthLabel.text = df.standaloneMonthSymbols[month - 1] as String
 		
 		for i in 0..<totalWeeks.length {
 			let weekDay = self.generateWeek()
@@ -195,15 +239,14 @@ class TodayViewController : UIViewController {
 		if let todayView = self.weeksView.viewWithTag(day) {
 			var hlRect = todayView.bounds
 			hlRect = CGRectInset(hlRect, hlRect.size.width * 0.25, hlRect.size.height * 0.1)
-			hlRect.origin.x *= 0.75
+			hlRect.origin.x *= self.isRunningAsWidget() ? 0.75 : 1.0
 			
 			let hlView = UIView(frame: hlRect)
-			hlView.layer.borderColor = UIColor.greenColor().colorWithAlphaComponent(0.65).CGColor
+			hlView.layer.borderColor = self.todayColor
 			hlView.layer.borderWidth = 1
 			hlView.layer.cornerRadius = 10
 			todayView.addSubview(hlView)
 		}
-		
 	}
 	
 	
@@ -222,5 +265,18 @@ class TodayViewController : UIViewController {
 		}
 		
 		return wday
+	}
+	
+	
+	func isRunningAsWidget() -> Bool {
+		return (self.extensionContext != nil)
+	}
+	
+	
+	@IBAction func doOpenCalendar() {
+		if self.isRunningAsWidget() {
+			let url = NSURL(string: "calshow://")
+			self.extensionContext.openURL(url, completionHandler: nil)
+		}
 	}
 }

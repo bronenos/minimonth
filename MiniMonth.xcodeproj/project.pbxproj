@@ -11,14 +11,18 @@
 		D4073B2D19C2ADB400056370 /* TodayDayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2C19C2ADB400056370 /* TodayDayLabel.swift */; };
 		D4073B2F19C377A600056370 /* TodayWeekdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2E19C377A600056370 /* TodayWeekdayLabel.swift */; };
 		D411EDF119C2A59B0054439F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EDF019C2A59B0054439F /* AppDelegate.swift */; };
-		D411EDF319C2A59B0054439F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EDF219C2A59B0054439F /* ViewController.swift */; };
-		D411EDF619C2A59B0054439F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EDF419C2A59B0054439F /* Main.storyboard */; };
 		D411EDF819C2A59B0054439F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D411EDF719C2A59B0054439F /* Images.xcassets */; };
 		D411EE0419C2A59C0054439F /* MiniMonthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE0319C2A59C0054439F /* MiniMonthTests.swift */; };
 		D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D411EE1319C2A5CD0054439F /* NotificationCenter.framework */; };
 		D411EE1919C2A5CD0054439F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
 		D411EE1B19C2A5CD0054439F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D411EE1E19C2A5CD0054439F /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D46B7AD719CB078C0088E262 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
+		D46B7AD819CB07900088E262 /* TodayMonthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2A19C2AD5B00056370 /* TodayMonthLabel.swift */; };
+		D46B7AD919CB07940088E262 /* TodayWeekdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2E19C377A600056370 /* TodayWeekdayLabel.swift */; };
+		D46B7ADA19CB07970088E262 /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
+		D46B7ADB19CB079B0088E262 /* TodayDayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2C19C2ADB400056370 /* TodayDayLabel.swift */; };
+		D46B7ADC19CB08A10088E262 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D4A5112819C6F78000555E1C /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,8 +71,6 @@
 		D411EDEB19C2A59B0054439F /* MiniMonth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMonth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D411EDEF19C2A59B0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D411EDF019C2A59B0054439F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D411EDF219C2A59B0054439F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D411EDF519C2A59B0054439F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D411EDF719C2A59B0054439F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D411EDFD19C2A59B0054439F /* MiniMonthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniMonthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D411EE0219C2A59B0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,8 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				D411EDF019C2A59B0054439F /* AppDelegate.swift */,
-				D411EDF219C2A59B0054439F /* ViewController.swift */,
-				D411EDF419C2A59B0054439F /* Main.storyboard */,
 				D411EDF719C2A59B0054439F /* Images.xcassets */,
 				D411EDEE19C2A59B0054439F /* Supporting Files */,
 			);
@@ -271,6 +271,7 @@
 					};
 					D411EE1019C2A5CC0054439F = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = V8NCXSZ3T7;
 					};
 				};
 			};
@@ -299,7 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D411EDF619C2A59B0054439F /* Main.storyboard in Resources */,
+				D46B7ADC19CB08A10088E262 /* MainInterface.storyboard in Resources */,
 				D411EDF819C2A59B0054439F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,8 +327,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D411EDF319C2A59B0054439F /* ViewController.swift in Sources */,
 				D411EDF119C2A59B0054439F /* AppDelegate.swift in Sources */,
+				D46B7ADA19CB07970088E262 /* TodayWeekView.swift in Sources */,
+				D46B7AD719CB078C0088E262 /* TodayViewController.swift in Sources */,
+				D46B7AD919CB07940088E262 /* TodayWeekdayLabel.swift in Sources */,
+				D46B7ADB19CB079B0088E262 /* TodayDayLabel.swift in Sources */,
+				D46B7AD819CB07900088E262 /* TodayMonthLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,17 +375,6 @@
 			targetProxy = D411EE1F19C2A5CD0054439F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D411EDF419C2A59B0054439F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D411EDF519C2A59B0054439F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D411EE0519C2A59C0054439F /* Debug */ = {

@@ -15,7 +15,7 @@ class TodayWeekdayLabel : UILabel {
 		super.init(frame: frame)
 		
 		self.backgroundColor = UIColor.clearColor()
-		self.font = UIFont(name: "HelveticaNeue", size: 10)
+		self.font = UIFont(name: "HelveticaNeue-Bold", size: 9)
 		self.textAlignment = .Center
 		self.setTranslatesAutoresizingMaskIntoConstraints(false)
 	}
