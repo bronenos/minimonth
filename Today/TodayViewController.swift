@@ -34,11 +34,18 @@ class TodayViewController : UIViewController {
 	
 	
 	let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+	let dateFormatter = NSDateFormatter()
 	
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+		
 		self.calendar.firstWeekday = 2
+		
+		self.dateFormatter.calendar = self.calendar
+		self.dateFormatter.locale = NSLocale.currentLocale()
+		self.dateFormatter.dateStyle = .ShortStyle
+		self.dateFormatter.timeStyle = .NoStyle
 	}
 	
 	
@@ -71,10 +78,7 @@ class TodayViewController : UIViewController {
 	
 	
 	func dateStamp() -> String {
-		let df = NSDateFormatter()
-		df.dateStyle = .ShortStyle
-		df.timeStyle = .NoStyle
-		return df.stringFromDate(NSDate())
+		return self.dateFormatter.stringFromDate(NSDate())
 	}
 	
 	
@@ -122,12 +126,9 @@ class TodayViewController : UIViewController {
 	
 	
 	func generateWeekdayTitles() {
-		let df = NSDateFormatter()
-		df.calendar = self.calendar
+		var weekdays = self.dateFormatter.shortWeekdaySymbols as [String]
 		
-		var weekdays = df.shortWeekdaySymbols as [String]
-		
-		let fwd = df.calendar.firstWeekday
+		let fwd = self.dateFormatter.calendar.firstWeekday
 		let wc = weekdays.count
 		weekdays = Array(weekdays[(fwd-1)..<wc]) + Array(weekdays[0..<fwd])
 		
@@ -135,7 +136,6 @@ class TodayViewController : UIViewController {
 			var label = TodayWeekdayLabel(frame: CGRectZero)
 			label.text = weekdays[i - 1]
 			label.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor).colorWithAlphaComponent(0.6)
-			println("i - \(i) c - \(self.unitWeekdayToRealWeekday(i))")
 			self.weekdaysView.addSubview(label)
 			
 			self.autoLayout(label, verticalMode: false)
@@ -186,6 +186,7 @@ class TodayViewController : UIViewController {
 			let weekdayView = TodayDayLabel()
 			weekdayView.tag = baseTag + i
 			weekdayView.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor)
+			println("i - \(i) c - \(self.realWeekdayToUnitWeekday(i))")
 			weekView.addSubview(weekdayView)
 			
 			self.autoLayout(weekdayView, verticalMode: false)
@@ -207,7 +208,7 @@ class TodayViewController : UIViewController {
 	func generateCalendar() {
 		let today = NSDate()
 		
-		let units = NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.WeekdayCalendarUnit | NSCalendarUnit.DayCalendarUnit
+		let units: NSCalendarUnit = .MonthCalendarUnit | .WeekdayCalendarUnit | .DayCalendarUnit
 		let comps = self.calendar.components(units, fromDate: today)
 		
 		let month = comps.month
@@ -262,7 +263,7 @@ class TodayViewController : UIViewController {
 		let wf = self.calendar.firstWeekday
 		let wc = self.calendar.weekdaySymbols.count
 		
-		var ret = weekday - wf
+		var ret = wc - weekday - (wf - 1)
 		if ret < 1 {
 			ret += wc
 		}
