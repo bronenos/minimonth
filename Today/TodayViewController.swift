@@ -186,7 +186,6 @@ class TodayViewController : UIViewController {
 			let weekdayView = TodayDayLabel()
 			weekdayView.tag = baseTag + i
 			weekdayView.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor)
-			println("i - \(i) c - \(self.realWeekdayToUnitWeekday(i))")
 			weekView.addSubview(weekdayView)
 			
 			self.autoLayout(weekdayView, verticalMode: false)
