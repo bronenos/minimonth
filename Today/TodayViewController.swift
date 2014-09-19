@@ -131,10 +131,11 @@ class TodayViewController : UIViewController {
 		let wc = weekdays.count
 		weekdays = Array(weekdays[(fwd-1)..<wc]) + Array(weekdays[0..<fwd])
 		
-		for i in 0..<weekdays.count {
+		for i in 1..<weekdays.count {
 			var label = TodayWeekdayLabel(frame: CGRectZero)
-			label.text = weekdays[i]
-			label.textColor = (i < 5 ? self.dayColor : self.weekendColor).colorWithAlphaComponent(0.6)
+			label.text = weekdays[i - 1]
+			label.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor).colorWithAlphaComponent(0.6)
+			println("i - \(i) c - \(self.unitWeekdayToRealWeekday(i))")
 			self.weekdaysView.addSubview(label)
 			
 			self.autoLayout(label, verticalMode: false)
@@ -181,10 +182,10 @@ class TodayViewController : UIViewController {
 	
 	
 	func generateWeekdaysForWeek(weekView: UIView, baseTag: Int) {
-		for i in 0..<7 {
+		for i in 1...7 {
 			let weekdayView = TodayDayLabel()
-			weekdayView.tag = baseTag + i + 1
-			weekdayView.textColor = (i < 5 ? self.dayColor : self.weekendColor)
+			weekdayView.tag = baseTag + i
+			weekdayView.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor)
 			weekView.addSubview(weekdayView)
 			
 			self.autoLayout(weekdayView, verticalMode: false)
@@ -206,20 +207,19 @@ class TodayViewController : UIViewController {
 	func generateCalendar() {
 		let today = NSDate()
 		
-		let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
 		let units = NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.WeekdayCalendarUnit | NSCalendarUnit.DayCalendarUnit
-		let comps = cal.components(units, fromDate: today)
+		let comps = self.calendar.components(units, fromDate: today)
 		
 		let month = comps.month
 		let wday = self.unitWeekdayToRealWeekday(comps.weekday)
 		let day = comps.day
-		let totalWeeks = cal.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, inUnit: NSCalendarUnit.MonthCalendarUnit, forDate: today)
-		let totalDays = cal.rangeOfUnit(.DayCalendarUnit, inUnit: .MonthCalendarUnit, forDate: today)
+		let totalWeeks = self.calendar.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, inUnit: NSCalendarUnit.MonthCalendarUnit, forDate: today)
+		let totalDays = self.calendar.rangeOfUnit(.DayCalendarUnit, inUnit: .MonthCalendarUnit, forDate: today)
 		let swday = self.calculateStartWeekdayWithCurrentWeekday(wday, andDay: day)
 		
 		let df = NSDateFormatter()
 		df.locale = NSLocale.currentLocale()
-		self.monthLabel.text = df.standaloneMonthSymbols[month - 1] as String
+		self.monthLabel.text = df.standaloneMonthSymbols[month - 1] as? String
 		
 		for i in 0..<totalWeeks.length {
 			let weekDay = self.generateWeek()
@@ -231,7 +231,7 @@ class TodayViewController : UIViewController {
 			dayLabel.text = "\(i)"
 		}
 		
-		if let todayView = self.weeksView.viewWithTag(day) {
+		if let todayView = self.weeksView.viewWithTag(swday - 1 + day) {
 			var hlRect = todayView.bounds
 			hlRect = CGRectInset(hlRect, hlRect.size.width * 0.25, hlRect.size.height * 0.1)
 			hlRect.origin.x *= self.isRunningAsWidget() ? 0.75 : 1.0
@@ -246,10 +246,28 @@ class TodayViewController : UIViewController {
 	
 	
 	func unitWeekdayToRealWeekday(weekday: Int) -> Int {
-		let fwd = self.calendar.firstWeekday
+		let wf = self.calendar.firstWeekday
 		let wc = self.calendar.weekdaySymbols.count
 		
-		return (weekday > fwd ? weekday : wc) - (fwd - 1)
+		var ret = weekday - (wf - 1)
+		if ret < 1 {
+			ret += wc
+		}
+		
+		return ret
+	}
+	
+	
+	func realWeekdayToUnitWeekday(weekday: Int) -> Int {
+		let wf = self.calendar.firstWeekday
+		let wc = self.calendar.weekdaySymbols.count
+		
+		var ret = weekday - wf
+		if ret < 1 {
+			ret += wc
+		}
+		
+		return ret
 	}
 	
 	
@@ -279,7 +297,7 @@ class TodayViewController : UIViewController {
 	@IBAction func doOpenCalendar() {
 		if self.isRunningAsWidget() {
 			let url = NSURL(string: "calshow://")
-			self.extensionContext.openURL(url, completionHandler: nil)
+			self.extensionContext?.openURL(url, completionHandler: nil)
 		}
 	}
 }
