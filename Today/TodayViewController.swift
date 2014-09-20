@@ -33,14 +33,12 @@ class TodayViewController : UIViewController {
 	var weeksHeightConstraint: NSLayoutConstraint! { return _weeksHeightConstraint }
 	
 	
-	let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+	let calendar = NSCalendar.currentCalendar()
 	let dateFormatter = NSDateFormatter()
 	
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		
-		self.calendar.firstWeekday = 2
 		
 		self.dateFormatter.calendar = self.calendar
 		self.dateFormatter.locale = NSLocale.currentLocale()
@@ -51,7 +49,7 @@ class TodayViewController : UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.generateWeekdayTitles()
+		self.generateWeekdays()
 		self.generateCalendar()
     }
 	
@@ -66,14 +64,22 @@ class TodayViewController : UIViewController {
 		let newDate = self.dateStamp()
 		
 		if let lastDate = defs.objectForKey(self.lastDatePrefKey) as? String {
-			completionHandler(newDate == lastDate ? .NoData : .NewData)
+			if newDate == lastDate {
+				completionHandler(.NoData)
+			}
+			else {
+				defs.setObject(newDate, forKey: self.lastDatePrefKey)
+				defs.synchronize()
+				
+				completionHandler(.NewData)
+			}
 		}
 		else {
-			completionHandler(NCUpdateResult.NewData)
+			defs.setObject(newDate, forKey: self.lastDatePrefKey)
+			defs.synchronize()
+			
+			completionHandler(.NewData)
 		}
-		
-		defs.setObject(newDate, forKey: self.lastDatePrefKey)
-		defs.synchronize()
     }
 	
 	
@@ -125,16 +131,16 @@ class TodayViewController : UIViewController {
 	}
 	
 	
-	func generateWeekdayTitles() {
-		var weekdays = self.dateFormatter.shortWeekdaySymbols as [String]
+	func generateWeekdays() {
+		var weekdayTitles = self.dateFormatter.shortWeekdaySymbols as [String]
 		
-		let fwd = self.dateFormatter.calendar.firstWeekday
-		let wc = weekdays.count
-		weekdays = Array(weekdays[(fwd-1)..<wc]) + Array(weekdays[0..<fwd])
+		let wf = self.dateFormatter.calendar.firstWeekday
+		let wc = weekdayTitles.count
+		weekdayTitles = Array(weekdayTitles[(wf-1)..<wc]) + Array(weekdayTitles[0..<wf])
 		
-		for i in 1..<weekdays.count {
+		for i in 1..<weekdayTitles.count {
 			var label = TodayWeekdayLabel(frame: CGRectZero)
-			label.text = weekdays[i - 1]
+			label.text = weekdayTitles[i - 1]
 			label.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor).colorWithAlphaComponent(0.6)
 			self.weekdaysView.addSubview(label)
 			
@@ -154,13 +160,13 @@ class TodayViewController : UIViewController {
 	
 	
 	func generateWeek() -> UIView {
-		let weekView = TodayWeekView()
-		self.weeksView.addSubview(weekView)
+		let view = TodayWeekView()
+		self.weeksView.addSubview(view)
 		
-		self.autoLayout(weekView, verticalMode: true)
+		self.autoLayout(view, verticalMode: true)
 		
 		let c = NSLayoutConstraint(
-			item: weekView, attribute: .Height,
+			item: view, attribute: .Height,
 			relatedBy: .Equal,
 			toItem: nil, attribute: .NotAnAttribute,
 			multiplier: 1, constant: 25)
@@ -177,23 +183,23 @@ class TodayViewController : UIViewController {
 			self.weeksView.layoutIfNeeded()
 		}
 		
-		return weekView
+		return view
 	}
 	
 	
-	func generateWeekdaysForWeek(weekView: UIView, baseTag: Int) {
+	func generateDaysForWeek(weekView: UIView, baseTag: Int) {
 		for i in 1...7 {
-			let weekdayView = TodayDayLabel()
-			weekdayView.tag = baseTag + i
-			weekdayView.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor)
-			weekView.addSubview(weekdayView)
+			let dayView = TodayDayLabel()
+			dayView.tag = baseTag + i
+			dayView.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor)
+			weekView.addSubview(dayView)
 			
-			self.autoLayout(weekdayView, verticalMode: false)
+			self.autoLayout(dayView, verticalMode: false)
 			
 			let c = NSLayoutConstraint(
-				item: weekdayView, attribute: .Width,
+				item: dayView, attribute: .Width,
 				relatedBy: .Equal,
-				toItem: weekdayView.superview, attribute: .Width,
+				toItem: dayView.superview, attribute: .Width,
 				multiplier: 1.0 / 7.0,
 				constant: 0)
 			weekView.addConstraint(c)
@@ -216,30 +222,31 @@ class TodayViewController : UIViewController {
 		let totalWeeks = self.calendar.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, inUnit: NSCalendarUnit.MonthCalendarUnit, forDate: today)
 		let totalDays = self.calendar.rangeOfUnit(.DayCalendarUnit, inUnit: .MonthCalendarUnit, forDate: today)
 		let swday = self.calculateStartWeekdayWithCurrentWeekday(wday, andDay: day)
+		let offset = swday - 1
 		
 		let df = NSDateFormatter()
 		df.locale = NSLocale.currentLocale()
 		self.monthLabel.text = df.standaloneMonthSymbols[month - 1] as? String
 		
 		for i in 0..<totalWeeks.length {
-			let weekDay = self.generateWeek()
-			self.generateWeekdaysForWeek(weekDay, baseTag: i * 7)
+			let weekView = self.generateWeek()
+			self.generateDaysForWeek(weekView, baseTag: i * 7)
 		}
 		
 		for i in 1...totalDays.length {
-			let dayLabel = (self.weeksView.viewWithTag(swday - 1 + i) as? TodayDayLabel)!
+			let dayLabel = (self.weeksView.viewWithTag(offset + i) as? TodayDayLabel)!
 			dayLabel.text = "\(i)"
 		}
 		
-		if let todayView = self.weeksView.viewWithTag(swday - 1 + day) {
+		if let todayView = self.weeksView.viewWithTag(offset + day) {
 			var hlRect = todayView.bounds
-			hlRect = CGRectInset(hlRect, hlRect.size.width * 0.25, hlRect.size.height * 0.1)
-			hlRect.origin.x *= self.isRunningAsWidget() ? 0.75 : 1.0
+			hlRect = CGRectInset(hlRect, hlRect.size.width * 0.2, hlRect.size.height * 0.1)
 			
 			let hlView = UIView(frame: hlRect)
 			hlView.layer.borderColor = self.todayColor
 			hlView.layer.borderWidth = 1
 			hlView.layer.cornerRadius = 10
+			hlView.autoresizingMask = .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleLeftMargin | .FlexibleRightMargin
 			todayView.addSubview(hlView)
 		}
 	}
@@ -289,15 +296,8 @@ class TodayViewController : UIViewController {
 	}
 	
 	
-	func isRunningAsWidget() -> Bool {
-		return (self.extensionContext != nil)
-	}
-	
-	
 	@IBAction func doOpenCalendar() {
-		if self.isRunningAsWidget() {
-			let url = NSURL(string: "calshow://")
-			self.extensionContext?.openURL(url, completionHandler: nil)
-		}
+		let url = NSURL(string: "calshow://")
+		self.extensionContext?.openURL(url, completionHandler: nil)
 	}
 }

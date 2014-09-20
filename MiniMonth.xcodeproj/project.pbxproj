@@ -12,7 +12,6 @@
 		D4073B2F19C377A600056370 /* TodayWeekdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2E19C377A600056370 /* TodayWeekdayLabel.swift */; };
 		D411EDF119C2A59B0054439F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EDF019C2A59B0054439F /* AppDelegate.swift */; };
 		D411EDF819C2A59B0054439F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D411EDF719C2A59B0054439F /* Images.xcassets */; };
-		D411EE0419C2A59C0054439F /* MiniMonthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE0319C2A59C0054439F /* MiniMonthTests.swift */; };
 		D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D411EE1319C2A5CD0054439F /* NotificationCenter.framework */; };
 		D411EE1919C2A5CD0054439F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
 		D411EE1B19C2A5CD0054439F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
@@ -27,13 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D411EDFE19C2A59B0054439F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D411EDE319C2A59B0054439F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D411EDEA19C2A59B0054439F;
-			remoteInfo = MiniMonth;
-		};
 		D411EE1C19C2A5CD0054439F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D411EDE319C2A59B0054439F /* Project object */;
@@ -72,9 +64,6 @@
 		D411EDEF19C2A59B0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D411EDF019C2A59B0054439F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D411EDF719C2A59B0054439F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D411EDFD19C2A59B0054439F /* MiniMonthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniMonthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D411EE0219C2A59B0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D411EE0319C2A59C0054439F /* MiniMonthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniMonthTests.swift; sourceTree = "<group>"; };
 		D411EE1119C2A5CC0054439F /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D411EE1319C2A5CD0054439F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D411EE1719C2A5CD0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,13 +74,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		D411EDE819C2A59B0054439F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D411EDFA19C2A59B0054439F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -113,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				D411EDED19C2A59B0054439F /* MiniMonth */,
-				D411EE0019C2A59B0054439F /* MiniMonthTests */,
 				D411EE1519C2A5CD0054439F /* Today */,
 				D411EE1219C2A5CD0054439F /* Frameworks */,
 				D411EDEC19C2A59B0054439F /* Products */,
@@ -124,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				D411EDEB19C2A59B0054439F /* MiniMonth.app */,
-				D411EDFD19C2A59B0054439F /* MiniMonthTests.xctest */,
 				D411EE1119C2A5CC0054439F /* Today.appex */,
 			);
 			name = Products;
@@ -144,23 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				D411EDEF19C2A59B0054439F /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D411EE0019C2A59B0054439F /* MiniMonthTests */ = {
-			isa = PBXGroup;
-			children = (
-				D411EE0319C2A59C0054439F /* MiniMonthTests.swift */,
-				D411EE0119C2A59B0054439F /* Supporting Files */,
-			);
-			path = MiniMonthTests;
-			sourceTree = "<group>";
-		};
-		D411EE0119C2A59B0054439F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D411EE0219C2A59B0054439F /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -218,24 +181,6 @@
 			productReference = D411EDEB19C2A59B0054439F /* MiniMonth.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D411EDFC19C2A59B0054439F /* MiniMonthTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D411EE0A19C2A59C0054439F /* Build configuration list for PBXNativeTarget "MiniMonthTests" */;
-			buildPhases = (
-				D411EDF919C2A59B0054439F /* Sources */,
-				D411EDFA19C2A59B0054439F /* Frameworks */,
-				D411EDFB19C2A59B0054439F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D411EDFF19C2A59B0054439F /* PBXTargetDependency */,
-			);
-			name = MiniMonthTests;
-			productName = MiniMonthTests;
-			productReference = D411EDFD19C2A59B0054439F /* MiniMonthTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		D411EE1019C2A5CC0054439F /* Today */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D411EE2119C2A5CD0054439F /* Build configuration list for PBXNativeTarget "Today" */;
@@ -265,10 +210,6 @@
 					D411EDEA19C2A59B0054439F = {
 						CreatedOnToolsVersion = 6.0;
 					};
-					D411EDFC19C2A59B0054439F = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = D411EDEA19C2A59B0054439F;
-					};
 					D411EE1019C2A5CC0054439F = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = V8NCXSZ3T7;
@@ -289,7 +230,6 @@
 			projectRoot = "";
 			targets = (
 				D411EDEA19C2A59B0054439F /* MiniMonth */,
-				D411EDFC19C2A59B0054439F /* MiniMonthTests */,
 				D411EE1019C2A5CC0054439F /* Today */,
 			);
 		};
@@ -302,13 +242,6 @@
 			files = (
 				D46B7ADC19CB08A10088E262 /* MainInterface.storyboard in Resources */,
 				D411EDF819C2A59B0054439F /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D411EDFB19C2A59B0054439F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,14 +269,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D411EDF919C2A59B0054439F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D411EE0419C2A59C0054439F /* MiniMonthTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D411EE0D19C2A5CC0054439F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,11 +284,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D411EDFF19C2A59B0054439F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D411EDEA19C2A59B0054439F /* MiniMonth */;
-			targetProxy = D411EDFE19C2A59B0054439F /* PBXContainerItemProxy */;
-		};
 		D411EE1D19C2A5CD0054439F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D411EE1019C2A5CC0054439F /* Today */;
@@ -478,40 +398,6 @@
 			};
 			name = Release;
 		};
-		D411EE0B19C2A59C0054439F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = MiniMonthTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MiniMonth.app/MiniMonth";
-			};
-			name = Debug;
-		};
-		D411EE0C19C2A59C0054439F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = MiniMonthTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MiniMonth.app/MiniMonth";
-			};
-			name = Release;
-		};
 		D411EE2219C2A5CD0054439F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -555,15 +441,6 @@
 			buildConfigurations = (
 				D411EE0819C2A59C0054439F /* Debug */,
 				D411EE0919C2A59C0054439F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D411EE0A19C2A59C0054439F /* Build configuration list for PBXNativeTarget "MiniMonthTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D411EE0B19C2A59C0054439F /* Debug */,
-				D411EE0C19C2A59C0054439F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
