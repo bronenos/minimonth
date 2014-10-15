@@ -8,13 +8,15 @@
 
 import UIKit
 import NotificationCenter
+import EventKit
 
 
 class TodayViewController : UIViewController {
 	let monthColor = UIColor.whiteColor()
 	let dayColor = UIColor.whiteColor()
 	let weekendColor = UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 1.0)
-	let todayColor = UIColor.greenColor().colorWithAlphaComponent(0.65).CGColor
+	let todayColor = UIColor.greenColor().colorWithAlphaComponent(0.65)
+	let eventColor = UIColor.yellowColor().colorWithAlphaComponent(0.65)
 	
 	
 	let lastDatePrefKey = "lastDate"
@@ -35,6 +37,9 @@ class TodayViewController : UIViewController {
 	
 	let calendar = NSCalendar.currentCalendar()
 	let dateFormatter = NSDateFormatter()
+	
+	var dayToGenerate = NSDate()
+	var daysOffset = 0
 	
 	
 	required init(coder aDecoder: NSCoder) {
@@ -84,7 +89,7 @@ class TodayViewController : UIViewController {
 	
 	
 	func dateStamp() -> String {
-		return self.dateFormatter.stringFromDate(NSDate())
+		return self.dateFormatter.stringFromDate(self.dayToGenerate)
 	}
 	
 	
@@ -141,7 +146,7 @@ class TodayViewController : UIViewController {
 		for i in 1..<weekdayTitles.count {
 			var label = TodayWeekdayLabel(frame: CGRectZero)
 			label.text = weekdayTitles[i - 1]
-			label.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor).colorWithAlphaComponent(0.6)
+			label.textColor = self.dayColor.colorWithAlphaComponent(0.6)
 			self.weekdaysView.addSubview(label)
 			
 			self.autoLayout(label, verticalMode: false)
@@ -211,22 +216,27 @@ class TodayViewController : UIViewController {
 	
 	
 	func generateCalendar() {
-		let today = NSDate()
+		let calcDay = self.dayToGenerate
 		
-		let units: NSCalendarUnit = .MonthCalendarUnit | .WeekdayCalendarUnit | .DayCalendarUnit
-		let comps = self.calendar.components(units, fromDate: today)
+		let units: NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .WeekdayCalendarUnit | .DayCalendarUnit
+		var comps = self.calendar.components(units, fromDate: calcDay)
+		let todayComps = self.calendar.components(units, fromDate: NSDate())
 		
 		let month = comps.month
 		let wday = self.unitWeekdayToRealWeekday(comps.weekday)
 		let day = comps.day
-		let totalWeeks = self.calendar.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, inUnit: NSCalendarUnit.MonthCalendarUnit, forDate: today)
-		let totalDays = self.calendar.rangeOfUnit(.DayCalendarUnit, inUnit: .MonthCalendarUnit, forDate: today)
+		let totalWeeks = self.calendar.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, inUnit: NSCalendarUnit.MonthCalendarUnit, forDate: calcDay)
+		let totalDays = self.calendar.rangeOfUnit(.DayCalendarUnit, inUnit: .MonthCalendarUnit, forDate: calcDay)
 		let swday = self.calculateStartWeekdayWithCurrentWeekday(wday, andDay: day)
-		let offset = swday - 1
+		self.daysOffset = swday - 1
 		
 		let df = NSDateFormatter()
 		df.locale = NSLocale.currentLocale()
 		self.monthLabel.text = df.standaloneMonthSymbols[month - 1] as? String
+		
+		for s in self.weeksView.subviews as [UIView] {
+			s.removeFromSuperview()
+		}
 		
 		for i in 0..<totalWeeks.length {
 			let weekView = self.generateWeek()
@@ -234,20 +244,71 @@ class TodayViewController : UIViewController {
 		}
 		
 		for i in 1...totalDays.length {
-			let dayLabel = (self.weeksView.viewWithTag(offset + i) as? TodayDayLabel)!
+			let dayLabel = (self.weeksView.viewWithTag(self.daysOffset + i) as? TodayDayLabel)!
 			dayLabel.text = "\(i)"
 		}
 		
-		if let todayView = self.weeksView.viewWithTag(offset + day) {
-			var hlRect = todayView.bounds
-			hlRect = CGRectInset(hlRect, hlRect.size.width * 0.2, hlRect.size.height * 0.1)
-			
-			let hlView = UIView(frame: hlRect)
-			hlView.layer.borderColor = self.todayColor
-			hlView.layer.borderWidth = 1
-			hlView.layer.cornerRadius = 10
-			hlView.autoresizingMask = .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleLeftMargin | .FlexibleRightMargin
-			todayView.addSubview(hlView)
+		if comps == todayComps {
+			if let todayView = self.weeksView.viewWithTag(self.daysOffset + day) {
+				var hlRect = todayView.bounds
+				hlRect = CGRectInset(hlRect, hlRect.size.width * 0.2, hlRect.size.height * 0.1)
+				
+				let hlView = UIView(frame: hlRect)
+				hlView.layer.borderColor = self.todayColor.CGColor
+				hlView.layer.borderWidth = 1
+				hlView.layer.cornerRadius = 10
+				hlView.autoresizingMask = .FlexibleTopMargin | .FlexibleBottomMargin | .FlexibleLeftMargin | .FlexibleRightMargin
+				todayView.addSubview(hlView)
+			}
+		}
+		
+		self.requestEventDays()
+	}
+	
+	
+	func requestEventDays() {
+		let store = EKEventStore()
+		
+		if EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent) == EKAuthorizationStatus.Authorized {
+			self.markEventDays(store)
+		}
+		else {
+			store.requestAccessToEntityType(EKEntityTypeEvent, completion: {
+				[weak self] (granted: Bool, _) in
+				
+				if self != nil && granted {
+					self!.markEventDays(store)
+				}
+			})
+		}
+	}
+	
+	
+	func markEventDays(store: EKEventStore) {
+		let cal = NSCalendar.currentCalendar()
+		
+		let units: NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit
+		let comps = self.calendar.components(units, fromDate: self.dayToGenerate)
+		
+		var startComps = comps
+		startComps.day = 1
+		let startDate = self.calendar.dateFromComponents(startComps)
+		
+		var endComps = comps
+		endComps.day = 0
+		endComps.month++;
+		let endDate = self.calendar.dateFromComponents(endComps)
+		
+		let pred = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
+		let events = store.eventsMatchingPredicate(pred) as [EKEvent]!
+		
+		if events != nil {
+			for e in events {
+				let c = self.calendar.components(units, fromDate: e.startDate)
+				if let eventView = self.weeksView.viewWithTag(self.daysOffset + c.day) as? TodayDayLabel {
+					eventView.pointColor = self.eventColor
+				}
+			}
 		}
 	}
 	
@@ -299,5 +360,28 @@ class TodayViewController : UIViewController {
 	@IBAction func doOpenCalendar() {
 		let url = NSURL(string: "calshow://")
 		self.extensionContext?.openURL(url, completionHandler: nil)
+	}
+	
+	
+	@IBAction func doSwitchMonth(rec: UIGestureRecognizer!) {
+		let pt = rec.locationInView(rec.view)
+		let w = rec.view!.bounds.width
+		
+		let units: NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit
+		var comps = self.calendar.components(units, fromDate: self.dayToGenerate)
+		
+		if pt.x < (w * 0.3) {
+			comps.month--
+			self.dayToGenerate = self.calendar.dateFromComponents(comps)!
+		}
+		else if pt.x > (w * 0.7) {
+			comps.month++
+			self.dayToGenerate = self.calendar.dateFromComponents(comps)!
+		}
+		else {
+			self.dayToGenerate = NSDate()
+		}
+		
+		self.generateCalendar()
 	}
 }

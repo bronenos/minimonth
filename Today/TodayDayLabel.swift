@@ -11,6 +11,13 @@ import UIKit
 
 
 class TodayDayLabel : UILabel {
+	var _pointColor: UIColor!
+	var pointColor: UIColor! {
+		get { return _pointColor }
+		set { _pointColor = newValue }
+	}
+	
+	
 	override init() {
 		super.init()
 	}
@@ -27,5 +34,21 @@ class TodayDayLabel : UILabel {
 	
 	required init(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
+	}
+	
+	
+	override func drawRect(rect: CGRect) {
+		super.drawRect(rect)
+		
+		if _pointColor != nil {
+			var r = rect
+			r.origin.y = r.size.height - 2
+			r.size.height = 2
+			r.origin.x += r.size.width * 0.5 - 1
+			r.size.width = 2
+			
+			_pointColor.set()
+			UIRectFill(r)
+		}
 	}
 }

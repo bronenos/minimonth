@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -16,12 +16,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCR-Ld-0st" customClass="TodayMonthLabel" customModule="MiniMonth" customModuleProvider="target">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCR-Ld-0st" customClass="TodayMonthLabel" customModule="MiniMonth" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="kHQ-u4-1mo"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="HAx-ed-tWy" appends="YES" id="AYl-B3-Sj0"/>
+                                </connections>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇠" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsP-wL-Aqq">
+                                <rect key="frame" x="50" y="0.0" width="15" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -39,24 +48,36 @@
                                 <constraints>
                                     <constraint firstAttribute="height" priority="750" constant="180" id="Qky-BO-0mx"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Mtp-Eb-mOQ" appends="YES" id="pYK-Ur-b4V"/>
+                                </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇢" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfo-ER-oTZ">
+                                <rect key="frame" x="255" y="0.0" width="15" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="7Co-E7-D0C"/>
+                            <constraint firstItem="zsP-wL-Aqq" firstAttribute="height" secondItem="mCR-Ld-0st" secondAttribute="height" id="9F1-Sx-MbO"/>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="trailing" secondItem="EIm-oe-olx" secondAttribute="trailing" id="FdS-Wh-60w"/>
+                            <constraint firstItem="zsP-wL-Aqq" firstAttribute="centerY" secondItem="mCR-Ld-0st" secondAttribute="centerY" id="Lr4-Kz-Itt"/>
+                            <constraint firstItem="zsP-wL-Aqq" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="50" id="Oh4-pS-KVu"/>
                             <constraint firstItem="EIm-oe-olx" firstAttribute="trailing" secondItem="9hd-Dm-BJU" secondAttribute="trailing" id="P8d-Mk-0HC"/>
                             <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="9hd-Dm-BJU" secondAttribute="bottom" id="PXM-d6-xH7"/>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="leading" secondItem="EIm-oe-olx" secondAttribute="leading" id="QJi-8M-gxC"/>
                             <constraint firstAttribute="trailing" secondItem="mCR-Ld-0st" secondAttribute="trailing" id="XC9-Bo-tHr"/>
+                            <constraint firstAttribute="trailing" secondItem="Yfo-ER-oTZ" secondAttribute="trailing" constant="50" id="aDU-MZ-bYZ"/>
                             <constraint firstItem="EIm-oe-olx" firstAttribute="leading" secondItem="9hd-Dm-BJU" secondAttribute="leading" id="c0Z-B4-tnI"/>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="dh8-C6-EeM"/>
+                            <constraint firstItem="Yfo-ER-oTZ" firstAttribute="height" secondItem="mCR-Ld-0st" secondAttribute="height" id="ho5-q1-8j1"/>
+                            <constraint firstItem="Yfo-ER-oTZ" firstAttribute="centerY" secondItem="mCR-Ld-0st" secondAttribute="centerY" id="kQ1-eu-zqo"/>
                             <constraint firstItem="EIm-oe-olx" firstAttribute="top" secondItem="mCR-Ld-0st" secondAttribute="bottom" id="yWw-tN-Dbf"/>
                             <constraint firstItem="9hd-Dm-BJU" firstAttribute="top" secondItem="EIm-oe-olx" secondAttribute="bottom" id="ysG-gI-twT"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Mtp-Eb-mOQ" appends="YES" id="UES-ys-CGk"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -72,9 +93,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Mtp-Eb-mOQ">
+                <tapGestureRecognizer id="Mtp-Eb-mOQ" userLabel="Open Calendar Gesture Recognizer">
                     <connections>
                         <action selector="doOpenCalendar" destination="M4Y-Lb-cyx" id="Vkg-ZU-aEg"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="HAx-ed-tWy" userLabel="Switch Month Gesture Recognizer">
+                    <connections>
+                        <action selector="doSwitchMonth:" destination="M4Y-Lb-cyx" id="KD8-h9-CW2"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -84,9 +110,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>
