@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -35,6 +35,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇢" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfo-ER-oTZ">
+                                <rect key="frame" x="255" y="0.0" width="15" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIm-oe-olx" userLabel="Weekdays">
                                 <rect key="frame" x="0.0" y="35" width="320" height="25"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -48,16 +54,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" priority="750" constant="180" id="Qky-BO-0mx"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Mtp-Eb-mOQ" appends="YES" id="pYK-Ur-b4V"/>
-                                </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇢" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfo-ER-oTZ">
-                                <rect key="frame" x="255" y="0.0" width="15" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
@@ -87,17 +84,14 @@
                     <size key="freeformSize" width="320" height="239"/>
                     <connections>
                         <outlet property="_monthLabel" destination="mCR-Ld-0st" id="84l-si-Tjc"/>
+                        <outlet property="_nextMonthLabel" destination="Yfo-ER-oTZ" id="F6e-lU-ab6"/>
+                        <outlet property="_prevMonthLabel" destination="zsP-wL-Aqq" id="CPt-SF-fJA"/>
                         <outlet property="_weekdaysView" destination="EIm-oe-olx" id="U4x-fi-Smc"/>
                         <outlet property="_weeksHeightConstraint" destination="Qky-BO-0mx" id="r30-le-UI6"/>
                         <outlet property="_weeksView" destination="9hd-Dm-BJU" id="TvG-ca-G1U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Mtp-Eb-mOQ" userLabel="Open Calendar Gesture Recognizer">
-                    <connections>
-                        <action selector="doOpenCalendar" destination="M4Y-Lb-cyx" id="Vkg-ZU-aEg"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <tapGestureRecognizer id="HAx-ed-tWy" userLabel="Switch Month Gesture Recognizer">
                     <connections>
                         <action selector="doSwitchMonth:" destination="M4Y-Lb-cyx" id="KD8-h9-CW2"/>

@@ -16,13 +16,24 @@
 		D411EE1919C2A5CD0054439F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
 		D411EE1B19C2A5CD0054439F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D411EE1E19C2A5CD0054439F /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D450C39819FF6F45006DAA83 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450C39719FF6F45006DAA83 /* AppViewController.swift */; };
+		D450C39919FF6F5A006DAA83 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
+		D450C3C519FF7CA2006DAA83 /* HRBrightnessCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3B619FF7CA2006DAA83 /* HRBrightnessCursor.m */; };
+		D450C3C619FF7CA2006DAA83 /* HRBrightnessSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3B819FF7CA2006DAA83 /* HRBrightnessSlider.m */; };
+		D450C3C719FF7CA2006DAA83 /* HRColorCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3BA19FF7CA2006DAA83 /* HRColorCursor.m */; };
+		D450C3C819FF7CA2006DAA83 /* HRColorInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3BC19FF7CA2006DAA83 /* HRColorInfoView.m */; };
+		D450C3C919FF7CA2006DAA83 /* HRColorMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3BE19FF7CA2006DAA83 /* HRColorMapView.m */; };
+		D450C3CA19FF7CA2006DAA83 /* HRColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3C019FF7CA2006DAA83 /* HRColorPickerView.m */; };
+		D450C3CB19FF7CA2006DAA83 /* HRHSVColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3C219FF7CA2006DAA83 /* HRHSVColorUtil.m */; };
+		D450C3CC19FF7CA2006DAA83 /* UIImage+CoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3C419FF7CA2006DAA83 /* UIImage+CoreGraphics.m */; };
+		D450C3CE19FF7D62006DAA83 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450C3CD19FF7D62006DAA83 /* ColorViewController.swift */; };
 		D46B7AD719CB078C0088E262 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
 		D46B7AD819CB07900088E262 /* TodayMonthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2A19C2AD5B00056370 /* TodayMonthLabel.swift */; };
 		D46B7AD919CB07940088E262 /* TodayWeekdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2E19C377A600056370 /* TodayWeekdayLabel.swift */; };
 		D46B7ADA19CB07970088E262 /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
 		D46B7ADB19CB079B0088E262 /* TodayDayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2C19C2ADB400056370 /* TodayDayLabel.swift */; };
-		D46B7ADC19CB08A10088E262 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D4A5112819C6F78000555E1C /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
+		D4F9BABE19FFC5C0001ED36C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452388719F2433C007A1181 /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +80,30 @@
 		D411EE1719C2A5CD0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D411EE1819C2A5CD0054439F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		D450C39719FF6F45006DAA83 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		D450C3B319FF7C4A006DAA83 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		D450C3B519FF7CA2006DAA83 /* HRBrightnessCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBrightnessCursor.h; sourceTree = "<group>"; };
+		D450C3B619FF7CA2006DAA83 /* HRBrightnessCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBrightnessCursor.m; sourceTree = "<group>"; };
+		D450C3B719FF7CA2006DAA83 /* HRBrightnessSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBrightnessSlider.h; sourceTree = "<group>"; };
+		D450C3B819FF7CA2006DAA83 /* HRBrightnessSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBrightnessSlider.m; sourceTree = "<group>"; };
+		D450C3B919FF7CA2006DAA83 /* HRColorCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRColorCursor.h; sourceTree = "<group>"; };
+		D450C3BA19FF7CA2006DAA83 /* HRColorCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRColorCursor.m; sourceTree = "<group>"; };
+		D450C3BB19FF7CA2006DAA83 /* HRColorInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRColorInfoView.h; sourceTree = "<group>"; };
+		D450C3BC19FF7CA2006DAA83 /* HRColorInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRColorInfoView.m; sourceTree = "<group>"; };
+		D450C3BD19FF7CA2006DAA83 /* HRColorMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRColorMapView.h; sourceTree = "<group>"; };
+		D450C3BE19FF7CA2006DAA83 /* HRColorMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRColorMapView.m; sourceTree = "<group>"; };
+		D450C3BF19FF7CA2006DAA83 /* HRColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRColorPickerView.h; sourceTree = "<group>"; };
+		D450C3C019FF7CA2006DAA83 /* HRColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRColorPickerView.m; sourceTree = "<group>"; };
+		D450C3C119FF7CA2006DAA83 /* HRHSVColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRHSVColorUtil.h; sourceTree = "<group>"; };
+		D450C3C219FF7CA2006DAA83 /* HRHSVColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRHSVColorUtil.m; sourceTree = "<group>"; };
+		D450C3C319FF7CA2006DAA83 /* UIImage+CoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CoreGraphics.h"; sourceTree = "<group>"; };
+		D450C3C419FF7CA2006DAA83 /* UIImage+CoreGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CoreGraphics.m"; sourceTree = "<group>"; };
+		D450C3CD19FF7D62006DAA83 /* ColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		D4A5112719C6F78000555E1C /* TodayWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayWeekView.swift; sourceTree = "<group>"; };
+		D4C735A919FFBAE20066A6E8 /* MiniMonth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MiniMonth.entitlements; sourceTree = "<group>"; };
+		D4C735AA19FFBAEC0066A6E8 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
+		D4C735B419FFC34F0066A6E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
+		D4F9BABD19FFC559001ED36C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Storyboard.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,9 +147,15 @@
 		D411EDED19C2A59B0054439F /* MiniMonth */ = {
 			isa = PBXGroup;
 			children = (
+				D4C735A919FFBAE20066A6E8 /* MiniMonth.entitlements */,
+				D450C3B419FF7CA2006DAA83 /* ColorPicker */,
+				D450C3B319FF7C4A006DAA83 /* Bridging-Header.h */,
+				D452388719F2433C007A1181 /* Storyboard.storyboard */,
 				D411EDF019C2A59B0054439F /* AppDelegate.swift */,
 				D411EDF719C2A59B0054439F /* Images.xcassets */,
 				D411EDEE19C2A59B0054439F /* Supporting Files */,
+				D450C39719FF6F45006DAA83 /* AppViewController.swift */,
+				D450C3CD19FF7D62006DAA83 /* ColorViewController.swift */,
 			);
 			path = MiniMonth;
 			sourceTree = "<group>";
@@ -139,6 +179,7 @@
 		D411EE1519C2A5CD0054439F /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				D4C735AA19FFBAEC0066A6E8 /* Today.entitlements */,
 				D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */,
 				D411EE1619C2A5CD0054439F /* Supporting Files */,
 				D411EE1819C2A5CD0054439F /* TodayViewController.swift */,
@@ -156,6 +197,29 @@
 				D411EE1719C2A5CD0054439F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D450C3B419FF7CA2006DAA83 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				D450C3B519FF7CA2006DAA83 /* HRBrightnessCursor.h */,
+				D450C3B619FF7CA2006DAA83 /* HRBrightnessCursor.m */,
+				D450C3B719FF7CA2006DAA83 /* HRBrightnessSlider.h */,
+				D450C3B819FF7CA2006DAA83 /* HRBrightnessSlider.m */,
+				D450C3B919FF7CA2006DAA83 /* HRColorCursor.h */,
+				D450C3BA19FF7CA2006DAA83 /* HRColorCursor.m */,
+				D450C3BB19FF7CA2006DAA83 /* HRColorInfoView.h */,
+				D450C3BC19FF7CA2006DAA83 /* HRColorInfoView.m */,
+				D450C3BD19FF7CA2006DAA83 /* HRColorMapView.h */,
+				D450C3BE19FF7CA2006DAA83 /* HRColorMapView.m */,
+				D450C3BF19FF7CA2006DAA83 /* HRColorPickerView.h */,
+				D450C3C019FF7CA2006DAA83 /* HRColorPickerView.m */,
+				D450C3C119FF7CA2006DAA83 /* HRHSVColorUtil.h */,
+				D450C3C219FF7CA2006DAA83 /* HRHSVColorUtil.m */,
+				D450C3C319FF7CA2006DAA83 /* UIImage+CoreGraphics.h */,
+				D450C3C419FF7CA2006DAA83 /* UIImage+CoreGraphics.m */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,10 +274,20 @@
 					D411EDEA19C2A59B0054439F = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = V8NCXSZ3T7;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					D411EE1019C2A5CC0054439F = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = V8NCXSZ3T7;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -224,6 +298,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = D411EDE219C2A59B0054439F;
 			productRefGroup = D411EDEC19C2A59B0054439F /* Products */;
@@ -241,8 +316,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D46B7ADC19CB08A10088E262 /* MainInterface.storyboard in Resources */,
 				D411EDF819C2A59B0054439F /* Images.xcassets in Resources */,
+				D450C39919FF6F5A006DAA83 /* MainInterface.storyboard in Resources */,
+				D4F9BABE19FFC5C0001ED36C /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +337,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D450C3C519FF7CA2006DAA83 /* HRBrightnessCursor.m in Sources */,
+				D450C3CC19FF7CA2006DAA83 /* UIImage+CoreGraphics.m in Sources */,
+				D450C3CE19FF7D62006DAA83 /* ColorViewController.swift in Sources */,
+				D450C3CB19FF7CA2006DAA83 /* HRHSVColorUtil.m in Sources */,
+				D450C3CA19FF7CA2006DAA83 /* HRColorPickerView.m in Sources */,
+				D450C3C719FF7CA2006DAA83 /* HRColorCursor.m in Sources */,
 				D411EDF119C2A59B0054439F /* AppDelegate.swift in Sources */,
+				D450C3C619FF7CA2006DAA83 /* HRBrightnessSlider.m in Sources */,
 				D46B7ADA19CB07970088E262 /* TodayWeekView.swift in Sources */,
 				D46B7AD719CB078C0088E262 /* TodayViewController.swift in Sources */,
 				D46B7AD919CB07940088E262 /* TodayWeekdayLabel.swift in Sources */,
+				D450C39819FF6F45006DAA83 /* AppViewController.swift in Sources */,
+				D450C3C819FF7CA2006DAA83 /* HRColorInfoView.m in Sources */,
+				D450C3C919FF7CA2006DAA83 /* HRColorMapView.m in Sources */,
 				D46B7ADB19CB079B0088E262 /* TodayDayLabel.swift in Sources */,
 				D46B7AD819CB07900088E262 /* TodayMonthLabel.swift in Sources */,
 			);
@@ -296,6 +382,18 @@
 			targetProxy = D411EE1F19C2A5CD0054439F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D452388719F2433C007A1181 /* Storyboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4C735B419FFC34F0066A6E8 /* Base */,
+				D4F9BABD19FFC559001ED36C /* ru */,
+			);
+			name = Storyboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D411EE0519C2A59C0054439F /* Debug */ = {
@@ -386,12 +484,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = MiniMonth/MiniMonth.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MiniMonth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MiniMonth/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -400,18 +500,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = MiniMonth/MiniMonth.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stanislav Potemkin (V8NCXSZ3T7)";
 				INFOPLIST_FILE = MiniMonth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MiniMonth/Bridging-Header.h";
 			};
 			name = Release;
 		};
 		D411EE2219C2A5CD0054439F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -430,6 +533,7 @@
 		D411EE2319C2A5CD0054439F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stanislav Potemkin (V8NCXSZ3T7)";
 				INFOPLIST_FILE = Today/Info.plist;

@@ -11,19 +11,31 @@ import NotificationCenter
 import EventKit
 
 
+let monthColorPrefKey = "monthColor"
+let dayColorPrefKey = "dayColor"
+let weekendColorPrefKey = "weekendColor"
+let todayColorPrefKey = "todayColor"
+let eventColorPrefKey = "eventColor"
+let lastDatePrefKey = "lastDate"
+
+
 class TodayViewController : UIViewController {
-	let monthColor = UIColor.whiteColor()
-	let dayColor = UIColor.whiteColor()
-	let weekendColor = UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 1.0)
-	let todayColor = UIColor.greenColor().colorWithAlphaComponent(0.65)
-	let eventColor = UIColor.yellowColor().colorWithAlphaComponent(0.65)
-	
-	
-	let lastDatePrefKey = "lastDate"
+	let h2c = TodayViewController.hexToColor
+	var monthColor: UIColor { return h2c(self.defs.objectForKey(monthColorPrefKey) as NSString) }
+	var dayColor: UIColor { return h2c(self.defs.objectForKey(dayColorPrefKey) as NSString) }
+	var weekendColor: UIColor { return h2c(self.defs.objectForKey(weekendColorPrefKey) as NSString) }
+	var todayColor: UIColor { return h2c(self.defs.objectForKey(todayColorPrefKey) as NSString) }
+	var eventColor: UIColor { return h2c(self.defs.objectForKey(eventColorPrefKey) as NSString) }
 	
 	
 	@IBOutlet var _monthLabel: TodayMonthLabel!
 	var monthLabel: TodayMonthLabel! { return _monthLabel }
+	
+	@IBOutlet var _prevMonthLabel: UILabel!
+	var prevMonthLabel: UILabel! { return _prevMonthLabel }
+	
+	@IBOutlet var _nextMonthLabel: UILabel!
+	var nextMonthLabel: UILabel! { return _nextMonthLabel }
 	
 	@IBOutlet var _weekdaysView: UIView!
 	var weekdaysView: UIView! { return _weekdaysView }
@@ -37,18 +49,47 @@ class TodayViewController : UIViewController {
 	
 	let calendar = NSCalendar.currentCalendar()
 	let dateFormatter = NSDateFormatter()
+	let defs = NSUserDefaults(suiteName: "group.me.bronenos.minimonth")!
 	
 	var dayToGenerate = NSDate()
 	var daysOffset = 0
 	
 	
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+		super.init(nibName: nil, bundle: nil)
+		TodayViewController.registerDefaultColors()
+		self.setup()
+	}
+	
+	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		
+		TodayViewController.registerDefaultColors()
+		self.setup()
+	}
+	
+	
+	func setup() {
 		self.dateFormatter.calendar = self.calendar
 		self.dateFormatter.locale = NSLocale.currentLocale()
 		self.dateFormatter.dateStyle = .ShortStyle
 		self.dateFormatter.timeStyle = .NoStyle
+	}
+	
+	
+	class func registerDefaultColors() {
+		let convert = TodayViewController.colorToHex
+		let reg = [
+			monthColorPrefKey : convert(UIColor.whiteColor()),
+			dayColorPrefKey : convert(UIColor.whiteColor()),
+			weekendColorPrefKey : convert(UIColor(red: 0.8, green: 0.2, blue: 0.2, alpha: 1.0)),
+			todayColorPrefKey : convert(UIColor.greenColor().colorWithAlphaComponent(0.65)),
+			eventColorPrefKey : convert(UIColor.yellowColor().colorWithAlphaComponent(0.65)),
+		]
+		
+		let defs = NSUserDefaults(suiteName: "group.me.bronenos.minimonth")!
+		defs.registerDefaults(reg)
+		defs.synchronize()
 	}
 	
 	
@@ -65,27 +106,58 @@ class TodayViewController : UIViewController {
 	
 	
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
-		let defs = NSUserDefaults.standardUserDefaults()
 		let newDate = self.dateStamp()
 		
-		if let lastDate = defs.objectForKey(self.lastDatePrefKey) as? String {
+		if let lastDate = self.defs.objectForKey(lastDatePrefKey) as? String {
 			if newDate == lastDate {
 				completionHandler(.NoData)
 			}
 			else {
-				defs.setObject(newDate, forKey: self.lastDatePrefKey)
-				defs.synchronize()
+				self.defs.setObject(newDate, forKey: lastDatePrefKey)
+				self.defs.synchronize()
 				
 				completionHandler(.NewData)
 			}
 		}
 		else {
-			defs.setObject(newDate, forKey: self.lastDatePrefKey)
-			defs.synchronize()
+			self.defs.setObject(newDate, forKey: lastDatePrefKey)
+			self.defs.synchronize()
 			
 			completionHandler(.NewData)
 		}
     }
+	
+	
+	class func colorToHex(color: UIColor!) -> String {
+		if color != nil {
+			var r: CGFloat = 0
+			var g: CGFloat = 0
+			var b: CGFloat = 0
+			var a: CGFloat = 0
+			color.getRed(&r, green: &g, blue: &b, alpha: &a)
+			
+			return "\(r) \(g) \(b) \(a)"
+		}
+		else {
+			return "1 1 1 1"
+		}
+	}
+	
+	
+	class func hexToColor(hex: String!) -> UIColor {
+		if hex != nil {
+			let colors = (hex as NSString).componentsSeparatedByString(" ") as [NSString]
+			let r = CGFloat((colors[0] as NSString).floatValue)
+			let g = CGFloat((colors[1] as NSString).floatValue)
+			let b = CGFloat((colors[2] as NSString).floatValue)
+			let a = CGFloat((colors[3] as NSString).floatValue)
+			
+			return UIColor(red: r, green: g, blue: b, alpha: a)
+		}
+		else {
+			return UIColor.whiteColor()
+		}
+	}
 	
 	
 	func dateStamp() -> String {
@@ -146,7 +218,7 @@ class TodayViewController : UIViewController {
 		for i in 1..<weekdayTitles.count {
 			var label = TodayWeekdayLabel(frame: CGRectZero)
 			label.text = weekdayTitles[i - 1]
-			label.textColor = self.dayColor.colorWithAlphaComponent(0.6)
+			label.textColor = self.monthColor.colorWithAlphaComponent(0.6)
 			self.weekdaysView.addSubview(label)
 			
 			self.autoLayout(label, verticalMode: false)
@@ -232,7 +304,10 @@ class TodayViewController : UIViewController {
 		
 		let df = NSDateFormatter()
 		df.locale = NSLocale.currentLocale()
+		self.monthLabel.textColor = self.monthColor
 		self.monthLabel.text = df.standaloneMonthSymbols[month - 1] as? String
+		self.prevMonthLabel.textColor = self.monthColor
+		self.nextMonthLabel.textColor = self.monthColor
 		
 		for s in self.weeksView.subviews as [UIView] {
 			s.removeFromSuperview()
@@ -354,12 +429,6 @@ class TodayViewController : UIViewController {
 		}
 		
 		return local_wday
-	}
-	
-	
-	@IBAction func doOpenCalendar() {
-		let url = NSURL(string: "calshow://")
-		self.extensionContext?.openURL(url, completionHandler: nil)
 	}
 	
 	
