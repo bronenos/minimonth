@@ -16,6 +16,7 @@
 		D411EE1919C2A5CD0054439F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
 		D411EE1B19C2A5CD0054439F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D411EE1E19C2A5CD0054439F /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D4400DCB1A0E287A00F8D1A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4400DC81A0E1ED100F8D1A3 /* Localizable.strings */; };
 		D450C39819FF6F45006DAA83 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450C39719FF6F45006DAA83 /* AppViewController.swift */; };
 		D450C39919FF6F5A006DAA83 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D450C3C519FF7CA2006DAA83 /* HRBrightnessCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3B619FF7CA2006DAA83 /* HRBrightnessCursor.m */; };
@@ -33,7 +34,9 @@
 		D46B7ADA19CB07970088E262 /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
 		D46B7ADB19CB079B0088E262 /* TodayDayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2C19C2ADB400056370 /* TodayDayLabel.swift */; };
 		D4A5112819C6F78000555E1C /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
-		D4F9BABE19FFC5C0001ED36C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452388719F2433C007A1181 /* Storyboard.storyboard */; };
+		D4AAB62D1A0E2927005F921D /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452388719F2433C007A1181 /* Storyboard.storyboard */; };
+		D4C036E41A0CFA7200D53141 /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C036E31A0CFA7200D53141 /* ConfigCell.swift */; };
+		D4C036E61A0D2FC200D53141 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4C036E51A0D2FC200D53141 /* wallpaper.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +83,8 @@
 		D411EE1719C2A5CD0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D411EE1819C2A5CD0054439F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		D4400DC71A0E1ED100F8D1A3 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4400DC91A0E1ED400F8D1A3 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D450C39719FF6F45006DAA83 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		D450C3B319FF7C4A006DAA83 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		D450C3B519FF7CA2006DAA83 /* HRBrightnessCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBrightnessCursor.h; sourceTree = "<group>"; };
@@ -100,10 +105,11 @@
 		D450C3C419FF7CA2006DAA83 /* UIImage+CoreGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CoreGraphics.m"; sourceTree = "<group>"; };
 		D450C3CD19FF7D62006DAA83 /* ColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		D4A5112719C6F78000555E1C /* TodayWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayWeekView.swift; sourceTree = "<group>"; };
+		D4C036E31A0CFA7200D53141 /* ConfigCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
+		D4C036E51A0D2FC200D53141 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
 		D4C735A919FFBAE20066A6E8 /* MiniMonth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MiniMonth.entitlements; sourceTree = "<group>"; };
 		D4C735AA19FFBAEC0066A6E8 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
 		D4C735B419FFC34F0066A6E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
-		D4F9BABD19FFC559001ED36C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Storyboard.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,7 @@
 				D411EDEE19C2A59B0054439F /* Supporting Files */,
 				D450C39719FF6F45006DAA83 /* AppViewController.swift */,
 				D450C3CD19FF7D62006DAA83 /* ColorViewController.swift */,
+				D4C036E31A0CFA7200D53141 /* ConfigCell.swift */,
 			);
 			path = MiniMonth;
 			sourceTree = "<group>";
@@ -164,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				D411EDEF19C2A59B0054439F /* Info.plist */,
+				D4C036E51A0D2FC200D53141 /* wallpaper.jpg */,
+				D4400DC81A0E1ED100F8D1A3 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -316,9 +325,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4400DCB1A0E287A00F8D1A3 /* Localizable.strings in Resources */,
+				D4AAB62D1A0E2927005F921D /* Storyboard.storyboard in Resources */,
+				D4C036E61A0D2FC200D53141 /* wallpaper.jpg in Resources */,
 				D411EDF819C2A59B0054439F /* Images.xcassets in Resources */,
 				D450C39919FF6F5A006DAA83 /* MainInterface.storyboard in Resources */,
-				D4F9BABE19FFC5C0001ED36C /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +354,7 @@
 				D450C3CB19FF7CA2006DAA83 /* HRHSVColorUtil.m in Sources */,
 				D450C3CA19FF7CA2006DAA83 /* HRColorPickerView.m in Sources */,
 				D450C3C719FF7CA2006DAA83 /* HRColorCursor.m in Sources */,
+				D4C036E41A0CFA7200D53141 /* ConfigCell.swift in Sources */,
 				D411EDF119C2A59B0054439F /* AppDelegate.swift in Sources */,
 				D450C3C619FF7CA2006DAA83 /* HRBrightnessSlider.m in Sources */,
 				D46B7ADA19CB07970088E262 /* TodayWeekView.swift in Sources */,
@@ -384,11 +396,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D4400DC81A0E1ED100F8D1A3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4400DC71A0E1ED100F8D1A3 /* Base */,
+				D4400DC91A0E1ED400F8D1A3 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		D452388719F2433C007A1181 /* Storyboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D4C735B419FFC34F0066A6E8 /* Base */,
-				D4F9BABD19FFC559001ED36C /* ru */,
 			);
 			name = Storyboard.storyboard;
 			sourceTree = "<group>";
@@ -435,6 +455,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -473,6 +494,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";

@@ -79,6 +79,8 @@ typedef struct timeval timeval;
 
     _waitTimeDuration.tv_sec = (__darwin_time_t) 0.0;
     _waitTimeDuration.tv_usec = (__darwin_suseconds_t) (1000000.0 / 15.0);
+	
+	self.backgroundColor = [UIColor blackColor];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {

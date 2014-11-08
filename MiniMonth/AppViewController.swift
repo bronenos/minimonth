@@ -10,49 +10,38 @@ import Foundation
 import UIKit
 
 
-class AppViewController : UIViewController, ColorViewControllerDelegate {
+class AppViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, ColorViewControllerDelegate {
+	@IBOutlet var _backgroundImageView: UIImageView!
 	@IBOutlet var _calendarPlaceholder: UIView!
-	@IBOutlet var _monthColorView: UIView!
-	@IBOutlet var _dayColorView: UIView!
-	@IBOutlet var _weekendColorView: UIView!
-	@IBOutlet var _todayColorView: UIView!
-	@IBOutlet var _eventColorView: UIView!
+	@IBOutlet var _calendarHeightConstraint: NSLayoutConstraint!
+	@IBOutlet var _configPlaceholder: UIView!
 	
 	var _calendarController: TodayViewController!
-	weak var _activeColorView: UIView!
+	var _tableView: UITableView!
+	
+	let _configLabels = ["Month", "Day", "Weekend", "Today", "Event"]
+	let _configKeys = [monthColorPrefKey, dayColorPrefKey, weekendColorPrefKey, todayColorPrefKey, eventColorPrefKey]
+	var _selectedConfig: Int!
 	
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		
-		self.edgesForExtendedLayout = .None
 	}
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.navigationItem.title = NSLocalizedString("Preview", comment: "")
+		
 		TodayViewController.registerDefaultColors()
-		let defs = NSUserDefaults(suiteName: "group.me.bronenos.minimonth")!
-		let h2c = TodayViewController.hexToColor
 		
-		_monthColorView.layer.cornerRadius = 12;
-		_dayColorView.layer.cornerRadius = 12;
-		_weekendColorView.layer.cornerRadius = 12;
-		_todayColorView.layer.cornerRadius = 12;
-		_eventColorView.layer.cornerRadius = 12;
-		
-		_monthColorView.backgroundColor = h2c(defs.objectForKey(monthColorPrefKey) as String)
-		_dayColorView.backgroundColor = h2c(defs.objectForKey(dayColorPrefKey) as String)
-		_weekendColorView.backgroundColor = h2c(defs.objectForKey(weekendColorPrefKey) as String)
-		_todayColorView.backgroundColor = h2c(defs.objectForKey(todayColorPrefKey) as String)
-		_eventColorView.backgroundColor = h2c(defs.objectForKey(eventColorPrefKey) as String)
-		
-		self.refreshCalendar()
+		self.buildCalendar()
+		self.buildConfigTable()
 	}
 	
 	
-	func refreshCalendar() {
+	func buildCalendar() {
 		let sb = UIStoryboard(name: "MainInterface", bundle: nil)
 		
 		if _calendarController != nil {
@@ -62,50 +51,112 @@ class AppViewController : UIViewController, ColorViewControllerDelegate {
 		
 		_calendarController = sb.instantiateInitialViewController() as? TodayViewController
 		_calendarController.view.frame = _calendarPlaceholder.bounds
+		_calendarController.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
 		_calendarPlaceholder.addSubview(_calendarController.view)
+		
+		if UIDevice.currentDevice().model.hasPrefix("iPad") {
+			if _calendarHeightConstraint != nil {
+				_calendarHeightConstraint.constant += 80;
+				_calendarHeightConstraint = nil
+			}
+		}
+		else {
+			var tf = CGAffineTransformIdentity
+			tf = CGAffineTransformScale(tf, 0.8, 0.8)
+			_calendarPlaceholder.layer.anchorPoint = CGPointMake(0.5, 0.6)
+			_calendarPlaceholder.transform = tf
+		}
 	}
 	
 	
-	@IBAction func doOpenColorPicker(rec: UIGestureRecognizer) {
-		for v in [_monthColorView, _dayColorView, _weekendColorView, _todayColorView, _eventColorView] {
-			if CGRectContainsPoint(v.bounds, rec.locationInView(v)) {
-				_activeColorView = v
-				break
-			}
+	func buildConfigTable() {
+		if _tableView == nil {
+			_tableView = UITableView(frame: _configPlaceholder.bounds, style: .Plain)
+			_tableView.backgroundColor = UIColor.clearColor()
+			_tableView.backgroundView = UIView()
+			_tableView.dataSource = self
+			_tableView.delegate = self
+			_tableView.rowHeight = 39
+			_tableView.separatorColor = UIColor.clearColor()
+			_tableView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+			_configPlaceholder.addSubview(_tableView)
 		}
+		else {
+			_tableView.reloadData()
+		}
+	}
+	
+	
+	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return 30
+	}
+	
+	
+	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let label = UILabel()
+		label.backgroundColor = UIColor.clearColor()
+		label.text = NSLocalizedString("Configure your calendar", comment: "")
+		label.textAlignment = .Center
+		label.textColor = UIColor.whiteColor()
+		label.font = UIFont(name: "HelveticaNeue-Bold", size: 13)
+		return label
+	}
+	
+	
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return _configKeys.count
+	}
+	
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = ConfigCell(configKey: _configKeys[indexPath.row])
+		cell.backgroundColor = UIColor.clearColor()
+		cell.backgroundView = UIView()
+		cell.contentView.backgroundColor = UIColor.clearColor()
+		cell.textLabel.text = NSLocalizedString(_configLabels[indexPath.row], comment: "")
+		cell.textLabel.textColor = UIColor.whiteColor()
+		cell.textLabel.font = UIFont(name: "HelveticaNeue", size: 16)
+		cell.accessoryType = .DisclosureIndicator
+		cell.selectionStyle = .None
+		return cell
+	}
+	
+	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		_selectedConfig = indexPath.row
+		
+		let defs = NSUserDefaults(suiteName: "group.me.bronenos.minimonth")!
+		let hex2color = TodayViewController.hexToColor
 		
 		let pickerView = ColorViewController(delegate: self)
-		pickerView.color = _activeColorView.backgroundColor
-		self.navigationController!.pushViewController(pickerView, animated: true)
+		pickerView.navigationItem.title = NSLocalizedString(_configLabels[_selectedConfig], comment: "")
+		pickerView.color = hex2color(defs.objectForKey(_configKeys[_selectedConfig]) as String)
+		
+		if UIDevice.currentDevice().model.hasPrefix("iPad") {
+			let cell = tableView.cellForRowAtIndexPath(indexPath)!
+			let rect = self.view.convertRect(cell.bounds, fromView: cell)
+			
+			let popover = UIPopoverController(contentViewController: pickerView)
+			popover.popoverContentSize = CGSizeMake(320, 480)
+			popover.presentPopoverFromRect(rect, inView: self.view, permittedArrowDirections: .Up, animated: true)
+			popover.passthroughViews = []
+		}
+		else {
+			self.navigationController!.pushViewController(pickerView, animated: true)
+		}
 	}
 	
 	
 	func colorView(colorView: ColorViewController, didSelectColor color: UIColor) {
-		_activeColorView.backgroundColor = color
+		let configKey = _configKeys[_selectedConfig]
 		
 		let defs = NSUserDefaults(suiteName: "group.me.bronenos.minimonth")!
+		let color2hex = TodayViewController.colorToHex
 		
-		switch _activeColorView {
-		case _monthColorView:
-			defs.setObject(TodayViewController.colorToHex(color), forKey: monthColorPrefKey)
-			
-		case _dayColorView:
-			defs.setObject(TodayViewController.colorToHex(color), forKey: dayColorPrefKey)
-			
-		case _weekendColorView:
-			defs.setObject(TodayViewController.colorToHex(color), forKey: weekendColorPrefKey)
-			
-		case _todayColorView:
-			defs.setObject(TodayViewController.colorToHex(color), forKey: todayColorPrefKey)
-			
-		case _eventColorView:
-			defs.setObject(TodayViewController.colorToHex(color), forKey: eventColorPrefKey)
-			
-		default: ()
-		}
-		
+		defs.setObject(color2hex(color), forKey: _configKeys[_selectedConfig])
 		defs.synchronize()
 		
-		self.refreshCalendar()
+		self.buildConfigTable()
+		self.buildCalendar()
 	}
 }
