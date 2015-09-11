@@ -36,7 +36,7 @@ class ConfigCell : UITableViewCell {
 		
 		let defs = NSUserDefaults(suiteName: "group.me.bronenos.minimonth")!
 		let hex2color = TodayViewController.hexToColor
-		_colorView.backgroundColor = hex2color(defs.objectForKey(_configKey) as String)
+		_colorView.backgroundColor = hex2color(defs.objectForKey(_configKey) as! String)
 		
 		var rect = self.contentView.bounds
 		rect.origin.x = rect.size.width - 20

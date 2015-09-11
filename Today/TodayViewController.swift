@@ -21,11 +21,11 @@ let lastDatePrefKey = "lastDate"
 
 class TodayViewController : UIViewController {
 	let h2c = TodayViewController.hexToColor
-	var monthColor: UIColor { return h2c(self.defs.objectForKey(monthColorPrefKey) as NSString) }
-	var dayColor: UIColor { return h2c(self.defs.objectForKey(dayColorPrefKey) as NSString) }
-	var weekendColor: UIColor { return h2c(self.defs.objectForKey(weekendColorPrefKey) as NSString) }
-	var todayColor: UIColor { return h2c(self.defs.objectForKey(todayColorPrefKey) as NSString) }
-	var eventColor: UIColor { return h2c(self.defs.objectForKey(eventColorPrefKey) as NSString) }
+	var monthColor: UIColor { return h2c(self.defs.objectForKey(monthColorPrefKey) as! String) }
+	var dayColor: UIColor { return h2c(self.defs.objectForKey(dayColorPrefKey) as! String) }
+	var weekendColor: UIColor { return h2c(self.defs.objectForKey(weekendColorPrefKey) as! String) }
+	var todayColor: UIColor { return h2c(self.defs.objectForKey(todayColorPrefKey) as! String) }
+	var eventColor: UIColor { return h2c(self.defs.objectForKey(eventColorPrefKey) as! String) }
 	
 	
 	@IBOutlet var _monthLabel: TodayMonthLabel!
@@ -128,6 +128,11 @@ class TodayViewController : UIViewController {
     }
 	
 	
+    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        return UIEdgeInsetsZero;
+    }
+    
+    
 	class func colorToHex(color: UIColor!) -> String {
 		if color != nil {
 			var r: CGFloat = 0
@@ -146,7 +151,7 @@ class TodayViewController : UIViewController {
 	
 	class func hexToColor(hex: String!) -> UIColor {
 		if hex != nil {
-			let colors = (hex as NSString).componentsSeparatedByString(" ") as [NSString]
+			let colors = (hex as NSString).componentsSeparatedByString(" ") as! [NSString]
 			let r = CGFloat((colors[0] as NSString).floatValue)
 			let g = CGFloat((colors[1] as NSString).floatValue)
 			let b = CGFloat((colors[2] as NSString).floatValue)
@@ -209,7 +214,7 @@ class TodayViewController : UIViewController {
 	
 	
 	func generateWeekdays() {
-		var weekdayTitles = self.dateFormatter.shortWeekdaySymbols as [String]
+		var weekdayTitles = self.dateFormatter.shortWeekdaySymbols as! [String]
 		
 		let wf = self.dateFormatter.calendar.firstWeekday
 		let wc = weekdayTitles.count
@@ -290,15 +295,15 @@ class TodayViewController : UIViewController {
 	func generateCalendar() {
 		let calcDay = self.dayToGenerate
 		
-		let units: NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .WeekdayCalendarUnit | .DayCalendarUnit
+		let units: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekday | .CalendarUnitDay
 		var comps = self.calendar.components(units, fromDate: calcDay)
 		let todayComps = self.calendar.components(units, fromDate: NSDate())
 		
 		let month = comps.month
 		let wday = self.unitWeekdayToRealWeekday(comps.weekday)
 		let day = comps.day
-		let totalWeeks = self.calendar.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, inUnit: NSCalendarUnit.MonthCalendarUnit, forDate: calcDay)
-		let totalDays = self.calendar.rangeOfUnit(.DayCalendarUnit, inUnit: .MonthCalendarUnit, forDate: calcDay)
+		let totalWeeks = self.calendar.rangeOfUnit(.CalendarUnitWeekOfMonth, inUnit: .CalendarUnitMonth, forDate: calcDay)
+		let totalDays = self.calendar.rangeOfUnit(.CalendarUnitDay, inUnit:.CalendarUnitMonth, forDate: calcDay)
 		let swday = self.calculateStartWeekdayWithCurrentWeekday(wday, andDay: day)
 		self.daysOffset = swday - 1
 		
@@ -309,7 +314,7 @@ class TodayViewController : UIViewController {
 		self.prevMonthLabel.textColor = self.monthColor
 		self.nextMonthLabel.textColor = self.monthColor
 		
-		for s in self.weeksView.subviews as [UIView] {
+		for s in self.weeksView.subviews as! [UIView] {
 			s.removeFromSuperview()
 		}
 		
@@ -362,7 +367,7 @@ class TodayViewController : UIViewController {
 	func markEventDays(store: EKEventStore) {
 		let cal = NSCalendar.currentCalendar()
 		
-		let units: NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit
+		let units: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
 		let comps = self.calendar.components(units, fromDate: self.dayToGenerate)
 		
 		var startComps = comps
@@ -375,7 +380,7 @@ class TodayViewController : UIViewController {
 		let endDate = self.calendar.dateFromComponents(endComps)
 		
 		let pred = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
-		let events = store.eventsMatchingPredicate(pred) as [EKEvent]!
+		let events = store.eventsMatchingPredicate(pred) as! [EKEvent]!
 		
 		if events != nil {
 			for e in events {
@@ -436,7 +441,7 @@ class TodayViewController : UIViewController {
 		let pt = rec.locationInView(rec.view)
 		let w = rec.view!.bounds.width
 		
-		let units: NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit
+		let units: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
 		var comps = self.calendar.components(units, fromDate: self.dayToGenerate)
 		
 		if pt.x < (w * 0.3) {

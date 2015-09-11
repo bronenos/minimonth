@@ -113,9 +113,9 @@ class AppViewController : UIViewController, UITableViewDataSource, UITableViewDe
 		cell.backgroundColor = UIColor.clearColor()
 		cell.backgroundView = UIView()
 		cell.contentView.backgroundColor = UIColor.clearColor()
-		cell.textLabel.text = NSLocalizedString(_configLabels[indexPath.row], comment: "")
-		cell.textLabel.textColor = UIColor.whiteColor()
-		cell.textLabel.font = UIFont(name: "HelveticaNeue", size: 16)
+		cell.textLabel!.text = NSLocalizedString(_configLabels[indexPath.row], comment: "")
+		cell.textLabel!.textColor = UIColor.whiteColor()
+		cell.textLabel!.font = UIFont(name: "HelveticaNeue", size: 16)
 		cell.accessoryType = .DisclosureIndicator
 		cell.selectionStyle = .None
 		return cell
@@ -130,7 +130,7 @@ class AppViewController : UIViewController, UITableViewDataSource, UITableViewDe
 		
 		let pickerView = ColorViewController(delegate: self)
 		pickerView.navigationItem.title = NSLocalizedString(_configLabels[_selectedConfig], comment: "")
-		pickerView.color = hex2color(defs.objectForKey(_configKeys[_selectedConfig]) as String)
+		pickerView.color = hex2color(defs.objectForKey(_configKeys[_selectedConfig]) as! String)
 		
 		if UIDevice.currentDevice().model.hasPrefix("iPad") {
 			let cell = tableView.cellForRowAtIndexPath(indexPath)!
