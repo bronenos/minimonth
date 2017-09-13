@@ -17,6 +17,7 @@
 		D411EE1B19C2A5CD0054439F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D411EE1E19C2A5CD0054439F /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D4400DCB1A0E287A00F8D1A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4400DC81A0E1ED100F8D1A3 /* Localizable.strings */; };
+		D44013981D10A22100FEC39E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44013971D10A22100FEC39E /* Launch Screen.storyboard */; };
 		D450C39819FF6F45006DAA83 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450C39719FF6F45006DAA83 /* AppViewController.swift */; };
 		D450C39919FF6F5A006DAA83 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
 		D450C3C519FF7CA2006DAA83 /* HRBrightnessCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3B619FF7CA2006DAA83 /* HRBrightnessCursor.m */; };
@@ -85,6 +86,7 @@
 		D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		D4400DC71A0E1ED100F8D1A3 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4400DC91A0E1ED400F8D1A3 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D44013971D10A22100FEC39E /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D450C39719FF6F45006DAA83 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		D450C3B319FF7C4A006DAA83 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		D450C3B519FF7CA2006DAA83 /* HRBrightnessCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBrightnessCursor.h; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				D4C735A919FFBAE20066A6E8 /* MiniMonth.entitlements */,
 				D450C3B419FF7CA2006DAA83 /* ColorPicker */,
 				D450C3B319FF7C4A006DAA83 /* Bridging-Header.h */,
+				D44013971D10A22100FEC39E /* Launch Screen.storyboard */,
 				D452388719F2433C007A1181 /* Storyboard.storyboard */,
 				D411EDF019C2A59B0054439F /* AppDelegate.swift */,
 				D411EDF719C2A59B0054439F /* Images.xcassets */,
@@ -277,12 +280,15 @@
 		D411EDE319C2A59B0054439F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = bronenos;
 				TargetAttributes = {
 					D411EDEA19C2A59B0054439F = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = V8NCXSZ3T7;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -292,6 +298,8 @@
 					D411EE1019C2A5CC0054439F = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = V8NCXSZ3T7;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -330,6 +338,7 @@
 				D4C036E61A0D2FC200D53141 /* wallpaper.jpg in Resources */,
 				D411EDF819C2A59B0054439F /* Images.xcassets in Resources */,
 				D450C39919FF6F5A006DAA83 /* MainInterface.storyboard in Resources */,
+				D44013981D10A22100FEC39E /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +466,7 @@
 				SDKROOT = iphoneos;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -495,6 +505,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -508,12 +519,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = MiniMonth/MiniMonth.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = V8NCXSZ3T7;
 				INFOPLIST_FILE = MiniMonth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "32b95da0-eddb-4c33-bc57-44a34c9201a1";
+				PROVISIONING_PROFILE_SPECIFIER = "MiniMonth AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "MiniMonth/Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -524,12 +540,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = MiniMonth/MiniMonth.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stanislav Potemkin (V8NCXSZ3T7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = V8NCXSZ3T7;
 				INFOPLIST_FILE = MiniMonth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "32b95da0-eddb-4c33-bc57-44a34c9201a1";
+				PROVISIONING_PROFILE_SPECIFIER = "MiniMonth AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "MiniMonth/Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -539,6 +560,8 @@
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -548,7 +571,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -557,13 +583,18 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Stanislav Potemkin (V8NCXSZ3T7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = V8NCXSZ3T7;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "28a03db7-b62b-485a-8d3e-83d87a4f2c9c";
+				PROVISIONING_PROFILE_SPECIFIER = "MiniMonth Today AppStore";
 				SKIP_INSTALL = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

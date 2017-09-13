@@ -14,10 +14,10 @@ class TodayWeekdayLabel : UILabel {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		self.backgroundColor = UIColor.clearColor()
+		self.backgroundColor = UIColor.clear
 		self.font = UIFont(name: "HelveticaNeue-Bold", size: 9)
-		self.textAlignment = .Center
-		self.setTranslatesAutoresizingMaskIntoConstraints(false)
+		self.textAlignment = .center
+		self.translatesAutoresizingMaskIntoConstraints = false
 	}
 	
 	

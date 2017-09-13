@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -17,40 +22,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCR-Ld-0st" customClass="TodayMonthLabel" customModule="MiniMonth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="10" width="320" height="35"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="kHQ-u4-1mo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="HAx-ed-tWy" appends="YES" id="AYl-B3-Sj0"/>
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇠" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsP-wL-Aqq">
-                                <rect key="frame" x="50" y="0.0" width="15" height="35"/>
+                                <rect key="frame" x="50" y="10" width="15" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇢" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfo-ER-oTZ">
-                                <rect key="frame" x="255" y="0.0" width="15" height="35"/>
+                                <rect key="frame" x="255" y="10" width="15" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIm-oe-olx" userLabel="Weekdays">
-                                <rect key="frame" x="0.0" y="35" width="320" height="25"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="55" width="320" height="25"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="TBo-6D-5jf"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hd-Dm-BJU" userLabel="Weeks">
-                                <rect key="frame" x="0.0" y="60" width="320" height="179"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="159"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="750" constant="180" id="Qky-BO-0mx"/>
                                 </constraints>
@@ -58,7 +63,7 @@
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="mCR-Ld-0st" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="7Co-E7-D0C"/>
+                            <constraint firstItem="mCR-Ld-0st" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="10" id="7Co-E7-D0C"/>
                             <constraint firstItem="zsP-wL-Aqq" firstAttribute="height" secondItem="mCR-Ld-0st" secondAttribute="height" id="9F1-Sx-MbO"/>
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="trailing" secondItem="EIm-oe-olx" secondAttribute="trailing" id="FdS-Wh-60w"/>
                             <constraint firstItem="zsP-wL-Aqq" firstAttribute="centerY" secondItem="mCR-Ld-0st" secondAttribute="centerY" id="Lr4-Kz-Itt"/>
@@ -72,7 +77,7 @@
                             <constraint firstItem="mCR-Ld-0st" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="dh8-C6-EeM"/>
                             <constraint firstItem="Yfo-ER-oTZ" firstAttribute="height" secondItem="mCR-Ld-0st" secondAttribute="height" id="ho5-q1-8j1"/>
                             <constraint firstItem="Yfo-ER-oTZ" firstAttribute="centerY" secondItem="mCR-Ld-0st" secondAttribute="centerY" id="kQ1-eu-zqo"/>
-                            <constraint firstItem="EIm-oe-olx" firstAttribute="top" secondItem="mCR-Ld-0st" secondAttribute="bottom" id="yWw-tN-Dbf"/>
+                            <constraint firstItem="EIm-oe-olx" firstAttribute="top" secondItem="mCR-Ld-0st" secondAttribute="bottom" constant="10" id="yWw-tN-Dbf"/>
                             <constraint firstItem="9hd-Dm-BJU" firstAttribute="top" secondItem="EIm-oe-olx" secondAttribute="bottom" id="ysG-gI-twT"/>
                         </constraints>
                     </view>
@@ -101,9 +106,4 @@
             <point key="canvasLocation" x="516" y="284.5"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

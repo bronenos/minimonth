@@ -16,7 +16,7 @@ class ConfigCell : UITableViewCell {
 	
 	
 	init(configKey: String) {
-		super.init(style: .Default, reuseIdentifier: nil)
+		super.init(style: .default, reuseIdentifier: nil)
 		
 		_configKey = configKey
 		
@@ -34,9 +34,9 @@ class ConfigCell : UITableViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		
-		let defs = NSUserDefaults(suiteName: "group.me.bronenos.minimonth")!
+		let defs = UserDefaults(suiteName: "group.me.bronenos.minimonth")!
 		let hex2color = TodayViewController.hexToColor
-		_colorView.backgroundColor = hex2color(defs.objectForKey(_configKey) as! String)
+		_colorView.backgroundColor = hex2color(defs.object(forKey: _configKey) as! String)
 		
 		var rect = self.contentView.bounds
 		rect.origin.x = rect.size.width - 20

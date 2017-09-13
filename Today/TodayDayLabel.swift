@@ -22,8 +22,8 @@ class TodayDayLabel : UILabel {
 		super.init(frame: frame)
 		
 		self.font =  UIFont(name: "HelveticaNeue-Bold", size: 12)
-		self.textAlignment = .Center
-		self.contentMode = .Center
+		self.textAlignment = .center
+		self.contentMode = .center
 	}
 	
 	
@@ -32,8 +32,8 @@ class TodayDayLabel : UILabel {
 	}
 	
 	
-	override func drawRect(rect: CGRect) {
-		super.drawRect(rect)
+	override func draw(_ rect: CGRect) {
+		super.draw(rect)
 		
 		if _pointColor != nil {
 			var r = rect

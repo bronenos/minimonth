@@ -11,12 +11,12 @@ import UIKit
 
 
 protocol ColorViewControllerDelegate {
-	func colorView(colorView: ColorViewController, didSelectColor: UIColor);
+	func colorView(_ colorView: ColorViewController, didSelectColor: UIColor);
 }
 
 
 class ColorViewController : UIViewController {
-	var color: UIColor! = UIColor.blackColor()
+	var color: UIColor! = UIColor.black
 	
 	var _delegate: ColorViewControllerDelegate!
 	var _colorPickerView: HRColorPickerView!
@@ -25,7 +25,7 @@ class ColorViewController : UIViewController {
 	init(delegate: ColorViewControllerDelegate, color: UIColor! = nil) {
 		super.init(nibName: nil, bundle: nil)
 		
-		self.edgesForExtendedLayout = .None
+		self.edgesForExtendedLayout = UIRectEdge()
 		
 		_delegate = delegate
 		self.color = color
@@ -42,12 +42,12 @@ class ColorViewController : UIViewController {
 		
 		_colorPickerView = HRColorPickerView(frame: self.view.bounds)
 		_colorPickerView.color = self.color
-		_colorPickerView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+		_colorPickerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		self.view.addSubview(_colorPickerView)
 	}
 	
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		
 		_delegate.colorView(self, didSelectColor: _colorPickerView.color)
