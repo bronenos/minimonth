@@ -45,8 +45,10 @@ class AppViewController : UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidAppear(animated)
         
         if #available(iOS 10, *) {
-            _calendarPlaceholder.frame.size.height = _calendarHeightConstraint.constant
-            view.setNeedsLayout()
+            if let constraint = _calendarHeightConstraint {
+                _calendarPlaceholder.frame.size.height = constraint.constant
+                view.setNeedsLayout()
+            }
         }
     }
 	
