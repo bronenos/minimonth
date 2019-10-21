@@ -105,17 +105,24 @@
 }
 
 - (void)setEditing:(BOOL)editing {
+    __weak __typeof(self) weakSelf = self;
     if (editing == _editing) {
         return;
     }
     _editing = editing;
-    void (^showState)() = ^{
-        _backLayer.transform = CATransform3DMakeScale(1.6, 1.6, 1.0);
-        _colorLayer.transform = CATransform3DMakeScale(1.4, 1.4, 1.0);
+    void (^showState)(void) = ^{
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf) {
+            strongSelf->_backLayer.transform = CATransform3DMakeScale(1.6, 1.6, 1.0);
+            strongSelf->_colorLayer.transform = CATransform3DMakeScale(1.4, 1.4, 1.0);
+        }
     };
-    void (^hiddenState)() = ^{
-        _backLayer.transform = CATransform3DIdentity;
-        _colorLayer.transform = CATransform3DIdentity;
+    void (^hiddenState)(void) = ^{
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf) {
+            strongSelf->_backLayer.transform = CATransform3DIdentity;
+            strongSelf->_colorLayer.transform = CATransform3DIdentity;
+        }
     };
     if (_editing) {
         hiddenState();

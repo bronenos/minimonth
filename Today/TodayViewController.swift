@@ -19,15 +19,16 @@ let eventColorPrefKey = "eventColor"
 let lastDatePrefKey = "lastDate"
 
 
-class TodayViewController : UIViewController {
+class TodayViewController : UIViewController, NCWidgetProviding {
 	let h2c = TodayViewController.hexToColor
-	var monthColor: UIColor { return h2c(self.defs.object(forKey: monthColorPrefKey) as! String) }
-	var dayColor: UIColor { return h2c(self.defs.object(forKey: dayColorPrefKey) as! String) }
-	var weekendColor: UIColor { return h2c(self.defs.object(forKey: weekendColorPrefKey) as! String) }
-	var todayColor: UIColor { return h2c(self.defs.object(forKey: todayColorPrefKey) as! String) }
-	var eventColor: UIColor { return h2c(self.defs.object(forKey: eventColorPrefKey) as! String) }
+	var monthColor: UIColor { return h2c(self.defs.object(forKey: monthColorPrefKey) as? String) }
+	var dayColor: UIColor { return h2c(self.defs.object(forKey: dayColorPrefKey) as? String) }
+	var weekendColor: UIColor { return h2c(self.defs.object(forKey: weekendColorPrefKey) as? String) }
+	var todayColor: UIColor { return h2c(self.defs.object(forKey: todayColorPrefKey) as? String) }
+	var eventColor: UIColor { return h2c(self.defs.object(forKey: eventColorPrefKey) as? String) }
 	
-	
+    @IBOutlet var _effectView: UIView!
+    
 	@IBOutlet var _monthLabel: TodayMonthLabel!
 	var monthLabel: TodayMonthLabel! { return _monthLabel }
 	
@@ -49,7 +50,7 @@ class TodayViewController : UIViewController {
 	
 	let calendar = Calendar.current
 	let dateFormatter = DateFormatter()
-	let defs = UserDefaults(suiteName: "group.me.bronenos.minimonth")!
+	let defs = UserDefaults(suiteName: "group.V8NCXSZ3T7.me.bronenos.minimonth")!
 	
 	var dayToGenerate = Date()
 	var daysOffset = 0
@@ -75,6 +76,13 @@ class TodayViewController : UIViewController {
 		self.dateFormatter.locale = Locale.current
 		self.dateFormatter.dateStyle = .short
 		self.dateFormatter.timeStyle = .none
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleUpdates),
+            name: UserDefaults.didChangeNotification,
+            object: nil
+        )
 	}
 	
 	
@@ -101,11 +109,10 @@ class TodayViewController : UIViewController {
             ]
         }
         
-		let defs = UserDefaults(suiteName: "group.me.bronenos.minimonth")!
+		let defs = UserDefaults(suiteName: "group.V8NCXSZ3T7.me.bronenos.minimonth")!
 		defs.register(defaults: reg)
 		defs.synchronize()
 	}
-	
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,6 +128,8 @@ class TodayViewController : UIViewController {
         else {
             minimized = false
         }
+        
+        updateUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,37 +144,52 @@ class TodayViewController : UIViewController {
         }
     }
 	
-	
 	override var preferredStatusBarStyle : UIStatusBarStyle {
 		return .lightContent
 	}
-	
-	
-    func widgetPerformUpdateWithCompletionHandler(_ completionHandler: ((NCUpdateResult) -> Void)!) {
-		let newDate = self.dateStamp()
-		
-		if let lastDate = self.defs.object(forKey: lastDatePrefKey) as? String {
-			if newDate == lastDate {
-				completionHandler(.noData)
-			}
-			else {
-				self.defs.set(newDate, forKey: lastDatePrefKey)
-				self.defs.synchronize()
-				
-				completionHandler(.newData)
-			}
-		}
-		else {
-			self.defs.set(newDate, forKey: lastDatePrefKey)
-			self.defs.synchronize()
-			
-			completionHandler(.newData)
-		}
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateUI()
+    }
+    
+    private func updateUI() {
+        if #available(iOS 12.0, iOSApplicationExtension 12.0, *) {
+            _effectView.isHidden = (traitCollection.userInterfaceStyle == .light)
+        }
+        else {
+            _effectView.isHidden = true
+        }
+    }
+    
+    func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
+        defs.synchronize()
+        updateUI()
+        completionHandler(.newData)
+
+//		let newDate = self.dateStamp()
+//
+//		if let lastDate = self.defs.object(forKey: lastDatePrefKey) as? String {
+//			if newDate == lastDate {
+//				completionHandler(.newData)
+//			}
+//			else {
+//				self.defs.set(newDate, forKey: lastDatePrefKey)
+//				self.defs.synchronize()
+//
+//				completionHandler(.newData)
+//			}
+//		}
+//		else {
+//			self.defs.set(newDate, forKey: lastDatePrefKey)
+//			self.defs.synchronize()
+//
+//			completionHandler(.newData)
+//		}
     }
 	
-	
-    func widgetMarginInsetsForProposedMarginInsets(_ defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets.zero
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        return .zero
     }
     
     @available(iOS 10.0, iOSApplicationExtension 10.0, *)
@@ -175,14 +199,13 @@ class TodayViewController : UIViewController {
         self.updatePreferredContentSize()
     }
     
-    
     fileprivate func updatePreferredContentSize() {
         if self.minimized {
             let minimizedSize = CGSize(width: CGFloat.infinity, height: 20)
             self.preferredContentSize = minimizedSize
         }
         else {
-            var maximizedSize = self.view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+            var maximizedSize = self.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
             maximizedSize.height += 10
             
             self.preferredContentSize = maximizedSize
@@ -277,6 +300,19 @@ class TodayViewController : UIViewController {
 		let wc = weekdayTitles.count
 		weekdayTitles = Array(weekdayTitles[(wf-1)..<wc]) + Array(weekdayTitles[0..<wf])
 		
+        let space = TodayWeekdayLabel(frame: CGRect.zero)
+        self.weekdaysView.addSubview(space)
+        
+        self.autoLayout(space, verticalMode: false)
+        
+        let c = NSLayoutConstraint(
+            item: space, attribute: .width,
+            relatedBy: .greaterThanOrEqual,
+            toItem: space.superview, attribute: .width,
+            multiplier: 0.05, constant: 0)
+        self.weekdaysView.addConstraint(c)
+        
+        var lastItem: TodayWeekdayLabel?
 		for i in 1..<weekdayTitles.count {
 			let label = TodayWeekdayLabel(frame: CGRect.zero)
 			label.text = weekdayTitles[i - 1]
@@ -284,15 +320,25 @@ class TodayViewController : UIViewController {
 			self.weekdaysView.addSubview(label)
 			
 			self.autoLayout(label, verticalMode: false)
+            lastItem = label
 			
 			let c = NSLayoutConstraint(
 				item: label, attribute: .width,
 				relatedBy: .equal,
 				toItem: label.superview, attribute: .width,
-				multiplier: 0.1428, constant: 0)
+                multiplier: 0.1290, constant: 0)
 			self.weekdaysView.addConstraint(c)
 		}
-		
+        
+        if let item = lastItem {
+            let c = NSLayoutConstraint(
+                item: item, attribute: .trailing,
+                relatedBy: .equal,
+                toItem: lastItem?.superview, attribute: .trailing,
+                multiplier: 1, constant: 0)
+            self.weekdaysView.addConstraint(c)
+        }
+
 		self.weekdaysView.updateConstraintsIfNeeded()
 		self.weekdaysView.layoutIfNeeded()
 	}
@@ -326,24 +372,49 @@ class TodayViewController : UIViewController {
 	}
 	
 	
-	func generateDaysForWeek(_ weekView: UIView, baseTag: Int) {
+    func generateDaysForWeek(_ weekView: UIView, weekBase: Int, dayBase: Int) {
+        let weekLabel = TodayWeekLabel()
+        weekLabel.textColor = self.monthColor.withAlphaComponent(0.6)
+        weekLabel.tag = 100 + weekBase
+        weekView.addSubview(weekLabel)
+        
+        self.autoLayout(weekLabel, verticalMode: false)
+        
+        let c = NSLayoutConstraint(
+            item: weekLabel, attribute: .width,
+            relatedBy: .greaterThanOrEqual,
+            toItem: weekLabel.superview, attribute: .width,
+            multiplier: 0.05, constant: 0)
+        weekView.addConstraint(c)
+
+        var lastItem: TodayDayLabel?
 		for i in 1...7 {
 			let dayView = TodayDayLabel()
-			dayView.tag = baseTag + i
+			dayView.tag = dayBase + i
 			dayView.textColor = (self.realWeekdayToUnitWeekday(i) <= 5 ? self.dayColor : self.weekendColor)
 			weekView.addSubview(dayView)
 			
 			self.autoLayout(dayView, verticalMode: false)
+            lastItem = dayView
 			
 			let c = NSLayoutConstraint(
 				item: dayView, attribute: .width,
 				relatedBy: .equal,
 				toItem: dayView.superview, attribute: .width,
-				multiplier: 1.0 / 7.0,
+                multiplier: 0.1290,
 				constant: 0)
 			weekView.addConstraint(c)
 		}
 		
+        if let item = lastItem {
+            let c = NSLayoutConstraint(
+                item: item, attribute: .trailing,
+                relatedBy: .equal,
+                toItem: lastItem?.superview, attribute: .trailing,
+                multiplier: 1, constant: 0)
+            weekView.addConstraint(c)
+        }
+        
 		weekView.updateConstraintsIfNeeded()
 		weekView.layoutIfNeeded()
 	}
@@ -352,7 +423,7 @@ class TodayViewController : UIViewController {
 	func generateCalendar() {
 		let calcDay = self.dayToGenerate
 		
-		let units: NSCalendar.Unit = [.year, .month, .weekday, .day, .weekOfMonth]
+        let units: NSCalendar.Unit = [.year, .month, .weekday, .day, .weekOfMonth, .weekOfYear]
 		let comps = (self.calendar as NSCalendar).components(units, from: calcDay)
 		let todayComps = (self.calendar as NSCalendar).components(units, from: Date())
 		
@@ -360,6 +431,7 @@ class TodayViewController : UIViewController {
 		let wday = self.unitWeekdayToRealWeekday(comps.weekday ?? 0)
 		let day = comps.day ?? 0
 		let totalWeeks = (self.calendar as NSCalendar).range(of: [.weekOfMonth], in: [.month], for: calcDay)
+        let yearlyWeeks = (self.calendar as NSCalendar).range(of: [.weekOfYear], in: [.month], for: calcDay)
 		let totalDays = (self.calendar as NSCalendar).range(of: [.day], in:[.month], for: calcDay)
 		let swday = self.calculateStartWeekdayWithCurrentWeekday(wday, andDay: day)
         let week = todayComps.weekOfMonth ?? 0
@@ -378,15 +450,20 @@ class TodayViewController : UIViewController {
         
         if self.minimized {
             let weekView = self.generateWeek()
-            self.generateDaysForWeek(weekView, baseTag: (week - 1) * 7)
+            self.generateDaysForWeek(weekView, weekBase: week - 1, dayBase: (week - 1) * 7)
         }
         else {
             for i in 0..<totalWeeks.length {
                 let weekView = self.generateWeek()
-                self.generateDaysForWeek(weekView, baseTag: i * 7)
+                self.generateDaysForWeek(weekView, weekBase: i, dayBase: i * 7)
             }
         }
-		
+        
+        for i in (totalWeeks.lowerBound - 1 ..< totalWeeks.upperBound - 1) {
+            let weekLabel = self.weeksView.viewWithTag(100 + i) as? TodayWeekLabel
+            weekLabel?.text = "# \((yearlyWeeks.lowerBound - 1) + i + 1)"
+        }
+        
 		for i in 1...totalDays.length {
 			let dayLabel = self.weeksView.viewWithTag(self.daysOffset + i) as? TodayDayLabel
 			dayLabel?.text = "\(i)"
@@ -419,10 +496,11 @@ class TodayViewController : UIViewController {
 		else {
 			store.requestAccess(to: .event, completion: {
 				[weak self] (granted: Bool, _) in
-				
-				if self != nil && granted {
-					self!.markEventDays(store)
-				}
+                guard granted else { return }
+                
+                DispatchQueue.main.async {
+                    self?.markEventDays(store)
+                }
 			})
 		}
 	}
@@ -442,9 +520,9 @@ class TodayViewController : UIViewController {
 		let endDate = self.calendar.date(from: endComps)!
 		
 		let pred = store.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
-		let events = store.events(matching: pred) as [EKEvent]!
+		let events = store.events(matching: pred)
 		
-        events?.forEach { e in
+        events.forEach { e in
             let c = (self.calendar as NSCalendar).components(units, from: e.startDate)
             if let eventView = self.weeksView.viewWithTag(self.daysOffset + (c.day ?? 0)) as? TodayDayLabel {
                 eventView.pointColor = self.eventColor
@@ -493,6 +571,8 @@ class TodayViewController : UIViewController {
 		return local_wday
 	}
 	
+    @objc private func handleUpdates() {
+    }
 	
 	@IBAction func doSwitchMonth(_ rec: UIGestureRecognizer!) {
 		let pt = rec.location(in: rec.view)

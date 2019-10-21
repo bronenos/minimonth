@@ -67,7 +67,7 @@ class AppViewController : UIViewController, UITableViewDataSource, UITableViewDe
         _calendarPlaceholder.layer.cornerRadius = 12
         _calendarPlaceholder.layer.masksToBounds = true
         
-        addChildViewController(_calendarController)
+        addChild(_calendarController)
 		_calendarPlaceholder.addSubview(_calendarController.view)
 		
 		if UIDevice.current.model.hasPrefix("iPad") {
@@ -145,12 +145,12 @@ class AppViewController : UIViewController, UITableViewDataSource, UITableViewDe
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		_selectedConfig = indexPath.row
 		
-		let defs = UserDefaults(suiteName: "group.me.bronenos.minimonth")!
+		let defs = UserDefaults(suiteName: "group.V8NCXSZ3T7.me.bronenos.minimonth")!
 		let hex2color = TodayViewController.hexToColor
 		
 		let pickerView = ColorViewController(delegate: self)
 		pickerView.navigationItem.title = NSLocalizedString(_configLabels[_selectedConfig], comment: "")
-		pickerView.color = hex2color(defs.object(forKey: _configKeys[_selectedConfig]) as! String)
+		pickerView.color = hex2color(defs.object(forKey: _configKeys[_selectedConfig]) as? String)
 		
 		if UIDevice.current.model.hasPrefix("iPad") {
 			let cell = tableView.cellForRow(at: indexPath)!
@@ -168,7 +168,7 @@ class AppViewController : UIViewController, UITableViewDataSource, UITableViewDe
 	
 	
 	func colorView(_ colorView: ColorViewController, didSelectColor color: UIColor) {
-		let defs = UserDefaults(suiteName: "group.me.bronenos.minimonth")!
+		let defs = UserDefaults(suiteName: "group.V8NCXSZ3T7.me.bronenos.minimonth")!
 		let color2hex = TodayViewController.colorToHex
 		
 		defs.set(color2hex(color), forKey: _configKeys[_selectedConfig])
