@@ -11,7 +11,13 @@ import NotificationCenter
 
 @objc(WidgetHostController) public final class WidgetHostController: UIHostingController<WidgetRootView>, NCWidgetProviding {
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(rootView: WidgetRootView())
+        let designBook = DesignBook()
+        let rootView = WidgetRootView()
+        _ = rootView.environmentObject(designBook)
+        
+        super.init(rootView: rootView)
+        
+        designBook.traitProvider = { [unowned self] in self }
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {

@@ -34,20 +34,27 @@
 		D46B7AD919CB07940088E262 /* TodayWeekdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2E19C377A600056370 /* TodayWeekdayLabel.swift */; };
 		D46B7ADA19CB07970088E262 /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
 		D46B7ADB19CB079B0088E262 /* TodayDayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2C19C2ADB400056370 /* TodayDayLabel.swift */; };
+		D47836C2235EC7F50030238C /* WidgetMonthBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C0235EC7AE0030238C /* WidgetMonthBodyView.swift */; };
+		D47836C4235EC8D70030238C /* DesignBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C3235EC8D70030238C /* DesignBook.swift */; };
+		D47836C5235EC8D70030238C /* DesignBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C3235EC8D70030238C /* DesignBook.swift */; };
+		D47836C8235EC9160030238C /* DesignTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C7235EC9160030238C /* DesignTypes.swift */; };
+		D47836C9235EC9160030238C /* DesignTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C7235EC9160030238C /* DesignTypes.swift */; };
 		D47DAE63235D8AC400460B03 /* TodayWeekLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DAE62235D8AC400460B03 /* TodayWeekLabel.swift */; };
 		D47DAE64235D8BF400460B03 /* TodayWeekLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DAE62235D8AC400460B03 /* TodayWeekLabel.swift */; };
 		D4A5112819C6F78000555E1C /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
 		D4AAB62D1A0E2927005F921D /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452388719F2433C007A1181 /* Storyboard.storyboard */; };
 		D4B74269235E3036003FDFF9 /* WidgetRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74268235E3036003FDFF9 /* WidgetRootView.swift */; };
 		D4B7426B235E322A003FDFF9 /* WidgetHostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426A235E322A003FDFF9 /* WidgetHostController.swift */; };
-		D4B7426D235E3AAA003FDFF9 /* WidgetMonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426C235E3AAA003FDFF9 /* WidgetMonthHeader.swift */; };
-		D4B74271235E3E17003FDFF9 /* WidgetMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74270235E3E17003FDFF9 /* WidgetMeta.swift */; };
+		D4B7426D235E3AAA003FDFF9 /* WidgetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426C235E3AAA003FDFF9 /* WidgetHeader.swift */; };
+		D4B74271235E3E17003FDFF9 /* WidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74270235E3E17003FDFF9 /* WidgetController.swift */; };
 		D4B74273235E5300003FDFF9 /* WidgetWeekdayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74272235E5300003FDFF9 /* WidgetWeekdayBar.swift */; };
 		D4B74275235E53B4003FDFF9 /* WidgetWeekdayCaption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74274235E53B4003FDFF9 /* WidgetWeekdayCaption.swift */; };
 		D4B74278235E6058003FDFF9 /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74277235E6058003FDFF9 /* CGFloatExtensions.swift */; };
-		D4B7427A235EBD64003FDFF9 /* TodayMonthdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74279235EBD64003FDFF9 /* TodayMonthdayCell.swift */; };
+		D4B7427A235EBD64003FDFF9 /* WidgetMonthDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74279235EBD64003FDFF9 /* WidgetMonthDayView.swift */; };
 		D4C036E41A0CFA7200D53141 /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C036E31A0CFA7200D53141 /* ConfigCell.swift */; };
 		D4C036E61A0D2FC200D53141 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4C036E51A0D2FC200D53141 /* wallpaper.jpg */; };
+		D4E386C5235EE4F400F88E28 /* WidgetWeeknumBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E386C4235EE4F400F88E28 /* WidgetWeeknumBar.swift */; };
+		D4E386C7235F038400F88E28 /* WidgetTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E386C6235F038400F88E28 /* WidgetTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,21 +123,26 @@
 		D450C3C319FF7CA2006DAA83 /* UIImage+CoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CoreGraphics.h"; sourceTree = "<group>"; };
 		D450C3C419FF7CA2006DAA83 /* UIImage+CoreGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CoreGraphics.m"; sourceTree = "<group>"; };
 		D450C3CD19FF7D62006DAA83 /* ColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
+		D47836C0235EC7AE0030238C /* WidgetMonthBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMonthBodyView.swift; sourceTree = "<group>"; };
+		D47836C3235EC8D70030238C /* DesignBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignBook.swift; sourceTree = "<group>"; };
+		D47836C7235EC9160030238C /* DesignTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTypes.swift; sourceTree = "<group>"; };
 		D47DAE62235D8AC400460B03 /* TodayWeekLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeekLabel.swift; sourceTree = "<group>"; };
 		D4A5112719C6F78000555E1C /* TodayWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayWeekView.swift; sourceTree = "<group>"; };
 		D4B74268235E3036003FDFF9 /* WidgetRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetRootView.swift; sourceTree = "<group>"; };
 		D4B7426A235E322A003FDFF9 /* WidgetHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetHostController.swift; sourceTree = "<group>"; };
-		D4B7426C235E3AAA003FDFF9 /* WidgetMonthHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMonthHeader.swift; sourceTree = "<group>"; };
-		D4B74270235E3E17003FDFF9 /* WidgetMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMeta.swift; sourceTree = "<group>"; };
+		D4B7426C235E3AAA003FDFF9 /* WidgetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetHeader.swift; sourceTree = "<group>"; };
+		D4B74270235E3E17003FDFF9 /* WidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetController.swift; sourceTree = "<group>"; };
 		D4B74272235E5300003FDFF9 /* WidgetWeekdayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetWeekdayBar.swift; sourceTree = "<group>"; };
 		D4B74274235E53B4003FDFF9 /* WidgetWeekdayCaption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetWeekdayCaption.swift; sourceTree = "<group>"; };
 		D4B74277235E6058003FDFF9 /* CGFloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
-		D4B74279235EBD64003FDFF9 /* TodayMonthdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMonthdayCell.swift; sourceTree = "<group>"; };
+		D4B74279235EBD64003FDFF9 /* WidgetMonthDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMonthDayView.swift; sourceTree = "<group>"; };
 		D4C036E31A0CFA7200D53141 /* ConfigCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
 		D4C036E51A0D2FC200D53141 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
 		D4C735A919FFBAE20066A6E8 /* MiniMonth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MiniMonth.entitlements; sourceTree = "<group>"; };
 		D4C735AA19FFBAEC0066A6E8 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
 		D4C735B419FFC34F0066A6E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
+		D4E386C4235EE4F400F88E28 /* WidgetWeeknumBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetWeeknumBar.swift; sourceTree = "<group>"; };
+		D4E386C6235F038400F88E28 /* WidgetTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +267,15 @@
 			path = ColorPicker;
 			sourceTree = "<group>";
 		};
+		D47836C6235EC9050030238C /* DesignBook */ = {
+			isa = PBXGroup;
+			children = (
+				D47836C7235EC9160030238C /* DesignTypes.swift */,
+				D47836C3235EC8D70030238C /* DesignBook.swift */,
+			);
+			path = DesignBook;
+			sourceTree = "<group>";
+		};
 		D4B74267235E2512003FDFF9 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +289,8 @@
 		D4B7426E235E3B21003FDFF9 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				D4B74270235E3E17003FDFF9 /* WidgetMeta.swift */,
+				D4E386C6235F038400F88E28 /* WidgetTypes.swift */,
+				D4B74270235E3E17003FDFF9 /* WidgetController.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -276,12 +298,15 @@
 		D4B7426F235E3B85003FDFF9 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				D47836C6235EC9050030238C /* DesignBook */,
 				D4B7426A235E322A003FDFF9 /* WidgetHostController.swift */,
 				D4B74268235E3036003FDFF9 /* WidgetRootView.swift */,
-				D4B7426C235E3AAA003FDFF9 /* WidgetMonthHeader.swift */,
+				D4B7426C235E3AAA003FDFF9 /* WidgetHeader.swift */,
+				D4E386C4235EE4F400F88E28 /* WidgetWeeknumBar.swift */,
 				D4B74272235E5300003FDFF9 /* WidgetWeekdayBar.swift */,
 				D4B74274235E53B4003FDFF9 /* WidgetWeekdayCaption.swift */,
-				D4B74279235EBD64003FDFF9 /* TodayMonthdayCell.swift */,
+				D47836C0235EC7AE0030238C /* WidgetMonthBodyView.swift */,
+				D4B74279235EBD64003FDFF9 /* WidgetMonthDayView.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -424,6 +449,7 @@
 				D450C3CA19FF7CA2006DAA83 /* HRColorPickerView.m in Sources */,
 				D450C3C719FF7CA2006DAA83 /* HRColorCursor.m in Sources */,
 				D47DAE64235D8BF400460B03 /* TodayWeekLabel.swift in Sources */,
+				D47836C8235EC9160030238C /* DesignTypes.swift in Sources */,
 				D4C036E41A0CFA7200D53141 /* ConfigCell.swift in Sources */,
 				D411EDF119C2A59B0054439F /* AppDelegate.swift in Sources */,
 				D450C3C619FF7CA2006DAA83 /* HRBrightnessSlider.m in Sources */,
@@ -434,6 +460,7 @@
 				D450C3C819FF7CA2006DAA83 /* HRColorInfoView.m in Sources */,
 				D450C3C919FF7CA2006DAA83 /* HRColorMapView.m in Sources */,
 				D46B7ADB19CB079B0088E262 /* TodayDayLabel.swift in Sources */,
+				D47836C4235EC8D70030238C /* DesignBook.swift in Sources */,
 				D46B7AD819CB07900088E262 /* TodayMonthLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,19 +469,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4E386C5235EE4F400F88E28 /* WidgetWeeknumBar.swift in Sources */,
+				D47836C5235EC8D70030238C /* DesignBook.swift in Sources */,
 				D4B74273235E5300003FDFF9 /* WidgetWeekdayBar.swift in Sources */,
 				D4B74275235E53B4003FDFF9 /* WidgetWeekdayCaption.swift in Sources */,
+				D4E386C7235F038400F88E28 /* WidgetTypes.swift in Sources */,
 				D47DAE63235D8AC400460B03 /* TodayWeekLabel.swift in Sources */,
 				D411EE1919C2A5CD0054439F /* TodayViewController.swift in Sources */,
 				D4073B2F19C377A600056370 /* TodayWeekdayLabel.swift in Sources */,
-				D4B7427A235EBD64003FDFF9 /* TodayMonthdayCell.swift in Sources */,
+				D4B7427A235EBD64003FDFF9 /* WidgetMonthDayView.swift in Sources */,
+				D47836C9235EC9160030238C /* DesignTypes.swift in Sources */,
 				D4B74269235E3036003FDFF9 /* WidgetRootView.swift in Sources */,
 				D4073B2B19C2AD5B00056370 /* TodayMonthLabel.swift in Sources */,
 				D4B74278235E6058003FDFF9 /* CGFloatExtensions.swift in Sources */,
 				D4A5112819C6F78000555E1C /* TodayWeekView.swift in Sources */,
-				D4B74271235E3E17003FDFF9 /* WidgetMeta.swift in Sources */,
+				D47836C2235EC7F50030238C /* WidgetMonthBodyView.swift in Sources */,
+				D4B74271235E3E17003FDFF9 /* WidgetController.swift in Sources */,
 				D4073B2D19C2ADB400056370 /* TodayDayLabel.swift in Sources */,
-				D4B7426D235E3AAA003FDFF9 /* WidgetMonthHeader.swift in Sources */,
+				D4B7426D235E3AAA003FDFF9 /* WidgetHeader.swift in Sources */,
 				D4B7426B235E322A003FDFF9 /* WidgetHostController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

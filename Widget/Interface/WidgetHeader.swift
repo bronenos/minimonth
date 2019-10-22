@@ -1,5 +1,5 @@
 //
-//  WidgetMonthHeader.swift
+//  WidgetHeader.swift
 //  Today
 //
 //  Created by Stan Potemkin on 21.10.2019.
@@ -8,9 +8,10 @@
 
 import SwiftUI
 
-@available(iOS 13.0, iOSApplicationExtension 13.0.0, *)
-public struct WidgetMonthHeader: View {
+public struct WidgetHeader: View {
+    let title: String
+    
     public var body: some View {
-        Text("October")
+        Text(title)
     }
 }

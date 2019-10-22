@@ -1,5 +1,5 @@
 //
-//  TodayMonthdayCell.swift
+//  WidgetMonthDay.swift
 //  Today
 //
 //  Created by Stan Potemkin on 22.10.2019.
@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-struct TodayMonthdayCell: View {
-    let day: Int
+struct WidgetMonthDayView: View {
+    let day: WidgetDay
     
     var body: some View {
-        Text("\(day)")
+        Text("\(day.number)")
     }
 }
