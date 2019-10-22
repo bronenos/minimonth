@@ -39,8 +39,8 @@
             timestampString = "527005906.858362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "561"
-            endingLineNumber = "561"
+            startingLineNumber = "565"
+            endingLineNumber = "565"
             landmarkName = "calculateStartWeekdayWithCurrentWeekday(_:andDay:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -66,8 +66,8 @@
             filePath = "Today/TodayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "575"
-            endingLineNumber = "575"
+            startingLineNumber = "579"
+            endingLineNumber = "579"
             landmarkName = "handleUpdates()"
             landmarkType = "7">
          </BreakpointContent>

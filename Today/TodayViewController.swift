@@ -19,7 +19,7 @@ let eventColorPrefKey = "eventColor"
 let lastDatePrefKey = "lastDate"
 
 
-class TodayViewController : UIViewController, NCWidgetProviding {
+@objc(TodayViewController) public class TodayViewController : UIViewController, NCWidgetProviding {
 	let h2c = TodayViewController.hexToColor
 	var monthColor: UIColor { return h2c(self.defs.object(forKey: monthColorPrefKey) as? String) }
 	var dayColor: UIColor { return h2c(self.defs.object(forKey: dayColorPrefKey) as? String) }
@@ -113,8 +113,12 @@ class TodayViewController : UIViewController, NCWidgetProviding {
 		defs.register(defaults: reg)
 		defs.synchronize()
 	}
+    
+    public override func loadView() {
+        view = UIView()
+    }
 	
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         if #available(iOS 10, *) {
@@ -132,7 +136,7 @@ class TodayViewController : UIViewController, NCWidgetProviding {
         updateUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.generateWeekdays()
@@ -144,11 +148,11 @@ class TodayViewController : UIViewController, NCWidgetProviding {
         }
     }
 	
-	override var preferredStatusBarStyle : UIStatusBarStyle {
+    override public var preferredStatusBarStyle : UIStatusBarStyle {
 		return .lightContent
 	}
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateUI()
     }
@@ -162,7 +166,7 @@ class TodayViewController : UIViewController, NCWidgetProviding {
         }
     }
     
-    func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
+    public func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
         defs.synchronize()
         updateUI()
         completionHandler(.newData)
@@ -188,12 +192,12 @@ class TodayViewController : UIViewController, NCWidgetProviding {
 //		}
     }
 	
-    func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+    public func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
         return .zero
     }
     
     @available(iOS 10.0, iOSApplicationExtension 10.0, *)
-    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+    public func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         self.minimized = (activeDisplayMode == .compact)
         self.generateCalendar()
         self.updatePreferredContentSize()
