@@ -10,7 +10,11 @@ import UIKit
 import SwiftUI
 
 final class DesignBook: ObservableObject {
-    var traitProvider: (() -> UITraitEnvironment)?
+    let traitEnvironment: UITraitEnvironment
+    
+    init(traitEnvironment: UITraitEnvironment) {
+        self.traitEnvironment = traitEnvironment
+    }
     
     let layout = DesignBookLayout(
         weekNumberWidthCoef: 0.1,
@@ -78,7 +82,7 @@ final class DesignBook: ObservableObject {
     }
     
     private func extractFontSize(_ value: DesignBookFontSize) -> CGFloat {
-        switch traitProvider?().traitCollection.horizontalSizeClass ?? .compact {
+        switch traitEnvironment.traitCollection.horizontalSizeClass {
         case .compact: return value.compact
         case .regular: return value.regular
         case .unspecified: return value.compact

@@ -9,7 +9,13 @@
 import SwiftUI
 
 struct WidgetWeeknumBar: View {
+    let weekNumbers: Range<Int>
+    
     var body: some View {
-        Text("Hello World!")
+        VStack {
+            ForEach(weekNumbers, id: \.self) { number in
+                Text("Hello World!")
+            }
+        }
     }
 }

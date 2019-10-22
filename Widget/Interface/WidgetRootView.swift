@@ -20,10 +20,11 @@ public struct WidgetRootView: View {
             
             HStack {
                 GeometryReader { geometry in
-                    WidgetWeeknumBar()
-                        .frame(
-                            width: geometry.size.width * self.designBook.layout.weekNumberWidthCoef,
-                            height: geometry.size.height)
+                    WidgetWeeknumBar(
+                        weekNumbers: self.controller.meta.weekNumbers
+                    ).frame(
+                        width: geometry.size.width * self.designBook.layout.weekNumberWidthCoef,
+                        height: geometry.size.height)
                     
                     VStack {
                         WidgetWeekdayBar(

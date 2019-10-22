@@ -9,19 +9,31 @@
 import SwiftUI
 import NotificationCenter
 
-@objc(WidgetHostController) public final class WidgetHostController: UIHostingController<WidgetRootView>, NCWidgetProviding {
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let designBook = DesignBook()
-        let rootView = WidgetRootView()
-        _ = rootView.environmentObject(designBook)
+@objc(WidgetHostController) public final class WidgetHostController: UIViewController, NCWidgetProviding {
+    public override func viewDidLoad() {
+        super.viewDidLoad()
         
-        super.init(rootView: rootView)
+        let designBook = DesignBook(traitEnvironment: self)
+        let rootView = WidgetRootView().environmentObject(designBook)
         
-        designBook.traitProvider = { [unowned self] in self }
+        let rootController = UIHostingController(rootView: rootView)
+        rootController.view.backgroundColor = nil
+        
+        addChild(rootController)
+        view.addSubview(rootController.view)
     }
     
-    @objc required dynamic init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let hostingController = children.first {
+            hostingController.view.frame = view.bounds
+        }
+    }
+    
+    public override var preferredContentSize: CGSize {
+        get { children.first?.preferredContentSize ?? .zero }
+        set { children.first?.preferredContentSize = newValue }
     }
     
     public func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
