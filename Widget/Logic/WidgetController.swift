@@ -13,11 +13,20 @@ import Combine
 final class WidgetController: ObservableObject {
     @Published var meta: WidgetMeta
     
+    private let delegate: WidgetDelegate?
     private let calendar = Calendar.autoupdatingCurrent
     private var anchorDate = Date()
     
-    init() {
+    init(delegate: WidgetDelegate?) {
+        self.delegate = delegate
+        
         meta = calculateMeta(calendar: calendar, anchorDate: anchorDate)
+    }
+    
+    func informToResize() {
+        DispatchQueue.main.async {
+            self.delegate?.resize()
+        }
     }
 }
 

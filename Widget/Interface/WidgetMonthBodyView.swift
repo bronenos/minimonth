@@ -38,11 +38,13 @@ struct WidgetMonthBodyView: View {
     
     private func offsetX(inside geometry: GeometryProxy, day: WidgetDay) -> CGFloat {
         let index = (day.number + monthOffset - 1) % 7
-        return step(inside: geometry).dx * CGFloat(index)
+        let value = step(inside: geometry).dx * CGFloat(index)
+        return value
     }
     
     private func offsetY(inside geometry: GeometryProxy, day: WidgetDay) -> CGFloat {
         let index = (day.number + monthOffset - 1) / 7
-        return step(inside: geometry).dy * CGFloat(index)
+        let value = step(inside: geometry).dy * CGFloat(index)
+        return value
     }
 }

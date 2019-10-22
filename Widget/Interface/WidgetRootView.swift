@@ -9,37 +9,41 @@
 import SwiftUI
 
 public struct WidgetRootView: View {
-    @EnvironmentObject var designBook: DesignBook
-    @ObservedObject var controller = WidgetController()
+    @EnvironmentObject private var designBook: DesignBook
+    @ObservedObject private var controller: WidgetController
+    
+    init(delegate: WidgetDelegate?) {
+        controller = WidgetController(delegate: delegate)
+    }
     
     public var body: some View {
-        VStack {
-            WidgetHeader(
-                title: controller.meta.monthTitle
-            )
-            
-            HStack {
-                GeometryReader { geometry in
-                    WidgetWeeknumBar(
-                        weekNumbers: self.controller.meta.weekNumbers
-                    ).frame(
-                        width: geometry.size.width * self.designBook.layout.weekNumberWidthCoef,
-                        height: geometry.size.height)
+        GeometryReader { geometry in
+            VStack {
+                WidgetHeader(title: self.controller.meta.monthTitle)
+                    .background(Color.red)
+                
+                HStack {
+                    WidgetWeeknumBar(weekNumbers: self.controller.meta.weekNumbers)
+                        .background(Color.green)
+                        .frame(
+                            width: geometry.size.width * self.designBook.layout.weekNumberWidthCoef)
                     
                     VStack {
-                        WidgetWeekdayBar(
-                            captions: self.controller.meta.weekdayTitles
-                        )
+                        WidgetWeekdayBar(captions: self.controller.meta.weekdayTitles)
+                            .background(Color.blue)
                         
-                        WidgetMonthBodyView(
-                            weeksNumber: self.controller.meta.weekNumbers.count,
-                            monthOffset: self.controller.meta.monthOffset,
-                            days: self.controller.meta.days
-                        ).frame(
-                            height: geometry.size.width * self.designBook.layout.weekDayRatio)
+                        WidgetMonthBodyView(weeksNumber: self.controller.meta.weekNumbers.count,
+                                            monthOffset: self.controller.meta.monthOffset,
+                                            days: self.controller.meta.days)
+                            .border(Color.yellow, width: 1)
                     }
+                    .background(Color.white)
                 }
+                .background(Color.black)
+                .background(Color.black)
             }
+            .background(Color.gray)
+            .onAppear(perform: self.controller.informToResize)
         }
     }
 }

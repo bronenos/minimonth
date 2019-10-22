@@ -139,13 +139,13 @@ let lastDatePrefKey = "lastDate"
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.generateWeekdays()
-        self.generateCalendar()
+//        self.generateWeekdays()
+//        self.generateCalendar()
         
-        if #available(iOS 10, iOSApplicationExtension 10.0, *) {
-            self.updatePreferredContentSize()
-            self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-        }
+//        if #available(iOS 10, iOSApplicationExtension 10.0, *) {
+//            self.updatePreferredContentSize()
+//            self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+//        }
     }
 	
     override public var preferredStatusBarStyle : UIStatusBarStyle {
@@ -158,12 +158,12 @@ let lastDatePrefKey = "lastDate"
     }
     
     private func updateUI() {
-        if #available(iOS 12.0, iOSApplicationExtension 12.0, *) {
-            _effectView.isHidden = (traitCollection.userInterfaceStyle == .light)
-        }
-        else {
-            _effectView.isHidden = true
-        }
+//        if #available(iOS 12.0, iOSApplicationExtension 12.0, *) {
+//            _effectView.isHidden = (traitCollection.userInterfaceStyle == .light)
+//        }
+//        else {
+//            _effectView.isHidden = true
+//        }
     }
     
     public func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
