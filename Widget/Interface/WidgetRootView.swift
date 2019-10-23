@@ -49,6 +49,7 @@ public struct WidgetRootView: View {
                 Spacer()
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
+            .onAppear(perform: self.controller.requestEvents)
         }
     }
     

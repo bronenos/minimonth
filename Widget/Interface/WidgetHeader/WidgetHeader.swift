@@ -23,6 +23,7 @@ struct WidgetHeader: View {
                 .onTapGesture(perform: fastBackwardAction)
 
             WidgetHeaderButton(symbolName: "chevron.left")
+                .padding(.horizontal, 10)
                 .onTapGesture(perform: backwardAction)
             
             Spacer()
@@ -37,6 +38,7 @@ struct WidgetHeader: View {
             Spacer()
             
             WidgetHeaderButton(symbolName: "chevron.right")
+                .padding(.horizontal, 10)
                 .onTapGesture(perform: forwardAction)
             
             WidgetHeaderButton(symbolName: "chevron.right.2")

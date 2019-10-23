@@ -37,3 +37,28 @@ struct WidgetDay: Hashable {
     let type: WidgetDayType
     let options: WidgetDayOptions
 }
+
+struct WidgetDatestamp: Equatable {
+    let year: Int
+    let month: Int
+    let day: Int
+    
+    init(year: Int?, month: Int?, day: Int?) {
+        self.year = year ?? 0
+        self.month = month ?? 0
+        self.day = day ?? 0
+    }
+    
+    init(components: DateComponents) {
+        year = components.year ?? 0
+        month = components.month ?? 0
+        day = components.day ?? 0
+    }
+    
+    init?(date: Date?, within calendar: Calendar) {
+        guard let date = date else { return nil }
+        year = calendar.component(.year, from: date)
+        month = calendar.component(.month, from: date)
+        day = calendar.component(.day, from: date)
+    }
+}
