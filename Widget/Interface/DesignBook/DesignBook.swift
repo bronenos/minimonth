@@ -17,8 +17,9 @@ final class DesignBook: ObservableObject {
     }
     
     let layout = DesignBookLayout(
-        weekNumberWidthCoef: 0.1,
-        weekDayRatio: 0.7
+        weekHeaderHeight: 27,
+        weekNumberWidthCoef: 0.15,
+        weekDayHeight: 27
     )
     
     func color(_ color: DesignBookColor, style: DesignBookStyle = .light) -> UIColor {

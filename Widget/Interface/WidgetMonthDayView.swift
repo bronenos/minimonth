@@ -12,6 +12,19 @@ struct WidgetMonthDayView: View {
     let day: WidgetDay
     
     var body: some View {
-        Text("\(day.number)")
+        ZStack {
+            Text("\(day.number)")
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            
+            if day.options.contains(.isToday) {
+                Text("XX")
+                    .hidden()
+                    .padding(.vertical, 2)
+                    .padding(.horizontal, 7)
+                    .overlay(
+                        Capsule(style: .circular).stroke(Color.green))
+            }
+        }
+        .font(.system(size: 12, weight: .bold, design: .default))
     }
 }

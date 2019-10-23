@@ -42,6 +42,7 @@ enum DesignBookFontWeight {
 }
 
 struct DesignBookLayout {
+    let weekHeaderHeight: CGFloat
     let weekNumberWidthCoef: CGFloat
-    let weekDayRatio: CGFloat
+    let weekDayHeight: CGFloat
 }

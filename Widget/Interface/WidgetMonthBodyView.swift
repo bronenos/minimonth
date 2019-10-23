@@ -22,12 +22,16 @@ struct WidgetMonthBodyView: View {
                             width: self.step(inside: geometry).dx,
                             height: self.step(inside: geometry).dy,
                             alignment: .center)
-                        .offset(
-                            x: self.offsetX(inside: geometry, day: day),
-                            y: self.offsetY(inside: geometry, day: day))
+                        .position(
+                            x: self.positionX(inside: geometry, day: day),
+                            y: self.positionY(inside: geometry, day: day))
                 }
             }
         }
+    }
+    
+    private var dayOffset: Int {
+        return (days.first?.number ?? 1) - 1
     }
     
     private func step(inside geometry: GeometryProxy) -> CGVector {
@@ -36,15 +40,17 @@ struct WidgetMonthBodyView: View {
         return CGVector(dx: x, dy: y)
     }
     
-    private func offsetX(inside geometry: GeometryProxy, day: WidgetDay) -> CGFloat {
-        let index = (day.number + monthOffset - 1) % 7
-        let value = step(inside: geometry).dx * CGFloat(index)
-        return value
+    private func positionX(inside geometry: GeometryProxy, day: WidgetDay) -> CGFloat {
+        let index = (day.number - dayOffset + monthOffset - 1) % 7
+        let offsetX = step(inside: geometry).dx * CGFloat(index)
+        let positionX = offsetX + step(inside: geometry).dx * 0.5
+        return positionX
     }
     
-    private func offsetY(inside geometry: GeometryProxy, day: WidgetDay) -> CGFloat {
-        let index = (day.number + monthOffset - 1) / 7
-        let value = step(inside: geometry).dy * CGFloat(index)
-        return value
+    private func positionY(inside geometry: GeometryProxy, day: WidgetDay) -> CGFloat {
+        let index = (day.number - dayOffset + monthOffset - 1) / 7
+        let offsetX = step(inside: geometry).dy * CGFloat(index)
+        let positionY = offsetX + step(inside: geometry).dy * 0.5
+        return positionY
     }
 }

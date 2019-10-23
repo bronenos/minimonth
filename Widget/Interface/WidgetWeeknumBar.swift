@@ -12,9 +12,12 @@ struct WidgetWeeknumBar: View {
     let weekNumbers: Range<Int>
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ForEach(weekNumbers, id: \.self) { number in
-                Text("Hello World!")
+                Text("# \(number)")
+                    .frame(maxHeight: .infinity, alignment: .center)
+                    .font(.system(size: 10, weight: .medium, design: .default))
+                    .foregroundColor(Color.secondary)
             }
         }
     }

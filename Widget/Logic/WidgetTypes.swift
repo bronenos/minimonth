@@ -18,6 +18,7 @@ struct WidgetDayOptions: OptionSet, Hashable {
     let rawValue: Int
     init(rawValue: Int) { self.rawValue = rawValue }
     
+    static let none = WidgetDayOptions(rawValue: 0)
     static let isToday = WidgetDayOptions(rawValue: 1 << 0)
     static let hasEvent = WidgetDayOptions(rawValue: 1 << 1)
 }

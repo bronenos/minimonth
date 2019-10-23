@@ -14,6 +14,7 @@ protocol WidgetDelegate: class {
 }
 
 @objc(WidgetHostController) public final class WidgetHostController: UIViewController, NCWidgetProviding, WidgetDelegate {
+    private var controller: WidgetController?
     private var sizeCalculator: (CGSize) -> CGSize = { _ in .zero }
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -27,22 +28,19 @@ protocol WidgetDelegate: class {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        let designBook = DesignBook(traitEnvironment: self)
-        let rootObject = WidgetRootView(delegate: self).environmentObject(designBook)
+        view.backgroundColor = nil
+        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         
-        let rootController = UIHostingController(rootView: rootObject)
-        rootController.view.backgroundColor = nil
-        sizeCalculator = rootController.sizeThatFits
-        
-        addChild(rootController)
-        view.addSubview(rootController.view)
+        build(style: .month)
     }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.backgroundColor = nil
         children.first?.view.frame = view.bounds
-        extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+    }
+    
+    public override var preferredContentSize: CGSize {
+        didSet { children.first?.preferredContentSize = preferredContentSize }
     }
     
     public func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
@@ -54,11 +52,40 @@ protocol WidgetDelegate: class {
     }
     
     public func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        preferredContentSize = CGSize(width: 398, height: min(maxSize.height, 391))
+        switch activeDisplayMode {
+        case .compact: controller?.toggle(style: .week)
+        case .expanded: controller?.toggle(style: .month)
+        @unknown default: controller?.toggle(style: .month)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) { [weak self] in
+            let height = self?.calculateInnerHeight() ?? 0
+            self?.preferredContentSize = CGSize(width: .infinity, height: height)
+        }
+    }
+    
+    private func build(style: WidgetController.Style) {
+        let designBook = DesignBook(traitEnvironment: self)
+        let rootController = WidgetController(style: style, delegate: self)
+        let rootObject = WidgetRootView(controller: rootController).environmentObject(designBook)
+        
+        let hostingController = UIHostingController(rootView: rootObject)
+        hostingController.view.backgroundColor = nil
+        
+        controller = rootController
+        sizeCalculator = hostingController.sizeThatFits
+        
+        addChild(hostingController)
+        view.addSubview(hostingController.view)
+    }
+    
+    private func calculateInnerHeight() -> CGFloat {
+        guard let contentView = children.first?.view else { return 0 }
+        let childFrames = contentView.subviews.map { $0.frame }
+        return childFrames.reduce(CGRect.zero, { $0.union($1) }).height + 15
     }
     
     func resize() {
-//        guard let rootView = children.first?.view else { return }
-        preferredContentSize = CGSize(width: 398, height: 391)
+//        calculateInnerHeight()
     }
 }
