@@ -20,7 +20,10 @@ public struct WidgetRootView: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 WidgetHeader(
-                    title: self.controller.meta.monthTitle)
+                    title: self.controller.meta.monthTitle,
+                    backwardAction: self.controller.switchToPreviousMonth,
+                    titleAction: self.controller.switchToCurrentMonth,
+                    forwardAction: self.controller.switchToNextMonth)
                 
                 WidgetWeekdayBar(
                     captions: self.controller.meta.weekdayTitles)

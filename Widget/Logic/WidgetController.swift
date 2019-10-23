@@ -10,7 +10,14 @@ import Foundation
 import SwiftUI
 import Combine
 
-final class WidgetController: ObservableObject {
+protocol IWidgetController: class {
+    func toggle(style: WidgetController.Style)
+    func switchToNextMonth()
+    func switchToCurrentMonth()
+    func switchToPreviousMonth()
+}
+
+final class WidgetController: IWidgetController, ObservableObject {
     enum Style {
         case month
         case week
@@ -20,22 +27,46 @@ final class WidgetController: ObservableObject {
     
     private let delegate: WidgetDelegate?
     private let calendar = Calendar.autoupdatingCurrent
-    private var anchorDate = Date()
+    
+    private var style: Style {
+        didSet { updateMeta() }
+    }
+    
+    private var anchorDate = Date() {
+        didSet { updateMeta() }
+    }
     
     init(style: Style, delegate: WidgetDelegate?) {
+        self.style = style
         self.delegate = delegate
         
         meta = calculateMeta(calendar: calendar, anchorDate: anchorDate, style: style)
     }
     
     func toggle(style: Style) {
-        meta = calculateMeta(calendar: calendar, anchorDate: anchorDate, style: style)
+        self.style = style
+    }
+    
+    func switchToNextMonth() {
+        anchorDate = calendar.date(byAdding: .month, value: 1, to: anchorDate) ?? anchorDate
+    }
+    
+    func switchToCurrentMonth() {
+        anchorDate = Date()
+    }
+    
+    func switchToPreviousMonth() {
+        anchorDate = calendar.date(byAdding: .month, value: -1, to: anchorDate) ?? anchorDate
     }
     
     func informToResize() {
         DispatchQueue.main.async { [weak self] in
             self?.delegate?.resize()
         }
+    }
+    
+    private func updateMeta() {
+        meta = calculateMeta(calendar: calendar, anchorDate: anchorDate, style: style)
     }
 }
 
@@ -65,7 +96,12 @@ fileprivate func calculateMeta(calendar: Calendar, anchorDate: Date, style: Widg
                 WidgetDay(
                     number: number,
                     type: .regular,
-                    options: calculateDayOptions(number: number, anchorDayUnits: anchorDayUnits)
+                    options: calculateDayOptions(
+                        calendar: calendar,
+                        anchorDate: anchorDate,
+                        number: number,
+                        anchorDayUnits: anchorDayUnits
+                    )
                 )
             }
         )
@@ -84,15 +120,30 @@ fileprivate func calculateMeta(calendar: Calendar, anchorDate: Date, style: Widg
                 WidgetDay(
                     number: number,
                     type: .regular,
-                    options: calculateDayOptions(number: number, anchorDayUnits: anchorDayUnits)
+                    options: calculateDayOptions(
+                        calendar: calendar,
+                        anchorDate: anchorDate,
+                        number: number,
+                        anchorDayUnits: anchorDayUnits
+                    )
                 )
             }
         )
     }
 }
 
-fileprivate func calculateDayOptions(number: Int, anchorDayUnits: DateComponents) -> WidgetDayOptions {
-    let isToday: WidgetDayOptions = (number == anchorDayUnits.day ? .isToday : .none)
+fileprivate func calculateDayOptions(calendar: Calendar,
+                                     anchorDate: Date,
+                                     number: Int,
+                                     anchorDayUnits: DateComponents) -> WidgetDayOptions {
+    let isToday: WidgetDayOptions
+    if calendar.isDateInToday(anchorDate), number == anchorDayUnits.day {
+        isToday = .isToday
+    }
+    else {
+        isToday = .none
+    }
+
     return [isToday]
 }
 
