@@ -1,0 +1,7 @@
+.idea/
+artifacts/
+build/
+*.ipa
+*.dSYM.zip
+fastlane/report.xml
+**/xcuserdata/
