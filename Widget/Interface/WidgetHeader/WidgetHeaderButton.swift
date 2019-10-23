@@ -13,7 +13,7 @@ struct WidgetHeaderButton: View {
     
     public var body: some View {
         Image(systemName: symbolName)
-            .font(.callout)
+            .font(.system(size: 15, weight: .bold, design: .default))
             .foregroundColor(Color.primary)
             .opacity(0.6)
     }

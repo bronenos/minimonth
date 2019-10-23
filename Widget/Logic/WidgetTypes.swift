@@ -25,6 +25,7 @@ struct WidgetDayOptions: OptionSet, Hashable {
 
 struct WidgetMeta: Hashable {
     let monthTitle: String
+    let monthYear: Int?
     let weekNumbers: Range<Int>
     let weekdayTitles: [String]
     let monthOffset: Int

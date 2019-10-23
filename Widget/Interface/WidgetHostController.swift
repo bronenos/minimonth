@@ -58,10 +58,7 @@ protocol WidgetDelegate: class {
         @unknown default: controller?.toggle(style: .month)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) { [weak self] in
-            let height = self?.calculateInnerHeight() ?? 0
-            self?.preferredContentSize = CGSize(width: .infinity, height: height)
-        }
+        resize()
     }
     
     private func build(style: WidgetController.Style) {
@@ -86,6 +83,9 @@ protocol WidgetDelegate: class {
     }
     
     func resize() {
-//        calculateInnerHeight()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) { [weak self] in
+            let height = self?.calculateInnerHeight() ?? 0
+            self?.preferredContentSize = CGSize(width: .infinity, height: height)
+        }
     }
 }

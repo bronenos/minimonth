@@ -21,9 +21,12 @@ public struct WidgetRootView: View {
             VStack(spacing: 0) {
                 WidgetHeader(
                     title: self.controller.meta.monthTitle,
+                    year: self.controller.meta.monthYear,
+                    fastBackwardAction: self.controller.switchToPreviousYear,
                     backwardAction: self.controller.switchToPreviousMonth,
                     titleAction: self.controller.switchToCurrentMonth,
-                    forwardAction: self.controller.switchToNextMonth)
+                    forwardAction: self.controller.switchToNextMonth,
+                    fastForwardAction: self.controller.switchToNextYear)
                 
                 WidgetWeekdayBar(
                     captions: self.controller.meta.weekdayTitles)

@@ -12,9 +12,11 @@ import Combine
 
 protocol IWidgetController: class {
     func toggle(style: WidgetController.Style)
-    func switchToNextMonth()
-    func switchToCurrentMonth()
+    func switchToPreviousYear()
     func switchToPreviousMonth()
+    func switchToCurrentMonth()
+    func switchToNextMonth()
+    func switchToNextYear()
 }
 
 final class WidgetController: IWidgetController, ObservableObject {
@@ -47,34 +49,45 @@ final class WidgetController: IWidgetController, ObservableObject {
         self.style = style
     }
     
-    func switchToNextMonth() {
-        anchorDate = calendar.date(byAdding: .month, value: 1, to: anchorDate) ?? anchorDate
-    }
-    
-    func switchToCurrentMonth() {
-        anchorDate = Date()
+    func switchToPreviousYear() {
+        anchorDate = calendar.date(byAdding: .year, value: -1, to: anchorDate) ?? anchorDate
     }
     
     func switchToPreviousMonth() {
         anchorDate = calendar.date(byAdding: .month, value: -1, to: anchorDate) ?? anchorDate
     }
     
-    func informToResize() {
-        DispatchQueue.main.async { [weak self] in
-            self?.delegate?.resize()
-        }
+    func switchToCurrentMonth() {
+        anchorDate = Date()
+    }
+    
+    func switchToNextMonth() {
+        anchorDate = calendar.date(byAdding: .month, value: 1, to: anchorDate) ?? anchorDate
+    }
+    
+    func switchToNextYear() {
+        anchorDate = calendar.date(byAdding: .year, value: 1, to: anchorDate) ?? anchorDate
+    }
+    
+    func askToResize() {
+        delegate?.resize()
     }
     
     private func updateMeta() {
         meta = calculateMeta(calendar: calendar, anchorDate: anchorDate, style: style)
+        askToResize()
     }
 }
 
 fileprivate func calculateMeta(calendar: Calendar, anchorDate: Date, style: WidgetController.Style) -> WidgetMeta {
     let calendarUnits: Set<Calendar.Component> = [.year, .month, .weekday, .day, .weekOfMonth, .weekOfYear]
-    let anchorDayUnits = calendar.dateComponents(calendarUnits, from: anchorDate)
     
+    let todayUnits = calendar.dateComponents(calendarUnits, from: Date())
+    let todayYear = todayUnits.year ?? 0
+    
+    let anchorDayUnits = calendar.dateComponents(calendarUnits, from: anchorDate)
     let anchorMonthIndex = anchorDayUnits.month ?? 0
+    let anchorYear = anchorDayUnits.year ?? 0
     let ahcnorMonthTitle = calendar.standaloneMonthSymbols[anchorMonthIndex - 1]
     
     let localWeekDay = calendar.unitToReal(weekday: anchorDayUnits.weekday ?? 0)
@@ -89,6 +102,7 @@ fileprivate func calculateMeta(calendar: Calendar, anchorDate: Date, style: Widg
 
         return WidgetMeta(
             monthTitle: ahcnorMonthTitle,
+            monthYear: (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
             weekdayTitles: calendar.sortedWeekdayShortTitles,
             monthOffset: monthOffset,
@@ -113,6 +127,7 @@ fileprivate func calculateMeta(calendar: Calendar, anchorDate: Date, style: Widg
 
         return WidgetMeta(
             monthTitle: ahcnorMonthTitle,
+            monthYear: (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
             weekdayTitles: calendar.sortedWeekdayShortTitles,
             monthOffset: monthOffset,

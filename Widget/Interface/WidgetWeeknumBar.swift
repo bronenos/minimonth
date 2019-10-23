@@ -18,6 +18,7 @@ struct WidgetWeeknumBar: View {
                     .frame(maxHeight: .infinity, alignment: .center)
                     .font(.system(size: 10, weight: .medium, design: .default))
                     .foregroundColor(Color.secondary)
+                    .fixedSize(horizontal: true, vertical: false)
             }
         }
     }
