@@ -25,20 +25,20 @@ public struct CalendarView: View {
                         return CalendarHeader(
                             title: self.interactor.meta.monthTitle,
                             year: self.interactor.meta.monthYear,
-                            fastBackwardAction: self.interactor.navigateBackwardYear,
-                            backwardAction: self.interactor.navigateBackwardMonth,
-                            titleAction: self.interactor.navigateToday,
-                            forwardAction: self.interactor.navigateForwardMonth,
-                            fastForwardAction: self.interactor.navigateForwardYear)
+                            fastBackwardAction: self.interactor.navigateLongBackward,
+                            backwardAction: self.interactor.navigateShortBackward,
+                            titleAction: self.interactor.navigateNowadays,
+                            forwardAction: self.interactor.navigateShortForward,
+                            fastForwardAction: self.interactor.navigateLongForward)
                         
                     case .week:
                         return CalendarHeader(
                             title: self.interactor.meta.monthTitle,
                             year: self.interactor.meta.monthYear,
                             fastBackwardAction: nil,
-                            backwardAction: self.interactor.navigateBackwardWeek,
-                            titleAction: self.interactor.navigateToday,
-                            forwardAction: self.interactor.navigateForwardWeek,
+                            backwardAction: self.interactor.navigateShortBackward,
+                            titleAction: self.interactor.navigateNowadays,
+                            forwardAction: self.interactor.navigateShortForward,
                             fastForwardAction: nil)
                     }
                 }

@@ -20,13 +20,11 @@ protocol ICalendarInteractor: class {
     func requestEvents()
     func toggle(style: CalendarStyle)
     func shouldAnimate(_ animation: CalendarAnimation) -> Bool
-    func navigateBackwardYear()
-    func navigateBackwardMonth()
-    func navigateBackwardWeek()
-    func navigateToday()
-    func navigateForwardWeek()
-    func navigateForwardMonth()
-    func navigateForwardYear()
+    func navigateLongBackward()
+    func navigateShortBackward()
+    func navigateNowadays()
+    func navigateShortForward()
+    func navigateLongForward()
 }
 
 final class CalendarInteractor: ICalendarInteractor, ObservableObject {
@@ -72,52 +70,36 @@ final class CalendarInteractor: ICalendarInteractor, ObservableObject {
         return animationsForPerforming.contains(animation)
     }
     
-    func navigateBackwardYear() {
-        navigate(component: .year, value: -1)
+    func navigateLongBackward() {
+        guard let date = calendar.date(byAdding: .year, value: -1, to: anchorDate) else { return }
+        anchorDate = date
     }
     
-    func navigateBackwardMonth() {
-        navigate(component: .month, value: -1)
+    func navigateShortBackward() {
+        guard let firstDay = meta.days.first else { return }
+        let anchorDayNumber = calendar.component(.day, from: anchorDate)
+        let diff = anchorDayNumber - firstDay.number + 1
+        
+        guard let date = calendar.date(byAdding: .day, value: -diff, to: anchorDate) else { return }
+        anchorDate = date
     }
     
-    func navigateBackwardWeek() {
-        if meta.days.count == calendar.numberOfDaysInWeek() {
-            navigate(component: .weekOfMonth, value: -1)
-        }
-        else if meta.days.last?.number == calendar.numberOfDaysInMonth(anchorDate: anchorDate) {
-            navigate(component: .weekOfMonth, value: -1)
-        }
-        else {
-            let anchorDayNumber = calendar.component(.day, from: anchorDate)
-            let diffCompoments = DateComponents(day: -anchorDayNumber)
-            anchorDate = calendar.date(byAdding: diffCompoments, to: anchorDate) ?? anchorDate
-        }
-    }
-    
-    func navigateToday() {
+    func navigateNowadays() {
         anchorDate = Date()
     }
     
-    func navigateForwardWeek() {
-        if meta.days.count == calendar.numberOfDaysInWeek() {
-            navigate(component: .weekOfMonth, value: 1)
-        }
-        else if meta.days.first?.number == 1 {
-            navigate(component: .weekOfMonth, value: 1)
-        }
-        else if let totalNumberOfDays = calendar.range(of: .day, in: .month, for: anchorDate)?.count {
-            let anchorDayNumber = calendar.component(.day, from: anchorDate)
-            let diffCompoments = DateComponents(day: totalNumberOfDays - anchorDayNumber + 1)
-            anchorDate = calendar.date(byAdding: diffCompoments, to: anchorDate) ?? anchorDate
-        }
+    func navigateShortForward() {
+        guard let lastDay = meta.days.last else { return }
+        let anchorDayNumber = calendar.component(.day, from: anchorDate)
+        let diff = lastDay.number - anchorDayNumber + 1
+        
+        guard let date = calendar.date(byAdding: .day, value: diff, to: anchorDate) else { return }
+        anchorDate = date
     }
     
-    func navigateForwardMonth() {
-        navigate(component: .month, value: 1)
-    }
-    
-    func navigateForwardYear() {
-        navigate(component: .year, value: 1)
+    func navigateLongForward() {
+        guard let date = calendar.date(byAdding: .year, value: 1, to: anchorDate) else { return }
+        anchorDate = date
     }
     
     func askToResize() {
@@ -129,17 +111,15 @@ final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     }
     
     private var anchorDate = Date() {
-        didSet { updateMeta(); requestEvents() }
+        didSet { cancelAnimations(); updateMeta(); requestEvents() }
     }
     
     private var anchorEvents: [EKEvent] = [] {
         didSet { updateMeta() }
     }
     
-    private func navigate(component: Calendar.Component, value: Int) {
-        guard let date = calendar.date(byAdding: component, value: value, to: anchorDate) else { return }
+    private func cancelAnimations() {
         animationsForPerforming.removeAll()
-        anchorDate = date
     }
     
     private func updateMeta() {
@@ -167,7 +147,7 @@ fileprivate func calculateMeta(calendar: Calendar,
     let todayUnits = calendar.dateComponents(calendarUnits, from: Date())
     let todayYear = todayUnits.year ?? 0
     
-    let anchorDayUnits = calendar.dateComponents(calendarUnits, from: anchorDate)
+    let anchorDayUnits = calendar.dateComponents(calendarUnits, from: anchorDate).normalizedWeeknum(calendar: calendar)
     let anchorMonthIndex = anchorDayUnits.month ?? 0
     let anchorYear = anchorDayUnits.year ?? 0
     let ahcnorMonthTitle = calendar.standaloneMonthSymbols[anchorMonthIndex - 1]
@@ -307,5 +287,22 @@ fileprivate extension Calendar {
         }
         
         return calculatingWeekday
+    }
+}
+
+fileprivate extension DateComponents {
+    func normalizedWeeknum(calendar: Calendar) -> DateComponents {
+        if weekOfYear == 1, month != 1 {
+            guard let originalDate = calendar.date(from: self) else { return self }
+            guard let earlierDate = calendar.date(byAdding: .month, value: -1, to: originalDate) else { return self }
+            guard let range = calendar.range(of: .weekOfYear, in: .year, for: earlierDate) else { return self }
+            
+            var c = self
+            c.weekOfYear = range.count
+            return c
+        }
+        else {
+            return self
+        }
     }
 }
