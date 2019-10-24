@@ -9,45 +9,61 @@
 import UIKit
 import SwiftUI
 
-final class DesignBook: ObservableObject {
+public final class DesignBook: ObservableObject {
+    let preferencesDriver: PreferencesDriver
     let traitEnvironment: UITraitEnvironment
     
-    init(traitEnvironment: UITraitEnvironment) {
+    private var cachedUsages = [DesignBookColorUsage: Color]()
+    
+    public init(preferencesDriver: PreferencesDriver, traitEnvironment: UITraitEnvironment) {
+        self.preferencesDriver = preferencesDriver
         self.traitEnvironment = traitEnvironment
     }
     
-    let layout = DesignBookLayout(
+    public let layout = DesignBookLayout(
         weekHeaderHeight: 27,
         weekNumberWidthCoef: 0.15,
         weekDayHeight: 27,
         eventMarkerSide: 4
     )
     
-    func color(_ color: DesignBookColor, style: DesignBookStyle = .light) -> UIColor {
-        switch color {
-        case .native(let value): return value
-        case .hex(let hex): return obtainColor(byHex: hex)
-        case .usage(let usage): return obtainColor(forUsage: usage)
-        }
-    }
-    
-    func color(hex: Int) -> UIColor {
-        return color(.hex(hex))
-    }
-    
-    func color(usage: DesignBookColorUsage) -> UIColor {
+    public func color(usage: DesignBookColorUsage) -> UIColor {
         return color(.usage(usage))
     }
     
-    func font(weight: DesignBookFontWeight, category: UIFont.TextStyle, defaultSizes: DesignBookFontSize, maximumSizes: DesignBookFontSize?) -> UIFont {
+    public func cached(usage: DesignBookColorUsage) -> Color {
+        if let value = cachedUsages[usage] {
+            return value
+        }
+        
+        let value = Color(self.color(usage: usage))
+        cachedUsages[usage] = value
+        
+        return value
+    }
+    
+    public func font(weight: DesignBookFontWeight, category: UIFont.TextStyle, defaultSizes: DesignBookFontSize, maximumSizes: DesignBookFontSize?) -> UIFont {
         let defaultSize = extractFontSize(defaultSizes)
         let defaultFont = UIFont.systemFont(ofSize: defaultSize, weight: adjustedFontWeight(weight))
         let maximumSize = maximumSizes.flatMap(extractFontSize) ?? .infinity
         return UIFontMetrics(forTextStyle: category).scaledFont(for: defaultFont, maximumPointSize: maximumSize)
     }
     
+    private func color(_ color: DesignBookColor) -> UIColor {
+        switch color {
+        case .native(let value): return value
+        case .hex(let hex): return obtainColor(byHex: hex)
+        case .usage(let usage): return obtainColor(forUsage: usage)
+        case .pref(let keyPath): return obtainColor(byPref: keyPath)
+        }
+    }
+    
     private func obtainColor(byHex hex: Int) -> UIColor {
         return UIColor(hex: hex)
+    }
+    
+    private func obtainColor(byPref keyPath: KeyPath<PreferencesDriver, UIColor>) -> UIColor {
+        return preferencesDriver[keyPath: keyPath]
     }
     
     private func obtainColor(forUsage usage: DesignBookColorUsage) -> UIColor {
@@ -56,7 +72,17 @@ final class DesignBook: ObservableObject {
         case .white: return UIColor.white
         case .black: return UIColor.black
         // foregrounds
-        case .primaryForeground: return dynamicColor(light: .native(.black), dark: .native(.white))
+        case .primaryForeground: return combine(light: .native(.black), dark: .native(.white))
+        // preferences
+        case .monthColor: return combine(light: .pref(\.monthColorLight), dark: .pref(\.monthColorDark))
+        case .navigationColor: return combine(light: .pref(\.navigationColorLight), dark: .pref(\.navigationColorDark))
+        case .weekdayColor: return combine(light: .pref(\.weekdayColorLight), dark: .pref(\.weekdayColorDark))
+        case .weeknumColor: return combine(light: .pref(\.weeknumColorLight), dark: .pref(\.weeknumColorDark))
+        case .workdayColor: return combine(light: .pref(\.workdayColorLight), dark: .pref(\.workdayColorDark))
+        case .weekendColor: return combine(light: .pref(\.weekendColorLight), dark: .pref(\.weekendColorDark))
+        case .holidayColor: return combine(light: .pref(\.holidayColorLight), dark: .pref(\.holidayColorDark))
+        case .todayColor: return combine(light: .pref(\.todayColorLight), dark: .pref(\.todayColorDark))
+        case .eventColor: return combine(light: .pref(\.eventColorLight), dark: .pref(\.eventColorDark))
         }
     }
     
@@ -92,24 +118,14 @@ final class DesignBook: ObservableObject {
         }
     }
     
-    private func dynamicColor(light lightColor: DesignBookColor, dark darkColor: DesignBookColor) -> UIColor {
+    private func combine(light lightColor: DesignBookColor, dark darkColor: DesignBookColor) -> UIColor {
         return UIColor { [unowned self] traits in
-            let style = traits.userInterfaceStyle.toDesignStyle
-            switch style {
-            case .light: return self.color(lightColor, style: style)
-            case .dark: return self.color(darkColor, style: style)
+            switch traits.userInterfaceStyle {
+            case .light: return self.color(lightColor)
+            case .dark: return self.color(darkColor)
+            case .unspecified: return self.color(lightColor)
+            @unknown default: return self.color(lightColor)
             }
-        }
-    }
-}
-
-fileprivate extension UIUserInterfaceStyle {
-    var toDesignStyle: DesignBookStyle {
-        switch self {
-        case .light: return .light
-        case .dark: return .dark
-        case .unspecified: return .light
-        @unknown default: return .light
         }
     }
 }

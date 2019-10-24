@@ -7,10 +7,10 @@
 //
 
 import SwiftUI
+import MiniMonth_Shared
 
 struct CalendarMonthdayView: View {
     @EnvironmentObject var designBook: DesignBook
-    @EnvironmentObject var preferencesDriver: PreferencesDriver
 
     let day: CalendarDay
     
@@ -22,16 +22,16 @@ struct CalendarMonthdayView: View {
 
             Text("XX")
                 .hidden()
-                .padding(.vertical, 4)
-                .padding(.horizontal, 7)
+                .padding(.vertical, 5)
+                .padding(.horizontal, 8)
                 .overlay(
                     VStack(spacing: 0) {
                         Capsule(style: .circular)
-                            .stroke(Color(preferencesDriver.todayColor))
+                            .stroke(designBook.cached(usage: .todayColor))
                             .opacity(day.options.contains(.isToday) ? 1.0 : 0)
                         
                         Circle()
-                            .fill(Color(preferencesDriver.eventColor))
+                            .fill(designBook.cached(usage: .eventColor))
                             .frame(ownSide: designBook.layout.eventMarkerSide)
                             .offset(x: 0, y: -designBook.layout.eventMarkerSide * 0.5)
                             .opacity(day.options.contains(.hasEvent) ? 1.0 : 0)
@@ -43,9 +43,9 @@ struct CalendarMonthdayView: View {
     
     fileprivate func captionColor(forType type: CalendarDayType) -> Color {
         switch type {
-        case .regular: return Color(preferencesDriver.workdayColor)
-        case .weekend: return Color(preferencesDriver.weekendColor)
-        case .holiday: return Color(preferencesDriver.holidayColor)
+        case .regular: return designBook.cached(usage: .workdayColor)
+        case .weekend: return designBook.cached(usage: .weekendColor)
+        case .holiday: return designBook.cached(usage: .holidayColor)
         }
     }
 }

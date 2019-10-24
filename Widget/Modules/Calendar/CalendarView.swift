@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MiniMonth_Shared
 
 public struct CalendarView: View {
     @EnvironmentObject private var designBook: DesignBook

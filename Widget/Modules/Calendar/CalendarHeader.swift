@@ -7,9 +7,10 @@
 //
 
 import SwiftUI
+import MiniMonth_Shared
 
 struct CalendarHeader: View {
-    @EnvironmentObject var preferencesDriver: PreferencesDriver
+    @EnvironmentObject var designBook: DesignBook
     
     let title: String
     let year: Int?
@@ -37,7 +38,7 @@ struct CalendarHeader: View {
             Text(computedCaption)
                 .font(.system(size: 19, weight: .semibold))
                 .kerning(2)
-                .foregroundColor(Color(preferencesDriver.monthColor))
+                .foregroundColor(designBook.cached(usage: .monthColor))
                 .padding(.vertical, 6)
             .onTapGesture(perform: titleAction)
 

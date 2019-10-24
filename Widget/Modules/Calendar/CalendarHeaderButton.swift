@@ -7,15 +7,16 @@
 //
 
 import SwiftUI
+import MiniMonth_Shared
 
 struct CalendarHeaderButton: View {
-    @EnvironmentObject var preferencesDriver: PreferencesDriver
-    
+    @EnvironmentObject var designBook: DesignBook
+
     let symbolName: String
     
     public var body: some View {
         Image(systemName: symbolName)
             .font(.system(size: 15, weight: .bold))
-            .foregroundColor(Color(preferencesDriver.navigationColor))
+            .foregroundColor(designBook.cached(usage: .navigationColor))
     }
 }

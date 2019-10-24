@@ -8,6 +8,7 @@
 
 import SwiftUI
 import NotificationCenter
+import MiniMonth_Shared
 
 @objc(CalendarHostController) public final class CalendarHostController: UIViewController, NCWidgetProviding, CalendarDelegate {
     private var interactor: CalendarInteractor?
@@ -57,7 +58,8 @@ import NotificationCenter
     }
     
     private func build(style: CalendarStyle) {
-        let designBook = DesignBook(traitEnvironment: self)
+        let preferencesDriver = PreferencesDriver()
+        let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: self)
         let interactor = CalendarInteractor(style: style, delegate: self)
         let calendarView = CalendarView(interactor: interactor).environmentObject(designBook)
         self.interactor = interactor
@@ -76,7 +78,7 @@ import NotificationCenter
     }
     
     func resize() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) { [weak self] in
             let height = self?.calculateInnerHeight() ?? 0
             self?.preferredContentSize = CGSize(width: .infinity, height: height)
         }

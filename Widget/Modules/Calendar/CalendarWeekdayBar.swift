@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import MiniMonth_Shared
 
 struct CalendarWeekdayBar: View {
-    @EnvironmentObject var preferencesDriver: PreferencesDriver
-    
+    @EnvironmentObject var designBook: DesignBook
+
     let captions: [String]
     
     var body: some View {
@@ -19,7 +20,7 @@ struct CalendarWeekdayBar: View {
                 Text(caption)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(Color(self.preferencesDriver.weekdayColor))
+                    .foregroundColor(self.designBook.cached(usage: .weekdayColor))
             }
         }
     }

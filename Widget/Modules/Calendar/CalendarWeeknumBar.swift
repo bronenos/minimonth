@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import MiniMonth_Shared
 
 struct CalendarWeeknumBar: View {
-    @EnvironmentObject var preferencesDriver: PreferencesDriver
-    
+    @EnvironmentObject var designBook: DesignBook
+
     let weekNumbers: Range<Int>
     
     var body: some View {
@@ -19,7 +20,7 @@ struct CalendarWeeknumBar: View {
                 Text("# \(number)")
                     .frame(maxHeight: .infinity, alignment: .center)
                     .font(.system(size: 10, weight: .medium))
-                    .foregroundColor(Color(self.preferencesDriver.weeknumColor))
+                    .foregroundColor(self.designBook.cached(usage: .weeknumColor))
                     .fixedSize(horizontal: true, vertical: false)
             }
         }
