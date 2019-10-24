@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CalendarWeeknumBar: View {
+    @EnvironmentObject var preferencesDriver: PreferencesDriver
+    
     let weekNumbers: Range<Int>
     
     var body: some View {
@@ -17,7 +19,7 @@ struct CalendarWeeknumBar: View {
                 Text("# \(number)")
                     .frame(maxHeight: .infinity, alignment: .center)
                     .font(.system(size: 10, weight: .medium))
-                    .foregroundColor(Color.secondary)
+                    .foregroundColor(Color(self.preferencesDriver.weeknumColor))
                     .fixedSize(horizontal: true, vertical: false)
             }
         }

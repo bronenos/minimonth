@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CalendarHeader: View {
+    @EnvironmentObject var preferencesDriver: PreferencesDriver
+    
     let title: String
     let year: Int?
     let fastBackwardAction: (() -> Void)?
@@ -35,7 +37,7 @@ struct CalendarHeader: View {
             Text(computedCaption)
                 .font(.system(size: 19, weight: .semibold))
                 .kerning(2)
-                .foregroundColor(Color.primary)
+                .foregroundColor(Color(preferencesDriver.monthColor))
                 .padding(.vertical, 6)
             .onTapGesture(perform: titleAction)
 

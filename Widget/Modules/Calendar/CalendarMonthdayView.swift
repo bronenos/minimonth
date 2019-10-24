@@ -10,7 +10,8 @@ import SwiftUI
 
 struct CalendarMonthdayView: View {
     @EnvironmentObject var designBook: DesignBook
-    
+    @EnvironmentObject var preferencesDriver: PreferencesDriver
+
     let day: CalendarDay
     
     var body: some View {
@@ -26,11 +27,11 @@ struct CalendarMonthdayView: View {
                 .overlay(
                     VStack(spacing: 0) {
                         Capsule(style: .circular)
-                            .stroke(Color.green)
+                            .stroke(Color(preferencesDriver.todayColor))
                             .opacity(day.options.contains(.isToday) ? 1.0 : 0)
                         
                         Circle()
-                            .fill(Color.red)
+                            .fill(Color(preferencesDriver.eventColor))
                             .frame(ownSide: designBook.layout.eventMarkerSide)
                             .offset(x: 0, y: -designBook.layout.eventMarkerSide * 0.5)
                             .opacity(day.options.contains(.hasEvent) ? 1.0 : 0)
@@ -42,9 +43,9 @@ struct CalendarMonthdayView: View {
     
     fileprivate func captionColor(forType type: CalendarDayType) -> Color {
         switch type {
-        case .regular: return .primary
-        case .weekend: return .red
-        case .holiday: return .primary
+        case .regular: return Color(preferencesDriver.workdayColor)
+        case .weekend: return Color(preferencesDriver.weekendColor)
+        case .holiday: return Color(preferencesDriver.holidayColor)
         }
     }
 }

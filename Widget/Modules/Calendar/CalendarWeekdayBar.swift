@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CalendarWeekdayBar: View {
+    @EnvironmentObject var preferencesDriver: PreferencesDriver
+    
     let captions: [String]
     
     var body: some View {
@@ -17,7 +19,7 @@ struct CalendarWeekdayBar: View {
                 Text(caption)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(Color.secondary)
+                    .foregroundColor(Color(self.preferencesDriver.weekdayColor))
             }
         }
     }
