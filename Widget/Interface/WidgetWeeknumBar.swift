@@ -16,7 +16,7 @@ struct WidgetWeeknumBar: View {
             ForEach(weekNumbers, id: \.self) { number in
                 Text("# \(number)")
                     .frame(maxHeight: .infinity, alignment: .center)
-                    .font(.system(size: 10, weight: .medium, design: .default))
+                    .font(.system(size: 10, weight: .medium))
                     .foregroundColor(Color.secondary)
                     .fixedSize(horizontal: true, vertical: false)
             }

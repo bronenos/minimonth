@@ -20,4 +20,8 @@ extension View {
             alignment: .center
         )
     }
+    
+    func frame(ownSide: CGFloat) -> some View {
+        return frame(ownWidth: ownSide, ownHeight: ownSide)
+    }
 }

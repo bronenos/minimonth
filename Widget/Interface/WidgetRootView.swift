@@ -19,14 +19,29 @@ public struct WidgetRootView: View {
     public var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
-                WidgetHeader(
-                    title: self.controller.meta.monthTitle,
-                    year: self.controller.meta.monthYear,
-                    fastBackwardAction: self.controller.switchToPreviousYear,
-                    backwardAction: self.controller.switchToPreviousMonth,
-                    titleAction: self.controller.switchToCurrentMonth,
-                    forwardAction: self.controller.switchToNextMonth,
-                    fastForwardAction: self.controller.switchToNextYear)
+                convert(self.controller.style) { style -> WidgetHeader in
+                    switch style {
+                    case .month:
+                        return WidgetHeader(
+                            title: self.controller.meta.monthTitle,
+                            year: self.controller.meta.monthYear,
+                            fastBackwardAction: self.controller.navigateBackwardYear,
+                            backwardAction: self.controller.navigateBackwardMonth,
+                            titleAction: self.controller.navigateToday,
+                            forwardAction: self.controller.navigateForwardMonth,
+                            fastForwardAction: self.controller.navigateForwardYear)
+                        
+                    case .week:
+                        return WidgetHeader(
+                            title: self.controller.meta.monthTitle,
+                            year: self.controller.meta.monthYear,
+                            fastBackwardAction: nil,
+                            backwardAction: self.controller.navigateBackwardWeek,
+                            titleAction: self.controller.navigateToday,
+                            forwardAction: self.controller.navigateForwardWeek,
+                            fastForwardAction: nil)
+                    }
+                }
                 
                 WidgetWeekdayBar(
                     captions: self.controller.meta.weekdayTitles)
@@ -50,6 +65,10 @@ public struct WidgetRootView: View {
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
             .onAppear(perform: self.controller.requestEvents)
+            .animation(
+                self.controller.shouldAnimate(.styleChanged)
+                    ? .linear(duration: 0.25)
+                    : .none)
         }
     }
     

@@ -12,13 +12,17 @@ import Combine
 import EventKit
 
 protocol IWidgetController: class {
+    var style: WidgetController.Style { get }
     func requestEvents()
     func toggle(style: WidgetController.Style)
-    func switchToPreviousYear()
-    func switchToPreviousMonth()
-    func switchToCurrentMonth()
-    func switchToNextMonth()
-    func switchToNextYear()
+    func shouldAnimate(_ animation: WidgetController.Animation) -> Bool
+    func navigateBackwardYear()
+    func navigateBackwardMonth()
+    func navigateBackwardWeek()
+    func navigateToday()
+    func navigateForwardWeek()
+    func navigateForwardMonth()
+    func navigateForwardYear()
 }
 
 final class WidgetController: IWidgetController, ObservableObject {
@@ -27,11 +31,26 @@ final class WidgetController: IWidgetController, ObservableObject {
         case week
     }
     
+    enum Step {
+        case backwardYear
+        case backwardMonth
+        case backwardWeek
+        case forwardWeek
+        case forwardMonth
+        case forwardYear
+    }
+    
+    enum Animation {
+        case styleChanged
+    }
+    
     @Published var meta: WidgetMeta
     
     private let calendar = Calendar.autoupdatingCurrent
     private let eventService: EventService
     private let delegate: WidgetDelegate?
+    
+    private var animationsForPerforming = Set<Animation>()
     
     init(style: Style, delegate: WidgetDelegate?) {
         self.style = style
@@ -59,34 +78,67 @@ final class WidgetController: IWidgetController, ObservableObject {
     }
     
     func toggle(style: Style) {
+        animationsForPerforming.insert(.styleChanged)
         self.style = style
     }
     
-    func switchToPreviousYear() {
-        anchorDate = calendar.date(byAdding: .year, value: -1, to: anchorDate) ?? anchorDate
+    func shouldAnimate(_ animation: WidgetController.Animation) -> Bool {
+        return animationsForPerforming.contains(animation)
     }
     
-    func switchToPreviousMonth() {
-        anchorDate = calendar.date(byAdding: .month, value: -1, to: anchorDate) ?? anchorDate
+    func navigateBackwardYear() {
+        navigate(component: .year, value: -1)
     }
     
-    func switchToCurrentMonth() {
+    func navigateBackwardMonth() {
+        navigate(component: .month, value: -1)
+    }
+    
+    func navigateBackwardWeek() {
+        if meta.days.count == calendar.numberOfDaysInWeek() {
+            navigate(component: .weekOfMonth, value: -1)
+        }
+        else if meta.days.last?.number == calendar.numberOfDaysInMonth(anchorDate: anchorDate) {
+            navigate(component: .weekOfMonth, value: -1)
+        }
+        else {
+            let anchorDayNumber = calendar.component(.day, from: anchorDate)
+            let diffCompoments = DateComponents(day: -anchorDayNumber)
+            anchorDate = calendar.date(byAdding: diffCompoments, to: anchorDate) ?? anchorDate
+        }
+    }
+    
+    func navigateToday() {
         anchorDate = Date()
     }
     
-    func switchToNextMonth() {
-        anchorDate = calendar.date(byAdding: .month, value: 1, to: anchorDate) ?? anchorDate
+    func navigateForwardWeek() {
+        if meta.days.count == calendar.numberOfDaysInWeek() {
+            navigate(component: .weekOfMonth, value: 1)
+        }
+        else if meta.days.first?.number == 1 {
+            navigate(component: .weekOfMonth, value: 1)
+        }
+        else if let totalNumberOfDays = calendar.range(of: .day, in: .month, for: anchorDate)?.count {
+            let anchorDayNumber = calendar.component(.day, from: anchorDate)
+            let diffCompoments = DateComponents(day: totalNumberOfDays - anchorDayNumber + 1)
+            anchorDate = calendar.date(byAdding: diffCompoments, to: anchorDate) ?? anchorDate
+        }
     }
     
-    func switchToNextYear() {
-        anchorDate = calendar.date(byAdding: .year, value: 1, to: anchorDate) ?? anchorDate
+    func navigateForwardMonth() {
+        navigate(component: .month, value: 1)
+    }
+    
+    func navigateForwardYear() {
+        navigate(component: .year, value: 1)
     }
     
     func askToResize() {
         delegate?.resize()
     }
     
-    private var style: Style {
+    private(set) var style: Style {
         didSet { updateMeta() }
     }
     
@@ -96,6 +148,12 @@ final class WidgetController: IWidgetController, ObservableObject {
     
     private var anchorEvents: [EKEvent] = [] {
         didSet { updateMeta() }
+    }
+    
+    private func navigate(component: Calendar.Component, value: Int) {
+        guard let date = calendar.date(byAdding: component, value: value, to: anchorDate) else { return }
+        animationsForPerforming.removeAll()
+        anchorDate = date
     }
     
     private func updateMeta() {
@@ -136,7 +194,7 @@ fileprivate func calculateMeta(calendar: Calendar,
     switch style {
     case .month:
         let yearlyWeeks = calendar.range(of: .weekOfYear, in: .month, for: anchorDate) ?? .empty
-        let monthlyDays = calendar.range(of: .day, in: .month, for: anchorDate) ?? .empty
+        let anchorDays = calendar.range(of: .day, in: .month, for: anchorDate) ?? .empty
         let monthOffset = startWeekday - 1
 
         return WidgetMeta(
@@ -145,10 +203,15 @@ fileprivate func calculateMeta(calendar: Calendar,
             weekNumbers: yearlyWeeks,
             weekdayTitles: calendar.sortedWeekdayShortTitles,
             monthOffset: monthOffset,
-            days: monthlyDays.map { number in
+            days: anchorDays.map { number in
                 WidgetDay(
                     number: number,
-                    type: .regular,
+                    type: detectMonthdayType(
+                        calendar: calendar,
+                        anchorDate: anchorDate,
+                        anchorDay: anchorDayUnits.day ?? 1,
+                        day: number
+                    ),
                     options: calculateDayOptions(
                         calendar: calendar,
                         anchorDate: anchorDate,
@@ -174,7 +237,12 @@ fileprivate func calculateMeta(calendar: Calendar,
             days: monthlyDays.map { number in
                 WidgetDay(
                     number: number,
-                    type: .regular,
+                    type: detectMonthdayType(
+                        calendar: calendar,
+                        anchorDate: anchorDate,
+                        anchorDay: anchorDayUnits.day ?? 1,
+                        day: number
+                    ),
                     options: calculateDayOptions(
                         calendar: calendar,
                         anchorDate: anchorDate,
@@ -185,6 +253,29 @@ fileprivate func calculateMeta(calendar: Calendar,
                 )
             }
         )
+    }
+}
+
+fileprivate func detectMonthdayType(calendar: Calendar,
+                                    anchorDate: Date,
+                                    anchorDay: Int,
+                                    day: Int) -> WidgetDayType {
+    guard let baseDate = calendar.date(
+        byAdding: .day,
+        value: -(anchorDay - 1),
+        to: anchorDate,
+        wrappingComponents: true) else { return .regular }
+    
+    guard let anotherDate = calendar.date(
+        bySetting: .day,
+        value: day,
+        of: baseDate) else { return .regular }
+    
+    if calendar.isDateInWeekend(anotherDate) {
+        return .weekend
+    }
+    else {
+        return .regular
     }
 }
 

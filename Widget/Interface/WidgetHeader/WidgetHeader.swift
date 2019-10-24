@@ -11,25 +11,29 @@ import SwiftUI
 struct WidgetHeader: View {
     let title: String
     let year: Int?
-    let fastBackwardAction: () -> Void
-    let backwardAction: () -> Void
+    let fastBackwardAction: (() -> Void)?
+    let backwardAction: (() -> Void)?
     let titleAction: () -> Void
-    let forwardAction: () -> Void
-    let fastForwardAction: () -> Void
+    let forwardAction: (() -> Void)?
+    let fastForwardAction: (() -> Void)?
 
     public var body: some View {
         HStack {
-            WidgetHeaderButton(symbolName: "chevron.left.2")
-                .onTapGesture(perform: fastBackwardAction)
+            if fastBackwardAction != nil {
+                WidgetHeaderButton(symbolName: "chevron.left.2")
+                    .onTapGesture(perform: fastBackwardAction ?? {})
+            }
 
-            WidgetHeaderButton(symbolName: "chevron.left")
-                .padding(.horizontal, 10)
-                .onTapGesture(perform: backwardAction)
+            if backwardAction != nil {
+                WidgetHeaderButton(symbolName: "chevron.left")
+                    .padding(.horizontal, 10)
+                    .onTapGesture(perform: backwardAction ?? {})
+            }
             
             Spacer()
             
             Text(computedCaption)
-                .font(.system(size: 19, weight: .semibold, design: .default))
+                .font(.system(size: 19, weight: .semibold))
                 .kerning(2)
                 .foregroundColor(Color.primary)
                 .padding(.vertical, 6)
@@ -37,12 +41,16 @@ struct WidgetHeader: View {
 
             Spacer()
             
-            WidgetHeaderButton(symbolName: "chevron.right")
-                .padding(.horizontal, 10)
-                .onTapGesture(perform: forwardAction)
+            if forwardAction != nil {
+                WidgetHeaderButton(symbolName: "chevron.right")
+                    .padding(.horizontal, 10)
+                    .onTapGesture(perform: forwardAction ?? {})
+            }
             
-            WidgetHeaderButton(symbolName: "chevron.right.2")
-                .onTapGesture(perform: fastForwardAction)
+            if fastForwardAction != nil {
+                WidgetHeaderButton(symbolName: "chevron.right.2")
+                    .onTapGesture(perform: fastForwardAction ?? {})
+            }
         }
         .padding(.horizontal)
     }

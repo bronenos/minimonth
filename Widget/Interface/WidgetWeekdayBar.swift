@@ -16,7 +16,7 @@ struct WidgetWeekdayBar: View {
             ForEach(self.captions, id: \.self) { caption in
                 Text(caption)
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .font(.system(size: 10, weight: .bold, design: .default))
+                    .font(.system(size: 10, weight: .bold))
                     .foregroundColor(Color.secondary)
             }
         }

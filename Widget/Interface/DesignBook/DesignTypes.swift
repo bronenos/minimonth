@@ -45,4 +45,5 @@ struct DesignBookLayout {
     let weekHeaderHeight: CGFloat
     let weekNumberWidthCoef: CGFloat
     let weekDayHeight: CGFloat
+    let eventMarkerSide: CGFloat
 }
