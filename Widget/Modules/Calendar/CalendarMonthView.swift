@@ -1,5 +1,5 @@
 //
-//  WidgetMonthBodyView.swift
+//  CalendarMonthView.swift
 //  MiniMonth
 //
 //  Created by Stan Potemkin on 22.10.2019.
@@ -8,16 +8,16 @@
 
 import SwiftUI
 
-struct WidgetMonthBodyView: View {
+struct CalendarMonthView: View {
     let weeksNumber: Int
     let monthOffset: Int
-    let days: [WidgetDay]
+    let days: [CalendarDay]
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 ForEach(self.days, id: \.self) { day in
-                    WidgetMonthDayView(day: day)
+                    CalendarMonthdayView(day: day)
                         .frame(
                             width: self.step(inside: geometry).dx,
                             height: self.step(inside: geometry).dy,
@@ -40,14 +40,14 @@ struct WidgetMonthBodyView: View {
         return CGVector(dx: x, dy: y)
     }
     
-    private func positionX(inside geometry: GeometryProxy, day: WidgetDay) -> CGFloat {
+    private func positionX(inside geometry: GeometryProxy, day: CalendarDay) -> CGFloat {
         let index = (day.number - dayOffset + monthOffset - 1) % 7
         let offsetX = step(inside: geometry).dx * CGFloat(index)
         let positionX = offsetX + step(inside: geometry).dx * 0.5
         return positionX
     }
     
-    private func positionY(inside geometry: GeometryProxy, day: WidgetDay) -> CGFloat {
+    private func positionY(inside geometry: GeometryProxy, day: CalendarDay) -> CGFloat {
         let index = (day.number - dayOffset + monthOffset - 1) / 7
         let offsetX = step(inside: geometry).dy * CGFloat(index)
         let positionY = offsetX + step(inside: geometry).dy * 0.5

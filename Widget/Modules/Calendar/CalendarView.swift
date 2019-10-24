@@ -1,5 +1,5 @@
 //
-//  WidgetRootView.swift
+//  CalendarView.swift
 //  Today
 //
 //  Created by Stan Potemkin on 21.10.2019.
@@ -8,65 +8,65 @@
 
 import SwiftUI
 
-public struct WidgetRootView: View {
+public struct CalendarView: View {
     @EnvironmentObject private var designBook: DesignBook
-    @ObservedObject private var controller: WidgetController
+    @ObservedObject private var interactor: CalendarInteractor
     
-    init(controller: WidgetController) {
-        self.controller = controller
+    init(interactor: CalendarInteractor) {
+        self.interactor = interactor
     }
     
     public var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
-                convert(self.controller.style) { style -> WidgetHeader in
+                convert(self.interactor.style) { style -> CalendarHeader in
                     switch style {
                     case .month:
-                        return WidgetHeader(
-                            title: self.controller.meta.monthTitle,
-                            year: self.controller.meta.monthYear,
-                            fastBackwardAction: self.controller.navigateBackwardYear,
-                            backwardAction: self.controller.navigateBackwardMonth,
-                            titleAction: self.controller.navigateToday,
-                            forwardAction: self.controller.navigateForwardMonth,
-                            fastForwardAction: self.controller.navigateForwardYear)
+                        return CalendarHeader(
+                            title: self.interactor.meta.monthTitle,
+                            year: self.interactor.meta.monthYear,
+                            fastBackwardAction: self.interactor.navigateBackwardYear,
+                            backwardAction: self.interactor.navigateBackwardMonth,
+                            titleAction: self.interactor.navigateToday,
+                            forwardAction: self.interactor.navigateForwardMonth,
+                            fastForwardAction: self.interactor.navigateForwardYear)
                         
                     case .week:
-                        return WidgetHeader(
-                            title: self.controller.meta.monthTitle,
-                            year: self.controller.meta.monthYear,
+                        return CalendarHeader(
+                            title: self.interactor.meta.monthTitle,
+                            year: self.interactor.meta.monthYear,
                             fastBackwardAction: nil,
-                            backwardAction: self.controller.navigateBackwardWeek,
-                            titleAction: self.controller.navigateToday,
-                            forwardAction: self.controller.navigateForwardWeek,
+                            backwardAction: self.interactor.navigateBackwardWeek,
+                            titleAction: self.interactor.navigateToday,
+                            forwardAction: self.interactor.navigateForwardWeek,
                             fastForwardAction: nil)
                     }
                 }
                 
-                WidgetWeekdayBar(
-                    captions: self.controller.meta.weekdayTitles)
+                CalendarWeekdayBar(
+                    captions: self.interactor.meta.weekdayTitles)
                     .frame(ownHeight: self.designBook.layout.weekHeaderHeight)
                     .padding(.leading, self.calculateWeeknumWidth(geometry: geometry))
                 
                 HStack(spacing: 0) {
-                    WidgetWeeknumBar(
-                        weekNumbers: self.controller.meta.weekNumbers)
+                    CalendarWeeknumBar(
+                        weekNumbers: self.interactor.meta.weekNumbers)
                         .frame(ownWidth: self.calculateWeeknumWidth(geometry: geometry))
                         .modifier(self.calculateBodyHeightModifier(geometry: geometry))
 
-                    WidgetMonthBodyView(
-                        weeksNumber: self.controller.meta.weekNumbers.count,
-                        monthOffset: self.controller.meta.monthOffset,
-                        days: self.controller.meta.days)
+                    CalendarMonthView(
+                        weeksNumber: self.interactor.meta.weekNumbers.count,
+                        monthOffset: self.interactor.meta.monthOffset,
+                        days: self.interactor.meta.days)
                         .modifier(self.calculateBodyHeightModifier(geometry: geometry))
                 }
                 
                 Spacer()
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
-            .onAppear(perform: self.controller.requestEvents)
+            .onAppear(perform: self.interactor.requestEvents)
             .animation(
-                self.controller.shouldAnimate(.styleChanged)
+                self.interactor.shouldAnimate(.styleChanged)
                     ? .linear(duration: 0.25)
                     : .none)
         }
@@ -77,7 +77,7 @@ public struct WidgetRootView: View {
     }
     
     private func calculateBodyHeightModifier(geometry: GeometryProxy) -> HeightModifier {
-        let height = CGFloat(controller.meta.weekNumbers.count) * designBook.layout.weekDayHeight
+        let height = CGFloat(interactor.meta.weekNumbers.count) * designBook.layout.weekDayHeight
         return HeightModifier(height: height)
     }
 }

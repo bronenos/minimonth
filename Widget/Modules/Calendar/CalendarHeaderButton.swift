@@ -1,5 +1,5 @@
 //
-//  WidgetHeaderButton.swift
+//  CalendarHeaderButton.swift
 //  Today
 //
 //  Created by Stan Potemkin on 23.10.2019.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct WidgetHeaderButton: View {
+struct CalendarHeaderButton: View {
     let symbolName: String
     
     public var body: some View {

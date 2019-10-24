@@ -1,5 +1,5 @@
 //
-//  WidgetMonthDay.swift
+//  CalendarMonthdayView.swift
 //  Today
 //
 //  Created by Stan Potemkin on 22.10.2019.
@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-struct WidgetMonthDayView: View {
+struct CalendarMonthdayView: View {
     @EnvironmentObject var designBook: DesignBook
     
-    let day: WidgetDay
+    let day: CalendarDay
     
     var body: some View {
         ZStack {
@@ -40,7 +40,7 @@ struct WidgetMonthDayView: View {
         .font(.system(size: 12, weight: .bold))
     }
     
-    fileprivate func captionColor(forType type: WidgetDayType) -> Color {
+    fileprivate func captionColor(forType type: CalendarDayType) -> Color {
         switch type {
         case .regular: return .primary
         case .weekend: return .red

@@ -1,5 +1,5 @@
 //
-//  WidgetHeader.swift
+//  CalendarHeader.swift
 //  Today
 //
 //  Created by Stan Potemkin on 21.10.2019.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct WidgetHeader: View {
+struct CalendarHeader: View {
     let title: String
     let year: Int?
     let fastBackwardAction: (() -> Void)?
@@ -19,13 +19,13 @@ struct WidgetHeader: View {
 
     public var body: some View {
         HStack {
-            if fastBackwardAction != nil {
-                WidgetHeaderButton(symbolName: "chevron.left.2")
+            if fastBackwardAction.hasValue {
+                CalendarHeaderButton(symbolName: "chevron.left.2")
                     .onTapGesture(perform: fastBackwardAction ?? {})
             }
 
-            if backwardAction != nil {
-                WidgetHeaderButton(symbolName: "chevron.left")
+            if backwardAction.hasValue {
+                CalendarHeaderButton(symbolName: "chevron.left")
                     .padding(.horizontal, 10)
                     .onTapGesture(perform: backwardAction ?? {})
             }
@@ -41,14 +41,14 @@ struct WidgetHeader: View {
 
             Spacer()
             
-            if forwardAction != nil {
-                WidgetHeaderButton(symbolName: "chevron.right")
+            if forwardAction.hasValue {
+                CalendarHeaderButton(symbolName: "chevron.right")
                     .padding(.horizontal, 10)
                     .onTapGesture(perform: forwardAction ?? {})
             }
             
-            if fastForwardAction != nil {
-                WidgetHeaderButton(symbolName: "chevron.right.2")
+            if fastForwardAction.hasValue {
+                CalendarHeaderButton(symbolName: "chevron.right.2")
                     .onTapGesture(perform: fastForwardAction ?? {})
             }
         }

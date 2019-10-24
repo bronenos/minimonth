@@ -1,5 +1,5 @@
 //
-//  WidgetWeekdayBar.swift
+//  CalendarWeekdayBar.swift
 //  Today
 //
 //  Created by Stan Potemkin on 21.10.2019.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct WidgetWeekdayBar: View {
+struct CalendarWeekdayBar: View {
     let captions: [String]
     
     var body: some View {

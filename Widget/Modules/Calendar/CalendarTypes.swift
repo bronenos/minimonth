@@ -1,5 +1,5 @@
 //
-//  WidgetTypes.swift
+//  CalendarTypes.swift
 //  Today
 //
 //  Created by Stan Potemkin on 22.10.2019.
@@ -8,37 +8,55 @@
 
 import Foundation
 
-enum WidgetDayType {
-    case regular
-    case weekend
-    case holiday
+enum CalendarStyle {
+    case month
+    case week
 }
 
-struct WidgetDayOptions: OptionSet, Hashable {
-    let rawValue: Int
-    init(rawValue: Int) { self.rawValue = rawValue }
-    
-    static let none = WidgetDayOptions(rawValue: 0)
-    static let isToday = WidgetDayOptions(rawValue: 1 << 0)
-    static let hasEvent = WidgetDayOptions(rawValue: 1 << 1)
-}
-
-struct WidgetMeta: Hashable {
+struct CalendarMeta: Hashable {
     let monthTitle: String
     let monthYear: Int?
     let weekNumbers: Range<Int>
     let weekdayTitles: [String]
     let monthOffset: Int
-    let days: [WidgetDay]
+    let days: [CalendarDay]
 }
 
-struct WidgetDay: Hashable {
+struct CalendarDay: Hashable {
     let number: Int
-    let type: WidgetDayType
-    let options: WidgetDayOptions
+    let type: CalendarDayType
+    let options: CalendarDayOptions
 }
 
-struct WidgetDatestamp: Equatable {
+enum CalendarDayType {
+    case regular
+    case weekend
+    case holiday
+}
+
+struct CalendarDayOptions: OptionSet, Hashable {
+    let rawValue: Int
+    init(rawValue: Int) { self.rawValue = rawValue }
+    
+    static let none = CalendarDayOptions(rawValue: 0)
+    static let isToday = CalendarDayOptions(rawValue: 1 << 0)
+    static let hasEvent = CalendarDayOptions(rawValue: 1 << 1)
+}
+
+enum CalendarNavigationStep {
+    case backwardYear
+    case backwardMonth
+    case backwardWeek
+    case forwardWeek
+    case forwardMonth
+    case forwardYear
+}
+
+enum CalendarAnimation {
+    case styleChanged
+}
+
+struct CalendarDatestamp: Equatable {
     let year: Int
     let month: Int
     let day: Int

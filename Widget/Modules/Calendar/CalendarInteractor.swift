@@ -1,5 +1,5 @@
 //
-//  WidgetMeta.swift
+//  CalendarController.swift
 //  Today
 //
 //  Created by Stan Potemkin on 21.10.2019.
@@ -11,11 +11,15 @@ import SwiftUI
 import Combine
 import EventKit
 
-protocol IWidgetController: class {
-    var style: WidgetController.Style { get }
+protocol CalendarDelegate: class {
+    func resize()
+}
+
+protocol ICalendarInteractor: class {
+    var style: CalendarStyle { get }
     func requestEvents()
-    func toggle(style: WidgetController.Style)
-    func shouldAnimate(_ animation: WidgetController.Animation) -> Bool
+    func toggle(style: CalendarStyle)
+    func shouldAnimate(_ animation: CalendarAnimation) -> Bool
     func navigateBackwardYear()
     func navigateBackwardMonth()
     func navigateBackwardWeek()
@@ -25,34 +29,16 @@ protocol IWidgetController: class {
     func navigateForwardYear()
 }
 
-final class WidgetController: IWidgetController, ObservableObject {
-    enum Style {
-        case month
-        case week
-    }
-    
-    enum Step {
-        case backwardYear
-        case backwardMonth
-        case backwardWeek
-        case forwardWeek
-        case forwardMonth
-        case forwardYear
-    }
-    
-    enum Animation {
-        case styleChanged
-    }
-    
-    @Published var meta: WidgetMeta
+final class CalendarInteractor: ICalendarInteractor, ObservableObject {
+    @Published var meta: CalendarMeta
     
     private let calendar = Calendar.autoupdatingCurrent
     private let eventService: EventService
-    private let delegate: WidgetDelegate?
+    private let delegate: CalendarDelegate?
     
-    private var animationsForPerforming = Set<Animation>()
+    private var animationsForPerforming = Set<CalendarAnimation>()
     
-    init(style: Style, delegate: WidgetDelegate?) {
+    init(style: CalendarStyle, delegate: CalendarDelegate?) {
         self.style = style
         self.delegate = delegate
         
@@ -77,12 +63,12 @@ final class WidgetController: IWidgetController, ObservableObject {
         eventService.request(anchorDate: anchorDate)
     }
     
-    func toggle(style: Style) {
+    func toggle(style: CalendarStyle) {
         animationsForPerforming.insert(.styleChanged)
         self.style = style
     }
     
-    func shouldAnimate(_ animation: WidgetController.Animation) -> Bool {
+    func shouldAnimate(_ animation: CalendarAnimation) -> Bool {
         return animationsForPerforming.contains(animation)
     }
     
@@ -138,7 +124,7 @@ final class WidgetController: IWidgetController, ObservableObject {
         delegate?.resize()
     }
     
-    private(set) var style: Style {
+    private(set) var style: CalendarStyle {
         didSet { updateMeta() }
     }
     
@@ -175,7 +161,7 @@ final class WidgetController: IWidgetController, ObservableObject {
 fileprivate func calculateMeta(calendar: Calendar,
                                anchorDate: Date,
                                anchorEvents: [EKEvent],
-                               style: WidgetController.Style) -> WidgetMeta {
+                               style: CalendarStyle) -> CalendarMeta {
     let calendarUnits: Set<Calendar.Component> = [.year, .month, .weekday, .day, .weekOfMonth, .weekOfYear]
     
     let todayUnits = calendar.dateComponents(calendarUnits, from: Date())
@@ -185,7 +171,7 @@ fileprivate func calculateMeta(calendar: Calendar,
     let anchorMonthIndex = anchorDayUnits.month ?? 0
     let anchorYear = anchorDayUnits.year ?? 0
     let ahcnorMonthTitle = calendar.standaloneMonthSymbols[anchorMonthIndex - 1]
-    let anchorEventStamps = anchorEvents.compactMap { WidgetDatestamp(date: $0.startDate, within: calendar) }
+    let anchorEventStamps = anchorEvents.compactMap { CalendarDatestamp(date: $0.startDate, within: calendar) }
     
     let localWeekDay = calendar.unitToReal(weekday: anchorDayUnits.weekday ?? 0)
     let monthDay = anchorDayUnits.day ?? 0
@@ -197,14 +183,14 @@ fileprivate func calculateMeta(calendar: Calendar,
         let anchorDays = calendar.range(of: .day, in: .month, for: anchorDate) ?? .empty
         let monthOffset = startWeekday - 1
 
-        return WidgetMeta(
+        return CalendarMeta(
             monthTitle: ahcnorMonthTitle,
             monthYear: (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
             weekdayTitles: calendar.sortedWeekdayShortTitles,
             monthOffset: monthOffset,
             days: anchorDays.map { number in
-                WidgetDay(
+                CalendarDay(
                     number: number,
                     type: detectMonthdayType(
                         calendar: calendar,
@@ -228,14 +214,14 @@ fileprivate func calculateMeta(calendar: Calendar,
         let monthlyDays = calendar.range(of: .day, in: .weekOfMonth, for: anchorDate) ?? .empty
         let monthOffset = (anchorDayUnits.weekOfMonth == 1 ? startWeekday - 1 : 0)
 
-        return WidgetMeta(
+        return CalendarMeta(
             monthTitle: ahcnorMonthTitle,
             monthYear: (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
             weekdayTitles: calendar.sortedWeekdayShortTitles,
             monthOffset: monthOffset,
             days: monthlyDays.map { number in
-                WidgetDay(
+                CalendarDay(
                     number: number,
                     type: detectMonthdayType(
                         calendar: calendar,
@@ -259,7 +245,7 @@ fileprivate func calculateMeta(calendar: Calendar,
 fileprivate func detectMonthdayType(calendar: Calendar,
                                     anchorDate: Date,
                                     anchorDay: Int,
-                                    day: Int) -> WidgetDayType {
+                                    day: Int) -> CalendarDayType {
     guard let baseDate = calendar.date(
         byAdding: .day,
         value: -(anchorDay - 1),
@@ -283,8 +269,8 @@ fileprivate func calculateDayOptions(calendar: Calendar,
                                      anchorDate: Date,
                                      number: Int,
                                      anchorDayUnits: DateComponents,
-                                     anchorEventStamps: [WidgetDatestamp]) -> WidgetDayOptions {
-    let isToday: WidgetDayOptions
+                                     anchorEventStamps: [CalendarDatestamp]) -> CalendarDayOptions {
+    let isToday: CalendarDayOptions
     if calendar.isDateInToday(anchorDate), number == anchorDayUnits.day {
         isToday = .isToday
     }
@@ -292,8 +278,8 @@ fileprivate func calculateDayOptions(calendar: Calendar,
         isToday = .none
     }
     
-    let anchorDatestamp = WidgetDatestamp(year: anchorDayUnits.year, month: anchorDayUnits.month, day: number)
-    let hasEvent: WidgetDayOptions = anchorEventStamps.contains(anchorDatestamp) ? .hasEvent : .none
+    let anchorDatestamp = CalendarDatestamp(year: anchorDayUnits.year, month: anchorDayUnits.month, day: number)
+    let hasEvent: CalendarDayOptions = anchorEventStamps.contains(anchorDatestamp) ? .hasEvent : .none
 
     return [isToday, hasEvent]
 }

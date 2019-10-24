@@ -1,5 +1,5 @@
 //
-//  WidgetHostController.swift
+//  CalendarHostController.swift
 //  Today
 //
 //  Created by Stan Potemkin on 21.10.2019.
@@ -9,13 +9,8 @@
 import SwiftUI
 import NotificationCenter
 
-protocol WidgetDelegate: class {
-    func resize()
-}
-
-@objc(WidgetHostController) public final class WidgetHostController: UIViewController, NCWidgetProviding, WidgetDelegate {
-    private var controller: WidgetController?
-    private var sizeCalculator: (CGSize) -> CGSize = { _ in .zero }
+@objc(CalendarHostController) public final class CalendarHostController: UIViewController, NCWidgetProviding, CalendarDelegate {
+    private var interactor: CalendarInteractor?
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -53,24 +48,22 @@ protocol WidgetDelegate: class {
     
     public func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         switch activeDisplayMode {
-        case .compact: controller?.toggle(style: .week)
-        case .expanded: controller?.toggle(style: .month)
-        @unknown default: controller?.toggle(style: .month)
+        case .compact: interactor?.toggle(style: .week)
+        case .expanded: interactor?.toggle(style: .month)
+        @unknown default: interactor?.toggle(style: .month)
         }
         
         resize()
     }
     
-    private func build(style: WidgetController.Style) {
+    private func build(style: CalendarStyle) {
         let designBook = DesignBook(traitEnvironment: self)
-        let rootController = WidgetController(style: style, delegate: self)
-        let rootObject = WidgetRootView(controller: rootController).environmentObject(designBook)
-        
-        let hostingController = UIHostingController(rootView: rootObject)
+        let interactor = CalendarInteractor(style: style, delegate: self)
+        let calendarView = CalendarView(interactor: interactor).environmentObject(designBook)
+        self.interactor = interactor
+
+        let hostingController = UIHostingController(rootView: calendarView)
         hostingController.view.backgroundColor = nil
-        
-        controller = rootController
-        sizeCalculator = hostingController.sizeThatFits
         
         addChild(hostingController)
         view.addSubview(hostingController.view)
