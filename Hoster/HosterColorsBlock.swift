@@ -34,9 +34,6 @@ struct HosterColorsBlock: View {
                 HosterColorsRow(firstMeta: row[0], secondMeta: row[1])
             }
         }
-        .padding(10)
-        .background(Color(UIColor.secondarySystemBackground))
-        .cornerRadius(20)
     }
     
     private func obtainGrid() -> [[HosterColorMeta]] {

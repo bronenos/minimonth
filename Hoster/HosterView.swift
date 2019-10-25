@@ -20,13 +20,13 @@ struct HosterView: View {
             if horizontalSizeClass == .compact {
                 VStack(alignment: .center, spacing: 50) {
                     HosterCalendarWrapper()
-                    HosterColorsBlock()
+                    HosterPreferencesBlock()
                 }
             }
             else {
                 HStack(alignment: .center, spacing: 50) {
                     HosterCalendarWrapper()
-                    HosterColorsBlock()
+                    HosterPreferencesBlock()
                 }
             }
         }

@@ -35,6 +35,8 @@
 		D450C3CB19FF7CA2006DAA83 /* HRHSVColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3C219FF7CA2006DAA83 /* HRHSVColorUtil.m */; };
 		D450C3CC19FF7CA2006DAA83 /* UIImage+CoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = D450C3C419FF7CA2006DAA83 /* UIImage+CoreGraphics.m */; };
 		D450C3CE19FF7D62006DAA83 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450C3CD19FF7D62006DAA83 /* ColorViewController.swift */; };
+		D468DB2523631F230085122D /* HosterPreferencesBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468DB2423631F230085122D /* HosterPreferencesBlock.swift */; };
+		D468DB2C23633E0C0085122D /* HostPreferencesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468DB2B23633E0C0085122D /* HostPreferencesInteractor.swift */; };
 		D46B7AD719CB078C0088E262 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
 		D46B7AD819CB07900088E262 /* TodayMonthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2A19C2AD5B00056370 /* TodayMonthLabel.swift */; };
 		D46B7AD919CB07940088E262 /* TodayWeekdayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4073B2E19C377A600056370 /* TodayWeekdayLabel.swift */; };
@@ -201,6 +203,8 @@
 		D450C3C319FF7CA2006DAA83 /* UIImage+CoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CoreGraphics.h"; sourceTree = "<group>"; };
 		D450C3C419FF7CA2006DAA83 /* UIImage+CoreGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CoreGraphics.m"; sourceTree = "<group>"; };
 		D450C3CD19FF7D62006DAA83 /* ColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
+		D468DB2423631F230085122D /* HosterPreferencesBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterPreferencesBlock.swift; sourceTree = "<group>"; };
+		D468DB2B23633E0C0085122D /* HostPreferencesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostPreferencesInteractor.swift; sourceTree = "<group>"; };
 		D47836C0235EC7AE0030238C /* CalendarMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthView.swift; sourceTree = "<group>"; };
 		D47836C3235EC8D70030238C /* DesignBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignBook.swift; sourceTree = "<group>"; };
 		D47836C7235EC9160030238C /* DesignTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTypes.swift; sourceTree = "<group>"; };
@@ -454,6 +458,30 @@
 			path = ColorPicker;
 			sourceTree = "<group>";
 		};
+		D468DB26236320B90085122D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D468DB27236320C00085122D /* Extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D468DB27236320C00085122D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D468DB2A23633DF30085122D /* HosterPreferencesBlock */ = {
+			isa = PBXGroup;
+			children = (
+				D468DB2423631F230085122D /* HosterPreferencesBlock.swift */,
+				D468DB2B23633E0C0085122D /* HostPreferencesInteractor.swift */,
+			);
+			path = HosterPreferencesBlock;
+			sourceTree = "<group>";
+		};
 		D47836C6235EC9050030238C /* DesignBook */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,6 +536,7 @@
 		D4CD22A82362D9EA000409CB /* Hoster */ = {
 			isa = PBXGroup;
 			children = (
+				D468DB26236320B90085122D /* Shared */,
 				D4CD22B72362D9EB000409CB /* Info.plist */,
 				D4CD22B42362D9EB000409CB /* LaunchScreen.storyboard */,
 				D4CD22AF2362D9EB000409CB /* Assets.xcassets */,
@@ -516,6 +545,7 @@
 				D4CD22BB2362DB56000409CB /* HosterRootController.swift */,
 				D4CD22AD2362D9EA000409CB /* HosterView.swift */,
 				D4CD22C32362E9CA000409CB /* HosterCalendarWrapper.swift */,
+				D468DB2A23633DF30085122D /* HosterPreferencesBlock */,
 				D4CD22E02363001C000409CB /* HosterColorsBlock.swift */,
 				D4CD22E223630048000409CB /* HosterColorControl.swift */,
 				D4CD22B12362D9EB000409CB /* Preview Content */,
@@ -801,6 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D468DB2C23633E0C0085122D /* HostPreferencesInteractor.swift in Sources */,
 				D4CD22D22362FCB2000409CB /* CalendarHeaderButton.swift in Sources */,
 				D4CD22DB2362FCBE000409CB /* ViewExtensions.swift in Sources */,
 				D4CD22D12362FCB2000409CB /* CalendarHeader.swift in Sources */,
@@ -810,6 +841,7 @@
 				D4CD22CE2362FCB2000409CB /* CalendarInteractor.swift in Sources */,
 				D4CD22AA2362D9EA000409CB /* HosterAppDelegate.swift in Sources */,
 				D4CD22CD2362FCB2000409CB /* CalendarRootController.swift in Sources */,
+				D468DB2523631F230085122D /* HosterPreferencesBlock.swift in Sources */,
 				D4CD22CC2362FCAD000409CB /* CalendarTypes.swift in Sources */,
 				D4CD22D82362FCBE000409CB /* FoundationExtensions.swift in Sources */,
 				D4CD22AC2362D9EA000409CB /* HosterSceneDelegate.swift in Sources */,
