@@ -24,7 +24,7 @@ struct HosterColorControl: View {
             
             Circle()
                 .foregroundColor(Color(color))
-                .frame(ownWidth: 35, ownHeight: 35)
+                .frame(ownWidth: 25, ownHeight: 25)
         }
         .padding(.vertical, 2)
         .padding(.horizontal, 15)

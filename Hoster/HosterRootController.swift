@@ -9,7 +9,7 @@
 import SwiftUI
 import Shared
 
-@objc(HosterRootController) public final class HosterRootController: UIViewController {
+@objc(HosterRootController) public final class HosterRootController: UIViewController, HosterViewDelegate {
     public override func viewDidLoad() {
         super.viewDidLoad()
         rebuild()
@@ -34,7 +34,7 @@ import Shared
 //        let calendarView = CalendarView(interactor: interactor).environmentObject(designBook)
 //        self.interactor = interactor
 
-        let rootView = HosterView()
+        let rootView = HosterView(delegate: self)
             .environmentObject(preferencesDriver)
             .environmentObject(designBook)
 
@@ -42,5 +42,13 @@ import Shared
         
         addChild(hostingController)
         view.addSubview(hostingController.view)
+    }
+    
+    func didRequestStyleUpdate(_ style: ColorScheme?) {
+        switch style {
+        case .light?: overrideUserInterfaceStyle = .light
+        case .dark?: overrideUserInterfaceStyle = .dark
+        default: overrideUserInterfaceStyle = .unspecified
+        }
     }
 }

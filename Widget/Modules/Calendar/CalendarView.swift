@@ -11,6 +11,7 @@ import Shared
 
 public struct CalendarView: View {
     @EnvironmentObject private var designBook: DesignBook
+    @EnvironmentObject private var preferencesDriver: PreferencesDriver
     @ObservedObject private var interactor: CalendarInteractor
     
     public init(interactor: CalendarInteractor) {
@@ -48,12 +49,13 @@ public struct CalendarView: View {
                     captions: self.interactor.meta.weekdayTitles)
                     .frame(ownHeight: self.designBook.layout.weekHeaderHeight)
                     .padding(.leading, self.calculateWeeknumWidth(geometry: geometry))
-                
+
                 HStack(spacing: 0) {
                     CalendarWeeknumBar(
                         weekNumbers: self.interactor.meta.weekNumbers)
                         .frame(ownWidth: self.calculateWeeknumWidth(geometry: geometry))
                         .modifier(self.calculateBodyHeightModifier(geometry: geometry))
+                        .clipped()
 
                     CalendarMonthView(
                         weeksNumber: self.interactor.meta.weekNumbers.count,
@@ -61,20 +63,22 @@ public struct CalendarView: View {
                         days: self.interactor.meta.days)
                         .modifier(self.calculateBodyHeightModifier(geometry: geometry))
                 }
-                
+
                 Spacer()
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
             .onAppear(perform: self.interactor.requestEvents)
-            .animation(
-                self.interactor.shouldAnimate(.styleChanged)
-                    ? .linear(duration: 0.25)
-                    : .none)
+            .animation(self.interactor.shouldAnimate ? .linear(duration: 0.25) : .none)
         }
     }
     
     private func calculateWeeknumWidth(geometry: GeometryProxy) -> CGFloat {
-        return geometry.size.width * designBook.layout.weekNumberWidthCoef
+        if preferencesDriver.weeknumDisplay {
+            return geometry.size.width * designBook.layout.weekNumberWidthCoef
+        }
+        else {
+            return 0
+        }
     }
     
     private func calculateBodyHeightModifier(geometry: GeometryProxy) -> HeightModifier {

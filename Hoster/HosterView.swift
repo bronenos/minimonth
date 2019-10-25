@@ -10,23 +10,41 @@ import SwiftUI
 import Shared
 import Widget
 
+protocol HosterViewDelegate: class {
+    func didRequestStyleUpdate(_ style: ColorScheme?)
+}
+
 struct HosterView: View {
     @EnvironmentObject private var designBook: DesignBook
+    @EnvironmentObject private var preferencesDriver: PreferencesDriver
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    
+    let delegate: HosterViewDelegate?
 
     var body: some View {
         Group {
             if horizontalSizeClass == .compact {
                 VStack(alignment: .center, spacing: 50) {
                     HosterCalendarWrapper()
-                    HosterPreferencesBlock()
+                    
+                    HosterPreferencesBlock(
+                        preferencesDriver: preferencesDriver,
+                        colorScheme: colorScheme,
+                        delegate: delegate
+                    )
                 }
             }
             else {
                 HStack(alignment: .center, spacing: 50) {
                     HosterCalendarWrapper()
-                    HosterPreferencesBlock()
+                    
+                    HosterPreferencesBlock(
+                        preferencesDriver: preferencesDriver,
+                        colorScheme: colorScheme,
+                        delegate: delegate
+                    )
                 }
             }
         }
@@ -47,7 +65,7 @@ private let designBook = DesignBook(preferencesDriver: preferencesDriver, traitE
 
 struct HosterView_Previews: PreviewProvider {
     static var previews: some View {
-        HosterView()
+        HosterView(delegate: nil)
             .environmentObject(designBook)
             .environment(\.verticalSizeClass, .compact)
             .environment(\.horizontalSizeClass, .compact)

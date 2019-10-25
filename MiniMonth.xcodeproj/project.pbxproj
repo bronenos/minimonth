@@ -51,6 +51,7 @@
 		D47B16272360E406008A70A4 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B16262360E406008A70A4 /* EventService.swift */; };
 		D47DAE63235D8AC400460B03 /* TodayWeekLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DAE62235D8AC400460B03 /* TodayWeekLabel.swift */; };
 		D47DAE64235D8BF400460B03 /* TodayWeekLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DAE62235D8AC400460B03 /* TodayWeekLabel.swift */; };
+		D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49AFD5C2363914A0033D98F /* BlurredView.swift */; };
 		D4A5112819C6F78000555E1C /* TodayWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A5112719C6F78000555E1C /* TodayWeekView.swift */; };
 		D4AAB62D1A0E2927005F921D /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452388719F2433C007A1181 /* Storyboard.storyboard */; };
 		D4B034CA2361AE3C009A7344 /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */; };
@@ -215,6 +216,7 @@
 		D47937622360A995006D5EDC /* PerformingModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformingModifier.swift; sourceTree = "<group>"; };
 		D47B16262360E406008A70A4 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		D47DAE62235D8AC400460B03 /* TodayWeekLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeekLabel.swift; sourceTree = "<group>"; };
+		D49AFD5C2363914A0033D98F /* BlurredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredView.swift; sourceTree = "<group>"; };
 		D4A5112719C6F78000555E1C /* TodayWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayWeekView.swift; sourceTree = "<group>"; };
 		D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtensions.swift; sourceTree = "<group>"; };
 		D4B74268235E3036003FDFF9 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 		D468DB26236320B90085122D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D49AFD5A2363912B0033D98F /* Views */,
 				D468DB27236320C00085122D /* Extensions */,
 			);
 			path = Shared;
@@ -498,6 +501,14 @@
 				D47937622360A995006D5EDC /* PerformingModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		D49AFD5A2363912B0033D98F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D49AFD5C2363914A0033D98F /* BlurredView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D4B74267235E2512003FDFF9 /* Widget */ = {
@@ -842,6 +853,7 @@
 				D4CD22AA2362D9EA000409CB /* HosterAppDelegate.swift in Sources */,
 				D4CD22CD2362FCB2000409CB /* CalendarRootController.swift in Sources */,
 				D468DB2523631F230085122D /* HosterPreferencesBlock.swift in Sources */,
+				D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */,
 				D4CD22CC2362FCAD000409CB /* CalendarTypes.swift in Sources */,
 				D4CD22D82362FCBE000409CB /* FoundationExtensions.swift in Sources */,
 				D4CD22AC2362D9EA000409CB /* HosterSceneDelegate.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 public protocol IPreferencesDriver: class {
     var monthColorLight: UIColor { get set }
@@ -29,6 +30,8 @@ public protocol IPreferencesDriver: class {
 }
 
 public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
+    public var objectWillChange = ObservableObjectPublisher()
+    
     private let storage: UserDefaults
     
     private let defaultMonthColor = UIColor.label
@@ -153,7 +156,9 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     
     private func setColor(_ value: UIColor?, for key: String) {
         storage.set(value, forKey: key)
+        
         storage.synchronize()
+        objectWillChange.send()
     }
     
     private func getBool(for key: String) -> Bool {
@@ -162,6 +167,8 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     
     private func setBool(_ value: Bool, for key: String) {
         storage.set(value, forKey: key)
+        
         storage.synchronize()
+        objectWillChange.send()
     }
 }

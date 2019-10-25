@@ -23,5 +23,6 @@ struct HosterCalendarWrapper: View {
             Spacer()
         }
         .frame(ownSide: 350)
+//        .background(BlurredView(style: .light))
     }
 }

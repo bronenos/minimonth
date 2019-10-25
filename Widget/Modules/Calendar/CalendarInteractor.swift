@@ -17,9 +17,9 @@ public protocol CalendarDelegate: class {
 
 protocol ICalendarInteractor: class {
     var style: CalendarStyle { get }
+    var shouldAnimate: Bool { get }
     func requestEvents()
     func toggle(style: CalendarStyle)
-    func shouldAnimate(_ animation: CalendarAnimation) -> Bool
     func navigateLongBackward()
     func navigateShortBackward()
     func navigateNowadays()
@@ -34,7 +34,7 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     private let eventService: EventService
     private let delegate: CalendarDelegate?
     
-    private var animationsForPerforming = Set<CalendarAnimation>()
+    private var lastAnimationDate = Date()
     
     public init(style: CalendarStyle, delegate: CalendarDelegate?) {
         self.style = style
@@ -57,17 +57,17 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
         )
     }
     
+    var shouldAnimate: Bool {
+        return (Date().timeIntervalSince(lastAnimationDate) < 0.25)
+    }
+    
     func requestEvents() {
         eventService.request(anchorDate: anchorDate)
     }
     
     func toggle(style: CalendarStyle) {
-        animationsForPerforming.insert(.styleChanged)
+        lastAnimationDate = Date()
         self.style = style
-    }
-    
-    func shouldAnimate(_ animation: CalendarAnimation) -> Bool {
-        return animationsForPerforming.contains(animation)
     }
     
     func navigateLongBackward() {
@@ -111,15 +111,11 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     }
     
     private var anchorDate = Date() {
-        didSet { cancelAnimations(); updateMeta(); requestEvents() }
+        didSet { updateMeta(); requestEvents() }
     }
     
     private var anchorEvents: [EKEvent] = [] {
         didSet { updateMeta() }
-    }
-    
-    private func cancelAnimations() {
-        animationsForPerforming.removeAll()
     }
     
     private func updateMeta() {

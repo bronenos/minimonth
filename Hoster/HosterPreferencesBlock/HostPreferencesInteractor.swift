@@ -7,16 +7,37 @@
 //
 
 import SwiftUI
+import Shared
 import Combine
 
 final class HostPreferencesInteractor: ObservableObject {
     var objectWillChange = ObservableObjectPublisher()
     
-    var lookStyle = HosterLookStyle.auto {
-        didSet { objectWillChange.send() }
+    private let preferencesDriver: PreferencesDriver
+    private weak var delegate: HosterViewDelegate?
+    
+    init(preferencesDriver: PreferencesDriver,
+         colorScheme: ColorScheme,
+         delegate: HosterViewDelegate?) {
+        self.preferencesDriver = preferencesDriver
+        self.colorScheme = colorScheme
+        self.delegate = delegate
     }
     
-    var weeknumVisible = Bool(true) {
-        didSet { objectWillChange.send() }
+    var colorScheme: ColorScheme {
+        didSet {
+            delegate?.didRequestStyleUpdate(colorScheme)
+            objectWillChange.send()
+        }
+    }
+    
+    var weeknumVisible: Bool {
+        get {
+            return preferencesDriver.weeknumDisplay
+        }
+        set {
+            preferencesDriver.weeknumDisplay = newValue
+            objectWillChange.send()
+        }
     }
 }

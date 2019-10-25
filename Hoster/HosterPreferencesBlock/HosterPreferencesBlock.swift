@@ -7,16 +7,20 @@
 //
 
 import SwiftUI
+import Shared
 import Combine
 
-enum HosterLookStyle {
-    case auto
-    case light
-    case dark
-}
-
 struct HosterPreferencesBlock: View {
-    @ObservedObject private var interactor = HostPreferencesInteractor()
+    @EnvironmentObject private var preferencesDriver: PreferencesDriver
+    @ObservedObject private var interactor: HostPreferencesInteractor
+    
+    init(preferencesDriver: PreferencesDriver, colorScheme: ColorScheme, delegate: HosterViewDelegate?) {
+        interactor = HostPreferencesInteractor(
+            preferencesDriver: preferencesDriver,
+            colorScheme: colorScheme,
+            delegate: delegate
+        )
+    }
     
     var body: some View {
         VStack {
@@ -26,14 +30,14 @@ struct HosterPreferencesBlock: View {
                     
                     Spacer()
                     
-                    Picker(selection: $interactor.lookStyle, label: EmptyView()) {
-                        Text("Auto").tag(HosterLookStyle.auto)
-                        Text("Light").tag(HosterLookStyle.light)
-                        Text("Dark").tag(HosterLookStyle.dark)
+                    Picker(selection: $interactor.colorScheme, label: EmptyView()) {
+                        Text("Light").tag(ColorScheme.light)
+                        Text("Dark").tag(ColorScheme.dark)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
             }
+            .padding(.horizontal, 15)
             .styleAsPreferenceBlock()
 
             Section {
@@ -41,6 +45,7 @@ struct HosterPreferencesBlock: View {
                     Text("Show week numbers")
                 }
             }
+            .padding(.horizontal, 15)
             .styleAsPreferenceBlock()
             
             Section {
