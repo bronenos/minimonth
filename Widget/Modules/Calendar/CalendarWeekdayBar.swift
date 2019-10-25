@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import MiniMonth_Shared
+import Shared
 
 struct CalendarWeekdayBar: View {
     @EnvironmentObject var designBook: DesignBook
@@ -20,7 +20,7 @@ struct CalendarWeekdayBar: View {
                 Text(caption)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(self.designBook.cached(usage: .weekdayColor))
+                    .foregroundColor(self.designBook.cached(usage: .captionColor))
             }
         }
     }

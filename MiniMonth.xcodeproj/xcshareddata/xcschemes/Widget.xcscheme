@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D411EE1019C2A5CC0054439F"
-               BuildableName = "Today.appex"
-               BlueprintName = "Today"
+               BuildableName = "Widget.appex"
+               BlueprintName = "Widget"
                ReferencedContainer = "container:MiniMonth.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D411EE1019C2A5CC0054439F"
-            BuildableName = "Today.appex"
-            BlueprintName = "Today"
+            BuildableName = "Widget.appex"
+            BlueprintName = "Widget"
             ReferencedContainer = "container:MiniMonth.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -74,8 +74,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D411EE1019C2A5CC0054439F"
-            BuildableName = "Today.appex"
-            BlueprintName = "Today"
+            BuildableName = "Widget.appex"
+            BlueprintName = "Widget"
             ReferencedContainer = "container:MiniMonth.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -89,15 +89,21 @@
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
          runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard"
-         RemotePath = "/Today">
+         BundleIdentifier = "com.apple.springboard">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D411EE1019C2A5CC0054439F"
+            BuildableName = "Widget.appex"
+            BlueprintName = "Widget"
+            ReferencedContainer = "container:MiniMonth.xcodeproj">
+         </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D411EE1019C2A5CC0054439F"
-            BuildableName = "Today.appex"
-            BlueprintName = "Today"
+            BuildableName = "Widget.appex"
+            BlueprintName = "Widget"
             ReferencedContainer = "container:MiniMonth.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

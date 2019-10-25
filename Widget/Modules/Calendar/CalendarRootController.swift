@@ -1,5 +1,5 @@
 //
-//  CalendarHostController.swift
+//  CalendarRootController.swift
 //  Today
 //
 //  Created by Stan Potemkin on 21.10.2019.
@@ -8,26 +8,15 @@
 
 import SwiftUI
 import NotificationCenter
-import MiniMonth_Shared
+import Shared
 
-@objc(CalendarHostController) public final class CalendarHostController: UIViewController, NCWidgetProviding, CalendarDelegate {
+@objc(CalendarRootController) public final class CalendarRootController: UIViewController, NCWidgetProviding, CalendarDelegate {
     private var interactor: CalendarInteractor?
-    
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = nil
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-        
-        build(style: .month)
+        rebuild(style: .month)
     }
     
     public override func viewDidLayoutSubviews() {
@@ -57,15 +46,24 @@ import MiniMonth_Shared
         resize()
     }
     
-    private func build(style: CalendarStyle) {
+    private func rebuild(style: CalendarStyle) {
+        children.first?.view.removeFromSuperview()
+        children.first?.removeFromParent()
+        
         let preferencesDriver = PreferencesDriver()
         let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: self)
-        let interactor = CalendarInteractor(style: style, delegate: self)
-        let calendarView = CalendarView(interactor: interactor).environmentObject(designBook)
-        self.interactor = interactor
+        
+        let rootInteractor = CalendarInteractor(style: style, delegate: self)
+        let rootView = CalendarViewWrapper(
+            interactor: rootInteractor,
+            preferencesDriver: preferencesDriver,
+            designBook: designBook
+        )
 
-        let hostingController = UIHostingController(rootView: calendarView)
+        let hostingController = UIHostingController(rootView: rootView)
         hostingController.view.backgroundColor = nil
+        
+        interactor = rootInteractor
         
         addChild(hostingController)
         view.addSubview(hostingController.view)
@@ -77,8 +75,8 @@ import MiniMonth_Shared
         return childFrames.reduce(CGRect.zero, { $0.union($1) }).height + 15
     }
     
-    func resize() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) { [weak self] in
+    public func resize() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) { [weak self] in
             let height = self?.calculateInnerHeight() ?? 0
             self?.preferredContentSize = CGSize(width: .infinity, height: height)
         }

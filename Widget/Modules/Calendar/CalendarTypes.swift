@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CalendarStyle {
+public enum CalendarStyle {
     case month
     case week
 }

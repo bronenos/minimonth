@@ -11,7 +11,7 @@ import SwiftUI
 import Combine
 import EventKit
 
-protocol CalendarDelegate: class {
+public protocol CalendarDelegate: class {
     func resize()
 }
 
@@ -27,7 +27,7 @@ protocol ICalendarInteractor: class {
     func navigateLongForward()
 }
 
-final class CalendarInteractor: ICalendarInteractor, ObservableObject {
+public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     @Published var meta: CalendarMeta
     
     private let calendar = Calendar.autoupdatingCurrent
@@ -36,7 +36,7 @@ final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     
     private var animationsForPerforming = Set<CalendarAnimation>()
     
-    init(style: CalendarStyle, delegate: CalendarDelegate?) {
+    public init(style: CalendarStyle, delegate: CalendarDelegate?) {
         self.style = style
         self.delegate = delegate
         

@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import MiniMonth_Shared
+import Shared
 
 struct CalendarHeaderButton: View {
     @EnvironmentObject var designBook: DesignBook

@@ -24,8 +24,7 @@ public enum DesignBookColorUsage {
     // preferences
     case monthColor
     case navigationColor
-    case weekdayColor
-    case weeknumColor
+    case captionColor
     case workdayColor
     case weekendColor
     case holidayColor

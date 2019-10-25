@@ -7,13 +7,13 @@
 //
 
 import SwiftUI
-import MiniMonth_Shared
+import Shared
 
 public struct CalendarView: View {
     @EnvironmentObject private var designBook: DesignBook
     @ObservedObject private var interactor: CalendarInteractor
     
-    init(interactor: CalendarInteractor) {
+    public init(interactor: CalendarInteractor) {
         self.interactor = interactor
     }
     
@@ -84,18 +84,24 @@ public struct CalendarView: View {
 }
 
 #if DEBUG
-fileprivate struct SwiftUIView_Previews: PreviewProvider {
-    private final class MockTraitEnvironment: NSObject, UITraitEnvironment {
-        var traitCollection = UITraitCollection(horizontalSizeClass: .compact)
-        
-        func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        }
-    }
-    
+private final class MockTraitEnvironment: NSObject, UITraitEnvironment {
+    var traitCollection = UITraitCollection(traitsFrom: [.init(horizontalSizeClass: .compact), .init(horizontalSizeClass: .compact)])
+    func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) { }
+}
+
+private let traitEnvironment = MockTraitEnvironment()
+private let preferencesDriver = PreferencesDriver()
+private let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: traitEnvironment)
+
+struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        WidgetRootView(delegate: nil)
-            .environmentObject(DesignBook(traitEnvironment: MockTraitEnvironment()))
-            .previewLayout(PreviewLayout.fixed(width: 398, height: 450))
+        CalendarViewWrapper(
+            interactor: CalendarInteractor(style: .month, delegate: nil),
+            preferencesDriver: preferencesDriver,
+            designBook: designBook)
+            .environment(\.verticalSizeClass, .compact)
+            .environment(\.horizontalSizeClass, .compact)
+            .previewDevice(PreviewDevice(rawValue: "iPad Pro (11-inch)"))
     }
 }
 #endif

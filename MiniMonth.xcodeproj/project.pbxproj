@@ -15,12 +15,12 @@
 		D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D411EE1319C2A5CD0054439F /* NotificationCenter.framework */; };
 		D411EE1919C2A5CD0054439F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411EE1819C2A5CD0054439F /* TodayViewController.swift */; };
 		D411EE1B19C2A5CD0054439F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */; };
-		D411EE1E19C2A5CD0054439F /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D411EE1E19C2A5CD0054439F /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D4400DCB1A0E287A00F8D1A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4400DC81A0E1ED100F8D1A3 /* Localizable.strings */; };
 		D44013981D10A22100FEC39E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44013971D10A22100FEC39E /* Launch Screen.storyboard */; };
 		D44D33662362428B001C44A1 /* MiniMonth_Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = D44D33642362428B001C44A1 /* MiniMonth_Shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D44D33692362428B001C44A1 /* MiniMonth_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* MiniMonth_Shared.framework */; };
-		D44D336A2362428B001C44A1 /* MiniMonth_Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* MiniMonth_Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D44D33692362428B001C44A1 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; };
+		D44D336A2362428B001C44A1 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D44D336F23624301001C44A1 /* PreferencesDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D33562361F367001C44A1 /* PreferencesDriver.swift */; };
 		D44D337023624370001C44A1 /* DesignTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C7235EC9160030238C /* DesignTypes.swift */; };
 		D44D337123624409001C44A1 /* DesignBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C3235EC8D70030238C /* DesignBook.swift */; };
@@ -53,7 +53,7 @@
 		D4AAB62D1A0E2927005F921D /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452388719F2433C007A1181 /* Storyboard.storyboard */; };
 		D4B034CA2361AE3C009A7344 /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */; };
 		D4B74269235E3036003FDFF9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74268235E3036003FDFF9 /* CalendarView.swift */; };
-		D4B7426B235E322A003FDFF9 /* CalendarHostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426A235E322A003FDFF9 /* CalendarHostController.swift */; };
+		D4B7426B235E322A003FDFF9 /* CalendarRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426A235E322A003FDFF9 /* CalendarRootController.swift */; };
 		D4B7426D235E3AAA003FDFF9 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426C235E3AAA003FDFF9 /* CalendarHeader.swift */; };
 		D4B74271235E3E17003FDFF9 /* CalendarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74270235E3E17003FDFF9 /* CalendarInteractor.swift */; };
 		D4B74273235E5300003FDFF9 /* CalendarWeekdayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74272235E5300003FDFF9 /* CalendarWeekdayBar.swift */; };
@@ -61,6 +61,38 @@
 		D4B7427A235EBD64003FDFF9 /* CalendarMonthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74279235EBD64003FDFF9 /* CalendarMonthdayView.swift */; };
 		D4C036E41A0CFA7200D53141 /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C036E31A0CFA7200D53141 /* ConfigCell.swift */; };
 		D4C036E61A0D2FC200D53141 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4C036E51A0D2FC200D53141 /* wallpaper.jpg */; };
+		D4CD22AA2362D9EA000409CB /* HosterAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */; };
+		D4CD22AC2362D9EA000409CB /* HosterSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22AB2362D9EA000409CB /* HosterSceneDelegate.swift */; };
+		D4CD22AE2362D9EA000409CB /* HosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22AD2362D9EA000409CB /* HosterView.swift */; };
+		D4CD22B02362D9EB000409CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4CD22AF2362D9EB000409CB /* Assets.xcassets */; };
+		D4CD22B32362D9EB000409CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4CD22B22362D9EB000409CB /* Preview Assets.xcassets */; };
+		D4CD22B62362D9EB000409CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CD22B42362D9EB000409CB /* LaunchScreen.storyboard */; };
+		D4CD22BC2362DB56000409CB /* HosterRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22BB2362DB56000409CB /* HosterRootController.swift */; };
+		D4CD22C42362E9CA000409CB /* HosterCalendarWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22C32362E9CA000409CB /* HosterCalendarWrapper.swift */; };
+		D4CD22C52362F4B7000409CB /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; };
+		D4CD22C92362F721000409CB /* CalendarViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22C82362F721000409CB /* CalendarViewWrapper.swift */; };
+		D4CD22CC2362FCAD000409CB /* CalendarTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E386C6235F038400F88E28 /* CalendarTypes.swift */; };
+		D4CD22CD2362FCB2000409CB /* CalendarRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426A235E322A003FDFF9 /* CalendarRootController.swift */; };
+		D4CD22CE2362FCB2000409CB /* CalendarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74270235E3E17003FDFF9 /* CalendarInteractor.swift */; };
+		D4CD22CF2362FCB2000409CB /* CalendarViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22C82362F721000409CB /* CalendarViewWrapper.swift */; };
+		D4CD22D02362FCB2000409CB /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74268235E3036003FDFF9 /* CalendarView.swift */; };
+		D4CD22D12362FCB2000409CB /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426C235E3AAA003FDFF9 /* CalendarHeader.swift */; };
+		D4CD22D22362FCB2000409CB /* CalendarHeaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47937602360A442006D5EDC /* CalendarHeaderButton.swift */; };
+		D4CD22D32362FCB2000409CB /* CalendarWeekdayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74272235E5300003FDFF9 /* CalendarWeekdayBar.swift */; };
+		D4CD22D42362FCB2000409CB /* CalendarWeeknumBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E386C4235EE4F400F88E28 /* CalendarWeeknumBar.swift */; };
+		D4CD22D52362FCB2000409CB /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C0235EC7AE0030238C /* CalendarMonthView.swift */; };
+		D4CD22D62362FCB2000409CB /* CalendarMonthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74279235EBD64003FDFF9 /* CalendarMonthdayView.swift */; };
+		D4CD22D72362FCBE000409CB /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B16262360E406008A70A4 /* EventService.swift */; };
+		D4CD22D82362FCBE000409CB /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D9CCCD236194D100BC5EDF /* FoundationExtensions.swift */; };
+		D4CD22D92362FCBE000409CB /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */; };
+		D4CD22DA2362FCBE000409CB /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74277235E6058003FDFF9 /* CGFloatExtensions.swift */; };
+		D4CD22DB2362FCBE000409CB /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479375623605A4B006D5EDC /* ViewExtensions.swift */; };
+		D4CD22DC2362FCBE000409CB /* RangeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479375A236082AD006D5EDC /* RangeExtensions.swift */; };
+		D4CD22DD2362FCBF000409CB /* CalendarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D9CCCF236199D500BC5EDF /* CalendarExtensions.swift */; };
+		D4CD22DE2362FCBF000409CB /* HeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479375D236098BF006D5EDC /* HeightModifier.swift */; };
+		D4CD22DF2362FCBF000409CB /* PerformingModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47937622360A995006D5EDC /* PerformingModifier.swift */; };
+		D4CD22E12363001C000409CB /* HosterColorsBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22E02363001C000409CB /* HosterColorsBlock.swift */; };
+		D4CD22E323630048000409CB /* HosterColorControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22E223630048000409CB /* HosterColorControl.swift */; };
 		D4D9CCCE236194D100BC5EDF /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D9CCCD236194D100BC5EDF /* FoundationExtensions.swift */; };
 		D4D9CCD0236199D500BC5EDF /* CalendarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D9CCCF236199D500BC5EDF /* CalendarExtensions.swift */; };
 		D4E386C5235EE4F400F88E28 /* CalendarWeeknumBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E386C4235EE4F400F88E28 /* CalendarWeeknumBar.swift */; };
@@ -89,6 +121,20 @@
 			remoteGlobalIDString = D44D33612362428B001C44A1;
 			remoteInfo = "MiniMonth-Shared";
 		};
+		D4CD22BF2362E38E000409CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D411EDE319C2A59B0054439F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D44D33612362428B001C44A1;
+			remoteInfo = Shared;
+		};
+		D4CD22E4236309AC000409CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D411EDE319C2A59B0054439F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D411EE1019C2A5CC0054439F;
+			remoteInfo = Widget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -98,7 +144,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D411EE1E19C2A5CD0054439F /* Today.appex in Embed App Extensions */,
+				D411EE1E19C2A5CD0054439F /* Widget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,7 +155,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D44D336A2362428B001C44A1 /* MiniMonth_Shared.framework in Embed Frameworks */,
+				D44D336A2362428B001C44A1 /* Shared.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,7 +170,7 @@
 		D411EDEF19C2A59B0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D411EDF019C2A59B0054439F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D411EDF719C2A59B0054439F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D411EE1119C2A5CC0054439F /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D411EE1119C2A5CC0054439F /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D411EE1319C2A5CD0054439F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D411EE1719C2A5CD0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D411EE1819C2A5CD0054439F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +179,7 @@
 		D4400DC91A0E1ED400F8D1A3 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D44013971D10A22100FEC39E /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D44D33562361F367001C44A1 /* PreferencesDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesDriver.swift; sourceTree = "<group>"; };
-		D44D33622362428B001C44A1 /* MiniMonth_Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiniMonth_Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D44D33622362428B001C44A1 /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44D33642362428B001C44A1 /* MiniMonth_Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniMonth_Shared.h; sourceTree = "<group>"; };
 		D44D33652362428B001C44A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D450C39719FF6F45006DAA83 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
@@ -168,7 +214,7 @@
 		D4A5112719C6F78000555E1C /* TodayWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayWeekView.swift; sourceTree = "<group>"; };
 		D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtensions.swift; sourceTree = "<group>"; };
 		D4B74268235E3036003FDFF9 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		D4B7426A235E322A003FDFF9 /* CalendarHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHostController.swift; sourceTree = "<group>"; };
+		D4B7426A235E322A003FDFF9 /* CalendarRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRootController.swift; sourceTree = "<group>"; };
 		D4B7426C235E3AAA003FDFF9 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		D4B74270235E3E17003FDFF9 /* CalendarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarInteractor.swift; sourceTree = "<group>"; };
 		D4B74272235E5300003FDFF9 /* CalendarWeekdayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeekdayBar.swift; sourceTree = "<group>"; };
@@ -177,8 +223,21 @@
 		D4C036E31A0CFA7200D53141 /* ConfigCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
 		D4C036E51A0D2FC200D53141 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
 		D4C735A919FFBAE20066A6E8 /* MiniMonth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MiniMonth.entitlements; sourceTree = "<group>"; };
-		D4C735AA19FFBAEC0066A6E8 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
+		D4C735AA19FFBAEC0066A6E8 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
 		D4C735B419FFC34F0066A6E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
+		D4CD22A72362D9EA000409CB /* Hoster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hoster.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterAppDelegate.swift; sourceTree = "<group>"; };
+		D4CD22AB2362D9EA000409CB /* HosterSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterSceneDelegate.swift; sourceTree = "<group>"; };
+		D4CD22AD2362D9EA000409CB /* HosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterView.swift; sourceTree = "<group>"; };
+		D4CD22AF2362D9EB000409CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4CD22B22362D9EB000409CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D4CD22B52362D9EB000409CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4CD22B72362D9EB000409CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4CD22BB2362DB56000409CB /* HosterRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterRootController.swift; sourceTree = "<group>"; };
+		D4CD22C32362E9CA000409CB /* HosterCalendarWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterCalendarWrapper.swift; sourceTree = "<group>"; };
+		D4CD22C82362F721000409CB /* CalendarViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewWrapper.swift; sourceTree = "<group>"; };
+		D4CD22E02363001C000409CB /* HosterColorsBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterColorsBlock.swift; sourceTree = "<group>"; };
+		D4CD22E223630048000409CB /* HosterColorControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterColorControl.swift; sourceTree = "<group>"; };
 		D4D9CCCD236194D100BC5EDF /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		D4D9CCCF236199D500BC5EDF /* CalendarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtensions.swift; sourceTree = "<group>"; };
 		D4E386C4235EE4F400F88E28 /* CalendarWeeknumBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeeknumBar.swift; sourceTree = "<group>"; };
@@ -190,7 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D44D33692362428B001C44A1 /* MiniMonth_Shared.framework in Frameworks */,
+				D44D33692362428B001C44A1 /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +268,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4CD22A42362D9EA000409CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4CD22C52362F4B7000409CB /* Shared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -224,8 +291,9 @@
 			isa = PBXGroup;
 			children = (
 				D4E386C6235F038400F88E28 /* CalendarTypes.swift */,
-				D4B7426A235E322A003FDFF9 /* CalendarHostController.swift */,
+				D4B7426A235E322A003FDFF9 /* CalendarRootController.swift */,
 				D4B74270235E3E17003FDFF9 /* CalendarInteractor.swift */,
+				D4CD22C82362F721000409CB /* CalendarViewWrapper.swift */,
 				D4B74268235E3036003FDFF9 /* CalendarView.swift */,
 				D4B7426C235E3AAA003FDFF9 /* CalendarHeader.swift */,
 				D47937602360A442006D5EDC /* CalendarHeaderButton.swift */,
@@ -248,9 +316,10 @@
 		D411EDE219C2A59B0054439F = {
 			isa = PBXGroup;
 			children = (
-				D44D33632362428B001C44A1 /* MiniMonth-Shared */,
+				D44D33632362428B001C44A1 /* Shared */,
 				D411EDED19C2A59B0054439F /* MiniMonth */,
-				D411EE1519C2A5CD0054439F /* Today */,
+				D411EE1519C2A5CD0054439F /* _Today_ */,
+				D4CD22A82362D9EA000409CB /* Hoster */,
 				D4B74267235E2512003FDFF9 /* Widget */,
 				D411EE1219C2A5CD0054439F /* Frameworks */,
 				D411EDEC19C2A59B0054439F /* Products */,
@@ -261,8 +330,9 @@
 			isa = PBXGroup;
 			children = (
 				D411EDEB19C2A59B0054439F /* MiniMonth.app */,
-				D411EE1119C2A5CC0054439F /* Today.appex */,
-				D44D33622362428B001C44A1 /* MiniMonth_Shared.framework */,
+				D411EE1119C2A5CC0054439F /* Widget.appex */,
+				D44D33622362428B001C44A1 /* Shared.framework */,
+				D4CD22A72362D9EA000409CB /* Hoster.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,10 +373,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D411EE1519C2A5CD0054439F /* Today */ = {
+		D411EE1519C2A5CD0054439F /* _Today_ */ = {
 			isa = PBXGroup;
 			children = (
-				D4C735AA19FFBAEC0066A6E8 /* Today.entitlements */,
 				D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */,
 				D411EE1619C2A5CD0054439F /* Supporting Files */,
 				D411EE1819C2A5CD0054439F /* TodayViewController.swift */,
@@ -316,13 +385,12 @@
 				D4073B2C19C2ADB400056370 /* TodayDayLabel.swift */,
 				D47DAE62235D8AC400460B03 /* TodayWeekLabel.swift */,
 			);
-			path = Today;
+			path = _Today_;
 			sourceTree = "<group>";
 		};
 		D411EE1619C2A5CD0054439F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D411EE1719C2A5CD0054439F /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -352,7 +420,7 @@
 			path = PreferencesDriver;
 			sourceTree = "<group>";
 		};
-		D44D33632362428B001C44A1 /* MiniMonth-Shared */ = {
+		D44D33632362428B001C44A1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				D44D33642362428B001C44A1 /* MiniMonth_Shared.h */,
@@ -360,7 +428,7 @@
 				D44D33542361F337001C44A1 /* Drivers */,
 				D47836C6235EC9050030238C /* DesignBook */,
 			);
-			path = "MiniMonth-Shared";
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		D450C3B419FF7CA2006DAA83 /* ColorPicker */ = {
@@ -407,6 +475,8 @@
 		D4B74267235E2512003FDFF9 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				D411EE1719C2A5CD0054439F /* Info.plist */,
+				D4C735AA19FFBAEC0066A6E8 /* Widget.entitlements */,
 				D4B7426E235E3B21003FDFF9 /* Services */,
 				D44995C12361B23100167A92 /* Shared */,
 				D4070DD72361A9B000879694 /* Modules */,
@@ -433,6 +503,32 @@
 				D4D9CCCF236199D500BC5EDF /* CalendarExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4CD22A82362D9EA000409CB /* Hoster */ = {
+			isa = PBXGroup;
+			children = (
+				D4CD22B72362D9EB000409CB /* Info.plist */,
+				D4CD22B42362D9EB000409CB /* LaunchScreen.storyboard */,
+				D4CD22AF2362D9EB000409CB /* Assets.xcassets */,
+				D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */,
+				D4CD22AB2362D9EA000409CB /* HosterSceneDelegate.swift */,
+				D4CD22BB2362DB56000409CB /* HosterRootController.swift */,
+				D4CD22AD2362D9EA000409CB /* HosterView.swift */,
+				D4CD22C32362E9CA000409CB /* HosterCalendarWrapper.swift */,
+				D4CD22E02363001C000409CB /* HosterColorsBlock.swift */,
+				D4CD22E223630048000409CB /* HosterColorControl.swift */,
+				D4CD22B12362D9EB000409CB /* Preview Content */,
+			);
+			path = Hoster;
+			sourceTree = "<group>";
+		};
+		D4CD22B12362D9EB000409CB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D4CD22B22362D9EB000409CB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,9 +567,9 @@
 			productReference = D411EDEB19C2A59B0054439F /* MiniMonth.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D411EE1019C2A5CC0054439F /* Today */ = {
+		D411EE1019C2A5CC0054439F /* Widget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D411EE2119C2A5CD0054439F /* Build configuration list for PBXNativeTarget "Today" */;
+			buildConfigurationList = D411EE2119C2A5CD0054439F /* Build configuration list for PBXNativeTarget "Widget" */;
 			buildPhases = (
 				D411EE0D19C2A5CC0054439F /* Sources */,
 				D411EE0E19C2A5CC0054439F /* Frameworks */,
@@ -482,15 +578,16 @@
 			buildRules = (
 			);
 			dependencies = (
+				D4CD22C02362E38E000409CB /* PBXTargetDependency */,
 			);
-			name = Today;
+			name = Widget;
 			productName = Today;
-			productReference = D411EE1119C2A5CC0054439F /* Today.appex */;
+			productReference = D411EE1119C2A5CC0054439F /* Widget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		D44D33612362428B001C44A1 /* MiniMonth-Shared */ = {
+		D44D33612362428B001C44A1 /* Shared */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D44D336B2362428B001C44A1 /* Build configuration list for PBXNativeTarget "MiniMonth-Shared" */;
+			buildConfigurationList = D44D336B2362428B001C44A1 /* Build configuration list for PBXNativeTarget "Shared" */;
 			buildPhases = (
 				D44D335D2362428B001C44A1 /* Headers */,
 				D44D335E2362428B001C44A1 /* Sources */,
@@ -501,10 +598,28 @@
 			);
 			dependencies = (
 			);
-			name = "MiniMonth-Shared";
+			name = Shared;
 			productName = "MiniMonth-Shared";
-			productReference = D44D33622362428B001C44A1 /* MiniMonth_Shared.framework */;
+			productReference = D44D33622362428B001C44A1 /* Shared.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		D4CD22A62362D9EA000409CB /* Hoster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4CD22B82362D9EB000409CB /* Build configuration list for PBXNativeTarget "Hoster" */;
+			buildPhases = (
+				D4CD22A32362D9EA000409CB /* Sources */,
+				D4CD22A42362D9EA000409CB /* Frameworks */,
+				D4CD22A52362D9EA000409CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4CD22E5236309AC000409CB /* PBXTargetDependency */,
+			);
+			name = Hoster;
+			productName = "MiniMonth-Hoster";
+			productReference = D4CD22A72362D9EA000409CB /* Hoster.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -512,7 +627,7 @@
 		D411EDE319C2A59B0054439F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = bronenos;
 				TargetAttributes = {
@@ -543,6 +658,11 @@
 						DevelopmentTeam = V8NCXSZ3T7;
 						ProvisioningStyle = Automatic;
 					};
+					D4CD22A62362D9EA000409CB = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = V8NCXSZ3T7;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = D411EDE619C2A59B0054439F /* Build configuration list for PBXProject "MiniMonth" */;
@@ -559,9 +679,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D44D33612362428B001C44A1 /* MiniMonth-Shared */,
+				D44D33612362428B001C44A1 /* Shared */,
 				D411EDEA19C2A59B0054439F /* MiniMonth */,
-				D411EE1019C2A5CC0054439F /* Today */,
+				D4CD22A62362D9EA000409CB /* Hoster */,
+				D411EE1019C2A5CC0054439F /* Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -592,6 +713,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4CD22A52362D9EA000409CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4CD22B62362D9EB000409CB /* LaunchScreen.storyboard in Resources */,
+				D4CD22B32362D9EB000409CB /* Preview Assets.xcassets in Resources */,
+				D4CD22B02362D9EB000409CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +781,8 @@
 				D4073B2D19C2ADB400056370 /* TodayDayLabel.swift in Sources */,
 				D4D9CCCE236194D100BC5EDF /* FoundationExtensions.swift in Sources */,
 				D4B7426D235E3AAA003FDFF9 /* CalendarHeader.swift in Sources */,
-				D4B7426B235E322A003FDFF9 /* CalendarHostController.swift in Sources */,
+				D4B7426B235E322A003FDFF9 /* CalendarRootController.swift in Sources */,
+				D4CD22C92362F721000409CB /* CalendarViewWrapper.swift in Sources */,
 				D479375E236098BF006D5EDC /* HeightModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,23 +797,67 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4CD22A32362D9EA000409CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4CD22D22362FCB2000409CB /* CalendarHeaderButton.swift in Sources */,
+				D4CD22DB2362FCBE000409CB /* ViewExtensions.swift in Sources */,
+				D4CD22D12362FCB2000409CB /* CalendarHeader.swift in Sources */,
+				D4CD22D72362FCBE000409CB /* EventService.swift in Sources */,
+				D4CD22E12363001C000409CB /* HosterColorsBlock.swift in Sources */,
+				D4CD22D02362FCB2000409CB /* CalendarView.swift in Sources */,
+				D4CD22CE2362FCB2000409CB /* CalendarInteractor.swift in Sources */,
+				D4CD22AA2362D9EA000409CB /* HosterAppDelegate.swift in Sources */,
+				D4CD22CD2362FCB2000409CB /* CalendarRootController.swift in Sources */,
+				D4CD22CC2362FCAD000409CB /* CalendarTypes.swift in Sources */,
+				D4CD22D82362FCBE000409CB /* FoundationExtensions.swift in Sources */,
+				D4CD22AC2362D9EA000409CB /* HosterSceneDelegate.swift in Sources */,
+				D4CD22BC2362DB56000409CB /* HosterRootController.swift in Sources */,
+				D4CD22D52362FCB2000409CB /* CalendarMonthView.swift in Sources */,
+				D4CD22DC2362FCBE000409CB /* RangeExtensions.swift in Sources */,
+				D4CD22D32362FCB2000409CB /* CalendarWeekdayBar.swift in Sources */,
+				D4CD22DE2362FCBF000409CB /* HeightModifier.swift in Sources */,
+				D4CD22D42362FCB2000409CB /* CalendarWeeknumBar.swift in Sources */,
+				D4CD22DA2362FCBE000409CB /* CGFloatExtensions.swift in Sources */,
+				D4CD22D92362FCBE000409CB /* OptionalExtensions.swift in Sources */,
+				D4CD22C42362E9CA000409CB /* HosterCalendarWrapper.swift in Sources */,
+				D4CD22CF2362FCB2000409CB /* CalendarViewWrapper.swift in Sources */,
+				D4CD22D62362FCB2000409CB /* CalendarMonthdayView.swift in Sources */,
+				D4CD22DD2362FCBF000409CB /* CalendarExtensions.swift in Sources */,
+				D4CD22DF2362FCBF000409CB /* PerformingModifier.swift in Sources */,
+				D4CD22E323630048000409CB /* HosterColorControl.swift in Sources */,
+				D4CD22AE2362D9EA000409CB /* HosterView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		D411EE1D19C2A5CD0054439F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D411EE1019C2A5CC0054439F /* Today */;
+			target = D411EE1019C2A5CC0054439F /* Widget */;
 			targetProxy = D411EE1C19C2A5CD0054439F /* PBXContainerItemProxy */;
 		};
 		D411EE2019C2A5CD0054439F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D411EE1019C2A5CC0054439F /* Today */;
+			target = D411EE1019C2A5CC0054439F /* Widget */;
 			targetProxy = D411EE1F19C2A5CD0054439F /* PBXContainerItemProxy */;
 		};
 		D44D33682362428B001C44A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D44D33612362428B001C44A1 /* MiniMonth-Shared */;
+			target = D44D33612362428B001C44A1 /* Shared */;
 			targetProxy = D44D33672362428B001C44A1 /* PBXContainerItemProxy */;
+		};
+		D4CD22C02362E38E000409CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D44D33612362428B001C44A1 /* Shared */;
+			targetProxy = D4CD22BF2362E38E000409CB /* PBXContainerItemProxy */;
+		};
+		D4CD22E5236309AC000409CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D411EE1019C2A5CC0054439F /* Widget */;
+			targetProxy = D4CD22E4236309AC000409CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -701,6 +877,14 @@
 				D4C735B419FFC34F0066A6E8 /* Base */,
 			);
 			name = Storyboard.storyboard;
+			sourceTree = "<group>";
+		};
+		D4CD22B42362D9EB000409CB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4CD22B52362D9EB000409CB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -866,7 +1050,7 @@
 		D411EE2219C2A5CD0054439F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
@@ -876,10 +1060,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Today/Info.plist;
+				INFOPLIST_FILE = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.7;
-				PRODUCT_BUNDLE_IDENTIFIER = me.bronenos.MiniMonth.Today;
+				PRODUCT_BUNDLE_IDENTIFIER = me.bronenos.MiniMonth.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "MiniMonth Widget Today Dev";
@@ -890,16 +1074,16 @@
 		D411EE2319C2A5CD0054439F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = V8NCXSZ3T7;
-				INFOPLIST_FILE = Today/Info.plist;
+				INFOPLIST_FILE = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.7;
-				PRODUCT_BUNDLE_IDENTIFIER = me.bronenos.MiniMonth.Today;
+				PRODUCT_BUNDLE_IDENTIFIER = me.bronenos.MiniMonth.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "28a03db7-b62b-485a-8d3e-83d87a4f2c9c";
 				PROVISIONING_PROFILE_SPECIFIER = "MiniMonth Today AppStore";
@@ -927,7 +1111,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "MiniMonth-Shared/Info.plist";
+				INFOPLIST_FILE = Shared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -964,7 +1148,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "MiniMonth-Shared/Info.plist";
+				INFOPLIST_FILE = Shared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
@@ -976,6 +1160,62 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D4CD22B92362D9EB000409CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"Hoster/Preview Content\"";
+				DEVELOPMENT_TEAM = V8NCXSZ3T7;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Hoster/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.bronenos.MiniMonth-Hoster";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4CD22BA2362D9EB000409CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"Hoster/Preview Content\"";
+				DEVELOPMENT_TEAM = V8NCXSZ3T7;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Hoster/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.bronenos.MiniMonth-Hoster";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1000,7 +1240,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D411EE2119C2A5CD0054439F /* Build configuration list for PBXNativeTarget "Today" */ = {
+		D411EE2119C2A5CD0054439F /* Build configuration list for PBXNativeTarget "Widget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D411EE2219C2A5CD0054439F /* Debug */,
@@ -1009,11 +1249,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D44D336B2362428B001C44A1 /* Build configuration list for PBXNativeTarget "MiniMonth-Shared" */ = {
+		D44D336B2362428B001C44A1 /* Build configuration list for PBXNativeTarget "Shared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D44D336C2362428B001C44A1 /* Debug */,
 				D44D336D2362428B001C44A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4CD22B82362D9EB000409CB /* Build configuration list for PBXNativeTarget "Hoster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4CD22B92362D9EB000409CB /* Debug */,
+				D4CD22BA2362D9EB000409CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

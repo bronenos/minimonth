@@ -13,10 +13,8 @@ public protocol IPreferencesDriver: class {
     var monthColorDark: UIColor { get set }
     var navigationColorLight: UIColor { get set }
     var navigationColorDark: UIColor { get set }
-    var weekdayColorLight: UIColor { get set }
-    var weekdayColorDark: UIColor { get set }
-    var weeknumColorLight: UIColor { get set }
-    var weeknumColorDark: UIColor { get set }
+    var captionColorLight: UIColor { get set }
+    var captionColorDark: UIColor { get set }
     var workdayColorLight: UIColor { get set }
     var workdayColorDark: UIColor { get set }
     var weekendColorLight: UIColor { get set }
@@ -35,8 +33,7 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     
     private let defaultMonthColor = UIColor.label
     private let defaultNavigationColor = UIColor.label.withAlphaComponent(0.6)
-    private let defaultWeekdayColor = UIColor.secondaryLabel
-    private let defaultWeeknumColor = UIColor.secondaryLabel
+    private let defaultCaptionColor = UIColor.secondaryLabel
     private let defaultWorkdayColor = UIColor.label
     private let defaultWeekendColor = UIColor.red
     private let defaultHolidayColor = UIColor.label
@@ -67,23 +64,13 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
         set { setColor(newValue, for: #function) }
     }
     
-    public var weekdayColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultWeekdayColor }
+    public var captionColorLight: UIColor {
+        get { getColor(for: #function) ?? defaultCaptionColor }
         set { setColor(newValue, for: #function) }
     }
     
-    public var weekdayColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultWeekdayColor }
-        set { setColor(newValue, for: #function) }
-    }
-    
-    public var weeknumColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultWeeknumColor }
-        set { setColor(newValue, for: #function) }
-    }
-    
-    public var weeknumColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultWeeknumColor }
+    public var captionColorDark: UIColor {
+        get { getColor(for: #function) ?? defaultCaptionColor }
         set { setColor(newValue, for: #function) }
     }
     
@@ -147,10 +134,8 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
         monthColorDark = defaultMonthColor
         navigationColorLight = defaultNavigationColor
         navigationColorDark = defaultNavigationColor
-        weekdayColorLight = defaultWeekdayColor
-        weekdayColorDark = defaultWeekdayColor
-        weeknumColorLight = defaultWeeknumColor
-        weeknumColorDark = defaultWeeknumColor
+        captionColorLight = defaultCaptionColor
+        captionColorDark = defaultCaptionColor
         workdayColorLight = defaultWorkdayColor
         workdayColorDark = defaultWorkdayColor
         weekendColorLight = defaultWeekendColor

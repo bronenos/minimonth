@@ -76,8 +76,7 @@ public final class DesignBook: ObservableObject {
         // preferences
         case .monthColor: return combine(light: .pref(\.monthColorLight), dark: .pref(\.monthColorDark))
         case .navigationColor: return combine(light: .pref(\.navigationColorLight), dark: .pref(\.navigationColorDark))
-        case .weekdayColor: return combine(light: .pref(\.weekdayColorLight), dark: .pref(\.weekdayColorDark))
-        case .weeknumColor: return combine(light: .pref(\.weeknumColorLight), dark: .pref(\.weeknumColorDark))
+        case .captionColor: return combine(light: .pref(\.captionColorLight), dark: .pref(\.captionColorDark))
         case .workdayColor: return combine(light: .pref(\.workdayColorLight), dark: .pref(\.workdayColorDark))
         case .weekendColor: return combine(light: .pref(\.weekendColorLight), dark: .pref(\.weekendColorDark))
         case .holidayColor: return combine(light: .pref(\.holidayColorLight), dark: .pref(\.holidayColorDark))
