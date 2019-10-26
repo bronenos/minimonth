@@ -34,7 +34,7 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     private let eventService: EventService
     private let delegate: CalendarDelegate?
     
-    private var lastAnimationDate = Date()
+    private var lastAnimationDate: Date?
     
     public init(style: CalendarStyle, delegate: CalendarDelegate?) {
         self.style = style
@@ -58,7 +58,8 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     }
     
     var shouldAnimate: Bool {
-        return (Date().timeIntervalSince(lastAnimationDate) < 0.25)
+        guard let date = lastAnimationDate else { return false }
+        return (Date().timeIntervalSince(date) < 0.25)
     }
     
     func requestEvents() {
@@ -66,7 +67,13 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     }
     
     func toggle(style: CalendarStyle) {
-        lastAnimationDate = Date()
+        if let _ = lastAnimationDate {
+            lastAnimationDate = Date()
+        }
+        else {
+            lastAnimationDate = Date.distantPast
+        }
+        
         self.style = style
     }
     
@@ -102,10 +109,6 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
         anchorDate = date
     }
     
-    func askToResize() {
-        delegate?.resize()
-    }
-    
     private(set) var style: CalendarStyle {
         didSet { updateMeta() }
     }
@@ -126,7 +129,7 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
             style: style
         )
         
-        askToResize()
+        delegate?.resize()
     }
     
     private func handleEvents(_ events: [EKEvent]) {

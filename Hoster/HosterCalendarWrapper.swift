@@ -14,15 +14,13 @@ struct HosterCalendarWrapper: View {
     @EnvironmentObject private var designBook: DesignBook
 
     var body: some View {
-        VStack {
-            Spacer()
-            
-            CalendarView(
-                interactor: CalendarInteractor(style: .month, delegate: nil))
-            
-            Spacer()
-        }
-        .frame(ownSide: 350)
-//        .background(BlurredView(style: .light))
+        CalendarView(
+            interactor: CalendarInteractor(style: .month, delegate: nil),
+            position: .center)
+            .frame(ownWidth: 350, ownHeight: 300)
+            .background(BlurredView(style: .systemThickMaterial))
+            .background(Color.primary)
+            .cornerRadius(20)
+            .disabled(true)
     }
 }

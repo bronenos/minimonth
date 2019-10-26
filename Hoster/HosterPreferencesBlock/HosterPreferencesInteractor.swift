@@ -1,5 +1,5 @@
 //
-//  HostPreferencesInteractor.swift
+//  HosterPreferencesInteractor.swift
 //  Hoster
 //
 //  Created by Stan Potemkin on 25.10.2019.
@@ -10,7 +10,7 @@ import SwiftUI
 import Shared
 import Combine
 
-final class HostPreferencesInteractor: ObservableObject {
+final class HosterPreferencesInteractor: ObservableObject {
     var objectWillChange = ObservableObjectPublisher()
     
     private let preferencesDriver: PreferencesDriver

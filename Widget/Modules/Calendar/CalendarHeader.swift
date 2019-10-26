@@ -36,7 +36,7 @@ struct CalendarHeader: View {
             Spacer()
             
             Text(computedCaption)
-                .font(.system(size: 19, weight: .semibold))
+                .font(.system(size: 17, weight: .semibold))
                 .kerning(2)
                 .foregroundColor(designBook.cached(usage: .monthColor))
                 .padding(.vertical, 6)

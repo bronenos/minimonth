@@ -18,7 +18,7 @@ struct HosterColorControl: View {
                 .font(.body)
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
-                .fixedSize(horizontal: false, vertical: true)
+                .fixedSize(horizontal: true, vertical: true)
             
             Spacer()
             

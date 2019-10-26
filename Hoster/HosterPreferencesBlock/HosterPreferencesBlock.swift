@@ -12,10 +12,10 @@ import Combine
 
 struct HosterPreferencesBlock: View {
     @EnvironmentObject private var preferencesDriver: PreferencesDriver
-    @ObservedObject private var interactor: HostPreferencesInteractor
+    @ObservedObject private var interactor: HosterPreferencesInteractor
     
     init(preferencesDriver: PreferencesDriver, colorScheme: ColorScheme, delegate: HosterViewDelegate?) {
-        interactor = HostPreferencesInteractor(
+        interactor = HosterPreferencesInteractor(
             preferencesDriver: preferencesDriver,
             colorScheme: colorScheme,
             delegate: delegate

@@ -9,7 +9,26 @@
 import SwiftUI
 import Shared
 
+extension UIWindowScene: UITraitEnvironment {
+    public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    }
+}
+
 @objc(HosterRootController) public final class HosterRootController: UIViewController, HosterViewDelegate {
+    private let windowScene: UIWindowScene
+    
+    private var designBook: DesignBook?
+    
+    init(windowScene: UIWindowScene) {
+        self.windowScene = windowScene
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         rebuild()
@@ -29,12 +48,10 @@ import Shared
         children.first?.removeFromParent()
         
         let preferencesDriver = PreferencesDriver()
-        let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: self)
-//        let interactor = CalendarInteractor(style: style, delegate: self)
-//        let calendarView = CalendarView(interactor: interactor).environmentObject(designBook)
-//        self.interactor = interactor
+        let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: windowScene)
+        self.designBook = designBook
 
-        let rootView = HosterView(delegate: self)
+        let rootView = HosterView(windowScene: windowScene, delegate: self)
             .environmentObject(preferencesDriver)
             .environmentObject(designBook)
 
@@ -50,5 +67,10 @@ import Shared
         case .dark?: overrideUserInterfaceStyle = .dark
         default: overrideUserInterfaceStyle = .unspecified
         }
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        designBook?.objectWillChange.send()
     }
 }

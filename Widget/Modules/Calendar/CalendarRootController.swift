@@ -54,12 +54,10 @@ import Shared
         let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: self)
         
         let rootInteractor = CalendarInteractor(style: style, delegate: self)
-        let rootView = CalendarViewWrapper(
-            interactor: rootInteractor,
-            preferencesDriver: preferencesDriver,
-            designBook: designBook
-        )
-
+        let rootView = CalendarView(interactor: rootInteractor, position: .top)
+            .environmentObject(preferencesDriver)
+            .environmentObject(designBook)
+        
         let hostingController = UIHostingController(rootView: rootView)
         hostingController.view.backgroundColor = nil
         

@@ -29,9 +29,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D411EDEA19C2A59B0054439F"
-               BuildableName = "MiniMonth.app"
-               BlueprintName = "MiniMonth"
+               BlueprintIdentifier = "D4CD22A62362D9EA000409CB"
+               BuildableName = "Hoster.app"
+               BlueprintName = "Hoster"
                ReferencedContainer = "container:MiniMonth.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

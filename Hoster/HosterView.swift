@@ -18,14 +18,13 @@ struct HosterView: View {
     @EnvironmentObject private var designBook: DesignBook
     @EnvironmentObject private var preferencesDriver: PreferencesDriver
     @Environment(\.colorScheme) var colorScheme
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
     
+    let windowScene: UIWindowScene
     let delegate: HosterViewDelegate?
 
     var body: some View {
         Group {
-            if horizontalSizeClass == .compact {
+            if windowScene.interfaceOrientation.isPortrait {
                 VStack(alignment: .center, spacing: 50) {
                     HosterCalendarWrapper()
                     
@@ -65,11 +64,12 @@ private let designBook = DesignBook(preferencesDriver: preferencesDriver, traitE
 
 struct HosterView_Previews: PreviewProvider {
     static var previews: some View {
-        HosterView(delegate: nil)
-            .environmentObject(designBook)
-            .environment(\.verticalSizeClass, .compact)
-            .environment(\.horizontalSizeClass, .compact)
-            .previewDevice(PreviewDevice(rawValue: "iPad Pro (11-inch)"))
+        EmptyView()
+//        HosterView(windowScene: <#UIWindowScene#>, delegate: nil)
+//            .environmentObject(designBook)
+//            .environment(\.verticalSizeClass, .compact)
+//            .environment(\.horizontalSizeClass, .compact)
+//            .previewDevice(PreviewDevice(rawValue: "iPad Pro (11-inch)"))
     }
 }
 #endif

@@ -9,18 +9,27 @@
 import SwiftUI
 import Shared
 
+public enum CalendarPosition {
+    case top
+    case center
+}
+
 public struct CalendarView: View {
     @EnvironmentObject private var designBook: DesignBook
     @EnvironmentObject private var preferencesDriver: PreferencesDriver
     @ObservedObject private var interactor: CalendarInteractor
+    private let position: CalendarPosition
     
-    public init(interactor: CalendarInteractor) {
+    public init(interactor: CalendarInteractor, position: CalendarPosition) {
         self.interactor = interactor
+        self.position = position
     }
     
     public var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
+                self.obtainTopSpacer()
+                
                 convert(self.interactor.style) { style -> CalendarHeader in
                     switch style {
                     case .month:
@@ -68,7 +77,14 @@ public struct CalendarView: View {
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
             .onAppear(perform: self.interactor.requestEvents)
-            .animation(self.interactor.shouldAnimate ? .linear(duration: 0.25) : .none)
+            .animation(self.interactor.shouldAnimate ? .linear(duration: 0.25) : nil)
+        }
+    }
+    
+    private func obtainTopSpacer() -> some View {
+        switch position {
+        case .top: return Spacer().frame(idealHeight: 0, maxHeight: 0, alignment: .top)
+        case .center: return Spacer().frame(idealHeight: 0, maxHeight: .infinity, alignment: .top)
         }
     }
     
@@ -101,6 +117,7 @@ struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarViewWrapper(
             interactor: CalendarInteractor(style: .month, delegate: nil),
+            position: .center,
             preferencesDriver: preferencesDriver,
             designBook: designBook)
             .environment(\.verticalSizeClass, .compact)

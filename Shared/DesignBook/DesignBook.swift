@@ -8,8 +8,11 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 public final class DesignBook: ObservableObject {
+    public var objectWillChange = ObservableObjectPublisher()
+    
     let preferencesDriver: PreferencesDriver
     let traitEnvironment: UITraitEnvironment
     
@@ -18,6 +21,26 @@ public final class DesignBook: ObservableObject {
     public init(preferencesDriver: PreferencesDriver, traitEnvironment: UITraitEnvironment) {
         self.preferencesDriver = preferencesDriver
         self.traitEnvironment = traitEnvironment
+    }
+    
+    public var horizontalSizeClass: UserInterfaceSizeClass {
+        switch traitEnvironment.traitCollection.horizontalSizeClass {
+        case .compact:
+            print("horizontalSizeClass[compact]")
+            return .compact
+            
+        case .regular:
+            print("horizontalSizeClass[regular]")
+            return .regular
+            
+        case .unspecified:
+            print("horizontalSizeClass[unspecified]")
+            return .compact
+            
+        @unknown default:
+            print("horizontalSizeClass[default]")
+            return .compact
+        }
     }
     
     public let layout = DesignBookLayout(
