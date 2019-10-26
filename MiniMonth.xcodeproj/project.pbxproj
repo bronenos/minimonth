@@ -16,6 +16,7 @@
 		D41FCB0223642D0F00499C19 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; };
 		D41FCB0323642D0F00499C19 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D41FCB0523642D2100499C19 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D41FCB0C2364B11A00499C19 /* OrientationWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FCB0B2364B11A00499C19 /* OrientationWatcher.swift */; };
 		D44D33662362428B001C44A1 /* MiniMonth_Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = D44D33642362428B001C44A1 /* MiniMonth_Shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D44D336F23624301001C44A1 /* PreferencesDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D33562361F367001C44A1 /* PreferencesDriver.swift */; };
 		D44D337023624370001C44A1 /* DesignTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C7235EC9160030238C /* DesignTypes.swift */; };
@@ -139,6 +140,7 @@
 		D411EE1819C2A5CD0054439F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		D411EE1A19C2A5CD0054439F /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		D41FCB0923642E6100499C19 /* Hoster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hoster.entitlements; sourceTree = "<group>"; };
+		D41FCB0B2364B11A00499C19 /* OrientationWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationWatcher.swift; sourceTree = "<group>"; };
 		D4400DC71A0E1ED100F8D1A3 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4400DC91A0E1ED400F8D1A3 /* ru */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D44013971D10A22100FEC39E /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -353,6 +355,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D41FCB0A2364B0AB00499C19 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				D41FCB0B2364B11A00499C19 /* OrientationWatcher.swift */,
+			);
+			path = Wrappers;
+			sourceTree = "<group>";
+		};
 		D44995C12361B23100167A92 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +427,7 @@
 			children = (
 				D49AFD5A2363912B0033D98F /* Views */,
 				D468DB27236320C00085122D /* Extensions */,
+				D41FCB0A2364B0AB00499C19 /* Wrappers */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -740,6 +751,7 @@
 				D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */,
 				D4CD22CC2362FCAD000409CB /* CalendarTypes.swift in Sources */,
 				D4CD22D82362FCBE000409CB /* FoundationExtensions.swift in Sources */,
+				D41FCB0C2364B11A00499C19 /* OrientationWatcher.swift in Sources */,
 				D4CD22AC2362D9EA000409CB /* HosterSceneDelegate.swift in Sources */,
 				D4CD22BC2362DB56000409CB /* HosterRootController.swift in Sources */,
 				D4CD22D52362FCB2000409CB /* CalendarMonthView.swift in Sources */,

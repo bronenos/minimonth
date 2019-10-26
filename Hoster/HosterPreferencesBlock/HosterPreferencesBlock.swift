@@ -53,6 +53,7 @@ struct HosterPreferencesBlock: View {
             }
             .styleAsPreferenceBlock()
         }
+        .frame(maxWidth: 400, alignment: .center)
     }
 }
 

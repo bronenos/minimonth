@@ -17,10 +17,17 @@ protocol HosterViewDelegate: class {
 struct HosterView: View {
     @EnvironmentObject private var designBook: DesignBook
     @EnvironmentObject private var preferencesDriver: PreferencesDriver
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
+    @ObservedObject private var orientationWatcher: OrientationWatcher
     
     let windowScene: UIWindowScene
     let delegate: HosterViewDelegate?
+    
+    init(windowScene: UIWindowScene, delegate: HosterViewDelegate?) {
+        self.windowScene = windowScene
+        self.delegate = delegate
+        self.orientationWatcher = OrientationWatcher(windowScene: windowScene)
+    }
 
     var body: some View {
         Group {
