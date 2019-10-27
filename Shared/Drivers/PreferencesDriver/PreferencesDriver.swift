@@ -9,6 +9,9 @@
 import SwiftUI
 import Combine
 
+public typealias PreferencesReadableKeyPath = KeyPath<PreferencesDriver, UIColor>
+public typealias PreferencesWritableKeyPath = ReferenceWritableKeyPath<PreferencesDriver, UIColor>
+
 public protocol IPreferencesDriver: class {
     var monthColorLight: UIColor { get set }
     var monthColorDark: UIColor { get set }
@@ -151,11 +154,29 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     }
     
     private func getColor(for key: String) -> UIColor? {
-        return storage.object(forKey: key) as? UIColor
+        if let rgb = storage.object(forKey: key) as? [CGFloat] {
+            return UIColor(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1.0)
+        }
+        else {
+            return nil
+        }
     }
     
     private func setColor(_ value: UIColor?, for key: String) {
-        storage.set(value, forKey: key)
+        if let value = value {
+            var rgb = [CGFloat](repeating: 0, count: 3)
+            rgb.withUnsafeMutableBufferPointer { pointer in
+                let r = pointer.baseAddress?.advanced(by: 0)
+                let g = pointer.baseAddress?.advanced(by: 1)
+                let b = pointer.baseAddress?.advanced(by: 2)
+                value.getRed(r, green: g, blue: b, alpha: nil)
+            }
+            
+            storage.set(rgb, forKey: key)
+        }
+        else {
+            storage.removeObject(forKey: key)
+        }
         
         storage.synchronize()
         objectWillChange.send()

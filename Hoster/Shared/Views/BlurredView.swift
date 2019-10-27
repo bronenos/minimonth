@@ -10,12 +10,14 @@ import SwiftUI
 
 struct BlurredView: UIViewRepresentable {
     let style: UIBlurEffect.Style
+    let backgroundColor: UIColor
 
     func makeUIView(context: UIViewRepresentableContext<BlurredView>) -> UIView {
         let blurEffect = UIBlurEffect(style: style)
         let blurView = UIVisualEffectView(effect: blurEffect)
         
         let view = UIView()
+        view.backgroundColor = backgroundColor
         blurView.frame = view.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(blurView)

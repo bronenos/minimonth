@@ -7,26 +7,41 @@
 //
 
 import SwiftUI
+import Shared
 
 struct HosterColorControl: View {
+    @EnvironmentObject var preferencesDriver: PreferencesDriver
+    @EnvironmentObject private var context: HosterContext
+
     let caption: String
-    let color: UIColor
+    let keyPath: PreferencesWritableKeyPath
     
     var body: some View {
         HStack {
             Text(caption)
-                .font(.body)
+                .font(.callout)
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: true, vertical: true)
+                .padding(.leading, 8)
+                .padding(.vertical, 8)
             
             Spacer()
             
             Circle()
-                .foregroundColor(Color(color))
-                .frame(ownWidth: 25, ownHeight: 25)
+                .foregroundColor(resolvedColor)
+                .frame(ownSide: 35)
         }
-        .padding(.vertical, 2)
-        .padding(.horizontal, 15)
+        .overlay(
+            Capsule(style: .circular)
+                .stroke(resolvedColor)
+                .opacity(0.75))
+        .onTapGesture {
+            self.context.presentColorPicker(title: self.caption, keyPath: self.keyPath)
+        }
+    }
+    
+    private var resolvedColor: Color {
+        return Color(preferencesDriver[keyPath: keyPath])
     }
 }

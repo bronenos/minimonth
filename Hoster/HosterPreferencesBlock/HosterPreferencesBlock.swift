@@ -23,36 +23,42 @@ struct HosterPreferencesBlock: View {
     }
     
     var body: some View {
-        VStack {
-            Section {
-                HStack {
-                    Text("Preview as")
-                    
-                    Spacer()
-                    
-                    Picker(selection: $interactor.colorScheme, label: EmptyView()) {
-                        Text("Light").tag(ColorScheme.light)
-                        Text("Dark").tag(ColorScheme.dark)
+//        ScrollView {
+            VStack {
+                Spacer()
+                
+                Section {
+                    HStack {
+                        Text("Preview as")
+                        
+                        Spacer()
+                        
+                        Picker(selection: $interactor.colorScheme, label: EmptyView()) {
+                            Text("Light").tag(ColorScheme.light)
+                            Text("Dark").tag(ColorScheme.dark)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .fixedSize(horizontal: true, vertical: false)
                     }
-                    .pickerStyle(SegmentedPickerStyle())
                 }
-            }
-            .padding(.horizontal, 15)
-            .styleAsPreferenceBlock()
+                .styleAsPreferenceBlock()
 
-            Section {
-                Toggle(isOn: $interactor.weeknumVisible) {
-                    Text("Show week numbers")
+                Section {
+                    Toggle(isOn: $interactor.weeknumVisible) {
+                        Text("Show week numbers")
+                    }
                 }
+                .styleAsPreferenceBlock()
+                
+                Section {
+                    HosterColorsBlock()
+                }
+                .styleAsPreferenceBlock()
+                
+                Spacer()
             }
-            .padding(.horizontal, 15)
-            .styleAsPreferenceBlock()
-            
-            Section {
-                HosterColorsBlock()
-            }
-            .styleAsPreferenceBlock()
-        }
+//        }
+        .padding(.vertical, 15)
         .frame(maxWidth: 400, alignment: .center)
     }
 }

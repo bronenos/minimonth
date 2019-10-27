@@ -40,7 +40,7 @@ struct CalendarHeader: View {
                 .kerning(2)
                 .foregroundColor(designBook.cached(usage: .monthColor))
                 .padding(.vertical, 6)
-            .onTapGesture(perform: titleAction)
+                .onTapGesture(perform: titleAction)
 
             Spacer()
             

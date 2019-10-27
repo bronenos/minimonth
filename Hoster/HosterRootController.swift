@@ -49,11 +49,13 @@ extension UIWindowScene: UITraitEnvironment {
         
         let preferencesDriver = PreferencesDriver()
         let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: windowScene)
+        let context = HosterContext()
         self.designBook = designBook
 
         let rootView = HosterView(windowScene: windowScene, delegate: self)
             .environmentObject(preferencesDriver)
             .environmentObject(designBook)
+            .environmentObject(context)
 
         let hostingController = UIHostingController(rootView: rootView)
         

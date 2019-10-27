@@ -12,7 +12,7 @@ public enum DesignBookColor {
     case native(UIColor)
     case hex(Int)
     case usage(DesignBookColorUsage)
-    case pref(KeyPath<PreferencesDriver, UIColor>)
+    case pref(PreferencesReadableKeyPath)
 }
 
 public enum DesignBookColorUsage {

@@ -9,6 +9,8 @@
 import SwiftUI
 import Shared
 import Widget
+import Combine
+import ColorPicker
 
 protocol HosterViewDelegate: class {
     func didRequestStyleUpdate(_ style: ColorScheme?)
@@ -17,11 +19,14 @@ protocol HosterViewDelegate: class {
 struct HosterView: View {
     @EnvironmentObject private var designBook: DesignBook
     @EnvironmentObject private var preferencesDriver: PreferencesDriver
+    @EnvironmentObject private var context: HosterContext
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject private var orientationWatcher: OrientationWatcher
     
     let windowScene: UIWindowScene
     let delegate: HosterViewDelegate?
+    
+    private var pickingColor = Color.primary
     
     init(windowScene: UIWindowScene, delegate: HosterViewDelegate?) {
         self.windowScene = windowScene
@@ -40,6 +45,7 @@ struct HosterView: View {
                         colorScheme: colorScheme,
                         delegate: delegate
                     )
+                    .fixedSize(horizontal: false, vertical: true)
                 }
             }
             else {
@@ -56,6 +62,25 @@ struct HosterView: View {
         }
         .background(Color(UIColor.systemBackground))
         .padding(.horizontal, 15)
+        .sheet(
+            item: $context.colorPickingMeta,
+            content: constructColorPicker
+        )
+    }
+    
+    private func constructColorPicker(item: HosterContextColorPickingMeta) -> some View {
+        HosterColorPickerWrapper(
+            context: context,
+            title: item.title,
+            keyPath: item.keyPath,
+            selectedColor: preferencesDriver[keyPath: item.keyPath])
+            .onDisappear { self.applyColorPicker(keyPath: item.keyPath) }
+    }
+    
+    private func applyColorPicker(keyPath: PreferencesWritableKeyPath) {
+        guard let pickedColor = context.retrieveColor(forKeyPath: keyPath) else { return }
+        preferencesDriver[keyPath: keyPath] = pickedColor
+        designBook.discardCache()
     }
 }
 
@@ -72,11 +97,6 @@ private let designBook = DesignBook(preferencesDriver: preferencesDriver, traitE
 struct HosterView_Previews: PreviewProvider {
     static var previews: some View {
         EmptyView()
-//        HosterView(windowScene: <#UIWindowScene#>, delegate: nil)
-//            .environmentObject(designBook)
-//            .environment(\.verticalSizeClass, .compact)
-//            .environment(\.horizontalSizeClass, .compact)
-//            .previewDevice(PreviewDevice(rawValue: "iPad Pro (11-inch)"))
     }
 }
 #endif

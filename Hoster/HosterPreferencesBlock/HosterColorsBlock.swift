@@ -9,23 +9,30 @@
 import SwiftUI
 import Shared
 
+struct HosterColorDynamicMeta: Hashable {
+    let caption: String
+    let lightKeyPath: PreferencesWritableKeyPath
+    let darkKeyPath: PreferencesWritableKeyPath
+}
+
 struct HosterColorMeta: Hashable {
     let caption: String
-    let keyPath: KeyPath<PreferencesDriver, UIColor>
+    let keyPath: PreferencesWritableKeyPath
 }
 
 struct HosterColorsBlock: View {
     @EnvironmentObject var preferencesDriver: PreferencesDriver
-    
-    private let metas: [HosterColorMeta] = [
-        HosterColorMeta(caption: "Month", keyPath: \.monthColorLight),
-        HosterColorMeta(caption: "Arrows", keyPath: \.navigationColorLight),
-        HosterColorMeta(caption: "Axis", keyPath: \.captionColorLight),
-        HosterColorMeta(caption: "Workdays", keyPath: \.workdayColorLight),
-        HosterColorMeta(caption: "Weekend", keyPath: \.weekendColorLight),
-        HosterColorMeta(caption: "Holidays", keyPath: \.holidayColorLight),
-        HosterColorMeta(caption: "Today", keyPath: \.todayColorLight),
-        HosterColorMeta(caption: "Events", keyPath: \.eventColorLight)
+    @Environment(\.colorScheme) private var colorScheme
+
+    private let dynamicMetas: [HosterColorDynamicMeta] = [
+        HosterColorDynamicMeta(caption: "Month", lightKeyPath: \.monthColorLight, darkKeyPath: \.monthColorDark),
+        HosterColorDynamicMeta(caption: "Arrows", lightKeyPath: \.navigationColorLight, darkKeyPath: \.navigationColorDark),
+        HosterColorDynamicMeta(caption: "Axis", lightKeyPath: \.captionColorLight, darkKeyPath: \.captionColorDark),
+        HosterColorDynamicMeta(caption: "Workdays", lightKeyPath: \.workdayColorLight, darkKeyPath: \.workdayColorDark),
+        HosterColorDynamicMeta(caption: "Weekend", lightKeyPath: \.weekendColorLight, darkKeyPath: \.weekendColorDark),
+        HosterColorDynamicMeta(caption: "Holidays", lightKeyPath: \.holidayColorLight, darkKeyPath: \.holidayColorDark),
+        HosterColorDynamicMeta(caption: "Today", lightKeyPath: \.todayColorLight, darkKeyPath: \.todayColorDark),
+        HosterColorDynamicMeta(caption: "Events", lightKeyPath: \.eventColorLight, darkKeyPath: \.eventColorDark)
     ]
 
     var body: some View {
@@ -37,6 +44,13 @@ struct HosterColorsBlock: View {
     }
     
     private func obtainGrid() -> [[HosterColorMeta]] {
+        let metas: [HosterColorMeta]
+        switch colorScheme {
+        case .light: metas = dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.lightKeyPath) }
+        case .dark: metas = dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.darkKeyPath) }
+        @unknown default: metas = dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.lightKeyPath) }
+        }
+        
         var grid = [[HosterColorMeta]]()
         _ = metas.publisher.collect(2).collect().sink(receiveValue: { value in grid = value })
         return grid
@@ -53,11 +67,13 @@ struct HosterColorsRow: View {
         HStack(spacing: 0) {
             HosterColorControl(
                 caption: firstMeta.caption,
-                color: preferencesDriver[keyPath: firstMeta.keyPath])
+                keyPath: firstMeta.keyPath)
+                .padding(.trailing, 5)
             
             HosterColorControl(
                 caption: secondMeta.caption,
-                color: preferencesDriver[keyPath: secondMeta.keyPath])
+                keyPath: secondMeta.keyPath)
+                .padding(.leading, 5)
         }
     }
 }

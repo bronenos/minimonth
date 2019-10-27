@@ -65,11 +65,20 @@ public final class DesignBook: ObservableObject {
         return value
     }
     
+    public func resolve(dynamicColor: UIColor) -> UIColor {
+        return dynamicColor.resolvedColor(with: traitEnvironment.traitCollection)
+    }
+    
     public func font(weight: DesignBookFontWeight, category: UIFont.TextStyle, defaultSizes: DesignBookFontSize, maximumSizes: DesignBookFontSize?) -> UIFont {
         let defaultSize = extractFontSize(defaultSizes)
         let defaultFont = UIFont.systemFont(ofSize: defaultSize, weight: adjustedFontWeight(weight))
         let maximumSize = maximumSizes.flatMap(extractFontSize) ?? .infinity
         return UIFontMetrics(forTextStyle: category).scaledFont(for: defaultFont, maximumPointSize: maximumSize)
+    }
+    
+    public func discardCache() {
+        cachedUsages.removeAll()
+        objectWillChange.send()
     }
     
     private func color(_ color: DesignBookColor) -> UIColor {
@@ -85,7 +94,7 @@ public final class DesignBook: ObservableObject {
         return UIColor(hex: hex)
     }
     
-    private func obtainColor(byPref keyPath: KeyPath<PreferencesDriver, UIColor>) -> UIColor {
+    private func obtainColor(byPref keyPath: PreferencesReadableKeyPath) -> UIColor {
         return preferencesDriver[keyPath: keyPath]
     }
     
