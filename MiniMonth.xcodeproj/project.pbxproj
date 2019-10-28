@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,7 +20,6 @@
 		D44D337123624409001C44A1 /* DesignBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C3235EC8D70030238C /* DesignBook.swift */; };
 		D468DB2523631F230085122D /* HosterPreferencesBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468DB2423631F230085122D /* HosterPreferencesBlock.swift */; };
 		D468DB2C23633E0C0085122D /* HosterPreferencesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468DB2B23633E0C0085122D /* HosterPreferencesInteractor.swift */; };
-		D46BFD392365EDF700C49E9D /* ColorPicker in Frameworks */ = {isa = PBXBuildFile; productRef = D46BFD382365EDF700C49E9D /* ColorPicker */; };
 		D47836C2235EC7F50030238C /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C0235EC7AE0030238C /* CalendarMonthView.swift */; };
 		D479375723605A4B006D5EDC /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479375623605A4B006D5EDC /* ViewExtensions.swift */; };
 		D479375B236082AD006D5EDC /* RangeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479375A236082AD006D5EDC /* RangeExtensions.swift */; };
@@ -201,7 +200,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D46BFD392365EDF700C49E9D /* ColorPicker in Frameworks */,
 				9B0759FF1BC2E001F2A9BDCA /* Pods_Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,7 +505,6 @@
 			);
 			name = Shared;
 			packageProductDependencies = (
-				D46BFD382365EDF700C49E9D /* ColorPicker */,
 			);
 			productName = "MiniMonth-Shared";
 			productReference = D44D33622362428B001C44A1 /* Shared.framework */;
@@ -559,9 +556,12 @@
 					};
 					D44D33612362428B001C44A1 = {
 						CreatedOnToolsVersion = 11.0;
+						ProvisioningStyle = Manual;
 					};
 					D4CD22A62362D9EA000409CB = {
 						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = V8NCXSZ3T7;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -576,7 +576,6 @@
 			);
 			mainGroup = D411EDE219C2A59B0054439F;
 			packageReferences = (
-				D46BFD372365EDF700C49E9D /* XCRemoteSwiftPackageReference "ColorPicker" */,
 			);
 			productRefGroup = D411EDEC19C2A59B0054439F /* Products */;
 			projectDirPath = "";
@@ -939,11 +938,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Widget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.bronenos.MiniMonth.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -964,11 +959,7 @@
 				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = V8NCXSZ3T7;
 				INFOPLIST_FILE = Widget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.bronenos.MiniMonth.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1001,11 +992,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Shared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.bronenos.MiniMonth-Shared";
@@ -1045,11 +1032,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Shared/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.bronenos.MiniMonth-Shared";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1084,10 +1067,7 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Hoster/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1121,10 +1101,7 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Hoster/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = me.bronenos.MiniMonth;
@@ -1176,25 +1153,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D46BFD372365EDF700C49E9D /* XCRemoteSwiftPackageReference "ColorPicker" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hendriku/ColorPicker.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D46BFD382365EDF700C49E9D /* ColorPicker */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D46BFD372365EDF700C49E9D /* XCRemoteSwiftPackageReference "ColorPicker" */;
-			productName = ColorPicker;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D411EDE319C2A59B0054439F /* Project object */;
 }
