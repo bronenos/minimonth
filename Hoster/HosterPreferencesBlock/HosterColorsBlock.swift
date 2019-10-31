@@ -23,7 +23,6 @@ struct HosterColorMeta: Hashable {
 struct HosterColorsBlock: View {
     @EnvironmentObject var preferencesDriver: PreferencesDriver
     @Environment(\.colorScheme) private var colorScheme
-    @State var dynamicWidth = UIScreen.main.bounds.width
 
     private let dynamicMetas: [HosterColorDynamicMeta] = [
         HosterColorDynamicMeta(caption: "Month", lightKeyPath: \.monthColorLight, darkKeyPath: \.monthColorDark),
@@ -38,7 +37,7 @@ struct HosterColorsBlock: View {
 
     var body: some View {
         VStack {
-            if dynamicWidth > 320 {
+            if UIScreen.main.kind.atLeast(.large) {
                 ForEach(self.obtainGrid(), id: \.self) { row in
                     HosterColorsRow(firstMeta: row[0], secondMeta: row[1])
                 }
@@ -48,13 +47,6 @@ struct HosterColorsBlock: View {
                     HosterColorControl(caption: meta.caption, keyPath: meta.keyPath)
                 }
             }
-            
-            HStack {
-                Spacer().background(WidthPreferenceApply())
-            }
-        }
-        .onPreferenceChange(WidthPreference.self) { width in
-            DispatchQueue.main.async { self.dynamicWidth = width }
         }
     }
     
@@ -90,21 +82,6 @@ struct HosterColorsRow: View {
                 caption: secondMeta.caption,
                 keyPath: secondMeta.keyPath)
                 .padding(.leading, 5)
-        }
-    }
-}
-
-fileprivate struct WidthPreference: PreferenceKey {
-    static var defaultValue = CGFloat(0)
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) { value = nextValue() }
-}
-
-fileprivate struct WidthPreferenceApply: View {
-    var body: some View {
-        GeometryReader { geometry in
-            Rectangle()
-                .fill(Color.clear)
-                .preference(key: WidthPreference.self, value: geometry.size.width)
         }
     }
 }

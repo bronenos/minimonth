@@ -32,8 +32,7 @@ struct HosterColorControl: View {
             }
             
             Circle()
-                .aspectRatio(1.0, contentMode: .fit)
-                .frame(minWidth: 15, idealWidth: 25, maxWidth: 25, alignment: .center)
+                .frame(ownSide: 25)
                 .foregroundColor(resolvedColor)
                 .padding(5)
         }

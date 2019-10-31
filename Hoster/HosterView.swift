@@ -36,7 +36,7 @@ struct HosterView: View {
     var body: some View {
         Group {
             if self.windowScene.interfaceOrientation.isPortrait {
-                if UIDevice.current.hasLargeScreen {
+                if UIScreen.main.kind.atLeast(.large) {
                     VStack {
                         Spacer()
                         
@@ -69,9 +69,15 @@ struct HosterView: View {
                 HStack(alignment: .center) {
                     HosterCalendarWrapper()
                     
-                    if UIDevice.current.hasLargeScreen {
-                        Spacer()
-                            .frame(minWidth: 0, idealWidth: 50, maxWidth: 50, alignment: .center)
+                    if UIScreen.main.kind.atLeast(.large) {
+                        if UIScreen.main.kind.atLeast(.extraLarge) {
+                            Spacer()
+                                .frame(minWidth: 0, idealWidth: 50, maxWidth: 50, alignment: .center)
+                        }
+                        else {
+                            Spacer()
+                                .frame(minWidth: 0, idealWidth: 20, maxWidth: 20, alignment: .center)
+                        }
                         
                         VStack {
                             Spacer()
@@ -85,6 +91,15 @@ struct HosterView: View {
                         }
                     }
                     else {
+                        if UIScreen.main.kind.atLeast(.regular) {
+                            Spacer()
+                                .frame(maxWidth: 30, alignment: .center)
+                        }
+                        else {
+                            Spacer()
+                                .frame(maxWidth: 5, alignment: .center)
+                        }
+                        
                         ScrollView(.vertical, showsIndicators: false) {
                             HosterPreferencesBlock(
                                 preferencesDriver: self.preferencesDriver,
@@ -96,18 +111,23 @@ struct HosterView: View {
             }
         }
         .background(Color(UIColor.systemBackground))
-        .padding(.horizontal, 15)
-        .frame(
-            minWidth: 0,
-            maxWidth: .infinity,
-            minHeight: 0,
-            maxHeight: .infinity,
-            alignment: .center
-        )
+        .padding(.horizontal, horizontalPadding)
         .sheet(
             item: self.$context.colorPickingMeta,
             content: self.constructColorPicker
         )
+    }
+    
+    private var horizontalPadding: CGFloat {
+        if windowScene.interfaceOrientation.isPortrait {
+            return 15
+        }
+        else if UIScreen.main.kind.atLeast(.regular) {
+            return 15
+        }
+        else {
+            return 5
+        }
     }
     
     private func constructColorPicker(item: HosterContextColorPickingMeta) -> some View {
