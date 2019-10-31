@@ -23,6 +23,7 @@ struct HosterColorMeta: Hashable {
 struct HosterColorsBlock: View {
     @EnvironmentObject var preferencesDriver: PreferencesDriver
     @Environment(\.colorScheme) private var colorScheme
+    @State var dynamicWidth = UIScreen.main.bounds.width
 
     private let dynamicMetas: [HosterColorDynamicMeta] = [
         HosterColorDynamicMeta(caption: "Month", lightKeyPath: \.monthColorLight, darkKeyPath: \.monthColorDark),
@@ -37,22 +38,37 @@ struct HosterColorsBlock: View {
 
     var body: some View {
         VStack {
-            ForEach(obtainGrid(), id: \.self) { row in
-                HosterColorsRow(firstMeta: row[0], secondMeta: row[1])
+            if dynamicWidth > 320 {
+                ForEach(self.obtainGrid(), id: \.self) { row in
+                    HosterColorsRow(firstMeta: row[0], secondMeta: row[1])
+                }
             }
+            else {
+                ForEach(self.obtainList(), id: \.self) { meta in
+                    HosterColorControl(caption: meta.caption, keyPath: meta.keyPath)
+                }
+            }
+            
+            HStack {
+                Spacer().background(WidthPreferenceApply())
+            }
+        }
+        .onPreferenceChange(WidthPreference.self) { width in
+            DispatchQueue.main.async { self.dynamicWidth = width }
+        }
+    }
+    
+    private func obtainList() -> [HosterColorMeta] {
+        switch colorScheme {
+        case .light: return dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.lightKeyPath) }
+        case .dark: return dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.darkKeyPath) }
+        @unknown default: return dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.lightKeyPath) }
         }
     }
     
     private func obtainGrid() -> [[HosterColorMeta]] {
-        let metas: [HosterColorMeta]
-        switch colorScheme {
-        case .light: metas = dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.lightKeyPath) }
-        case .dark: metas = dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.darkKeyPath) }
-        @unknown default: metas = dynamicMetas.map { HosterColorMeta(caption: $0.caption, keyPath: $0.lightKeyPath) }
-        }
-        
         var grid = [[HosterColorMeta]]()
-        _ = metas.publisher.collect(2).collect().sink(receiveValue: { value in grid = value })
+        _ = obtainList().publisher.collect(2).collect().sink(receiveValue: { value in grid = value })
         return grid
     }
 }
@@ -74,6 +90,21 @@ struct HosterColorsRow: View {
                 caption: secondMeta.caption,
                 keyPath: secondMeta.keyPath)
                 .padding(.leading, 5)
+        }
+    }
+}
+
+fileprivate struct WidthPreference: PreferenceKey {
+    static var defaultValue = CGFloat(0)
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) { value = nextValue() }
+}
+
+fileprivate struct WidthPreferenceApply: View {
+    var body: some View {
+        GeometryReader { geometry in
+            Rectangle()
+                .fill(Color.clear)
+                .preference(key: WidthPreference.self, value: geometry.size.width)
         }
     }
 }

@@ -10,7 +10,6 @@ import SwiftUI
 import Shared
 import Widget
 import Combine
-import ColorPicker
 
 protocol HosterViewDelegate: class {
     func didRequestStyleUpdate(_ style: ColorScheme?)
@@ -33,38 +32,81 @@ struct HosterView: View {
         self.delegate = delegate
         self.orientationWatcher = OrientationWatcher(windowScene: windowScene)
     }
-
+    
     var body: some View {
         Group {
-            if windowScene.interfaceOrientation.isPortrait {
-                VStack(alignment: .center, spacing: 50) {
-                    HosterCalendarWrapper()
-                    
-                    HosterPreferencesBlock(
-                        preferencesDriver: preferencesDriver,
-                        colorScheme: colorScheme,
-                        delegate: delegate
-                    )
-                    .fixedSize(horizontal: false, vertical: true)
+            if self.windowScene.interfaceOrientation.isPortrait {
+                if UIDevice.current.hasLargeScreen {
+                    VStack {
+                        Spacer()
+                        
+                        HosterCalendarWrapper()
+
+                        HosterPreferencesBlock(
+                            preferencesDriver: self.preferencesDriver,
+                            colorScheme: self.colorScheme,
+                            delegate: self.delegate)
+                        
+                        Spacer()
+                    }
+                }
+                else {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        Spacer()
+                            .frame(ownWidth: nil, ownHeight: 20)
+                        
+                        HosterCalendarWrapper()
+
+                        HosterPreferencesBlock(
+                            preferencesDriver: self.preferencesDriver,
+                            colorScheme: self.colorScheme,
+                            delegate: self.delegate)
+                            .layoutPriority(1.0)
+                    }
                 }
             }
             else {
-                HStack(alignment: .center, spacing: 50) {
+                HStack(alignment: .center) {
                     HosterCalendarWrapper()
                     
-                    HosterPreferencesBlock(
-                        preferencesDriver: preferencesDriver,
-                        colorScheme: colorScheme,
-                        delegate: delegate
-                    )
+                    if UIDevice.current.hasLargeScreen {
+                        Spacer()
+                            .frame(minWidth: 0, idealWidth: 50, maxWidth: 50, alignment: .center)
+                        
+                        VStack {
+                            Spacer()
+                            
+                            HosterPreferencesBlock(
+                                preferencesDriver: self.preferencesDriver,
+                                colorScheme: self.colorScheme,
+                                delegate: self.delegate)
+                            
+                            Spacer()
+                        }
+                    }
+                    else {
+                        ScrollView(.vertical, showsIndicators: false) {
+                            HosterPreferencesBlock(
+                                preferencesDriver: self.preferencesDriver,
+                                colorScheme: self.colorScheme,
+                                delegate: self.delegate)
+                        }
+                    }
                 }
             }
         }
         .background(Color(UIColor.systemBackground))
         .padding(.horizontal, 15)
+        .frame(
+            minWidth: 0,
+            maxWidth: .infinity,
+            minHeight: 0,
+            maxHeight: .infinity,
+            alignment: .center
+        )
         .sheet(
-            item: $context.colorPickingMeta,
-            content: constructColorPicker
+            item: self.$context.colorPickingMeta,
+            content: self.constructColorPicker
         )
     }
     

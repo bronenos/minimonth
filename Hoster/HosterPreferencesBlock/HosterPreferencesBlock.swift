@@ -23,7 +23,7 @@ struct HosterPreferencesBlock: View {
     }
     
     var body: some View {
-//        ScrollView {
+//        HStack(alignment: .center) {
             VStack {
                 Spacer()
                 
@@ -60,6 +60,7 @@ struct HosterPreferencesBlock: View {
 //        }
         .padding(.vertical, 15)
         .frame(maxWidth: 400, alignment: .center)
+        .fixedSize(horizontal: false, vertical: true)
     }
 }
 

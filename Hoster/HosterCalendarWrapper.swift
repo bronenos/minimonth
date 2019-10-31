@@ -17,7 +17,10 @@ struct HosterCalendarWrapper: View {
         CalendarView(
             interactor: CalendarInteractor(style: .month, delegate: nil),
             position: .center)
-            .frame(ownWidth: 350, ownHeight: 300)
+            .frame(
+                minWidth: 250, idealWidth: 350, maxWidth: 350,
+                minHeight: 270, idealHeight: 300, maxHeight: 300,
+                alignment: .center)
             .background(BlurredView(style: .systemThickMaterial, backgroundColor: UIColor.label))
             .cornerRadius(20)
             .disabled(true)

@@ -42,7 +42,7 @@ final class HosterColorPickerWrapper: NSObject, UIViewRepresentable, ColorPicker
         let viewController = CustomPickerViewController()
         viewController.navigationItem.title = title
         viewController.navigationItem.rightBarButtonItem = doneButton
-        viewController.edgesForExtendedLayout = .init()
+        viewController.edgesForExtendedLayout = []
         viewController.view.backgroundColor = UIColor.systemGroupedBackground
         viewController.colorPreview.isHidden = true
         viewController.colorPalette.layer.cornerRadius = 10

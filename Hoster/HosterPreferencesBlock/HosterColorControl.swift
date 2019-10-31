@@ -24,18 +24,23 @@ struct HosterColorControl: View {
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: true, vertical: true)
                 .padding(.leading, 8)
-                .padding(.vertical, 8)
+                .padding(.vertical, 4)
             
-            Spacer()
+            ZStack {
+                Color(UIColor.secondarySystemBackground)
+                Spacer()
+            }
             
             Circle()
+                .aspectRatio(1.0, contentMode: .fit)
+                .frame(minWidth: 15, idealWidth: 25, maxWidth: 25, alignment: .center)
                 .foregroundColor(resolvedColor)
-                .frame(ownSide: 35)
+                .padding(5)
         }
         .overlay(
             Capsule(style: .circular)
-                .stroke(resolvedColor)
-                .opacity(0.75))
+                .stroke(Color.gray)
+                .opacity(0.35))
         .onTapGesture {
             self.context.presentColorPicker(title: self.caption, keyPath: self.keyPath)
         }
