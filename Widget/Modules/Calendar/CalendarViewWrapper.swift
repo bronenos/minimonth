@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Shared
 
 public struct CalendarViewWrapper: View {
     private let interactor: CalendarInteractor

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Shared
 import Combine
 
 struct HosterPreferencesBlock: View {
@@ -29,13 +28,13 @@ struct HosterPreferencesBlock: View {
                 
                 Section {
                     HStack {
-                        Text("Preview as")
+                        Text("Preferences.PreviewAs")
                         
                         Spacer()
                         
                         Picker(selection: $interactor.colorScheme, label: EmptyView()) {
-                            Text("Light").tag(ColorScheme.light)
-                            Text("Dark").tag(ColorScheme.dark)
+                            Text("Preferences.PreviewAs.Light").tag(ColorScheme.light)
+                            Text("Preferences.PreviewAs.Dark").tag(ColorScheme.dark)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .fixedSize(horizontal: true, vertical: false)
@@ -45,7 +44,7 @@ struct HosterPreferencesBlock: View {
 
                 Section {
                     Toggle(isOn: $interactor.weeknumVisible) {
-                        Text("Week numbers")
+                        Text("Preferences.WeekNumbers")
                     }
                 }
                 .styleAsPreferenceBlock()

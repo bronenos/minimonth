@@ -8,7 +8,6 @@
 
 import UIKit
 import Combine
-import Shared
 
 struct HosterContextColorPickingMeta: Identifiable {
     let id: UUID

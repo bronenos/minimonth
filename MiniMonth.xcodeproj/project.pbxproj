@@ -8,14 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D411EE1319C2A5CD0054439F /* NotificationCenter.framework */; };
-		D41FCB0223642D0F00499C19 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; };
-		D41FCB0323642D0F00499C19 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D41FCB0523642D2100499C19 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D41FCB0C2364B11A00499C19 /* OrientationWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FCB0B2364B11A00499C19 /* OrientationWatcher.swift */; };
 		D44D33662362428B001C44A1 /* MiniMonth_Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = D44D33642362428B001C44A1 /* MiniMonth_Shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D44D336F23624301001C44A1 /* PreferencesDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D33562361F367001C44A1 /* PreferencesDriver.swift */; };
-		D44D337023624370001C44A1 /* DesignTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C7235EC9160030238C /* DesignTypes.swift */; };
-		D44D337123624409001C44A1 /* DesignBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C3235EC8D70030238C /* DesignBook.swift */; };
 		D468DB2523631F230085122D /* HosterPreferencesBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468DB2423631F230085122D /* HosterPreferencesBlock.swift */; };
 		D468DB2C23633E0C0085122D /* HosterPreferencesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468DB2B23633E0C0085122D /* HosterPreferencesInteractor.swift */; };
 		D47836C2235EC7F50030238C /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C0235EC7AE0030238C /* CalendarMonthView.swift */; };
@@ -28,12 +23,7 @@
 		D48D4C57236AAEC200A8B921 /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */; };
 		D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49AFD5C2363914A0033D98F /* BlurredView.swift */; };
 		D4B034CA2361AE3C009A7344 /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */; };
-		D4B0AE47236AE2B300DC88C6 /* Pods_Hoster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1EC1421D97F8B8D435509E /* Pods_Hoster.framework */; };
-		D4B0AE48236AE2B300DC88C6 /* Pods_Hoster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1EC1421D97F8B8D435509E /* Pods_Hoster.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D4B0AE49236AE2BA00DC88C6 /* Pods_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2EC40568CFE27EE2022DC /* Pods_Widget.framework */; };
-		D4B0AE4A236AE2BA00DC88C6 /* Pods_Widget.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2EC40568CFE27EE2022DC /* Pods_Widget.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D4B0AE4C236AE2DA00DC88C6 /* Pods_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E245D71F39F7B305C2C7DE /* Pods_Shared.framework */; };
-		D4B0AE4D236AE2DA00DC88C6 /* Pods_Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80E245D71F39F7B305C2C7DE /* Pods_Shared.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D4B74269235E3036003FDFF9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74268235E3036003FDFF9 /* CalendarView.swift */; };
 		D4B7426B235E322A003FDFF9 /* CalendarRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426A235E322A003FDFF9 /* CalendarRootController.swift */; };
 		D4B7426D235E3AAA003FDFF9 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426C235E3AAA003FDFF9 /* CalendarHeader.swift */; };
@@ -41,6 +31,47 @@
 		D4B74273235E5300003FDFF9 /* CalendarWeekdayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74272235E5300003FDFF9 /* CalendarWeekdayBar.swift */; };
 		D4B74278235E6058003FDFF9 /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74277235E6058003FDFF9 /* CGFloatExtensions.swift */; };
 		D4B7427A235EBD64003FDFF9 /* CalendarMonthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74279235EBD64003FDFF9 /* CalendarMonthdayView.swift */; };
+		D4BB6A55236B06B5008BCAC0 /* LimitedGestureCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A2E236B06B5008BCAC0 /* LimitedGestureCircleView.swift */; };
+		D4BB6A56236B06B5008BCAC0 /* ColorControlContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A2F236B06B5008BCAC0 /* ColorControlContentView.swift */; };
+		D4BB6A57236B06B5008BCAC0 /* UIViewWithCommonInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A30236B06B5008BCAC0 /* UIViewWithCommonInit.swift */; };
+		D4BB6A58236B06B5008BCAC0 /* PaletteAwareScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A31236B06B5008BCAC0 /* PaletteAwareScrollView.swift */; };
+		D4BB6A59236B06B5008BCAC0 /* ColorPickerThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A32236B06B5008BCAC0 /* ColorPickerThumbView.swift */; };
+		D4BB6A5A236B06B5008BCAC0 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A33236B06B5008BCAC0 /* GradientView.swift */; };
+		D4BB6A5B236B06B5008BCAC0 /* CircleShapedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A34236B06B5008BCAC0 /* CircleShapedView.swift */; };
+		D4BB6A5C236B06B5008BCAC0 /* CustomColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A35236B06B5008BCAC0 /* CustomColorPickerViewController.swift */; };
+		D4BB6A5E236B06B5008BCAC0 /* ColorPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A37236B06B5008BCAC0 /* ColorPickerController.swift */; };
+		D4BB6A5F236B06B5008BCAC0 /* DefaultColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A38236B06B5008BCAC0 /* DefaultColorPickerViewController.swift */; };
+		D4BB6A60236B06B5008BCAC0 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A3A236B06B5008BCAC0 /* UIImageViewExtension.swift */; };
+		D4BB6A61236B06B5008BCAC0 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A3B236B06B5008BCAC0 /* UIColorExtension.swift */; };
+		D4BB6A62236B06B5008BCAC0 /* LimitedGestureViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A3C236B06B5008BCAC0 /* LimitedGestureViewDelegate.swift */; };
+		D4BB6A63236B06B5008BCAC0 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A3D236B06B5008BCAC0 /* CGPointExtension.swift */; };
+		D4BB6A64236B06B5008BCAC0 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A3E236B06B5008BCAC0 /* UIViewExtension.swift */; };
+		D4BB6A65236B06B5008BCAC0 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A3F236B06B5008BCAC0 /* CGRectExtension.swift */; };
+		D4BB6A66236B06B5008BCAC0 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A40236B06B5008BCAC0 /* UIImageExtension.swift */; };
+		D4BB6A67236B06B5008BCAC0 /* RadialHSBPaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A42236B06B5008BCAC0 /* RadialHSBPaletteDelegate.swift */; };
+		D4BB6A68236B06B5008BCAC0 /* RectangularHSBPaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A43236B06B5008BCAC0 /* RectangularHSBPaletteDelegate.swift */; };
+		D4BB6A69236B06B5008BCAC0 /* ComponentSliderDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A44236B06B5008BCAC0 /* ComponentSliderDelegates.swift */; };
+		D4BB6A6A236B06B5008BCAC0 /* ColorSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A45236B06B5008BCAC0 /* ColorSliderDelegate.swift */; };
+		D4BB6A6B236B06B5008BCAC0 /* ColorPaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A46236B06B5008BCAC0 /* ColorPaletteDelegate.swift */; };
+		D4BB6A6C236B06B5008BCAC0 /* ColorSliderControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A48236B06B5008BCAC0 /* ColorSliderControl.swift */; };
+		D4BB6A6D236B06B5008BCAC0 /* PaletteControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A49236B06B5008BCAC0 /* PaletteControls.swift */; };
+		D4BB6A6E236B06B5008BCAC0 /* ColorPaletteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A4A236B06B5008BCAC0 /* ColorPaletteControl.swift */; };
+		D4BB6A6F236B06B5008BCAC0 /* AbstractColorControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A4B236B06B5008BCAC0 /* AbstractColorControl.swift */; };
+		D4BB6A70236B06B5008BCAC0 /* ColorPreviewWithHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A4C236B06B5008BCAC0 /* ColorPreviewWithHex.swift */; };
+		D4BB6A71236B06B5008BCAC0 /* AdjustedHitBoxColorControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A4D236B06B5008BCAC0 /* AdjustedHitBoxColorControl.swift */; };
+		D4BB6A72236B06B5008BCAC0 /* ComponentSliderControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A4E236B06B5008BCAC0 /* ComponentSliderControls.swift */; };
+		D4BB6A73236B06B5008BCAC0 /* ControlWithThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A4F236B06B5008BCAC0 /* ControlWithThumbView.swift */; };
+		D4BB6A74236B06B5008BCAC0 /* ColorControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A50236B06B5008BCAC0 /* ColorControl.swift */; };
+		D4BB6A75236B06B5008BCAC0 /* ColorPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A51236B06B5008BCAC0 /* ColorPickerDelegate.swift */; };
+		D4BB6A76236B06B5008BCAC0 /* ColorPickerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A52236B06B5008BCAC0 /* ColorPickerControllerProtocol.swift */; };
+		D4BB6A77236B06B5008BCAC0 /* HSBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB6A54236B06B5008BCAC0 /* HSBColor.swift */; };
+		D4BB6A78236B06FE008BCAC0 /* PreferencesDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D33562361F367001C44A1 /* PreferencesDriver.swift */; };
+		D4BB6A79236B06FF008BCAC0 /* PreferencesDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D33562361F367001C44A1 /* PreferencesDriver.swift */; };
+		D4BB6A7A236B0703008BCAC0 /* DesignTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C7235EC9160030238C /* DesignTypes.swift */; };
+		D4BB6A7B236B0703008BCAC0 /* DesignBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C3235EC8D70030238C /* DesignBook.swift */; };
+		D4BB6A7C236B0704008BCAC0 /* DesignTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C7235EC9160030238C /* DesignTypes.swift */; };
+		D4BB6A7D236B0704008BCAC0 /* DesignBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C3235EC8D70030238C /* DesignBook.swift */; };
+		D4BB6A88236B1B5D008BCAC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BB6A8A236B1B5D008BCAC0 /* Localizable.strings */; };
 		D4BBE01F2364CCBD00F14E24 /* HosterContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBE01E2364CCBD00F14E24 /* HosterContext.swift */; };
 		D4BBE0212364D74A00F14E24 /* HosterColorPickerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBE0202364D74A00F14E24 /* HosterColorPickerWrapper.swift */; };
 		D4CD22AA2362D9EA000409CB /* HosterAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */; };
@@ -81,21 +112,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D41FCB0623642D2100499C19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D411EDE319C2A59B0054439F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D411EE1019C2A5CC0054439F;
-			remoteInfo = Widget;
-		};
-		D4CD22BF2362E38E000409CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D411EDE319C2A59B0054439F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D44D33612362428B001C44A1;
-			remoteInfo = Shared;
-		};
-		D4CD22E4236309AC000409CB /* PBXContainerItemProxy */ = {
+		D4BB6A2B236B0669008BCAC0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D411EDE319C2A59B0054439F /* Project object */;
 			proxyType = 1;
@@ -105,18 +122,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D41FCB0423642D0F00499C19 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D41FCB0323642D0F00499C19 /* Shared.framework in Embed Frameworks */,
-				D4B0AE48236AE2B300DC88C6 /* Pods_Hoster.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D41FCB0823642D2100499C19 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,28 +131,6 @@
 				D41FCB0523642D2100499C19 /* Widget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4B0AE4B236AE2BA00DC88C6 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D4B0AE4A236AE2BA00DC88C6 /* Pods_Widget.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4B0AE4E236AE2DA00DC88C6 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D4B0AE4D236AE2DA00DC88C6 /* Pods_Shared.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -191,6 +174,44 @@
 		D4B74272235E5300003FDFF9 /* CalendarWeekdayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeekdayBar.swift; sourceTree = "<group>"; };
 		D4B74277235E6058003FDFF9 /* CGFloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
 		D4B74279235EBD64003FDFF9 /* CalendarMonthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthdayView.swift; sourceTree = "<group>"; };
+		D4BB6A2E236B06B5008BCAC0 /* LimitedGestureCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitedGestureCircleView.swift; sourceTree = "<group>"; };
+		D4BB6A2F236B06B5008BCAC0 /* ColorControlContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorControlContentView.swift; sourceTree = "<group>"; };
+		D4BB6A30236B06B5008BCAC0 /* UIViewWithCommonInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewWithCommonInit.swift; sourceTree = "<group>"; };
+		D4BB6A31236B06B5008BCAC0 /* PaletteAwareScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteAwareScrollView.swift; sourceTree = "<group>"; };
+		D4BB6A32236B06B5008BCAC0 /* ColorPickerThumbView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerThumbView.swift; sourceTree = "<group>"; };
+		D4BB6A33236B06B5008BCAC0 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		D4BB6A34236B06B5008BCAC0 /* CircleShapedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleShapedView.swift; sourceTree = "<group>"; };
+		D4BB6A35236B06B5008BCAC0 /* CustomColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColorPickerViewController.swift; sourceTree = "<group>"; };
+		D4BB6A37236B06B5008BCAC0 /* ColorPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerController.swift; sourceTree = "<group>"; };
+		D4BB6A38236B06B5008BCAC0 /* DefaultColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultColorPickerViewController.swift; sourceTree = "<group>"; };
+		D4BB6A3A236B06B5008BCAC0 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		D4BB6A3B236B06B5008BCAC0 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		D4BB6A3C236B06B5008BCAC0 /* LimitedGestureViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitedGestureViewDelegate.swift; sourceTree = "<group>"; };
+		D4BB6A3D236B06B5008BCAC0 /* CGPointExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+		D4BB6A3E236B06B5008BCAC0 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		D4BB6A3F236B06B5008BCAC0 /* CGRectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
+		D4BB6A40236B06B5008BCAC0 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		D4BB6A42236B06B5008BCAC0 /* RadialHSBPaletteDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialHSBPaletteDelegate.swift; sourceTree = "<group>"; };
+		D4BB6A43236B06B5008BCAC0 /* RectangularHSBPaletteDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangularHSBPaletteDelegate.swift; sourceTree = "<group>"; };
+		D4BB6A44236B06B5008BCAC0 /* ComponentSliderDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentSliderDelegates.swift; sourceTree = "<group>"; };
+		D4BB6A45236B06B5008BCAC0 /* ColorSliderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSliderDelegate.swift; sourceTree = "<group>"; };
+		D4BB6A46236B06B5008BCAC0 /* ColorPaletteDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPaletteDelegate.swift; sourceTree = "<group>"; };
+		D4BB6A48236B06B5008BCAC0 /* ColorSliderControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSliderControl.swift; sourceTree = "<group>"; };
+		D4BB6A49236B06B5008BCAC0 /* PaletteControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteControls.swift; sourceTree = "<group>"; };
+		D4BB6A4A236B06B5008BCAC0 /* ColorPaletteControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPaletteControl.swift; sourceTree = "<group>"; };
+		D4BB6A4B236B06B5008BCAC0 /* AbstractColorControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractColorControl.swift; sourceTree = "<group>"; };
+		D4BB6A4C236B06B5008BCAC0 /* ColorPreviewWithHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPreviewWithHex.swift; sourceTree = "<group>"; };
+		D4BB6A4D236B06B5008BCAC0 /* AdjustedHitBoxColorControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustedHitBoxColorControl.swift; sourceTree = "<group>"; };
+		D4BB6A4E236B06B5008BCAC0 /* ComponentSliderControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentSliderControls.swift; sourceTree = "<group>"; };
+		D4BB6A4F236B06B5008BCAC0 /* ControlWithThumbView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlWithThumbView.swift; sourceTree = "<group>"; };
+		D4BB6A50236B06B5008BCAC0 /* ColorControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorControl.swift; sourceTree = "<group>"; };
+		D4BB6A51236B06B5008BCAC0 /* ColorPickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerDelegate.swift; sourceTree = "<group>"; };
+		D4BB6A52236B06B5008BCAC0 /* ColorPickerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerControllerProtocol.swift; sourceTree = "<group>"; };
+		D4BB6A53236B06B5008BCAC0 /* FlexColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlexColorPicker.h; sourceTree = "<group>"; };
+		D4BB6A54236B06B5008BCAC0 /* HSBColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSBColor.swift; sourceTree = "<group>"; };
+		D4BB6A89236B1B5D008BCAC0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4BB6A8C236B1B88008BCAC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4BB6A8D236B1BA3008BCAC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4BBE01E2364CCBD00F14E24 /* HosterContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterContext.swift; sourceTree = "<group>"; };
 		D4BBE0202364D74A00F14E24 /* HosterColorPickerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterColorPickerWrapper.swift; sourceTree = "<group>"; };
 		D4C735AA19FFBAEC0066A6E8 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
@@ -200,7 +221,6 @@
 		D4CD22AD2362D9EA000409CB /* HosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterView.swift; sourceTree = "<group>"; };
 		D4CD22AF2362D9EB000409CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4CD22B22362D9EB000409CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D4CD22B52362D9EB000409CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4CD22B72362D9EB000409CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4CD22BB2362DB56000409CB /* HosterRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterRootController.swift; sourceTree = "<group>"; };
 		D4CD22C32362E9CA000409CB /* HosterCalendarWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterCalendarWrapper.swift; sourceTree = "<group>"; };
@@ -219,7 +239,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4B0AE49236AE2BA00DC88C6 /* Pods_Widget.framework in Frameworks */,
 				D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,8 +255,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D41FCB0223642D0F00499C19 /* Shared.framework in Frameworks */,
-				D4B0AE47236AE2B300DC88C6 /* Pods_Hoster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +311,7 @@
 		D411EDE219C2A59B0054439F = {
 			isa = PBXGroup;
 			children = (
+				D4E066EE236B060600647791 /* Libs */,
 				D44D33632362428B001C44A1 /* Shared */,
 				D4CD22A82362D9EA000409CB /* Hoster */,
 				D4B74267235E2512003FDFF9 /* Widget */,
@@ -457,6 +475,62 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D4BB6A2D236B06B5008BCAC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4BB6A2E236B06B5008BCAC0 /* LimitedGestureCircleView.swift */,
+				D4BB6A2F236B06B5008BCAC0 /* ColorControlContentView.swift */,
+				D4BB6A30236B06B5008BCAC0 /* UIViewWithCommonInit.swift */,
+				D4BB6A31236B06B5008BCAC0 /* PaletteAwareScrollView.swift */,
+				D4BB6A32236B06B5008BCAC0 /* ColorPickerThumbView.swift */,
+				D4BB6A33236B06B5008BCAC0 /* GradientView.swift */,
+				D4BB6A34236B06B5008BCAC0 /* CircleShapedView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D4BB6A39236B06B5008BCAC0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D4BB6A3A236B06B5008BCAC0 /* UIImageViewExtension.swift */,
+				D4BB6A3B236B06B5008BCAC0 /* UIColorExtension.swift */,
+				D4BB6A3C236B06B5008BCAC0 /* LimitedGestureViewDelegate.swift */,
+				D4BB6A3D236B06B5008BCAC0 /* CGPointExtension.swift */,
+				D4BB6A3E236B06B5008BCAC0 /* UIViewExtension.swift */,
+				D4BB6A3F236B06B5008BCAC0 /* CGRectExtension.swift */,
+				D4BB6A40236B06B5008BCAC0 /* UIImageExtension.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D4BB6A41236B06B5008BCAC0 /* ControlDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				D4BB6A42236B06B5008BCAC0 /* RadialHSBPaletteDelegate.swift */,
+				D4BB6A43236B06B5008BCAC0 /* RectangularHSBPaletteDelegate.swift */,
+				D4BB6A44236B06B5008BCAC0 /* ComponentSliderDelegates.swift */,
+				D4BB6A45236B06B5008BCAC0 /* ColorSliderDelegate.swift */,
+				D4BB6A46236B06B5008BCAC0 /* ColorPaletteDelegate.swift */,
+			);
+			path = ControlDelegates;
+			sourceTree = "<group>";
+		};
+		D4BB6A47236B06B5008BCAC0 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				D4BB6A48236B06B5008BCAC0 /* ColorSliderControl.swift */,
+				D4BB6A49236B06B5008BCAC0 /* PaletteControls.swift */,
+				D4BB6A4A236B06B5008BCAC0 /* ColorPaletteControl.swift */,
+				D4BB6A4B236B06B5008BCAC0 /* AbstractColorControl.swift */,
+				D4BB6A4C236B06B5008BCAC0 /* ColorPreviewWithHex.swift */,
+				D4BB6A4D236B06B5008BCAC0 /* AdjustedHitBoxColorControl.swift */,
+				D4BB6A4E236B06B5008BCAC0 /* ComponentSliderControls.swift */,
+				D4BB6A4F236B06B5008BCAC0 /* ControlWithThumbView.swift */,
+				D4BB6A50236B06B5008BCAC0 /* ColorControl.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		D4CD22A82362D9EA000409CB /* Hoster */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +538,7 @@
 				D468DB26236320B90085122D /* Shared */,
 				D4CD22B72362D9EB000409CB /* Info.plist */,
 				D4CD22B42362D9EB000409CB /* LaunchScreen.storyboard */,
+				D4BB6A8A236B1B5D008BCAC0 /* Localizable.strings */,
 				D4CD22AF2362D9EB000409CB /* Assets.xcassets */,
 				D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */,
 				D4CD22AB2362D9EA000409CB /* HosterSceneDelegate.swift */,
@@ -483,6 +558,32 @@
 				D4CD22B22362D9EB000409CB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D4E066EE236B060600647791 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				D4E066EF236B060F00647791 /* FlexColorPicker */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		D4E066EF236B060F00647791 /* FlexColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				D4BB6A37236B06B5008BCAC0 /* ColorPickerController.swift */,
+				D4BB6A52236B06B5008BCAC0 /* ColorPickerControllerProtocol.swift */,
+				D4BB6A51236B06B5008BCAC0 /* ColorPickerDelegate.swift */,
+				D4BB6A41236B06B5008BCAC0 /* ControlDelegates */,
+				D4BB6A47236B06B5008BCAC0 /* Controls */,
+				D4BB6A35236B06B5008BCAC0 /* CustomColorPickerViewController.swift */,
+				D4BB6A38236B06B5008BCAC0 /* DefaultColorPickerViewController.swift */,
+				D4BB6A53236B06B5008BCAC0 /* FlexColorPicker.h */,
+				D4BB6A54236B06B5008BCAC0 /* HSBColor.swift */,
+				D4BB6A39236B06B5008BCAC0 /* Utilities */,
+				D4BB6A2D236B06B5008BCAC0 /* Views */,
+			);
+			path = FlexColorPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,12 +608,10 @@
 				D411EE0D19C2A5CC0054439F /* Sources */,
 				D411EE0E19C2A5CC0054439F /* Frameworks */,
 				D411EE0F19C2A5CC0054439F /* Resources */,
-				D4B0AE4B236AE2BA00DC88C6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D4CD22C02362E38E000409CB /* PBXTargetDependency */,
 			);
 			name = Widget;
 			productName = Today;
@@ -528,7 +627,6 @@
 				D44D335E2362428B001C44A1 /* Sources */,
 				D44D335F2362428B001C44A1 /* Frameworks */,
 				D44D33602362428B001C44A1 /* Resources */,
-				D4B0AE4E236AE2DA00DC88C6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -545,19 +643,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4CD22B82362D9EB000409CB /* Build configuration list for PBXNativeTarget "Hoster" */;
 			buildPhases = (
-				F79810D9E3B478981A0A4013 /* [CP] Check Pods Manifest.lock */,
 				D4CD22A32362D9EA000409CB /* Sources */,
 				D4CD22A42362D9EA000409CB /* Frameworks */,
 				D4CD22A52362D9EA000409CB /* Resources */,
-				D41FCB0423642D0F00499C19 /* Embed Frameworks */,
 				D41FCB0823642D2100499C19 /* Embed App Extensions */,
-				CCE937552F78FBB20DB3D4EB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D4CD22E5236309AC000409CB /* PBXTargetDependency */,
-				D41FCB0723642D2100499C19 /* PBXTargetDependency */,
+				D4BB6A2C236B0669008BCAC0 /* PBXTargetDependency */,
 			);
 			name = Hoster;
 			productName = "MiniMonth-Hoster";
@@ -587,7 +681,6 @@
 					};
 					D44D33612362428B001C44A1 = {
 						CreatedOnToolsVersion = 11.0;
-						DevelopmentTeam = V8NCXSZ3T7;
 						ProvisioningStyle = Manual;
 					};
 					D4CD22A62362D9EA000409CB = {
@@ -603,8 +696,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				ru,
+				Base,
 			);
 			mainGroup = D411EDE219C2A59B0054439F;
 			packageReferences = (
@@ -640,6 +733,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4CD22B62362D9EB000409CB /* LaunchScreen.storyboard in Resources */,
+				D4BB6A88236B1B5D008BCAC0 /* Localizable.strings in Resources */,
 				D4CD22B32362D9EB000409CB /* Preview Assets.xcassets in Resources */,
 				D4CD22B02362D9EB000409CB /* Assets.xcassets in Resources */,
 			);
@@ -692,46 +786,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CCE937552F78FBB20DB3D4EB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hoster/Pods-Hoster-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FlexColorPicker/FlexColorPicker.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexColorPicker.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hoster/Pods-Hoster-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F79810D9E3B478981A0A4013 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Hoster-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -750,8 +804,10 @@
 				D4B7427A235EBD64003FDFF9 /* CalendarMonthdayView.swift in Sources */,
 				D4B74269235E3036003FDFF9 /* CalendarView.swift in Sources */,
 				D47B16272360E406008A70A4 /* EventService.swift in Sources */,
+				D4BB6A79236B06FF008BCAC0 /* PreferencesDriver.swift in Sources */,
 				D4B034CA2361AE3C009A7344 /* OptionalExtensions.swift in Sources */,
 				D4B74278235E6058003FDFF9 /* CGFloatExtensions.swift in Sources */,
+				D4BB6A7D236B0704008BCAC0 /* DesignBook.swift in Sources */,
 				D47836C2235EC7F50030238C /* CalendarMonthView.swift in Sources */,
 				D4B74271235E3E17003FDFF9 /* CalendarInteractor.swift in Sources */,
 				D4D9CCCE236194D100BC5EDF /* FoundationExtensions.swift in Sources */,
@@ -759,6 +815,7 @@
 				D4B7426B235E322A003FDFF9 /* CalendarRootController.swift in Sources */,
 				D4CD22C92362F721000409CB /* CalendarViewWrapper.swift in Sources */,
 				D479375E236098BF006D5EDC /* HeightModifier.swift in Sources */,
+				D4BB6A7C236B0704008BCAC0 /* DesignTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,9 +823,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D44D336F23624301001C44A1 /* PreferencesDriver.swift in Sources */,
-				D44D337123624409001C44A1 /* DesignBook.swift in Sources */,
-				D44D337023624370001C44A1 /* DesignTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,39 +830,76 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BB6A70236B06B5008BCAC0 /* ColorPreviewWithHex.swift in Sources */,
 				D468DB2C23633E0C0085122D /* HosterPreferencesInteractor.swift in Sources */,
 				D4CD22D22362FCB2000409CB /* CalendarHeaderButton.swift in Sources */,
+				D4BB6A66236B06B5008BCAC0 /* UIImageExtension.swift in Sources */,
+				D4BB6A63236B06B5008BCAC0 /* CGPointExtension.swift in Sources */,
 				D4CD22DB2362FCBE000409CB /* ViewExtensions.swift in Sources */,
+				D4BB6A72236B06B5008BCAC0 /* ComponentSliderControls.swift in Sources */,
+				D4BB6A71236B06B5008BCAC0 /* AdjustedHitBoxColorControl.swift in Sources */,
 				D4CD22D12362FCB2000409CB /* CalendarHeader.swift in Sources */,
 				D4CD22D72362FCBE000409CB /* EventService.swift in Sources */,
+				D4BB6A60236B06B5008BCAC0 /* UIImageViewExtension.swift in Sources */,
 				D4CD22E12363001C000409CB /* HosterColorsBlock.swift in Sources */,
+				D4BB6A67236B06B5008BCAC0 /* RadialHSBPaletteDelegate.swift in Sources */,
+				D4BB6A73236B06B5008BCAC0 /* ControlWithThumbView.swift in Sources */,
 				D4CD22D02362FCB2000409CB /* CalendarView.swift in Sources */,
 				D4CD22CE2362FCB2000409CB /* CalendarInteractor.swift in Sources */,
+				D4BB6A58236B06B5008BCAC0 /* PaletteAwareScrollView.swift in Sources */,
+				D4BB6A64236B06B5008BCAC0 /* UIViewExtension.swift in Sources */,
 				D4BBE01F2364CCBD00F14E24 /* HosterContext.swift in Sources */,
 				D4CD22AA2362D9EA000409CB /* HosterAppDelegate.swift in Sources */,
 				D4CD22CD2362FCB2000409CB /* CalendarRootController.swift in Sources */,
 				D468DB2523631F230085122D /* HosterPreferencesBlock.swift in Sources */,
+				D4BB6A7B236B0703008BCAC0 /* DesignBook.swift in Sources */,
 				D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */,
 				D4CD22CC2362FCAD000409CB /* CalendarTypes.swift in Sources */,
 				D4CD22D82362FCBE000409CB /* FoundationExtensions.swift in Sources */,
 				D4BBE0212364D74A00F14E24 /* HosterColorPickerWrapper.swift in Sources */,
+				D4BB6A6B236B06B5008BCAC0 /* ColorPaletteDelegate.swift in Sources */,
+				D4BB6A7A236B0703008BCAC0 /* DesignTypes.swift in Sources */,
 				D41FCB0C2364B11A00499C19 /* OrientationWatcher.swift in Sources */,
 				D4CD22AC2362D9EA000409CB /* HosterSceneDelegate.swift in Sources */,
+				D4BB6A68236B06B5008BCAC0 /* RectangularHSBPaletteDelegate.swift in Sources */,
+				D4BB6A75236B06B5008BCAC0 /* ColorPickerDelegate.swift in Sources */,
 				D4CD22BC2362DB56000409CB /* HosterRootController.swift in Sources */,
 				D4CD22D52362FCB2000409CB /* CalendarMonthView.swift in Sources */,
 				D4CD22DC2362FCBE000409CB /* RangeExtensions.swift in Sources */,
+				D4BB6A74236B06B5008BCAC0 /* ColorControl.swift in Sources */,
+				D4BB6A6D236B06B5008BCAC0 /* PaletteControls.swift in Sources */,
+				D4BB6A5A236B06B5008BCAC0 /* GradientView.swift in Sources */,
+				D4BB6A6E236B06B5008BCAC0 /* ColorPaletteControl.swift in Sources */,
 				D4CD22D32362FCB2000409CB /* CalendarWeekdayBar.swift in Sources */,
 				D4CD22DE2362FCBF000409CB /* HeightModifier.swift in Sources */,
 				D4CD22D42362FCB2000409CB /* CalendarWeeknumBar.swift in Sources */,
+				D4BB6A61236B06B5008BCAC0 /* UIColorExtension.swift in Sources */,
 				D4CD22DA2362FCBE000409CB /* CGFloatExtensions.swift in Sources */,
+				D4BB6A5C236B06B5008BCAC0 /* CustomColorPickerViewController.swift in Sources */,
+				D4BB6A78236B06FE008BCAC0 /* PreferencesDriver.swift in Sources */,
+				D4BB6A6C236B06B5008BCAC0 /* ColorSliderControl.swift in Sources */,
 				D4CD22D92362FCBE000409CB /* OptionalExtensions.swift in Sources */,
+				D4BB6A55236B06B5008BCAC0 /* LimitedGestureCircleView.swift in Sources */,
 				D4CD22C42362E9CA000409CB /* HosterCalendarWrapper.swift in Sources */,
 				D4CD22CF2362FCB2000409CB /* CalendarViewWrapper.swift in Sources */,
+				D4BB6A62236B06B5008BCAC0 /* LimitedGestureViewDelegate.swift in Sources */,
 				D4CD22D62362FCB2000409CB /* CalendarMonthdayView.swift in Sources */,
+				D4BB6A76236B06B5008BCAC0 /* ColorPickerControllerProtocol.swift in Sources */,
 				D4CD22DD2362FCBF000409CB /* CalendarExtensions.swift in Sources */,
+				D4BB6A59236B06B5008BCAC0 /* ColorPickerThumbView.swift in Sources */,
 				D4CD22DF2362FCBF000409CB /* PerformingModifier.swift in Sources */,
 				D48D4C57236AAEC200A8B921 /* UIScreenExtensions.swift in Sources */,
+				D4BB6A57236B06B5008BCAC0 /* UIViewWithCommonInit.swift in Sources */,
 				D4CD22E323630048000409CB /* HosterColorControl.swift in Sources */,
+				D4BB6A6A236B06B5008BCAC0 /* ColorSliderDelegate.swift in Sources */,
+				D4BB6A69236B06B5008BCAC0 /* ComponentSliderDelegates.swift in Sources */,
+				D4BB6A5E236B06B5008BCAC0 /* ColorPickerController.swift in Sources */,
+				D4BB6A77236B06B5008BCAC0 /* HSBColor.swift in Sources */,
+				D4BB6A65236B06B5008BCAC0 /* CGRectExtension.swift in Sources */,
+				D4BB6A56236B06B5008BCAC0 /* ColorControlContentView.swift in Sources */,
+				D4BB6A5B236B06B5008BCAC0 /* CircleShapedView.swift in Sources */,
+				D4BB6A6F236B06B5008BCAC0 /* AbstractColorControl.swift in Sources */,
+				D4BB6A5F236B06B5008BCAC0 /* DefaultColorPickerViewController.swift in Sources */,
 				D4CD22AE2362D9EA000409CB /* HosterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -816,28 +907,27 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D41FCB0723642D2100499C19 /* PBXTargetDependency */ = {
+		D4BB6A2C236B0669008BCAC0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D411EE1019C2A5CC0054439F /* Widget */;
-			targetProxy = D41FCB0623642D2100499C19 /* PBXContainerItemProxy */;
-		};
-		D4CD22C02362E38E000409CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D44D33612362428B001C44A1 /* Shared */;
-			targetProxy = D4CD22BF2362E38E000409CB /* PBXContainerItemProxy */;
-		};
-		D4CD22E5236309AC000409CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D411EE1019C2A5CC0054439F /* Widget */;
-			targetProxy = D4CD22E4236309AC000409CB /* PBXContainerItemProxy */;
+			targetProxy = D4BB6A2B236B0669008BCAC0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D4BB6A8A236B1B5D008BCAC0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4BB6A89236B1B5D008BCAC0 /* ru */,
+				D4BB6A8D236B1BA3008BCAC0 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		D4CD22B42362D9EB000409CB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D4CD22B52362D9EB000409CB /* Base */,
+				D4BB6A8C236B1B88008BCAC0 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1019,7 +1109,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = V8NCXSZ3T7;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

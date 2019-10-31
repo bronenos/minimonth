@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Shared
 import Combine
 
 final class HosterPreferencesInteractor: ObservableObject {

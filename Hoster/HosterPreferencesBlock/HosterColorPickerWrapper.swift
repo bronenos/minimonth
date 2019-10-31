@@ -8,8 +8,6 @@
 
 import UIKit
 import SwiftUI
-import Shared
-import FlexColorPicker
 
 final class HosterColorPickerWrapper: NSObject, UIViewRepresentable, ColorPickerDelegate {
     private let context: HosterContext

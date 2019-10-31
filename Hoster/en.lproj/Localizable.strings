@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  MiniMonth
+
+  Created by Stan Potemkin on 31.10.2019.
+  Copyright © 2019 bronenos. All rights reserved.
+*/
+
+"Preferences.PreviewAs" = "Preview as";
+"Preferences.PreviewAs.Light" = "Light";
+"Preferences.PreviewAs.Dark" = "Dark";
+
+"Preferences.WeekNumbers" = "Week numbers";
+
+"Preferences.Colors.Month" = "Month title";
+"Preferences.Colors.Arrows" = "Navigation arrows";
+"Preferences.Colors.Axis" = "Weekday titles";
+"Preferences.Colors.Workday" = "Workday numbers";
+"Preferences.Colors.Weekend" = "Weekend numbers";
+"Preferences.Colors.Holiday" = "Holiday numbers";
+"Preferences.Colors.Today" = "Current day";
+"Preferences.Colors.Event" = "Calendar's event";

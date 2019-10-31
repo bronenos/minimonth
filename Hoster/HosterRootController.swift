@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Shared
 
 extension UIWindowScene: UITraitEnvironment {
     public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Shared
 
 struct HosterColorControl: View {
     @EnvironmentObject var preferencesDriver: PreferencesDriver
@@ -18,7 +17,7 @@ struct HosterColorControl: View {
     
     var body: some View {
         HStack {
-            Text(caption)
+            Text(localizedCaption)
                 .font(.callout)
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
@@ -41,8 +40,12 @@ struct HosterColorControl: View {
                 .stroke(Color.gray)
                 .opacity(0.35))
         .onTapGesture {
-            self.context.presentColorPicker(title: self.caption, keyPath: self.keyPath)
+            self.context.presentColorPicker(title: "\(self.localizedCaption)", keyPath: self.keyPath)
         }
+    }
+    
+    private var localizedCaption: LocalizedStringKey {
+        return LocalizedStringKey(caption)
     }
     
     private var resolvedColor: Color {

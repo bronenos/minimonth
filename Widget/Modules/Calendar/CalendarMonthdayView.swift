@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Shared
 
 struct CalendarMonthdayView: View {
     @EnvironmentObject var designBook: DesignBook

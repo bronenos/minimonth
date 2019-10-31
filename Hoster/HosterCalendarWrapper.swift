@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Shared
 
 struct HosterCalendarWrapper: View {
     @EnvironmentObject private var preferencesDriver: PreferencesDriver

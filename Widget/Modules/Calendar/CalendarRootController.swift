@@ -8,7 +8,6 @@
 
 import SwiftUI
 import NotificationCenter
-import Shared
 
 @objc(CalendarRootController) public final class CalendarRootController: UIViewController, NCWidgetProviding, CalendarDelegate {
     private var interactor: CalendarInteractor?

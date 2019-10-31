@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Shared
 
 struct CalendarWeeknumBar: View {
     @EnvironmentObject var designBook: DesignBook
