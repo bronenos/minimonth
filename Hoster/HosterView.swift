@@ -35,86 +35,18 @@ struct HosterView: View {
     
     var body: some View {
         Group {
-            if self.windowScene.interfaceOrientation.isPortrait {
-                if UIScreen.main.kind.atLeast(.large) {
-                    VStack {
-                        Spacer()
-                        
-                        HosterCalendarWrapper()
-
-                        HosterPreferencesBlock(
-                            preferencesDriver: self.preferencesDriver,
-                            colorScheme: self.colorScheme,
-                            delegate: self.delegate)
-                        
-                        Spacer()
-                    }
-                }
-                else {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        Spacer()
-                            .frame(ownWidth: nil, ownHeight: 20)
-                        
-                        HosterCalendarWrapper()
-
-                        HosterPreferencesBlock(
-                            preferencesDriver: self.preferencesDriver,
-                            colorScheme: self.colorScheme,
-                            delegate: self.delegate)
-                            .layoutPriority(1.0)
-                    }
-                }
+            if windowScene.interfaceOrientation.isPortrait {
+                constructPortraitContent()
             }
             else {
-                HStack(alignment: .center) {
-                    HosterCalendarWrapper()
-                    
-                    if UIScreen.main.kind.atLeast(.large) {
-                        if UIScreen.main.kind.atLeast(.extraLarge) {
-                            Spacer()
-                                .frame(minWidth: 0, idealWidth: 50, maxWidth: 50, alignment: .center)
-                        }
-                        else {
-                            Spacer()
-                                .frame(minWidth: 0, idealWidth: 20, maxWidth: 20, alignment: .center)
-                        }
-                        
-                        VStack {
-                            Spacer()
-                            
-                            HosterPreferencesBlock(
-                                preferencesDriver: self.preferencesDriver,
-                                colorScheme: self.colorScheme,
-                                delegate: self.delegate)
-                            
-                            Spacer()
-                        }
-                    }
-                    else {
-                        if UIScreen.main.kind.atLeast(.regular) {
-                            Spacer()
-                                .frame(maxWidth: 30, alignment: .center)
-                        }
-                        else {
-                            Spacer()
-                                .frame(maxWidth: 5, alignment: .center)
-                        }
-                        
-                        ScrollView(.vertical, showsIndicators: false) {
-                            HosterPreferencesBlock(
-                                preferencesDriver: self.preferencesDriver,
-                                colorScheme: self.colorScheme,
-                                delegate: self.delegate)
-                        }
-                    }
-                }
+                constructLandscapeContent()
             }
         }
         .background(Color(UIColor.systemBackground))
         .padding(.horizontal, horizontalPadding)
         .sheet(
-            item: self.$context.colorPickingMeta,
-            content: self.constructColorPicker
+            item: $context.colorPickingMeta,
+            content: constructColorPicker
         )
     }
     
@@ -128,6 +60,72 @@ struct HosterView: View {
         else {
             return 5
         }
+    }
+    
+    private func constructPortraitContent() -> some View {
+        Group {
+            if UIScreen.main.kind.atLeast(.large) {
+                VStack {
+                    Spacer()
+                    HosterCalendarWrapper()
+                    constructPreferencesBlock()
+                    Spacer()
+                }
+            }
+            else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    Spacer().frame(ownWidth: nil, ownHeight: 20)
+                    HosterCalendarWrapper()
+                    constructPreferencesBlock()
+                }
+            }
+        }
+    }
+    
+    private func constructLandscapeContent() -> some View {
+        HStack(alignment: .center) {
+            HosterCalendarWrapper()
+            
+            if UIScreen.main.kind.atLeast(.extraLarge) {
+                Spacer().frame(minWidth: 5, idealWidth: 50, maxWidth: 50, alignment: .center)
+                
+                VStack {
+                    Spacer()
+                    constructPreferencesBlock()
+                    Spacer()
+                }
+            }
+            else if UIScreen.main.kind.atLeast(.large) {
+                Spacer().frame(minWidth: 5, idealWidth: 20, maxWidth: 20, alignment: .center)
+                
+                VStack {
+                    Spacer()
+                    constructPreferencesBlock()
+                    Spacer()
+                }
+            }
+            else if UIScreen.main.kind.atLeast(.regular) {
+                Spacer().frame(maxWidth: 30, alignment: .center)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    constructPreferencesBlock()
+                }
+            }
+            else {
+                Spacer().frame(maxWidth: 5, alignment: .center)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    constructPreferencesBlock()
+                }
+            }
+        }
+    }
+    
+    private func constructPreferencesBlock() -> some View {
+        HosterPreferencesBlock(
+            preferencesDriver: preferencesDriver,
+            colorScheme: colorScheme,
+            delegate: delegate)
     }
     
     private func constructColorPicker(item: HosterContextColorPickingMeta) -> some View {

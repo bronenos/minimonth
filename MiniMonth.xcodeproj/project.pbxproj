@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90EA13A47DFE7C2BDAC4AA7F /* Pods_Hoster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1EC1421D97F8B8D435509E /* Pods_Hoster.framework */; };
-		9B0759FF1BC2E001F2A9BDCA /* Pods_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E245D71F39F7B305C2C7DE /* Pods_Shared.framework */; };
 		D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D411EE1319C2A5CD0054439F /* NotificationCenter.framework */; };
 		D41FCB0223642D0F00499C19 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; };
 		D41FCB0323642D0F00499C19 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D44D33622362428B001C44A1 /* Shared.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -30,6 +28,12 @@
 		D48D4C57236AAEC200A8B921 /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */; };
 		D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49AFD5C2363914A0033D98F /* BlurredView.swift */; };
 		D4B034CA2361AE3C009A7344 /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */; };
+		D4B0AE47236AE2B300DC88C6 /* Pods_Hoster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1EC1421D97F8B8D435509E /* Pods_Hoster.framework */; };
+		D4B0AE48236AE2B300DC88C6 /* Pods_Hoster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1EC1421D97F8B8D435509E /* Pods_Hoster.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D4B0AE49236AE2BA00DC88C6 /* Pods_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2EC40568CFE27EE2022DC /* Pods_Widget.framework */; };
+		D4B0AE4A236AE2BA00DC88C6 /* Pods_Widget.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2EC40568CFE27EE2022DC /* Pods_Widget.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D4B0AE4C236AE2DA00DC88C6 /* Pods_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E245D71F39F7B305C2C7DE /* Pods_Shared.framework */; };
+		D4B0AE4D236AE2DA00DC88C6 /* Pods_Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80E245D71F39F7B305C2C7DE /* Pods_Shared.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D4B74269235E3036003FDFF9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74268235E3036003FDFF9 /* CalendarView.swift */; };
 		D4B7426B235E322A003FDFF9 /* CalendarRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426A235E322A003FDFF9 /* CalendarRootController.swift */; };
 		D4B7426D235E3AAA003FDFF9 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7426C235E3AAA003FDFF9 /* CalendarHeader.swift */; };
@@ -74,7 +78,6 @@
 		D4D9CCD0236199D500BC5EDF /* CalendarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D9CCCF236199D500BC5EDF /* CalendarExtensions.swift */; };
 		D4E386C5235EE4F400F88E28 /* CalendarWeeknumBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E386C4235EE4F400F88E28 /* CalendarWeeknumBar.swift */; };
 		D4E386C7235F038400F88E28 /* CalendarTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E386C6235F038400F88E28 /* CalendarTypes.swift */; };
-		EFCC0F5CA8ECAF06AD61335A /* Pods_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2EC40568CFE27EE2022DC /* Pods_Widget.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D41FCB0323642D0F00499C19 /* Shared.framework in Embed Frameworks */,
+				D4B0AE48236AE2B300DC88C6 /* Pods_Hoster.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +126,28 @@
 				D41FCB0523642D2100499C19 /* Widget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4B0AE4B236AE2BA00DC88C6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D4B0AE4A236AE2BA00DC88C6 /* Pods_Widget.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4B0AE4E236AE2DA00DC88C6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D4B0AE4D236AE2DA00DC88C6 /* Pods_Shared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -193,8 +219,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B0AE49236AE2BA00DC88C6 /* Pods_Widget.framework in Frameworks */,
 				D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */,
-				EFCC0F5CA8ECAF06AD61335A /* Pods_Widget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B0759FF1BC2E001F2A9BDCA /* Pods_Shared.framework in Frameworks */,
+				D4B0AE4C236AE2DA00DC88C6 /* Pods_Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D41FCB0223642D0F00499C19 /* Shared.framework in Frameworks */,
-				90EA13A47DFE7C2BDAC4AA7F /* Pods_Hoster.framework in Frameworks */,
+				D4B0AE47236AE2B300DC88C6 /* Pods_Hoster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +507,7 @@
 				D411EE0D19C2A5CC0054439F /* Sources */,
 				D411EE0E19C2A5CC0054439F /* Frameworks */,
 				D411EE0F19C2A5CC0054439F /* Resources */,
+				D4B0AE4B236AE2BA00DC88C6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -501,6 +528,7 @@
 				D44D335E2362428B001C44A1 /* Sources */,
 				D44D335F2362428B001C44A1 /* Frameworks */,
 				D44D33602362428B001C44A1 /* Resources */,
+				D4B0AE4E236AE2DA00DC88C6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1004,6 +1032,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1043,6 +1072,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
