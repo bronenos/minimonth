@@ -46,13 +46,14 @@ struct HosterPreferencesBlock: View {
                     Toggle(isOn: $interactor.weeknumVisible) {
                         Text("Preferences.WeekNumbers")
                     }
+                    .offset(x: -2, y: 0)
                 }
                 .styleAsPreferenceBlock()
                 .padding(.bottom, 5)
                 
                 Section {
                     HosterColorsBlock()
-                        .padding(3)
+                        .padding(.top, 5)
                 }
                 .styleAsPreferenceBlock()
                 
@@ -68,7 +69,8 @@ struct HosterPreferencesBlock: View {
 fileprivate extension View {
     func styleAsPreferenceBlock() -> some View {
         return self
-            .padding(10)
+            .padding(.vertical, 10)
+            .padding(.horizontal, 15)
             .background(Color(UIColor.secondarySystemBackground))
             .cornerRadius(20)
     }

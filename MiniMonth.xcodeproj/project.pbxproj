@@ -22,6 +22,7 @@
 		D47B16272360E406008A70A4 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B16262360E406008A70A4 /* EventService.swift */; };
 		D48D4C57236AAEC200A8B921 /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */; };
 		D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49AFD5C2363914A0033D98F /* BlurredView.swift */; };
+		D4AF0CD4236C8333005FEFC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4AF0CD6236C8334005FEFC6 /* InfoPlist.strings */; };
 		D4B034CA2361AE3C009A7344 /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */; };
 		D4B0AE4C236AE2DA00DC88C6 /* Pods_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E245D71F39F7B305C2C7DE /* Pods_Shared.framework */; };
 		D4B74269235E3036003FDFF9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B74268235E3036003FDFF9 /* CalendarView.swift */; };
@@ -166,6 +167,9 @@
 		D47B16262360E406008A70A4 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtensions.swift; sourceTree = "<group>"; };
 		D49AFD5C2363914A0033D98F /* BlurredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredView.swift; sourceTree = "<group>"; };
+		D4AF0CD5236C8334005FEFC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4AF0CD7236C8339005FEFC6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4AF0CD8236C8432005FEFC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Hoster/Info.plist; sourceTree = SOURCE_ROOT; };
 		D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtensions.swift; sourceTree = "<group>"; };
 		D4B74268235E3036003FDFF9 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		D4B7426A235E322A003FDFF9 /* CalendarRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRootController.swift; sourceTree = "<group>"; };
@@ -221,7 +225,6 @@
 		D4CD22AD2362D9EA000409CB /* HosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterView.swift; sourceTree = "<group>"; };
 		D4CD22AF2362D9EB000409CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4CD22B22362D9EB000409CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D4CD22B72362D9EB000409CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4CD22BB2362DB56000409CB /* HosterRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterRootController.swift; sourceTree = "<group>"; };
 		D4CD22C32362E9CA000409CB /* HosterCalendarWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterCalendarWrapper.swift; sourceTree = "<group>"; };
 		D4CD22C82362F721000409CB /* CalendarViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewWrapper.swift; sourceTree = "<group>"; };
@@ -536,8 +539,9 @@
 			children = (
 				D41FCB0923642E6100499C19 /* Hoster.entitlements */,
 				D468DB26236320B90085122D /* Shared */,
-				D4CD22B72362D9EB000409CB /* Info.plist */,
+				D4AF0CD8236C8432005FEFC6 /* Info.plist */,
 				D4CD22B42362D9EB000409CB /* LaunchScreen.storyboard */,
+				D4AF0CD6236C8334005FEFC6 /* InfoPlist.strings */,
 				D4BB6A8A236B1B5D008BCAC0 /* Localizable.strings */,
 				D4CD22AF2362D9EB000409CB /* Assets.xcassets */,
 				D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */,
@@ -736,6 +740,7 @@
 				D4BB6A88236B1B5D008BCAC0 /* Localizable.strings in Resources */,
 				D4CD22B32362D9EB000409CB /* Preview Assets.xcassets in Resources */,
 				D4CD22B02362D9EB000409CB /* Assets.xcassets in Resources */,
+				D4AF0CD4236C8333005FEFC6 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,6 +920,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D4AF0CD6236C8334005FEFC6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4AF0CD5236C8334005FEFC6 /* en */,
+				D4AF0CD7236C8339005FEFC6 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D4BB6A8A236B1B5D008BCAC0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

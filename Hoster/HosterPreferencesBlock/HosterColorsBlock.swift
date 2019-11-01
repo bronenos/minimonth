@@ -37,9 +37,8 @@ struct HosterColorsBlock: View {
                     .font(.footnote)
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 8)
             }
-            .padding(.top, 5)
         }
         .alert(isPresented: $colorsResetAlerting) {
             Alert(

@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  MiniMonth
+
+  Created by Stan Potemkin on 01.11.2019.
+  Copyright © 2019 bronenos. All rights reserved.
+*/
+
+"NSCalendarsUsageDescription" = "Do you want us to display your calendar events within our widget?";
