@@ -29,15 +29,33 @@ struct CalendarMonthdayView: View {
                             .stroke(designBook.cached(usage: .todayColor))
                             .opacity(day.options.contains(.isToday) ? 1.0 : 0)
                         
-                        Circle()
-                            .fill(designBook.cached(usage: .eventColor))
-                            .frame(ownSide: designBook.layout.eventMarkerSide)
-                            .offset(x: 0, y: -designBook.layout.eventMarkerSide * 0.5)
-                            .opacity(day.options.contains(.hasEvent) ? 1.0 : 0)
+                        HStack {
+                            Spacer()
+                            
+                            if day.options.contains(.hasLongEvent) {
+                                Circle()
+                                    .fill(designBook.cached(usage: .holidayColor))
+                                    .frame(ownSide: designBook.layout.eventMarkerSide)
+                            }
+                            
+                            if day.options.contains(.hasShortEvent) {
+                                Circle()
+                                    .fill(designBook.cached(usage: .eventColor))
+                                    .frame(ownSide: designBook.layout.eventMarkerSide)
+                            }
+                            
+                            Spacer()
+                        }
+                        .offset(x: 0, y: -relativeTopOffset(hasEvent: day.options.hasAnyEvent()))
                     }
-                    .offset(x: 0, y: designBook.layout.eventMarkerSide * 0.5))
+                    .offset(x: 0, y: relativeTopOffset(hasEvent: day.options.hasAnyEvent())))
         }
         .font(.system(size: 12, weight: .bold))
+    }
+    
+    fileprivate func relativeTopOffset(hasEvent: Bool) -> CGFloat {
+        guard hasEvent else { return 0 }
+        return designBook.layout.eventMarkerSide * 0.5
     }
     
     fileprivate func captionColor(forType type: CalendarDayType) -> Color {

@@ -10,7 +10,7 @@ import Combine
 import EventKit
 
 protocol IEventService: class {
-    func subscribe(eventsCallback: @escaping ([EKEvent]) -> Void)
+    func subscribe(eventsCallback: @escaping ([EKEvent]) -> Void) -> AnyCancellable
     func request(anchorDate: Date)
 }
 
@@ -21,15 +21,13 @@ final class EventService: IEventService, ObservableObject {
     private let calendar: Calendar
     private var anchorDate: Date
     
-    private var anchoredEventsListener: AnyCancellable?
-    
     init(calendar: Calendar, anchorDate: Date) {
         self.calendar = calendar
         self.anchorDate = anchorDate
     }
     
-    func subscribe(eventsCallback: @escaping ([EKEvent]) -> Void) {
-        anchoredEventsListener = $anchoredEvents.sink(receiveValue: eventsCallback)
+    func subscribe(eventsCallback: @escaping ([EKEvent]) -> Void) -> AnyCancellable {
+        return $anchoredEvents.sink(receiveValue: eventsCallback)
     }
     
     func request(anchorDate: Date) {

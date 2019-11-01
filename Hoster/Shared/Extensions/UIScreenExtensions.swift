@@ -23,7 +23,6 @@ extension UIScreen {
     var kind: ScreenKind {
         switch max(nativeBounds.width, nativeBounds.height) {
         case 2000... where UIDevice.current.userInterfaceIdiom == .pad: return .extraLarge
-        case 2000...: return .extraLarge
         case 1900...: return .large
         case ...1200: return .mini
         default: return .regular

@@ -40,7 +40,12 @@ struct CalendarDayOptions: OptionSet, Hashable {
     
     static let none = CalendarDayOptions(rawValue: 0)
     static let isToday = CalendarDayOptions(rawValue: 1 << 0)
-    static let hasEvent = CalendarDayOptions(rawValue: 1 << 1)
+    static let hasLongEvent = CalendarDayOptions(rawValue: 1 << 1)
+    static let hasShortEvent = CalendarDayOptions(rawValue: 1 << 2)
+    
+    func hasAnyEvent() -> Bool {
+        return contains(.hasLongEvent) || contains(.hasShortEvent)
+    }
 }
 
 enum CalendarNavigationStep {
@@ -54,29 +59,4 @@ enum CalendarNavigationStep {
 
 enum CalendarAnimation {
     case styleChanged
-}
-
-struct CalendarDatestamp: Equatable {
-    let year: Int
-    let month: Int
-    let day: Int
-    
-    init(year: Int?, month: Int?, day: Int?) {
-        self.year = year ?? 0
-        self.month = month ?? 0
-        self.day = day ?? 0
-    }
-    
-    init(components: DateComponents) {
-        year = components.year ?? 0
-        month = components.month ?? 0
-        day = components.day ?? 0
-    }
-    
-    init?(date: Date?, within calendar: Calendar) {
-        guard let date = date else { return nil }
-        year = calendar.component(.year, from: date)
-        month = calendar.component(.month, from: date)
-        day = calendar.component(.day, from: date)
-    }
 }

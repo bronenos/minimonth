@@ -36,16 +36,16 @@ struct HosterColorsBlock: View {
 
     var body: some View {
         VStack {
-            if UIScreen.main.kind.atLeast(.extraLarge) {
-                ForEach(self.obtainGrid(), id: \.self) { row in
-                    HosterColorsRow(firstMeta: row[0], secondMeta: row[1])
-                }
-            }
-            else {
+//            if UIScreen.main.kind.atLeast(.extraLarge) {
+//                ForEach(self.obtainGrid(), id: \.self) { row in
+//                    HosterColorsRow(firstMeta: row[0], secondMeta: row[1])
+//                }
+//            }
+//            else {
                 ForEach(self.obtainList(), id: \.self) { meta in
                     HosterColorControl(caption: meta.caption, keyPath: meta.keyPath)
                 }
-            }
+//            }
         }
     }
     

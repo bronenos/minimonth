@@ -6,17 +6,17 @@
   Copyright © 2019 bronenos. All rights reserved.
 */
 
-"Preferences.PreviewAs" = "Вариант просмотра";
+"Preferences.PreviewAs" = "Стиль просмотра";
 "Preferences.PreviewAs.Light" = "Светлый";
 "Preferences.PreviewAs.Dark" = "Тёмный";
 
 "Preferences.WeekNumbers" = "Номер недели";
 
 "Preferences.Colors.Month" = "Название месяца";
-"Preferences.Colors.Arrows" = "Стрелки навигации";
-"Preferences.Colors.Axis" = "Дни недели";
+"Preferences.Colors.Arrows" = "Элементы навигации";
+"Preferences.Colors.Axis" = "Обозначения недели";
 "Preferences.Colors.Workday" = "Рабочие дни";
 "Preferences.Colors.Weekend" = "Выходные дни";
-"Preferences.Colors.Holiday" = "Праздничные дни";
 "Preferences.Colors.Today" = "Текущий день";
-"Preferences.Colors.Event" = "Событие календаря";
+"Preferences.Colors.Holiday" = "События на весь день";
+"Preferences.Colors.Event" = "Короткие события";

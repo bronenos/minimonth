@@ -75,7 +75,6 @@ public struct CalendarView: View {
                 Spacer()
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
-            .onAppear(perform: self.interactor.requestEvents)
             .animation(self.interactor.shouldAnimate ? .linear(duration: 0.25) : nil)
         }
     }

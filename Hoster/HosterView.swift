@@ -63,7 +63,7 @@ struct HosterView: View {
     
     private func constructPortraitContent() -> some View {
         Group {
-            if UIScreen.main.kind.atLeast(.large) {
+            if UIScreen.main.kind.atLeast(.extraLarge) {
                 VStack {
                     Spacer()
                     HosterCalendarWrapper()
@@ -95,12 +95,10 @@ struct HosterView: View {
                 }
             }
             else if UIScreen.main.kind.atLeast(.large) {
-                Spacer().frame(minWidth: 5, idealWidth: 20, maxWidth: 20, alignment: .center)
+                Spacer().frame(maxWidth: 30, alignment: .center)
                 
-                VStack {
-                    Spacer()
+                ScrollView(.vertical, showsIndicators: false) {
                     constructPreferencesBlock()
-                    Spacer()
                 }
             }
             else if UIScreen.main.kind.atLeast(.regular) {

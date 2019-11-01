@@ -40,7 +40,10 @@ struct HosterColorControl: View {
                 .stroke(Color.gray)
                 .opacity(0.35))
         .onTapGesture {
-            self.context.presentColorPicker(title: "\(self.localizedCaption)", keyPath: self.keyPath)
+            self.context.presentColorPicker(
+                title: NSLocalizedString(self.caption, comment: String()),
+                keyPath: self.keyPath
+            )
         }
     }
     

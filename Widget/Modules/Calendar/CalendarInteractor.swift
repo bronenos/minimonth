@@ -27,6 +27,36 @@ protocol ICalendarInteractor: class {
     func navigateLongForward()
 }
 
+fileprivate struct CalendarEventMeta: Equatable {
+    let year: Int
+    let month: Int
+    let day: Int
+    let allDay: Bool
+
+    init?(parseEvent event: EKEvent, within calendar: Calendar) {
+        guard let date = event.startDate else { return nil }
+        year = calendar.component(.year, from: date)
+        month = calendar.component(.month, from: date)
+        day = calendar.component(.day, from: date)
+        allDay = event.isAllDay
+    }
+    
+    init(year: Int?, month: Int?, day: Int?, allDay: Bool) {
+        self.year = year ?? 0
+        self.month = month ?? 0
+        self.day = day ?? 0
+        self.allDay = allDay
+    }
+    
+    static func == (lhs: CalendarEventMeta, rhs: CalendarEventMeta) -> Bool {
+        guard lhs.year == rhs.year else { return false }
+        guard lhs.month == rhs.month else { return false }
+        guard lhs.day == rhs.day else { return false }
+        guard lhs.allDay == rhs.allDay else { return false }
+        return true
+    }
+}
+
 public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     @Published var meta: CalendarMeta
     
@@ -35,6 +65,7 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     private let delegate: CalendarDelegate?
     
     private var lastAnimationDate: Date?
+    private var eventsListener: AnyCancellable?
     
     public init(style: CalendarStyle, delegate: CalendarDelegate?) {
         self.style = style
@@ -52,9 +83,11 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
             style: style
         )
         
-        eventService.subscribe(
+        eventsListener = eventService.subscribe(
             eventsCallback: { [weak self] in self?.handleEvents($0) }
         )
+        
+        requestEvents()
     }
     
     var shouldAnimate: Bool {
@@ -150,7 +183,7 @@ fileprivate func calculateMeta(calendar: Calendar,
     let anchorMonthIndex = anchorDayUnits.month ?? 0
     let anchorYear = anchorDayUnits.year ?? 0
     let ahcnorMonthTitle = calendar.standaloneMonthSymbols[anchorMonthIndex - 1]
-    let anchorEventStamps = anchorEvents.compactMap { CalendarDatestamp(date: $0.startDate, within: calendar) }
+    let anchorEventStamps = anchorEvents.compactMap { CalendarEventMeta(parseEvent: $0, within: calendar) }
     
     let localWeekDay = calendar.unitToReal(weekday: anchorDayUnits.weekday ?? 0)
     let monthDay = anchorDayUnits.day ?? 0
@@ -247,20 +280,23 @@ fileprivate func detectMonthdayType(calendar: Calendar,
 fileprivate func calculateDayOptions(calendar: Calendar,
                                      anchorDate: Date,
                                      number: Int,
-                                     anchorDayUnits: DateComponents,
-                                     anchorEventStamps: [CalendarDatestamp]) -> CalendarDayOptions {
+                                     anchorDayUnits adu: DateComponents,
+                                     anchorEventStamps: [CalendarEventMeta]) -> CalendarDayOptions {
     let isToday: CalendarDayOptions
-    if calendar.isDateInToday(anchorDate), number == anchorDayUnits.day {
+    if calendar.isDateInToday(anchorDate), number == adu.day {
         isToday = .isToday
     }
     else {
         isToday = .none
     }
     
-    let anchorDatestamp = CalendarDatestamp(year: anchorDayUnits.year, month: anchorDayUnits.month, day: number)
-    let hasEvent: CalendarDayOptions = anchorEventStamps.contains(anchorDatestamp) ? .hasEvent : .none
+    let anchorLongMeta = CalendarEventMeta(year: adu.year, month: adu.month, day: number, allDay: true)
+    let hasLongEvent: CalendarDayOptions = anchorEventStamps.contains(anchorLongMeta) ? .hasLongEvent : .none
 
-    return [isToday, hasEvent]
+    let anchorShortMeta = CalendarEventMeta(year: adu.year, month: adu.month, day: number, allDay: false)
+    let hasShortEvent: CalendarDayOptions = anchorEventStamps.contains(anchorShortMeta) ? .hasShortEvent : .none
+
+    return [isToday, hasShortEvent, hasLongEvent]
 }
 
 fileprivate extension Calendar {
