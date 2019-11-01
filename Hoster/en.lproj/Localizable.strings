@@ -6,6 +6,8 @@
   Copyright © 2019 bronenos. All rights reserved.
 */
 
+"Common.Confirm" = "Confirm";
+
 "Preferences.PreviewAs" = "Preview as";
 "Preferences.PreviewAs.Light" = "Light";
 "Preferences.PreviewAs.Dark" = "Dark";
@@ -13,10 +15,14 @@
 "Preferences.WeekNumbers" = "Week numbers";
 
 "Preferences.Colors.Month" = "Month title";
-"Preferences.Colors.Arrows" = "Navigation arrows";
-"Preferences.Colors.Axis" = "Weekday titles";
+"Preferences.Colors.Arrows" = "Navigation elements";
+"Preferences.Colors.Axis" = "Weekday captions";
 "Preferences.Colors.Workday" = "Workday numbers";
 "Preferences.Colors.Weekend" = "Weekend numbers";
-"Preferences.Colors.Holiday" = "Holiday numbers";
 "Preferences.Colors.Today" = "Current day";
-"Preferences.Colors.Event" = "Calendar's event";
+"Preferences.Colors.Event" = "Short events";
+"Preferences.Colors.Holiday" = "Fullday events";
+"Preferences.Colors.Reset" = "Revert to default colors";
+
+"Alert.ResetColors.Title" = "Revert to default colors?";
+"Alert.ResetColors.Message" = "Your preferences for both light and dark styles would be reverted to default colors";

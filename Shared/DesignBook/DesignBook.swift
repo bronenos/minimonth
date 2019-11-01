@@ -106,14 +106,14 @@ public final class DesignBook: ObservableObject {
         // foregrounds
         case .primaryForeground: return combine(light: .native(.black), dark: .native(.white))
         // preferences
-        case .monthColor: return combine(light: .pref(\.monthColorLight), dark: .pref(\.monthColorDark))
-        case .navigationColor: return combine(light: .pref(\.navigationColorLight), dark: .pref(\.navigationColorDark))
-        case .captionColor: return combine(light: .pref(\.captionColorLight), dark: .pref(\.captionColorDark))
-        case .workdayColor: return combine(light: .pref(\.workdayColorLight), dark: .pref(\.workdayColorDark))
-        case .weekendColor: return combine(light: .pref(\.weekendColorLight), dark: .pref(\.weekendColorDark))
-        case .holidayColor: return combine(light: .pref(\.holidayColorLight), dark: .pref(\.holidayColorDark))
-        case .todayColor: return combine(light: .pref(\.todayColorLight), dark: .pref(\.todayColorDark))
-        case .eventColor: return combine(light: .pref(\.eventColorLight), dark: .pref(\.eventColorDark))
+        case .monthColor: return combine(light: .pref(\.monthTitleColorLight), dark: .pref(\.monthTitleColorDark))
+        case .navigationColor: return combine(light: .pref(\.navigationElementsColorLight), dark: .pref(\.navigationElementsColorDark))
+        case .captionColor: return combine(light: .pref(\.weekCaptionsColorLight), dark: .pref(\.weekCaptionsColorDark))
+        case .workdayColor: return combine(light: .pref(\.workingDayColorLight), dark: .pref(\.workingDayColorDark))
+        case .weekendColor: return combine(light: .pref(\.weekendDayColorLight), dark: .pref(\.weekendDayColorDark))
+        case .holidayColor: return combine(light: .pref(\.fulldayEventColorLight), dark: .pref(\.fulldayEventColorDark))
+        case .todayColor: return combine(light: .pref(\.currentDayColorLight), dark: .pref(\.currentDayColorDark))
+        case .eventColor: return combine(light: .pref(\.shortEventColorLight), dark: .pref(\.shortEventColorDark))
         }
     }
     

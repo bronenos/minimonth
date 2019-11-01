@@ -87,7 +87,7 @@ public struct CalendarView: View {
     }
     
     private func calculateWeeknumWidth(geometry: GeometryProxy) -> CGFloat {
-        if preferencesDriver.weeknumDisplay {
+        if preferencesDriver.shouldDisplayWeekNumbers {
             return geometry.size.width * designBook.layout.weekNumberWidthCoef
         }
         else {

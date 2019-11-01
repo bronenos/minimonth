@@ -32,10 +32,10 @@ final class HosterPreferencesInteractor: ObservableObject {
     
     var weeknumVisible: Bool {
         get {
-            return preferencesDriver.weeknumDisplay
+            return preferencesDriver.shouldDisplayWeekNumbers
         }
         set {
-            preferencesDriver.weeknumDisplay = newValue
+            preferencesDriver.shouldDisplayWeekNumbers = newValue
             objectWillChange.send()
         }
     }

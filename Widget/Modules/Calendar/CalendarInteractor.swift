@@ -182,7 +182,7 @@ fileprivate func calculateMeta(calendar: Calendar,
     let anchorDayUnits = calendar.dateComponents(calendarUnits, from: anchorDate).normalizedWeeknum(calendar: calendar)
     let anchorMonthIndex = anchorDayUnits.month ?? 0
     let anchorYear = anchorDayUnits.year ?? 0
-    let ahcnorMonthTitle = calendar.standaloneMonthSymbols[anchorMonthIndex - 1]
+    let ahcnorMonthTitle = calendar.standaloneMonthSymbols[anchorMonthIndex - 1].capitalized
     let anchorEventStamps = anchorEvents.compactMap { CalendarEventMeta(parseEvent: $0, within: calendar) }
     
     let localWeekDay = calendar.unitToReal(weekday: anchorDayUnits.weekday ?? 0)

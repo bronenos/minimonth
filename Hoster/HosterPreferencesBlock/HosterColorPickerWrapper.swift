@@ -24,6 +24,7 @@ final class HosterColorPickerWrapper: NSObject, UIViewRepresentable, ColorPicker
     
     func makeUIView(context: UIViewRepresentableContext<HosterColorPickerWrapper>) -> UIView {
         let navigationController = UINavigationController(rootViewController: context.coordinator)
+        navigationController.edgesForExtendedLayout = []
         return navigationController.view
     }
 
@@ -65,13 +66,35 @@ final class HosterColorPickerWrapper: NSObject, UIViewRepresentable, ColorPicker
 }
 
 fileprivate final class CustomPickerViewController: DefaultColorPickerViewController {
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//
-//        var brightnessFrame = brightnessSlider.frame
-//        let brightnessDelta = view.bounds.maxX - brightnessFrame.maxX
-//        brightnessFrame.size.width += brightnessDelta
-//        brightnessFrame.origin.x -= brightnessDelta
-//        brightnessSlider.frame = brightnessFrame
-//    }
+    private let licenseLabel = UILabel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        licenseLabel.text = "Color picker is based on\nFlexColorPicker project by Rastislav Mirek"
+        licenseLabel.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        licenseLabel.textColor = UIColor.secondaryLabel
+        licenseLabel.textAlignment = .center
+        licenseLabel.numberOfLines = 0
+        view.addSubview(licenseLabel)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let licenseMargin = CGFloat(15)
+        let licenseWidth = view.bounds.insetBy(dx: licenseMargin, dy: 0).width
+        let licenseBounds = licenseLabel.textRect(
+            forBounds: CGRect(
+                origin: .zero,
+                size: CGSize(width: licenseWidth, height: .infinity)
+            ),
+            limitedToNumberOfLines: 0
+        )
+        
+        licenseLabel.frame = view.bounds
+            .offsetBy(dx: 0, dy: -licenseMargin)
+            .divided(atDistance: licenseBounds.height, from: .maxYEdge).slice
+            .insetBy(dx: licenseMargin, dy: 0)
+    }
 }

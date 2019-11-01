@@ -15,72 +15,104 @@ struct HosterColorDynamicMeta: Hashable {
 }
 
 struct HosterColorMeta: Hashable {
-    let caption: String
+    let captionKey: String
     let keyPath: PreferencesWritableKeyPath
 }
 
 struct HosterColorsBlock: View {
     @EnvironmentObject var preferencesDriver: PreferencesDriver
+    @EnvironmentObject var designBook: DesignBook
     @Environment(\.colorScheme) private var colorScheme
-
-    private let dynamicMetas: [HosterColorDynamicMeta] = [
-        HosterColorDynamicMeta(captionKey: "Preferences.Colors.Month", lightKeyPath: \.monthColorLight, darkKeyPath: \.monthColorDark),
-        HosterColorDynamicMeta(captionKey: "Preferences.Colors.Arrows", lightKeyPath: \.navigationColorLight, darkKeyPath: \.navigationColorDark),
-        HosterColorDynamicMeta(captionKey: "Preferences.Colors.Axis", lightKeyPath: \.captionColorLight, darkKeyPath: \.captionColorDark),
-        HosterColorDynamicMeta(captionKey: "Preferences.Colors.Workday", lightKeyPath: \.workdayColorLight, darkKeyPath: \.workdayColorDark),
-        HosterColorDynamicMeta(captionKey: "Preferences.Colors.Weekend", lightKeyPath: \.weekendColorLight, darkKeyPath: \.weekendColorDark),
-        HosterColorDynamicMeta(captionKey: "Preferences.Colors.Holiday", lightKeyPath: \.holidayColorLight, darkKeyPath: \.holidayColorDark),
-        HosterColorDynamicMeta(captionKey: "Preferences.Colors.Today", lightKeyPath: \.todayColorLight, darkKeyPath: \.todayColorDark),
-        HosterColorDynamicMeta(captionKey: "Preferences.Colors.Event", lightKeyPath: \.eventColorLight, darkKeyPath: \.eventColorDark)
-    ]
+    
+    @State private var colorsResetAlerting = false
 
     var body: some View {
         VStack {
-//            if UIScreen.main.kind.atLeast(.extraLarge) {
-//                ForEach(self.obtainGrid(), id: \.self) { row in
-//                    HosterColorsRow(firstMeta: row[0], secondMeta: row[1])
-//                }
-//            }
-//            else {
-                ForEach(self.obtainList(), id: \.self) { meta in
-                    HosterColorControl(caption: meta.caption, keyPath: meta.keyPath)
-                }
-//            }
+            ForEach(HosterColorDynamicMetaStorage().resolve(scheme: colorScheme), id: \.self) { meta in
+                HosterColorControl(caption: meta.captionKey, keyPath: meta.keyPath)
+            }
+            
+            Button(action: resetColorsAlertingPresent) {
+                Text("Preferences.Colors.Reset")
+                    .font(.footnote)
+                    .foregroundColor(.red)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 10)
+            }
+            .padding(.top, 5)
+        }
+        .alert(isPresented: $colorsResetAlerting) {
+            Alert(
+                title: Text("Alert.ResetColors.Title"),
+                message: Text("Alert.ResetColors.Message"),
+                primaryButton: .destructive(
+                    Text("Common.Confirm"),
+                    action: self.resetColorsAlertingConfirm
+                ),
+                secondaryButton: .cancel()
+            )
         }
     }
     
-    private func obtainList() -> [HosterColorMeta] {
-        switch colorScheme {
-        case .light: return dynamicMetas.map { HosterColorMeta(caption: $0.captionKey, keyPath: $0.lightKeyPath) }
-        case .dark: return dynamicMetas.map { HosterColorMeta(caption: $0.captionKey, keyPath: $0.darkKeyPath) }
-        @unknown default: return dynamicMetas.map { HosterColorMeta(caption: $0.captionKey, keyPath: $0.lightKeyPath) }
-        }
+    private func resetColorsAlertingPresent() {
+        colorsResetAlerting.toggle()
     }
     
-    private func obtainGrid() -> [[HosterColorMeta]] {
-        var grid = [[HosterColorMeta]]()
-        _ = obtainList().publisher.collect(2).collect().sink(receiveValue: { value in grid = value })
-        return grid
+    private func resetColorsAlertingConfirm() {
+        preferencesDriver.resetColors()
+        designBook.discardCache()
     }
 }
 
-struct HosterColorsRow: View {
-    @EnvironmentObject var preferencesDriver: PreferencesDriver
+fileprivate struct HosterColorDynamicMetaStorage {
+    let metas: [HosterColorDynamicMeta] = [
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Month",
+            lightKeyPath: \.monthTitleColorLight,
+            darkKeyPath: \.monthTitleColorDark
+        ),
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Arrows",
+            lightKeyPath: \.navigationElementsColorLight,
+            darkKeyPath: \.navigationElementsColorDark
+        ),
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Axis",
+            lightKeyPath: \.weekCaptionsColorLight,
+            darkKeyPath: \.weekCaptionsColorDark
+        ),
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Workday",
+            lightKeyPath: \.workingDayColorLight,
+            darkKeyPath: \.workingDayColorDark
+        ),
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Weekend",
+            lightKeyPath: \.weekendDayColorLight,
+            darkKeyPath: \.weekendDayColorDark
+        ),
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Today",
+            lightKeyPath: \.currentDayColorLight,
+            darkKeyPath: \.currentDayColorDark
+        ),
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Event",
+            lightKeyPath: \.shortEventColorLight,
+            darkKeyPath: \.shortEventColorDark
+        ),
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Holiday",
+            lightKeyPath: \.fulldayEventColorLight,
+            darkKeyPath: \.fulldayEventColorDark
+        )
+    ]
     
-    let firstMeta: HosterColorMeta
-    let secondMeta: HosterColorMeta
-
-    var body: some View {
-        HStack(spacing: 0) {
-            HosterColorControl(
-                caption: firstMeta.caption,
-                keyPath: firstMeta.keyPath)
-                .padding(.trailing, 5)
-            
-            HosterColorControl(
-                caption: secondMeta.caption,
-                keyPath: secondMeta.keyPath)
-                .padding(.leading, 5)
+    func resolve(scheme: ColorScheme) -> [HosterColorMeta] {
+        switch scheme {
+        case .light: return metas.map { HosterColorMeta(captionKey: $0.captionKey, keyPath: $0.lightKeyPath) }
+        case .dark: return metas.map { HosterColorMeta(captionKey: $0.captionKey, keyPath: $0.darkKeyPath) }
+        @unknown default: return metas.map { HosterColorMeta(captionKey: $0.captionKey, keyPath: $0.lightKeyPath) }
         }
     }
 }
