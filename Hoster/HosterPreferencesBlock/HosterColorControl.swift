@@ -22,8 +22,8 @@ struct HosterColorControl: View {
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: true, vertical: true)
-                .padding(.leading, 10)
-                .padding(.vertical, 6)
+                .padding(.leading, 11)
+                .padding(.vertical, 8)
             
             ZStack {
                 Color(UIColor.secondarySystemBackground)
@@ -31,9 +31,9 @@ struct HosterColorControl: View {
             }
             
             Capsule()
-                .frame(ownWidth: 35, ownHeight: 25)
+                .frame(ownWidth: 40, ownHeight: 30)
                 .foregroundColor(resolvedColor)
-                .padding(5)
+                .padding(6)
         }
         .overlay(
             Capsule(style: .circular)

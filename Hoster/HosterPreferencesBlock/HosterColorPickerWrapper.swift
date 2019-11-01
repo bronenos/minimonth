@@ -71,7 +71,7 @@ fileprivate final class CustomPickerViewController: DefaultColorPickerViewContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        licenseLabel.text = "Color picker is based on\nFlexColorPicker project by Rastislav Mirek"
+        licenseLabel.text = "Color picking is powered by FlexColorPicker project"
         licenseLabel.font = UIFont.systemFont(ofSize: 10, weight: .regular)
         licenseLabel.textColor = UIColor.secondaryLabel
         licenseLabel.textAlignment = .center
