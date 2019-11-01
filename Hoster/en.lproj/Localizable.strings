@@ -14,15 +14,15 @@
 
 "Preferences.WeekNumbers" = "Week numbers";
 
-"Preferences.Colors.Month" = "Month title";
-"Preferences.Colors.Arrows" = "Navigation elements";
-"Preferences.Colors.Axis" = "Weekday captions";
-"Preferences.Colors.Workday" = "Workday numbers";
-"Preferences.Colors.Weekend" = "Weekend numbers";
-"Preferences.Colors.Today" = "Current day";
-"Preferences.Colors.Event" = "Short events";
-"Preferences.Colors.Holiday" = "Fullday events";
-"Preferences.Colors.Reset" = "Revert to default colors";
+"Preferences.Colors.MonthTitle" = "Month title";
+"Preferences.Colors.NavigationElements" = "Navigation elements";
+"Preferences.Colors.WeekCaptions" = "Week captions";
+"Preferences.Colors.WorkdayNumbers" = "Workday numbers";
+"Preferences.Colors.WeekendNumbers" = "Weekend numbers";
+"Preferences.Colors.CurrentDay" = "Current day";
+"Preferences.Colors.ShortEvents" = "Short events";
+"Preferences.Colors.AllDayEvents" = "All-day events";
+"Preferences.Colors.ResetColors" = "Revert to default colors";
 
 "Alert.ResetColors.Title" = "Revert to default colors?";
 "Alert.ResetColors.Message" = "Your preferences for both light and dark styles would be reverted to default colors";

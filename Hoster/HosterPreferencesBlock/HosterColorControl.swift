@@ -18,20 +18,20 @@ struct HosterColorControl: View {
     var body: some View {
         HStack {
             Text(localizedCaption)
-                .font(.callout)
+                .font(.body)
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: true, vertical: true)
-                .padding(.leading, 8)
-                .padding(.vertical, 4)
+                .padding(.leading, 10)
+                .padding(.vertical, 6)
             
             ZStack {
                 Color(UIColor.secondarySystemBackground)
                 Spacer()
             }
             
-            Circle()
-                .frame(ownSide: 25)
+            Capsule()
+                .frame(ownWidth: 35, ownHeight: 25)
                 .foregroundColor(resolvedColor)
                 .padding(5)
         }

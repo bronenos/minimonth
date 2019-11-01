@@ -52,6 +52,7 @@ struct HosterPreferencesBlock: View {
                 
                 Section {
                     HosterColorsBlock()
+                        .padding(3)
                 }
                 .styleAsPreferenceBlock()
                 

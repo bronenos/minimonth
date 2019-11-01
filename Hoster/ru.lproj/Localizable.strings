@@ -14,15 +14,15 @@
 
 "Preferences.WeekNumbers" = "Номер недели";
 
-"Preferences.Colors.Month" = "Название месяца";
-"Preferences.Colors.Arrows" = "Элементы навигации";
-"Preferences.Colors.Axis" = "Обозначения недели";
-"Preferences.Colors.Workday" = "Рабочие дни";
-"Preferences.Colors.Weekend" = "Выходные дни";
-"Preferences.Colors.Today" = "Текущий день";
-"Preferences.Colors.Event" = "Короткие события";
-"Preferences.Colors.Holiday" = "События на весь день";
-"Preferences.Colors.Reset" = "Вернуть изначальные цвета";
+"Preferences.Colors.MonthTitle" = "Название месяца";
+"Preferences.Colors.NavigationElements" = "Элементы навигации";
+"Preferences.Colors.WeekCaptions" = "Обозначения недели";
+"Preferences.Colors.WorkdayNumbers" = "Рабочие дни";
+"Preferences.Colors.WeekendNumbers" = "Выходные дни";
+"Preferences.Colors.CurrentDay" = "Текущий день";
+"Preferences.Colors.ShortEvents" = "Короткие события";
+"Preferences.Colors.AllDayEvents" = "События на весь день";
+"Preferences.Colors.ResetColors" = "Вернуть изначальные цвета";
 
 "Alert.ResetColors.Title" = "Вернуть изначальные цвета?";
 "Alert.ResetColors.Message" = "Ваши настройки для светлой и тёмной тем будут сброшены до изначальных цветов";

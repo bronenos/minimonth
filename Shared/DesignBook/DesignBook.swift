@@ -111,7 +111,7 @@ public final class DesignBook: ObservableObject {
         case .captionColor: return combine(light: .pref(\.weekCaptionsColorLight), dark: .pref(\.weekCaptionsColorDark))
         case .workdayColor: return combine(light: .pref(\.workingDayColorLight), dark: .pref(\.workingDayColorDark))
         case .weekendColor: return combine(light: .pref(\.weekendDayColorLight), dark: .pref(\.weekendDayColorDark))
-        case .holidayColor: return combine(light: .pref(\.fulldayEventColorLight), dark: .pref(\.fulldayEventColorDark))
+        case .holidayColor: return combine(light: .pref(\.alldayEventColorLight), dark: .pref(\.alldayEventColorDark))
         case .todayColor: return combine(light: .pref(\.currentDayColorLight), dark: .pref(\.currentDayColorDark))
         case .eventColor: return combine(light: .pref(\.shortEventColorLight), dark: .pref(\.shortEventColorDark))
         }

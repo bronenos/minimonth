@@ -27,8 +27,8 @@ public protocol IPreferencesDriver: class {
     var currentDayColorDark: UIColor { get set }
     var shortEventColorLight: UIColor { get set }
     var shortEventColorDark: UIColor { get set }
-    var fulldayEventColorLight: UIColor { get set }
-    var fulldayEventColorDark: UIColor { get set }
+    var alldayEventColorLight: UIColor { get set }
+    var alldayEventColorDark: UIColor { get set }
     var shouldDisplayWeekNumbers: Bool { get set }
     func resetColors()
 }
@@ -46,7 +46,7 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     private let defaultWeekendDayColor = UIColor.systemRed
     private let defaultCurrentDayColor = UIColor.systemGreen
     private let defaultShortEventColor = UIColor.systemBlue
-    private let defaultFulldayEventColor = UIColor.systemOrange
+    private let defaultAlldayEventColor = UIColor.systemOrange
     private let defaultShouldDisplayWeekNumbers = true
 
     public init() {
@@ -123,12 +123,12 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
         set { setColor(newValue, for: #function) }
     }
     
-    public var fulldayEventColorLight: UIColor {
+    public var alldayEventColorLight: UIColor {
         get { getColor(for: #function) ?? UIColor.systemOrange }
         set { setColor(newValue, for: #function) }
     }
     
-    public var fulldayEventColorDark: UIColor {
+    public var alldayEventColorDark: UIColor {
         get { getColor(for: #function) ?? UIColor.systemOrange }
         set { setColor(newValue, for: #function) }
     }
@@ -162,8 +162,8 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
         currentDayColorDark = defaultCurrentDayColor.resolvedColor(with: darkTraitCollection)
         shortEventColorLight = defaultShortEventColor.resolvedColor(with: lightTraitCollection)
         shortEventColorDark = defaultShortEventColor.resolvedColor(with: darkTraitCollection)
-        fulldayEventColorLight = defaultFulldayEventColor.resolvedColor(with: lightTraitCollection)
-        fulldayEventColorDark = defaultFulldayEventColor.resolvedColor(with: darkTraitCollection)
+        alldayEventColorLight = defaultAlldayEventColor.resolvedColor(with: lightTraitCollection)
+        alldayEventColorDark = defaultAlldayEventColor.resolvedColor(with: darkTraitCollection)
     }
     
     private func getColor(for key: String) -> UIColor? {

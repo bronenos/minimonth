@@ -33,7 +33,7 @@ struct HosterColorsBlock: View {
             }
             
             Button(action: resetColorsAlertingPresent) {
-                Text("Preferences.Colors.Reset")
+                Text("Preferences.Colors.ResetColors")
                     .font(.footnote)
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
@@ -67,44 +67,44 @@ struct HosterColorsBlock: View {
 fileprivate struct HosterColorDynamicMetaStorage {
     let metas: [HosterColorDynamicMeta] = [
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.Month",
+            captionKey: "Preferences.Colors.MonthTitle",
             lightKeyPath: \.monthTitleColorLight,
             darkKeyPath: \.monthTitleColorDark
         ),
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.Arrows",
+            captionKey: "Preferences.Colors.NavigationElements",
             lightKeyPath: \.navigationElementsColorLight,
             darkKeyPath: \.navigationElementsColorDark
         ),
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.Axis",
+            captionKey: "Preferences.Colors.WeekCaptions",
             lightKeyPath: \.weekCaptionsColorLight,
             darkKeyPath: \.weekCaptionsColorDark
         ),
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.Workday",
+            captionKey: "Preferences.Colors.WorkdayNumbers",
             lightKeyPath: \.workingDayColorLight,
             darkKeyPath: \.workingDayColorDark
         ),
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.Weekend",
+            captionKey: "Preferences.Colors.WeekendNumbers",
             lightKeyPath: \.weekendDayColorLight,
             darkKeyPath: \.weekendDayColorDark
         ),
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.Today",
+            captionKey: "Preferences.Colors.CurrentDay",
             lightKeyPath: \.currentDayColorLight,
             darkKeyPath: \.currentDayColorDark
         ),
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.Event",
+            captionKey: "Preferences.Colors.ShortEvents",
             lightKeyPath: \.shortEventColorLight,
             darkKeyPath: \.shortEventColorDark
         ),
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.Holiday",
-            lightKeyPath: \.fulldayEventColorLight,
-            darkKeyPath: \.fulldayEventColorDark
+            captionKey: "Preferences.Colors.AllDayEvents",
+            lightKeyPath: \.alldayEventColorLight,
+            darkKeyPath: \.alldayEventColorDark
         )
     ]
     
