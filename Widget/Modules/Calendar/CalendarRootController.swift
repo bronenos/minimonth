@@ -9,7 +9,7 @@
 import SwiftUI
 import NotificationCenter
 
-@objc(CalendarRootController) public final class CalendarRootController: UIViewController, NCWidgetProviding, CalendarDelegate {
+@objc(CalendarRootController) public final class CalendarRootController: UIViewController, NCWidgetProviding, CalendarDelegate, CALayerDelegate {
     private var interactor: CalendarInteractor?
     
     public override func viewDidLoad() {
@@ -59,7 +59,8 @@ import NotificationCenter
         
         let hostingController = UIHostingController(rootView: rootView)
         hostingController.view.backgroundColor = nil
-        
+//        hostingController.view.layer.delegate = self
+
         interactor = rootInteractor
         
         addChild(hostingController)
@@ -68,14 +69,35 @@ import NotificationCenter
     
     private func calculateInnerHeight() -> CGFloat {
         guard let contentView = children.first?.view else { return 0 }
-        let childFrames = contentView.subviews.map { $0.frame }
+        let subviews = contentView.subviews
+        let childFrames = subviews.map { $0.frame }
         return childFrames.reduce(CGRect.zero, { $0.union($1) }).height + 15
     }
     
     public func resize() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) { [weak self] in
-            let height = self?.calculateInnerHeight() ?? 0
-            self?.preferredContentSize = CGSize(width: .infinity, height: height)
+        //        let height = calculateInnerHeight() ?? 0
+        //        preferredContentSize = CGSize(width: .infinity, height: height)
+    }
+    
+    public func _resize() {
+        let height = calculateInnerHeight()
+        preferredContentSize = CGSize(width: .infinity, height: height)
+    }
+    
+    public override func responds(to aSelector: Selector!) -> Bool {
+        if aSelector == #selector(CALayerDelegate.layoutSublayers(of:)) {
+            DispatchQueue.main.async { [weak self] in
+                self?._resize()
+            }
+            
+            return false
         }
+        else {
+            return super.responds(to: aSelector)
+        }
+    }
+    
+    @objc(layoutSublayersOfLayer:) public func layoutSublayers(of layer: CALayer) {
+        
     }
 }

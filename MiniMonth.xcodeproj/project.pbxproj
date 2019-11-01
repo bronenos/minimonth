@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D405D3FA236CB336000B1893 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D405D3F9236CB336000B1893 /* README.md */; };
 		D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D411EE1319C2A5CD0054439F /* NotificationCenter.framework */; };
 		D41FCB0523642D2100499C19 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D41FCB0C2364B11A00499C19 /* OrientationWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FCB0B2364B11A00499C19 /* OrientationWatcher.swift */; };
@@ -145,6 +146,7 @@
 		9C1EC1421D97F8B8D435509E /* Pods_Hoster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hoster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFED14423E6B7500C2DA861E /* Pods-Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Widget.release.xcconfig"; path = "Target Support Files/Pods-Widget/Pods-Widget.release.xcconfig"; sourceTree = "<group>"; };
 		B9BF114416E440853E417285 /* Pods-Hoster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoster.debug.xcconfig"; path = "Target Support Files/Pods-Hoster/Pods-Hoster.debug.xcconfig"; sourceTree = "<group>"; };
+		D405D3F9236CB336000B1893 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D411EE1119C2A5CC0054439F /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D411EE1319C2A5CD0054439F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D411EE1719C2A5CD0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -275,6 +277,13 @@
 				AFED14423E6B7500C2DA861E /* Pods-Widget.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D405D3F8236C9DBC000B1893 /* Hack */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Hack;
 			sourceTree = "<group>";
 		};
 		D4070DD72361A9B000879694 /* Modules */ = {
@@ -452,6 +461,7 @@
 				D4C735AA19FFBAEC0066A6E8 /* Widget.entitlements */,
 				D4B7426E235E3B21003FDFF9 /* Services */,
 				D44995C12361B23100167A92 /* Shared */,
+				D405D3F8236C9DBC000B1893 /* Hack */,
 				D4070DD72361A9B000879694 /* Modules */,
 			);
 			path = Widget;
@@ -552,6 +562,7 @@
 				D4CD22C32362E9CA000409CB /* HosterCalendarWrapper.swift */,
 				D468DB2A23633DF30085122D /* HosterPreferencesBlock */,
 				D4CD22B12362D9EB000409CB /* Preview Content */,
+				D405D3F9236CB336000B1893 /* README.md */,
 			);
 			path = Hoster;
 			sourceTree = "<group>";
@@ -736,6 +747,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D405D3FA236CB336000B1893 /* README.md in Resources */,
 				D4CD22B62362D9EB000409CB /* LaunchScreen.storyboard in Resources */,
 				D4BB6A88236B1B5D008BCAC0 /* Localizable.strings in Resources */,
 				D4CD22B32362D9EB000409CB /* Preview Assets.xcassets in Resources */,
