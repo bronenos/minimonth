@@ -8,6 +8,8 @@
 
 "Common.Confirm" = "Подтвердить";
 
+"Hoster.Title" = "Настройки вашего виджета";
+
 "Preferences.PreviewAs" = "Стиль просмотра";
 "Preferences.PreviewAs.Light" = "Светлый";
 "Preferences.PreviewAs.Dark" = "Тёмный";

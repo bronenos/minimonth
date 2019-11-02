@@ -66,6 +66,7 @@ struct HosterView: View {
             if UIScreen.main.kind.atLeast(.extraLarge) {
                 VStack {
                     Spacer()
+                    constructAboutBlock()
                     HosterCalendarWrapper()
                     constructPreferencesBlock()
                     Spacer()
@@ -74,6 +75,7 @@ struct HosterView: View {
             else {
                 ScrollView(.vertical, showsIndicators: false) {
                     Spacer().frame(ownWidth: nil, ownHeight: 20)
+                    constructAboutBlock()
                     HosterCalendarWrapper()
                     constructPreferencesBlock()
                 }
@@ -82,40 +84,50 @@ struct HosterView: View {
     }
     
     private func constructLandscapeContent() -> some View {
-        HStack(alignment: .center) {
-            HosterCalendarWrapper()
+        VStack(alignment: .center, spacing: 0) {
+            constructAboutBlock()
             
-            if UIScreen.main.kind.atLeast(.extraLarge) {
-                Spacer().frame(minWidth: 5, idealWidth: 50, maxWidth: 50, alignment: .center)
+            HStack(alignment: .center) {
+                HosterCalendarWrapper()
                 
-                VStack {
-                    Spacer()
-                    constructPreferencesBlock()
-                    Spacer()
+                if UIScreen.main.kind.atLeast(.extraLarge) {
+                    Spacer().frame(minWidth: 5, idealWidth: 50, maxWidth: 50, alignment: .center)
+                    
+                    VStack {
+                        Spacer()
+                        constructPreferencesBlock()
+                        Spacer()
+                    }
                 }
-            }
-            else if UIScreen.main.kind.atLeast(.large) {
-                Spacer().frame(maxWidth: 30, alignment: .center)
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    constructPreferencesBlock()
+                else if UIScreen.main.kind.atLeast(.large) {
+                    Spacer().frame(maxWidth: 30, alignment: .center)
+                    
+                    ScrollView(.vertical, showsIndicators: false) {
+                        constructPreferencesBlock()
+                    }
                 }
-            }
-            else if UIScreen.main.kind.atLeast(.regular) {
-                Spacer().frame(maxWidth: 30, alignment: .center)
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    constructPreferencesBlock()
+                else if UIScreen.main.kind.atLeast(.regular) {
+                    Spacer().frame(maxWidth: 30, alignment: .center)
+                    
+                    ScrollView(.vertical, showsIndicators: false) {
+                        constructPreferencesBlock()
+                    }
                 }
-            }
-            else {
-                Spacer().frame(maxWidth: 5, alignment: .center)
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    constructPreferencesBlock()
+                else {
+                    Spacer().frame(maxWidth: 5, alignment: .center)
+                    
+                    ScrollView(.vertical, showsIndicators: false) {
+                        constructPreferencesBlock()
+                    }
                 }
             }
         }
+    }
+    
+    private func constructAboutBlock() -> some View {
+        Text("Hoster.Title")
+            .font(.headline)
+            .padding(.vertical)
     }
     
     private func constructPreferencesBlock() -> some View {

@@ -8,6 +8,8 @@
 
 "Common.Confirm" = "Confirm";
 
+"Hoster.Title" = "Your widget preferences";
+
 "Preferences.PreviewAs" = "Preview as";
 "Preferences.PreviewAs.Light" = "Light";
 "Preferences.PreviewAs.Dark" = "Dark";
