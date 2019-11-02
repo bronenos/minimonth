@@ -50,7 +50,6 @@ struct CalendarHeader: View {
                 .opacity(fastForwardAction.hasValue ? 1.0 : 0)
                 .onTapGesture(perform: fastForwardAction ?? {})
         }
-        .padding(.horizontal)
     }
     
     private var computedCaption: String {

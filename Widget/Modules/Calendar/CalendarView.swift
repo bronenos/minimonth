@@ -52,7 +52,8 @@ public struct CalendarView: View {
                             fastForwardAction: nil)
                     }
                 }
-                
+                .padding(.horizontal, geometry.size.width * 0.035)
+
                 CalendarWeekdayBar(
                     captions: self.interactor.meta.weekdayTitles)
                     .frame(ownHeight: self.designBook.layout.weekHeaderHeight)
@@ -61,7 +62,7 @@ public struct CalendarView: View {
                 HStack(spacing: 0) {
                     CalendarWeeknumBar(
                         weekNumbers: self.interactor.meta.weekNumbers)
-                        .frame(ownWidth: self.calculateWeeknumWidth(geometry: geometry))
+                        .frame(ownWidth: self.calculateWeeknumWidth(geometry: geometry), alignment: .leading)
                         .modifier(self.calculateBodyHeightModifier(geometry: geometry))
                         .clipped()
 

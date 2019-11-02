@@ -14,7 +14,7 @@ struct CalendarWeeknumBar: View {
     let weekNumbers: Range<Int>
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             ForEach(weekNumbers, id: \.self) { number in
                 Text("# \(number)")
                     .frame(maxHeight: .infinity, alignment: .center)
@@ -23,5 +23,6 @@ struct CalendarWeeknumBar: View {
                     .fixedSize(horizontal: true, vertical: false)
             }
         }
+        .padding(.leading, 12)
     }
 }

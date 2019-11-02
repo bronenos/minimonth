@@ -9,7 +9,7 @@
 import SwiftUI
 
 extension View {
-    func frame(ownWidth: CGFloat? = nil, ownHeight: CGFloat? = nil) -> some View {
+    func frame(ownWidth: CGFloat? = nil, ownHeight: CGFloat? = nil, alignment: Alignment = .center) -> some View {
         return frame(
             minWidth: ownWidth,
             idealWidth: ownWidth,
@@ -17,7 +17,7 @@ extension View {
             minHeight: ownHeight,
             idealHeight: ownHeight,
             maxHeight: ownHeight,
-            alignment: .center
+            alignment: alignment
         )
     }
     

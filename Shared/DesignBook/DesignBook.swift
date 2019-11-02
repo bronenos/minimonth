@@ -25,27 +25,16 @@ public final class DesignBook: ObservableObject {
     
     public var horizontalSizeClass: UserInterfaceSizeClass {
         switch traitEnvironment.traitCollection.horizontalSizeClass {
-        case .compact:
-            print("horizontalSizeClass[compact]")
-            return .compact
-            
-        case .regular:
-            print("horizontalSizeClass[regular]")
-            return .regular
-            
-        case .unspecified:
-            print("horizontalSizeClass[unspecified]")
-            return .compact
-            
-        @unknown default:
-            print("horizontalSizeClass[default]")
-            return .compact
+        case .compact: return .compact
+        case .regular: return .regular
+        case .unspecified: return .compact
+        @unknown default: return .compact
         }
     }
     
     public let layout = DesignBookLayout(
         weekHeaderHeight: 27,
-        weekNumberWidthCoef: 0.15,
+        weekNumberWidthCoef: 0.12,
         weekDayHeight: 27,
         eventMarkerSide: 4
     )
