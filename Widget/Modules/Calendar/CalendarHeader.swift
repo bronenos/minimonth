@@ -22,12 +22,12 @@ struct CalendarHeader: View {
     public var body: some View {
         HStack {
             CalendarHeaderButton(symbolName: "chevron.left.2")
-                .opacity(fastBackwardAction.hasValue ? 1.0 : 0)
+                .opacity(fastBackwardAction == nil ? 0 : 1.0)
                 .onTapGesture(perform: fastBackwardAction ?? {})
 
             CalendarHeaderButton(symbolName: "chevron.left")
                 .padding(.horizontal, 10)
-                .opacity(backwardAction.hasValue ? 1.0 : 0)
+                .opacity(backwardAction == nil ? 0 : 1.0)
                 .onTapGesture(perform: backwardAction ?? {})
 
             Spacer()
@@ -44,11 +44,11 @@ struct CalendarHeader: View {
             
             CalendarHeaderButton(symbolName: "chevron.right")
                 .padding(.horizontal, 10)
-                .opacity(forwardAction.hasValue ? 1.0 : 0)
+                .opacity(forwardAction == nil ? 0 : 1.0)
                 .onTapGesture(perform: forwardAction ?? {})
 
             CalendarHeaderButton(symbolName: "chevron.right.2")
-                .opacity(fastForwardAction.hasValue ? 1.0 : 0)
+                .opacity(fastForwardAction == nil ? 0 : 1.0)
                 .onTapGesture(perform: fastForwardAction ?? {})
         }
     }

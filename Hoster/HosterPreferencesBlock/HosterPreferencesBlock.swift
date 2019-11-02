@@ -27,17 +27,23 @@ struct HosterPreferencesBlock: View {
                 Spacer()
                 
                 Section {
-                    HStack {
-                        Text("Preferences.PreviewAs")
-                        
-                        Spacer()
-                        
-                        Picker(selection: $interactor.colorScheme, label: EmptyView()) {
-                            Text("Preferences.PreviewAs.Light").tag(ColorScheme.light)
-                            Text("Preferences.PreviewAs.Dark").tag(ColorScheme.dark)
+                    ZStack {
+                        HStack {
+                            Text("Preferences.PreviewAs")
+                            
+                            Spacer()
                         }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .fixedSize(horizontal: true, vertical: false)
+                        
+                        HStack {
+                            Spacer()
+                            
+                            Picker(selection: $interactor.colorScheme, label: EmptyView()) {
+                                Text("Preferences.PreviewAs.Light").tag(ColorScheme.light)
+                                Text("Preferences.PreviewAs.Dark").tag(ColorScheme.dark)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .fixedSize(horizontal: true, vertical: false)
+                        }
                     }
                 }
                 .styleAsPreferenceBlock()

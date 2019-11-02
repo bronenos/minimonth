@@ -36,6 +36,7 @@ struct HosterColorsBlock: View {
                 Text("Preferences.Colors.ResetColors")
                     .font(.footnote)
                     .foregroundColor(.red)
+                    .lineLimit(nil)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 8)
             }

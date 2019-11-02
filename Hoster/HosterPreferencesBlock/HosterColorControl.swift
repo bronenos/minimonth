@@ -16,24 +16,29 @@ struct HosterColorControl: View {
     let keyPath: PreferencesWritableKeyPath
     
     var body: some View {
-        HStack {
-            Text(localizedCaption)
-                .font(.body)
-                .lineLimit(nil)
-                .multilineTextAlignment(.leading)
-                .fixedSize(horizontal: true, vertical: true)
-                .padding(.leading, 11)
-                .padding(.vertical, 8)
+        ZStack {
+            Color(UIColor.secondarySystemBackground)
             
-            ZStack {
-                Color(UIColor.secondarySystemBackground)
+            HStack {
+                Text(localizedCaption)
+                    .font(.body)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.leading, 11)
+                    .padding(.vertical, 8)
+                
                 Spacer()
             }
             
-            Capsule()
-                .frame(ownWidth: 40, ownHeight: 30)
-                .foregroundColor(resolvedColor)
-                .padding(6)
+            HStack {
+                Spacer()
+                
+                Capsule()
+                    .frame(ownWidth: 40, ownHeight: 30)
+                    .foregroundColor(resolvedColor)
+                    .padding(6)
+            }
         }
         .overlay(
             Capsule(style: .circular)
