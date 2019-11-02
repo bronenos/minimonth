@@ -189,7 +189,7 @@ fileprivate func calculateMeta(calendar: Calendar,
 
         return CalendarMeta(
             monthTitle: ahcnorMonthTitle,
-            monthYear: (anchorYear == todayYear ? nil : anchorYear),
+            monthYear: anchorYear, // (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
             weekdayTitles: calendar.sortedWeekdayShortTitles,
             monthOffset: monthOffset,
@@ -220,7 +220,7 @@ fileprivate func calculateMeta(calendar: Calendar,
 
         return CalendarMeta(
             monthTitle: ahcnorMonthTitle,
-            monthYear: (anchorYear == todayYear ? nil : anchorYear),
+            monthYear: anchorYear, // (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
             weekdayTitles: calendar.sortedWeekdayShortTitles,
             monthOffset: monthOffset,

@@ -24,6 +24,7 @@
 		D48D4C57236AAEC200A8B921 /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */; };
 		D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49AFD5C2363914A0033D98F /* BlurredView.swift */; };
 		D4A6988F236DD5D200B34EAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4A69891236DD5D200B34EAC /* InfoPlist.strings */; };
+		D4A69894236DE37F00B34EAC /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */; };
 		D4AF0CD4236C8333005FEFC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4AF0CD6236C8334005FEFC6 /* InfoPlist.strings */; };
 		D4B034CA2361AE3C009A7344 /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B034C92361AE3C009A7344 /* OptionalExtensions.swift */; };
 		D4B0AE4C236AE2DA00DC88C6 /* Pods_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E245D71F39F7B305C2C7DE /* Pods_Shared.framework */; };
@@ -396,6 +397,7 @@
 				D44D33642362428B001C44A1 /* MiniMonth_Shared.h */,
 				D44D33652362428B001C44A1 /* Info.plist */,
 				D44D33542361F337001C44A1 /* Drivers */,
+				D4A69893236DE36300B34EAC /* Extensions */,
 				D47836C6235EC9050030238C /* DesignBook */,
 			);
 			path = Shared;
@@ -414,7 +416,6 @@
 		D468DB27236320C00085122D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,6 +456,14 @@
 				D49AFD5C2363914A0033D98F /* BlurredView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D4A69893236DE36300B34EAC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D4B74267235E2512003FDFF9 /* Widget */ = {
@@ -832,6 +841,7 @@
 				D4BB6A7D236B0704008BCAC0 /* DesignBook.swift in Sources */,
 				D47836C2235EC7F50030238C /* CalendarMonthView.swift in Sources */,
 				D4B74271235E3E17003FDFF9 /* CalendarInteractor.swift in Sources */,
+				D4A69894236DE37F00B34EAC /* UIScreenExtensions.swift in Sources */,
 				D4D9CCCE236194D100BC5EDF /* FoundationExtensions.swift in Sources */,
 				D4B7426D235E3AAA003FDFF9 /* CalendarHeader.swift in Sources */,
 				D4B7426B235E322A003FDFF9 /* CalendarRootController.swift in Sources */,

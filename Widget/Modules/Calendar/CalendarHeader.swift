@@ -35,6 +35,7 @@ struct CalendarHeader: View {
             Text(computedCaption)
                 .font(.system(size: 17, weight: .semibold))
                 .kerning(2)
+                .fixedSize(horizontal: true, vertical: false)
                 .foregroundColor(designBook.cached(usage: .monthColor))
                 .padding(.vertical, 10)
                 .onTapGesture(perform: titleAction)
@@ -54,7 +55,7 @@ struct CalendarHeader: View {
     
     private var computedCaption: String {
         if let year = year {
-            return "\(title) (\(year))"
+            return "\(title) ʼ\(year % 100)"
         }
         else {
             return title

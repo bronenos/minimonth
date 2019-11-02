@@ -20,7 +20,7 @@ struct CalendarWeekdayBar: View {
             ForEach(self.captions, id: \.self) { caption in
                 Text(caption)
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .font(.system(size: 12, weight: .semibold))
+                    .font(.system(size: 11, weight: .semibold))
                     .foregroundColor(self.designBook.cached(usage: .captionColor))
             }
             

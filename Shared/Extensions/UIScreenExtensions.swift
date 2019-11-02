@@ -8,19 +8,19 @@
 
 import UIKit
 
-enum ScreenKind: Int {
+public enum ScreenKind: Int {
     case mini
     case regular
     case large
     case extraLarge
     
-    func atLeast(_ kind: ScreenKind) -> Bool {
+    public func atLeast(_ kind: ScreenKind) -> Bool {
         return (rawValue >= kind.rawValue)
     }
 }
 
-extension UIScreen {
-    var kind: ScreenKind {
+public extension UIScreen {
+    public var kind: ScreenKind {
         switch max(nativeBounds.width, nativeBounds.height) {
         case 2000... where UIDevice.current.userInterfaceIdiom == .pad: return .extraLarge
         case 1900...: return .large
