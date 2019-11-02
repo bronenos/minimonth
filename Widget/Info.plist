@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Request calendar events</string>
+	<string>Do you want us to display your calendar events within our widget?</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionPointIdentifier</key>
