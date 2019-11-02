@@ -13,23 +13,23 @@ public typealias PreferencesReadableKeyPath = KeyPath<PreferencesDriver, UIColor
 public typealias PreferencesWritableKeyPath = ReferenceWritableKeyPath<PreferencesDriver, UIColor>
 
 public protocol IPreferencesDriver: class {
-    var monthTitleColorLight: UIColor { get set }
-    var monthTitleColorDark: UIColor { get set }
-    var navigationElementsColorLight: UIColor { get set }
-    var navigationElementsColorDark: UIColor { get set }
-    var weekCaptionsColorLight: UIColor { get set }
-    var weekCaptionsColorDark: UIColor { get set }
-    var workingDayColorLight: UIColor { get set }
-    var workingDayColorDark: UIColor { get set }
-    var weekendDayColorLight: UIColor { get set }
-    var weekendDayColorDark: UIColor { get set }
-    var currentDayColorLight: UIColor { get set }
-    var currentDayColorDark: UIColor { get set }
-    var shortEventColorLight: UIColor { get set }
-    var shortEventColorDark: UIColor { get set }
-    var alldayEventColorLight: UIColor { get set }
-    var alldayEventColorDark: UIColor { get set }
-    var shouldDisplayWeekNumbers: Bool { get set }
+    var monthTitleColorLight: UIColor! { get set }
+    var monthTitleColorDark: UIColor! { get set }
+    var navigationElementsColorLight: UIColor! { get set }
+    var navigationElementsColorDark: UIColor! { get set }
+    var weekCaptionsColorLight: UIColor! { get set }
+    var weekCaptionsColorDark: UIColor! { get set }
+    var workingDayColorLight: UIColor! { get set }
+    var workingDayColorDark: UIColor! { get set }
+    var weekendDayColorLight: UIColor! { get set }
+    var weekendDayColorDark: UIColor! { get set }
+    var currentDayColorLight: UIColor! { get set }
+    var currentDayColorDark: UIColor! { get set }
+    var shortEventColorLight: UIColor! { get set }
+    var shortEventColorDark: UIColor! { get set }
+    var alldayEventColorLight: UIColor! { get set }
+    var alldayEventColorDark: UIColor! { get set }
+    var shouldDisplayWeekNumbers: Bool! { get set }
     func resetColors()
 }
 
@@ -39,102 +39,92 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     private let storage: UserDefaults
     private var shouldSynchronize = true
     
-    private let defaultMonthTitleColor = UIColor.label
-    private let defaultNavigationElementsColor = UIColor.tertiaryLabel
-    private let defaultWeekCaptionsColor = UIColor.secondaryLabel
-    private let defaultWorkingDayColor = UIColor.label
-    private let defaultWeekendDayColor = UIColor(red: 0.63, green: 0, blue: 0, alpha: 1.0)
-    private let defaultCurrentDayColor = UIColor(red: 0.20, green: 0.50, blue: 0, alpha: 1.0)
-    private let defaultShortEventColor = UIColor(red: 0.30, green: 0.25, blue: 0.97, alpha: 1.0)
-    private let defaultAlldayEventColor = UIColor(red: 0.63, green: 0, blue: 0, alpha: 1.0)
-    private let defaultShouldDisplayWeekNumbers = true
-
     public init() {
         storage = UserDefaults(suiteName: "group.V8NCXSZ3T7.me.bronenos.minimonth") ?? .standard
     }
 
-    public var monthTitleColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultMonthTitleColor.light }
+    public var monthTitleColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor.label }
         set { setColor(newValue, for: #function) }
     }
     
-    public var monthTitleColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultMonthTitleColor.dark }
+    public var monthTitleColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor.label }
         set { setColor(newValue, for: #function) }
     }
     
-    public var navigationElementsColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultNavigationElementsColor.light }
+    public var navigationElementsColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor.tertiaryLabel }
         set { setColor(newValue, for: #function) }
     }
     
-    public var navigationElementsColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultNavigationElementsColor.dark }
+    public var navigationElementsColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor.tertiaryLabel }
         set { setColor(newValue, for: #function) }
     }
     
-    public var weekCaptionsColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultWeekCaptionsColor.light }
+    public var weekCaptionsColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor.secondaryLabel }
         set { setColor(newValue, for: #function) }
     }
     
-    public var weekCaptionsColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultWeekCaptionsColor.dark }
+    public var weekCaptionsColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor.secondaryLabel }
         set { setColor(newValue, for: #function) }
     }
     
-    public var workingDayColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultWorkingDayColor.light }
+    public var workingDayColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor.label }
         set { setColor(newValue, for: #function) }
     }
     
-    public var workingDayColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultWorkingDayColor.dark }
+    public var workingDayColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor.label }
         set { setColor(newValue, for: #function) }
     }
     
-    public var weekendDayColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultWeekendDayColor.light }
+    public var weekendDayColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0.61, green: 0.07, blue: 0.07, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
-    public var weekendDayColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultWeekendDayColor.dark }
+    public var weekendDayColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0.88, green: 0.40, blue: 0.35, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
-    public var currentDayColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultCurrentDayColor.light }
+    public var currentDayColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0.20, green: 0.45, blue: 0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
-    public var currentDayColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultCurrentDayColor.dark }
+    public var currentDayColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0.20, green: 0.45, blue: 0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
-    public var shortEventColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultShortEventColor.light }
+    public var shortEventColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0.30, green: 0.25, blue: 0.97, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
-    public var shortEventColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultShortEventColor.dark }
+    public var shortEventColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0.37, green: 0.49, blue: 0.98, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
-    public var alldayEventColorLight: UIColor {
-        get { getColor(for: #function) ?? defaultAlldayEventColor.light }
+    public var alldayEventColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0.61, green: 0.07, blue: 0.07, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
-    public var alldayEventColorDark: UIColor {
-        get { getColor(for: #function) ?? defaultAlldayEventColor.dark }
+    public var alldayEventColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0.88, green: 0.40, blue: 0.35, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
-    public var shouldDisplayWeekNumbers: Bool {
-        get { getBool(for: #function) ?? defaultShouldDisplayWeekNumbers }
+    public var shouldDisplayWeekNumbers: Bool! {
+        get { getBool(for: #function) ?? true }
         set { setBool(newValue, for: #function) }
     }
     
@@ -145,22 +135,22 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
             synchronizeIfNeeded()
         }
         
-        monthTitleColorLight = defaultMonthTitleColor.light
-        monthTitleColorDark = defaultMonthTitleColor.dark
-        navigationElementsColorLight = defaultNavigationElementsColor.light
-        navigationElementsColorDark = defaultNavigationElementsColor.dark
-        weekCaptionsColorLight = defaultWeekCaptionsColor.light
-        weekCaptionsColorDark = defaultWeekCaptionsColor.dark
-        workingDayColorLight = defaultWorkingDayColor.light
-        workingDayColorDark = defaultWorkingDayColor.dark
-        weekendDayColorLight = defaultWeekendDayColor.light
-        weekendDayColorDark = defaultWeekendDayColor.dark
-        currentDayColorLight = defaultCurrentDayColor.light
-        currentDayColorDark = defaultCurrentDayColor.dark
-        shortEventColorLight = defaultShortEventColor.light
-        shortEventColorDark = defaultShortEventColor.dark
-        alldayEventColorLight = defaultAlldayEventColor.light
-        alldayEventColorDark = defaultAlldayEventColor.dark
+        monthTitleColorLight = nil
+        monthTitleColorDark = nil
+        navigationElementsColorLight = nil
+        navigationElementsColorDark = nil
+        weekCaptionsColorLight = nil
+        weekCaptionsColorDark = nil
+        workingDayColorLight = nil
+        workingDayColorDark = nil
+        weekendDayColorLight = nil
+        weekendDayColorDark = nil
+        currentDayColorLight = nil
+        currentDayColorDark = nil
+        shortEventColorLight = nil
+        shortEventColorDark = nil
+        alldayEventColorLight = nil
+        alldayEventColorDark = nil
     }
     
     private func getColor(for key: String) -> UIColor? {
@@ -197,8 +187,14 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
         }
     }
     
-    private func setBool(_ value: Bool, for key: String) {
-        storage.set(value, forKey: key)
+    private func setBool(_ value: Bool?, for key: String) {
+        if let value = value {
+            storage.set(value, forKey: key)
+        }
+        else {
+            storage.removeObject(forKey: key)
+        }
+        
         synchronizeIfNeeded()
     }
     
