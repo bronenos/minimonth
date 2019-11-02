@@ -43,10 +43,10 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     private let defaultNavigationElementsColor = UIColor.tertiaryLabel
     private let defaultWeekCaptionsColor = UIColor.secondaryLabel
     private let defaultWorkingDayColor = UIColor.label
-    private let defaultWeekendDayColor = UIColor.systemRed
-    private let defaultCurrentDayColor = UIColor.systemGreen
-    private let defaultShortEventColor = UIColor.systemBlue
-    private let defaultAlldayEventColor = UIColor.systemOrange
+    private let defaultWeekendDayColor = UIColor(red: 0.63, green: 0, blue: 0, alpha: 1.0)
+    private let defaultCurrentDayColor = UIColor(red: 0.20, green: 0.50, blue: 0, alpha: 1.0)
+    private let defaultShortEventColor = UIColor(red: 0.30, green: 0.25, blue: 0.97, alpha: 1.0)
+    private let defaultAlldayEventColor = UIColor(red: 0.63, green: 0, blue: 0, alpha: 1.0)
     private let defaultShouldDisplayWeekNumbers = true
 
     public init() {

@@ -70,13 +70,13 @@ public struct CalendarView: View {
                         monthOffset: self.interactor.meta.monthOffset,
                         days: self.interactor.meta.days)
                         .modifier(self.calculateBodyHeightModifier(geometry: geometry))
+                        .padding(.horizontal, geometry.size.width * 0.01)
                 }
 
                 Spacer()
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
-            .animation(nil)
-//            .animation(self.interactor.shouldAnimate ? .linear(duration: 0.25) : nil)
+            .padding(.horizontal, 10)
         }
     }
     

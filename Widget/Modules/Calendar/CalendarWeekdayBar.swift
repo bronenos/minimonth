@@ -14,13 +14,17 @@ struct CalendarWeekdayBar: View {
     let captions: [String]
     
     var body: some View {
-        HStack(alignment: .center, spacing: 0) {
+        HStack(alignment: .center) {
+            Spacer()
+            
             ForEach(self.captions, id: \.self) { caption in
                 Text(caption)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(self.designBook.cached(usage: .captionColor))
             }
+            
+            Spacer()
         }
     }
 }
