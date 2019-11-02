@@ -9,8 +9,11 @@
 import SwiftUI
 import NotificationCenter
 
-@objc(CalendarRootController) public final class CalendarRootController: UIViewController, NCWidgetProviding, CalendarDelegate, CALayerDelegate {
+@objc(CalendarRootController) public final class CalendarRootController: UIViewController, NCWidgetProviding {
     private var interactor: CalendarInteractor?
+    
+    private var hostingLayerObserver: NSKeyValueObservation?
+    private weak var autosizingTimer: Timer?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +44,6 @@ import NotificationCenter
         case .expanded: interactor?.toggle(style: .month)
         @unknown default: interactor?.toggle(style: .month)
         }
-        
-        resize()
     }
     
     private func rebuild(style: CalendarStyle) {
@@ -52,52 +53,49 @@ import NotificationCenter
         let preferencesDriver = PreferencesDriver()
         let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: self)
         
-        let rootInteractor = CalendarInteractor(style: style, delegate: self)
+        let rootInteractor = CalendarInteractor(style: style)
         let rootView = CalendarView(interactor: rootInteractor, position: .top)
             .environmentObject(preferencesDriver)
             .environmentObject(designBook)
         
         let hostingController = UIHostingController(rootView: rootView)
         hostingController.view.backgroundColor = nil
-//        hostingController.view.layer.delegate = self
-
+        
         interactor = rootInteractor
         
         addChild(hostingController)
         view.addSubview(hostingController.view)
+        
+        hostingLayerObserver = hostingController.view.layer.observe(\.sublayers) { [weak self] layer, change in
+            self?.requestDelayAutosizing()
+        }
     }
     
     private func calculateInnerHeight() -> CGFloat {
         guard let contentView = children.first?.view else { return 0 }
         let subviews = contentView.subviews
-        let childFrames = subviews.map { $0.frame }
-        return childFrames.reduce(CGRect.zero, { $0.union($1) }).height + 15
+        let childTopMost = subviews.map({ $0.frame.minY }).min() ?? 0
+        let childBottomMost = subviews.map({ $0.frame.maxY }).max() ?? 0
+        return (childBottomMost - childTopMost) + 25
     }
     
-    public func resize() {
-        //        let height = calculateInnerHeight() ?? 0
-        //        preferredContentSize = CGSize(width: .infinity, height: height)
+    private func requestDelayAutosizing() {
+        cancelDelayedAutosizing()
+        autosizingTimer = Timer.scheduledTimer(
+            timeInterval: 0.05,
+            target: self,
+            selector: #selector(handleAutosizingTimer),
+            userInfo: nil,
+            repeats: false
+        )
     }
     
-    public func _resize() {
+    private func cancelDelayedAutosizing() {
+        autosizingTimer?.invalidate()
+    }
+    
+    @objc private func handleAutosizingTimer() {
         let height = calculateInnerHeight()
         preferredContentSize = CGSize(width: .infinity, height: height)
-    }
-    
-    public override func responds(to aSelector: Selector!) -> Bool {
-        if aSelector == #selector(CALayerDelegate.layoutSublayers(of:)) {
-            DispatchQueue.main.async { [weak self] in
-                self?._resize()
-            }
-            
-            return false
-        }
-        else {
-            return super.responds(to: aSelector)
-        }
-    }
-    
-    @objc(layoutSublayersOfLayer:) public func layoutSublayers(of layer: CALayer) {
-        
     }
 }

@@ -11,10 +11,6 @@ import SwiftUI
 import Combine
 import EventKit
 
-public protocol CalendarDelegate: class {
-    func resize()
-}
-
 protocol ICalendarInteractor: class {
     var style: CalendarStyle { get }
     var shouldAnimate: Bool { get }
@@ -62,14 +58,12 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     
     private let calendar = Calendar.autoupdatingCurrent
     private let eventService: EventService
-    private let delegate: CalendarDelegate?
     
     private var lastAnimationDate: Date?
     private var eventsListener: AnyCancellable?
     
-    public init(style: CalendarStyle, delegate: CalendarDelegate?) {
+    public init(style: CalendarStyle) {
         self.style = style
-        self.delegate = delegate
         
         eventService = EventService(
             calendar: calendar,
@@ -161,8 +155,6 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
             anchorEvents: anchorEvents,
             style: style
         )
-        
-        delegate?.resize()
     }
     
     private func handleEvents(_ events: [EKEvent]) {

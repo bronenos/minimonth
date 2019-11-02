@@ -21,38 +21,34 @@ struct CalendarHeader: View {
 
     public var body: some View {
         HStack {
-            if fastBackwardAction.hasValue {
-                CalendarHeaderButton(symbolName: "chevron.left.2")
-                    .onTapGesture(perform: fastBackwardAction ?? {})
-            }
+            CalendarHeaderButton(symbolName: "chevron.left.2")
+                .opacity(fastBackwardAction.hasValue ? 1.0 : 0)
+                .onTapGesture(perform: fastBackwardAction ?? {})
 
-            if backwardAction.hasValue {
-                CalendarHeaderButton(symbolName: "chevron.left")
-                    .padding(.horizontal, 10)
-                    .onTapGesture(perform: backwardAction ?? {})
-            }
-            
+            CalendarHeaderButton(symbolName: "chevron.left")
+                .padding(.horizontal, 10)
+                .opacity(backwardAction.hasValue ? 1.0 : 0)
+                .onTapGesture(perform: backwardAction ?? {})
+
             Spacer()
             
             Text(computedCaption)
                 .font(.system(size: 17, weight: .semibold))
                 .kerning(2)
                 .foregroundColor(designBook.cached(usage: .monthColor))
-                .padding(.vertical, 6)
+                .padding(.vertical, 15)
                 .onTapGesture(perform: titleAction)
 
             Spacer()
             
-            if forwardAction.hasValue {
-                CalendarHeaderButton(symbolName: "chevron.right")
-                    .padding(.horizontal, 10)
-                    .onTapGesture(perform: forwardAction ?? {})
-            }
-            
-            if fastForwardAction.hasValue {
-                CalendarHeaderButton(symbolName: "chevron.right.2")
-                    .onTapGesture(perform: fastForwardAction ?? {})
-            }
+            CalendarHeaderButton(symbolName: "chevron.right")
+                .padding(.horizontal, 10)
+                .opacity(forwardAction.hasValue ? 1.0 : 0)
+                .onTapGesture(perform: forwardAction ?? {})
+
+            CalendarHeaderButton(symbolName: "chevron.right.2")
+                .opacity(fastForwardAction.hasValue ? 1.0 : 0)
+                .onTapGesture(perform: fastForwardAction ?? {})
         }
         .padding(.horizontal)
     }

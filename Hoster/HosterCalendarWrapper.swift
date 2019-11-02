@@ -14,7 +14,7 @@ struct HosterCalendarWrapper: View {
 
     var body: some View {
         CalendarView(
-            interactor: CalendarInteractor(style: .month, delegate: nil),
+            interactor: CalendarInteractor(style: .month),
             position: .center)
             .frame(
                 minWidth: 250, idealWidth: 300, maxWidth: 350,

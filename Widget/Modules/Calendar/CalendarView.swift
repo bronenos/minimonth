@@ -75,7 +75,8 @@ public struct CalendarView: View {
                 Spacer()
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
-            .animation(self.interactor.shouldAnimate ? .linear(duration: 0.25) : nil)
+            .animation(nil)
+//            .animation(self.interactor.shouldAnimate ? .linear(duration: 0.25) : nil)
         }
     }
     
@@ -114,7 +115,7 @@ private let designBook = DesignBook(preferencesDriver: preferencesDriver, traitE
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarViewWrapper(
-            interactor: CalendarInteractor(style: .month, delegate: nil),
+            interactor: CalendarInteractor(style: .month),
             position: .center,
             preferencesDriver: preferencesDriver,
             designBook: designBook)
