@@ -22,49 +22,47 @@ struct HosterPreferencesBlock: View {
     }
     
     var body: some View {
-//        HStack(alignment: .center) {
-            VStack {
-                Spacer()
-                
-                Section {
-                    ZStack {
-                        HStack {
-                            Text("Preferences.PreviewAs")
-                            
-                            Spacer()
-                        }
+        VStack {
+            Spacer()
+            
+            Section {
+                ZStack {
+                    HStack {
+                        Text("Preferences.PreviewAs")
                         
-                        HStack {
-                            Spacer()
-                            
-                            Picker(selection: $interactor.colorScheme, label: EmptyView()) {
-                                Text("Preferences.PreviewAs.Light").tag(ColorScheme.light)
-                                Text("Preferences.PreviewAs.Dark").tag(ColorScheme.dark)
-                            }
-                            .pickerStyle(SegmentedPickerStyle())
-                            .fixedSize(horizontal: true, vertical: false)
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Picker(selection: $interactor.colorScheme, label: EmptyView()) {
+                            Text("Preferences.PreviewAs.Light").tag(ColorScheme.light)
+                            Text("Preferences.PreviewAs.Dark").tag(ColorScheme.dark)
                         }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .fixedSize(horizontal: true, vertical: false)
                     }
                 }
-                .styleAsPreferenceBlock()
-
-                Section {
-                    Toggle(isOn: $interactor.weeknumVisible) {
-                        Text("Preferences.WeekNumbers")
-                    }
-                }
-                .padding(.horizontal, 2)
-                .styleAsPreferenceBlock()
-                
-                Section {
-                    HosterColorsBlock()
-                        .padding(.top, 5)
-                }
-                .styleAsPreferenceBlock()
-                
-                Spacer()
             }
-//        }
+            .styleAsPreferenceBlock()
+            
+            Section {
+                Toggle(isOn: $interactor.weeknumVisible) {
+                    Text("Preferences.WeekNumbers")
+                }
+            }
+            .padding(.horizontal, 2)
+            .styleAsPreferenceBlock()
+            
+            Section {
+                HosterColorsBlock()
+                    .padding(.top, 5)
+            }
+            .styleAsPreferenceBlock()
+            
+            Spacer()
+        }
         .padding(.vertical, 15)
         .frame(maxWidth: 400, alignment: .center)
         .fixedSize(horizontal: false, vertical: true)

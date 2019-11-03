@@ -93,24 +93,11 @@ struct HosterView: View {
     }
     
     private func constructPortraitContent() -> some View {
-        Group {
-            if UIScreen.main.kind.atLeast(.extraLarge) {
-                VStack {
-                    Spacer()
-                    constructAboutBlock()
-                    HosterCalendarWrapper()
-                    constructPreferencesBlock()
-                    Spacer()
-                }
-            }
-            else {
-                ScrollView(.vertical, showsIndicators: false) {
-                    Spacer().frame(ownWidth: nil, ownHeight: 20)
-                    constructAboutBlock()
-                    HosterCalendarWrapper()
-                    constructPreferencesBlock()
-                }
-            }
+        ScrollView(.vertical, showsIndicators: false) {
+            Spacer().frame(ownWidth: nil, ownHeight: 20)
+            constructAboutBlock()
+            HosterCalendarWrapper()
+            constructPreferencesBlock()
         }
     }
     
@@ -123,33 +110,20 @@ struct HosterView: View {
                 
                 if UIScreen.main.kind.atLeast(.extraLarge) {
                     Spacer().frame(minWidth: 5, idealWidth: 50, maxWidth: 50, alignment: .center)
-                    
-                    VStack {
-                        Spacer()
-                        constructPreferencesBlock()
-                        Spacer()
-                    }
                 }
                 else if UIScreen.main.kind.atLeast(.large) {
                     Spacer().frame(maxWidth: 30, alignment: .center)
                     
-                    ScrollView(.vertical, showsIndicators: false) {
-                        constructPreferencesBlock()
-                    }
                 }
                 else if UIScreen.main.kind.atLeast(.regular) {
                     Spacer().frame(maxWidth: 30, alignment: .center)
-                    
-                    ScrollView(.vertical, showsIndicators: false) {
-                        constructPreferencesBlock()
-                    }
                 }
                 else {
                     Spacer().frame(maxWidth: 5, alignment: .center)
-                    
-                    ScrollView(.vertical, showsIndicators: false) {
-                        constructPreferencesBlock()
-                    }
+                }
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    constructPreferencesBlock()
                 }
             }
         }
@@ -158,6 +132,7 @@ struct HosterView: View {
     private func constructAboutBlock() -> some View {
         Text("Hoster.Title")
             .font(.headline)
+            .lineLimit(nil)
             .padding(.vertical)
     }
     
