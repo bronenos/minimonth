@@ -20,7 +20,7 @@ public enum ScreenKind: Int {
 }
 
 public extension UIScreen {
-    public var kind: ScreenKind {
+    var kind: ScreenKind {
         switch max(nativeBounds.width, nativeBounds.height) {
         case 2000... where UIDevice.current.userInterfaceIdiom == .pad: return .extraLarge
         case 1900...: return .large

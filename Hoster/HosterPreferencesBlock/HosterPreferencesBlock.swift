@@ -69,17 +69,8 @@ struct HosterPreferencesBlock: View {
     }
     
     private var variativePreviewAsCaption: String {
-        let caption = NSLocalizedString("Preferences.PreviewAs", comment: String())
-        return NSString(string: caption).variantFittingPresentationWidth(
-            convert(UIScreen.main.kind) { value in
-                switch value {
-                case .mini: return 1
-                case .regular: return 2
-                case .large: return 3
-                case .extraLarge: return 4
-                }
-            }
-        )
+        let caption = NSLocalizedString("Preferences.PreviewAs", comment: String()) as NSString
+        return caption.variantFittingPresentationWidth(UIScreen.main.kind.rawValue)
     }
 }
 
