@@ -23,6 +23,7 @@ struct CalendarWeeknumBar: View {
                     .fixedSize(horizontal: true, vertical: false)
             }
         }
-        .padding(.leading, 12)
+        .padding(.trailing, 7)
+        .padding(.leading, 5)
     }
 }
