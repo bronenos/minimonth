@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D405D3FA236CB336000B1893 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D405D3F9236CB336000B1893 /* README.md */; };
 		D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D411EE1319C2A5CD0054439F /* NotificationCenter.framework */; };
+		D41F997E236EC854007B727F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D41F9980236EC854007B727F /* Localizable.stringsdict */; };
 		D41FCB0523642D2100499C19 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D41FCB0C2364B11A00499C19 /* OrientationWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41FCB0B2364B11A00499C19 /* OrientationWatcher.swift */; };
 		D44D33662362428B001C44A1 /* MiniMonth_Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = D44D33642362428B001C44A1 /* MiniMonth_Shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,6 +153,8 @@
 		D411EE1119C2A5CC0054439F /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D411EE1319C2A5CD0054439F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D411EE1719C2A5CD0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D41F997F236EC854007B727F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		D41F9981236EC85A007B727F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D41FCB0923642E6100499C19 /* Hoster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hoster.entitlements; sourceTree = "<group>"; };
 		D41FCB0B2364B11A00499C19 /* OrientationWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationWatcher.swift; sourceTree = "<group>"; };
 		D44D33562361F367001C44A1 /* PreferencesDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesDriver.swift; sourceTree = "<group>"; };
@@ -565,6 +568,7 @@
 				D4CD22B42362D9EB000409CB /* LaunchScreen.storyboard */,
 				D4AF0CD6236C8334005FEFC6 /* InfoPlist.strings */,
 				D4BB6A8A236B1B5D008BCAC0 /* Localizable.strings */,
+				D41F9980236EC854007B727F /* Localizable.stringsdict */,
 				D4CD22AF2362D9EB000409CB /* Assets.xcassets */,
 				D468DB26236320B90085122D /* Shared */,
 				D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */,
@@ -767,6 +771,7 @@
 				D4CD22B32362D9EB000409CB /* Preview Assets.xcassets in Resources */,
 				D4CD22B02362D9EB000409CB /* Assets.xcassets in Resources */,
 				D4AF0CD4236C8333005FEFC6 /* InfoPlist.strings in Resources */,
+				D41F997E236EC854007B727F /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +952,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D41F9980236EC854007B727F /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D41F997F236EC854007B727F /* en */,
+				D41F9981236EC85A007B727F /* ru */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		D4A69891236DD5D200B34EAC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

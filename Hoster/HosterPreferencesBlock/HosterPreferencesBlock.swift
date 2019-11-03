@@ -28,7 +28,7 @@ struct HosterPreferencesBlock: View {
             Section {
                 ZStack {
                     HStack {
-                        Text("Preferences.PreviewAs")
+                        Text(variativePreviewAsCaption)
                         
                         Spacer()
                     }
@@ -66,6 +66,20 @@ struct HosterPreferencesBlock: View {
         .padding(.vertical, 15)
         .frame(maxWidth: 400, alignment: .center)
         .fixedSize(horizontal: false, vertical: true)
+    }
+    
+    private var variativePreviewAsCaption: String {
+        let caption = NSLocalizedString("Preferences.PreviewAs", comment: String())
+        return NSString(string: caption).variantFittingPresentationWidth(
+            convert(UIScreen.main.kind) { value in
+                switch value {
+                case .mini: return 1
+                case .regular: return 2
+                case .large: return 3
+                case .extraLarge: return 4
+                }
+            }
+        )
     }
 }
 
