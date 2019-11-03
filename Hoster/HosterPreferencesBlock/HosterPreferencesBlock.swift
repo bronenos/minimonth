@@ -52,10 +52,9 @@ struct HosterPreferencesBlock: View {
                     Toggle(isOn: $interactor.weeknumVisible) {
                         Text("Preferences.WeekNumbers")
                     }
-                    .offset(x: -2, y: 0)
                 }
+                .padding(.horizontal, 2)
                 .styleAsPreferenceBlock()
-                .padding(.bottom, 5)
                 
                 Section {
                     HosterColorsBlock()

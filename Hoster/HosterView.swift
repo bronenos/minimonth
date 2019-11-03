@@ -33,20 +33,23 @@ struct HosterView: View {
     }
     
     var body: some View {
-        Group {
-            if windowScene.interfaceOrientation.isPortrait {
-                constructPortraitContent()
+        ZStack {
+            constructBackground()
+            
+            Group {
+                if windowScene.interfaceOrientation.isPortrait {
+                    constructPortraitContent()
+                }
+                else {
+                    constructLandscapeContent()
+                }
             }
-            else {
-                constructLandscapeContent()
-            }
+            .padding(.horizontal, horizontalPadding)
+            .sheet(
+                item: $context.colorPickingMeta,
+                content: constructColorPicker
+            )
         }
-        .background(Color(UIColor.systemBackground))
-        .padding(.horizontal, horizontalPadding)
-        .sheet(
-            item: $context.colorPickingMeta,
-            content: constructColorPicker
-        )
     }
     
     private var horizontalPadding: CGFloat {
@@ -59,6 +62,34 @@ struct HosterView: View {
         else {
             return 5
         }
+    }
+    
+    private func constructBackground() -> some View {
+        VStack(alignment: .center, spacing: 0) {
+            HStack(alignment: .center, spacing: 0) {
+                Color.clear
+                    .background(Image(decorative: "launch_summer"))
+                    .clipped()
+                
+                Color.clear
+                    .background(Image(decorative: "launch_fall"))
+                    .clipped()
+            }
+            
+            HStack(alignment: .center, spacing: 0) {
+                Color.clear
+                    .background(Image(decorative: "launch_winter"))
+                    .clipped()
+                
+                Color.clear
+                    .background(Image(decorative: "launch_spring"))
+                    .clipped()
+            }
+        }
+        .compositingGroup()
+        .blur(radius: 7)
+        .overlay(Color(UIColor.systemBackground.withAlphaComponent(0.5)))
+        .edgesIgnoringSafeArea(.all)
     }
     
     private func constructPortraitContent() -> some View {

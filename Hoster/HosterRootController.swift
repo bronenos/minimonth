@@ -57,7 +57,8 @@ extension UIWindowScene: UITraitEnvironment {
             .environmentObject(context)
 
         let hostingController = UIHostingController(rootView: rootView)
-        
+        hostingController.view.backgroundColor = UIColor.clear
+
         addChild(hostingController)
         view.addSubview(hostingController.view)
     }
