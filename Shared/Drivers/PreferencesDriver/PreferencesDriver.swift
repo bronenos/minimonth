@@ -163,13 +163,8 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     }
     
     private func setColor(_ value: UIColor?, for key: String) {
-        if let components = value?.cgColor.components {
-            switch components {
-            case let rgba where rgba.count == 4: storage.set(rgba, forKey: key)
-            case let rgb where rgb.count == 3: storage.set(rgb + [1.0], forKey: key)
-            case let wa where wa.count == 2: storage.set([CGFloat](repeating: wa[0], count: 3) + [wa[1]], forKey: key)
-            default: storage.set([CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(1.0)], forKey: key)
-            }
+        if let components = value?.extract() {
+            storage.set(components, forKey: key)
         }
         else {
             storage.removeObject(forKey: key)
@@ -205,7 +200,7 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     }
 }
 
-fileprivate extension UIColor {
+extension UIColor {
     var light: UIColor {
         return resolvedFor(style: .light)
     }
@@ -214,8 +209,32 @@ fileprivate extension UIColor {
         return resolvedFor(style: .dark)
     }
     
-    private func resolvedFor(style: UIUserInterfaceStyle) -> UIColor {
+    func extract() -> [CGFloat]? {
+        if let components = cgColor.components {
+            switch components {
+            case let rgba where rgba.count == 4: return rgba
+            case let rgb where rgb.count == 3: return rgb + [1.0]
+            case let wa where wa.count == 2: return [CGFloat](repeating: wa[0], count: 3) + [wa[1]]
+            default: return [0, 0, 0, 1.0]
+            }
+        }
+        else {
+            return [0, 0, 0, 1.0]
+        }
+    }
+    
+    func resolvedFor(style: UIUserInterfaceStyle) -> UIColor {
         let traitCollection = UITraitCollection(userInterfaceStyle: style)
         return resolvedColor(with: traitCollection)
+    }
+    
+    func mixWithBaseColor(_ baseColor: UIColor) -> UIColor {
+        guard let base = baseColor.extract() else { return self }
+        guard let components = extract() else { return self }
+        
+        let r = base[0] * (1.0 - components[3]) + components[0] * components[3];
+        let g = base[1] * (1.0 - components[3]) + components[1] * components[3];
+        let b = base[2] * (1.0 - components[3]) + components[2] * components[3];
+        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
     }
 }

@@ -148,7 +148,7 @@ struct HosterView: View {
             context: context,
             title: item.title,
             keyPath: item.keyPath,
-            selectedColor: preferencesDriver[keyPath: item.keyPath])
+            selectedColor: preferencesDriver[keyPath: item.keyPath].mixWithBaseColor(UIColor.systemBackground))
             .onDisappear { self.applyColorPicker(keyPath: item.keyPath) }
     }
     
