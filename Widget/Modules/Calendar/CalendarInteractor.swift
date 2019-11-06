@@ -185,7 +185,7 @@ fileprivate func calculateMeta(calendar: Calendar,
     case .month:
         let yearlyWeeks = calendar.range(of: .weekOfYear, in: .month, for: anchorDate) ?? .empty
         let anchorDays = calendar.range(of: .day, in: .month, for: anchorDate) ?? .empty
-        let monthOffset = startWeekday - 1
+        let monthOffset = startWeekday.offset - 1
 
         return CalendarMeta(
             monthTitle: ahcnorMonthTitle,
@@ -216,7 +216,7 @@ fileprivate func calculateMeta(calendar: Calendar,
     case .week:
         let yearlyWeeks = Range.only(anchorDayUnits.weekOfYear ?? 1)
         let monthlyDays = calendar.range(of: .day, in: .weekOfMonth, for: anchorDate) ?? .empty
-        let monthOffset = (anchorDayUnits.weekOfMonth == 1 ? startWeekday - 1 : 0)
+        let monthOffset = (startWeekday.firstWeek ? startWeekday.offset - 1 : 0)
 
         return CalendarMeta(
             monthTitle: ahcnorMonthTitle,
@@ -304,16 +304,21 @@ fileprivate extension Calendar {
         return (value < 1 ? value + weekdaySymbols.count : value)
     }
     
-    func monthOffset(day: Int, weekDay: Int) -> Int {
+    func monthOffset(day: Int, weekDay: Int) -> (offset: Int, firstWeek: Bool) {
         var calculatingDay = day
         var calculatingWeekday = weekDay
+        var firstWeek = true
         
         while calculatingDay > 1 {
+            if calculatingWeekday == firstWeekday {
+                firstWeek = false
+            }
+            
             calculatingDay -= 1
             calculatingWeekday = calculatingWeekday > 1 ? calculatingWeekday - 1 : weekdaySymbols.count
         }
         
-        return calculatingWeekday
+        return (offset: calculatingWeekday, firstWeek: firstWeek)
     }
 }
 
