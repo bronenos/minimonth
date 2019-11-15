@@ -274,14 +274,7 @@ fileprivate func calculateDayOptions(calendar: Calendar,
                                      number: Int,
                                      anchorDayUnits adu: DateComponents,
                                      anchorEventStamps: [CalendarEventMeta]) -> CalendarDayOptions {
-    let isToday: CalendarDayOptions
-    if calendar.isDateInToday(anchorDate), number == adu.day {
-        isToday = .isToday
-    }
-    else {
-        isToday = .none
-    }
-    
+    let isToday: CalendarDayOptions = calendar.detectToday(units: adu, day: number) ? .isToday : .none
     let anchorLongMeta = CalendarEventMeta(year: adu.year, month: adu.month, day: number, allDay: true)
     let hasLongEvent: CalendarDayOptions = anchorEventStamps.contains(anchorLongMeta) ? .hasLongEvent : .none
 
@@ -319,6 +312,13 @@ fileprivate extension Calendar {
         }
         
         return (offset: calculatingWeekday, firstWeek: firstWeek)
+    }
+    
+    func detectToday(units: DateComponents, day: Int) -> Bool {
+        guard component(.year, from: Date()) == units.year else { return false }
+        guard component(.month, from: Date()) == units.month else { return false }
+        guard component(.day, from: Date()) == day else { return false }
+        return true
     }
 }
 
