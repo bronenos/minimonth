@@ -303,7 +303,7 @@ fileprivate extension Calendar {
         var firstWeek = true
         
         while calculatingDay > 1 {
-            if calculatingWeekday == firstWeekday {
+            if calculatingWeekday == 1 {
                 firstWeek = false
             }
             
