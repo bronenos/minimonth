@@ -22,7 +22,7 @@ struct CalendarHeader: View {
 
     public var body: some View {
         HStack {
-            if position != .fill {
+            if position.shouldDisplayControls {
                 CalendarHeaderButton(symbolName: "chevron.left.2")
                     .opacity(fastBackwardAction == nil ? 0 : 1.0)
                     .onTapGesture(perform: fastBackwardAction ?? {})
@@ -42,15 +42,17 @@ struct CalendarHeader: View {
                 .foregroundColor(designBook.cached(usage: .monthColor))
                 .padding(.vertical, convert(position) { value in
                     switch value {
-                    case .top, .center: return 10
-                    case .fill: return 2
+                    case .host: return 10
+                    case .today: return 10
+                    case .small: return 2
+                    case .medium: return 2
                     }
                 })
                 .onTapGesture(perform: titleAction)
 
             Spacer()
             
-            if position != .fill {
+            if position.shouldDisplayControls {
                 CalendarHeaderButton(symbolName: "chevron.right")
                     .padding(.horizontal, 10)
                     .opacity(forwardAction == nil ? 0 : 1.0)
@@ -64,7 +66,7 @@ struct CalendarHeader: View {
     }
     
     private var computedCaption: String {
-        if let year = year {
+        if let year = year, position.shouldDisplayControls {
             return "\(title) ʼ\(year % 100)"
         }
         else {

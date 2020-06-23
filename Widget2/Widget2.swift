@@ -11,7 +11,7 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     public func snapshot(with context: Context, completion: @escaping (MiniMonthTimelineEntry) -> ()) {
-        let entry = MiniMonthTimelineEntry(date: Date())
+        let entry = MiniMonthTimelineEntry(date: Date(), family: context.family)
         completion(entry)
     }
 
@@ -20,7 +20,7 @@ struct Provider: TimelineProvider {
         let numberOfDays = Calendar.current.shortWeekdaySymbols.count
         let entries: [MiniMonthTimelineEntry] = (0 ..< numberOfDays).compactMap { dayOffset in
             let nextDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: currentDate)
-            return nextDate.flatMap(MiniMonthTimelineEntry.init)
+            return nextDate.flatMap { date in MiniMonthTimelineEntry(date: date, family: context.family) }
         }
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
@@ -30,6 +30,7 @@ struct Provider: TimelineProvider {
 
 struct MiniMonthTimelineEntry: TimelineEntry {
     public let date: Date
+    public let family: WidgetFamily
 }
 
 struct PlaceholderView : View {
@@ -37,11 +38,9 @@ struct PlaceholderView : View {
         let preferencesDriver = PreferencesDriver()
         let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: WidgetTraits())
         
-        let rootInteractor = CalendarInteractor(style: .month)
         let backgroundColor = designBook.cached(usage: .backgroundColor)
-        return CalendarView(interactor: rootInteractor, position: .fill, backgroundColor: backgroundColor)
-            .environmentObject(preferencesDriver)
-            .environmentObject(designBook)
+        return EmptyView()
+            .background(backgroundColor)
     }
 }
 
@@ -56,9 +55,34 @@ struct Widget2: Widget {
         let kind = "me.bronenos.Widget2"
         let provider = Provider()
         let placeholder = PlaceholderView()
-        return StaticConfiguration(kind: kind, provider: provider, placeholder: placeholder, content: { _ in placeholder })
+        return StaticConfiguration(
+            kind: kind,
+            provider: provider,
+            placeholder: placeholder,
+            content: { entry in generateCalendar(entry: entry, traitEnv: nil) })
             .configurationDisplayName("MiniMonth")
             .description("Shows the compact Calendar glance")
-            .supportedFamilies([.systemMedium])
+            .supportedFamilies([.systemSmall, .systemMedium])
     }
+}
+
+fileprivate func generateCalendar(entry: MiniMonthTimelineEntry, traitEnv: UITraitEnvironment?) -> some View {
+    let position: CalendarPosition = convert(entry.family) { value in
+        switch value {
+        case .systemSmall: return .small
+        case .systemMedium: return .medium
+        case .systemLarge: return .medium
+        @unknown default: return .medium
+        }
+    }
+    
+    let preferencesDriver = PreferencesDriver()
+    let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: traitEnv ?? WidgetTraits())
+    
+    let rootInteractor = CalendarInteractor(style: .month, shortest: position.shouldDisplayShortestCaptions)
+    let backgroundColor = designBook.cached(usage: .backgroundColor)
+    
+    return CalendarView(interactor: rootInteractor, position: position, backgroundColor: backgroundColor)
+        .environmentObject(preferencesDriver)
+        .environmentObject(designBook)
 }

@@ -21,7 +21,8 @@
 "Preferences.Colors.WeekCaptions" = "Обозначения недели";
 "Preferences.Colors.WorkdayNumbers" = "Рабочие дни";
 "Preferences.Colors.WeekendNumbers" = "Выходные дни";
-"Preferences.Colors.CurrentDay" = "Текущий день";
+"Preferences.Colors.CurrentDay" = "Текущий день (фон)";
+"Preferences.Colors.CurrentDayText" = "Текущий день (текст)";
 "Preferences.Colors.ShortEvents" = "Короткие события";
 "Preferences.Colors.AllDayEvents" = "События на весь день";
 "Preferences.Colors.ResetColors" = "Вернуть изначальные цвета";

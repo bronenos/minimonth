@@ -106,6 +106,11 @@ fileprivate struct HosterColorDynamicMetaStorage {
             darkKeyPath: \.currentDayColorDark
         ),
         HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.CurrentDayText",
+            lightKeyPath: \.currentDayTextColorLight,
+            darkKeyPath: \.currentDayTextColorDark
+        ),
+        HosterColorDynamicMeta(
             captionKey: "Preferences.Colors.ShortEvents",
             lightKeyPath: \.shortEventColorLight,
             darkKeyPath: \.shortEventColorDark

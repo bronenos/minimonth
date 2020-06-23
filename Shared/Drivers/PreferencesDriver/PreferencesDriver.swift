@@ -27,6 +27,8 @@ public protocol IPreferencesDriver: class {
     var weekendDayColorDark: UIColor! { get set }
     var currentDayColorLight: UIColor! { get set }
     var currentDayColorDark: UIColor! { get set }
+    var currentDayTextColorLight: UIColor! { get set }
+    var currentDayTextColorDark: UIColor! { get set }
     var shortEventColorLight: UIColor! { get set }
     var shortEventColorDark: UIColor! { get set }
     var alldayEventColorLight: UIColor! { get set }
@@ -115,6 +117,16 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
         set { setColor(newValue, for: #function) }
     }
     
+    public var currentDayTextColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 1.0) }
+        set { setColor(newValue, for: #function) }
+    }
+    
+    public var currentDayTextColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 1.0) }
+        set { setColor(newValue, for: #function) }
+    }
+    
     public var shortEventColorLight: UIColor! {
         get { getColor(for: #function) ?? UIColor(red: 0.30, green: 0.25, blue: 0.97, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
@@ -161,6 +173,8 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
         weekendDayColorDark = nil
         currentDayColorLight = nil
         currentDayColorDark = nil
+        currentDayTextColorLight = nil
+        currentDayTextColorDark = nil
         shortEventColorLight = nil
         shortEventColorDark = nil
         alldayEventColorLight = nil

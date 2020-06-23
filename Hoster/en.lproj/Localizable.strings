@@ -21,7 +21,8 @@
 "Preferences.Colors.WeekCaptions" = "Week captions";
 "Preferences.Colors.WorkdayNumbers" = "Workday numbers";
 "Preferences.Colors.WeekendNumbers" = "Weekend numbers";
-"Preferences.Colors.CurrentDay" = "Current day";
+"Preferences.Colors.CurrentDay" = "Current day (background)";
+"Preferences.Colors.CurrentDayText" = "Current day (foreground)";
 "Preferences.Colors.ShortEvents" = "Short events";
 "Preferences.Colors.AllDayEvents" = "All-day events";
 "Preferences.Colors.ResetColors" = "Revert to default colors";

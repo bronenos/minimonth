@@ -58,12 +58,14 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     
     private let calendar = Calendar.autoupdatingCurrent
     private let eventService: EventService
+    private let shortest: Bool
     
     private var lastAnimationDate: Date?
     private var eventsListener: AnyCancellable?
     
-    public init(style: CalendarStyle) {
+    public init(style: CalendarStyle, shortest: Bool) {
         self.style = style
+        self.shortest = shortest
         
         eventService = EventService(
             calendar: calendar,
@@ -74,8 +76,8 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
             calendar: calendar,
             anchorDate: anchorDate,
             anchorEvents: anchorEvents,
-            style: style
-        )
+            style: style,
+            shortest: shortest)
         
         eventsListener = eventService.subscribe(
             eventsCallback: { [weak self] in self?.handleEvents($0) }
@@ -137,24 +139,24 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     }
     
     private(set) var style: CalendarStyle {
-        didSet { updateMeta() }
+        didSet { updateMeta(shortest: shortest) }
     }
     
     private var anchorDate = Date() {
-        didSet { updateMeta(); requestEvents() }
+        didSet { updateMeta(shortest: shortest); requestEvents() }
     }
     
     private var anchorEvents: [EKEvent] = [] {
-        didSet { updateMeta() }
+        didSet { updateMeta(shortest: shortest) }
     }
     
-    private func updateMeta() {
+    private func updateMeta(shortest: Bool) {
         meta = calculateMeta(
             calendar: calendar,
             anchorDate: anchorDate,
             anchorEvents: anchorEvents,
-            style: style
-        )
+            style: style,
+            shortest: shortest)
     }
     
     private func handleEvents(_ events: [EKEvent]) {
@@ -165,7 +167,8 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
 fileprivate func calculateMeta(calendar: Calendar,
                                anchorDate: Date,
                                anchorEvents: [EKEvent],
-                               style: CalendarStyle) -> CalendarMeta {
+                               style: CalendarStyle,
+                               shortest: Bool) -> CalendarMeta {
     let calendarUnits: Set<Calendar.Component> = [.year, .month, .weekday, .day, .weekOfMonth, .weekOfYear]
     
     let todayUnits = calendar.dateComponents(calendarUnits, from: Date())
@@ -191,7 +194,7 @@ fileprivate func calculateMeta(calendar: Calendar,
             monthTitle: ahcnorMonthTitle,
             monthYear: anchorYear, // (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
-            weekdayTitles: calendar.sortedWeekdayShortTitles,
+            weekdayTitles: calendar.sortedWeekdayTitles(shortest: shortest),
             monthOffset: monthOffset,
             days: anchorDays.map { number in
                 CalendarDay(
@@ -222,7 +225,7 @@ fileprivate func calculateMeta(calendar: Calendar,
             monthTitle: ahcnorMonthTitle,
             monthYear: anchorYear, // (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
-            weekdayTitles: calendar.sortedWeekdayShortTitles,
+            weekdayTitles: calendar.sortedWeekdayTitles(shortest: shortest),
             monthOffset: monthOffset,
             days: monthlyDays.map { number in
                 CalendarDay(
@@ -285,8 +288,8 @@ fileprivate func calculateDayOptions(calendar: Calendar,
 }
 
 fileprivate extension Calendar {
-    var sortedWeekdayShortTitles: [String] {
-        let titles = shortStandaloneWeekdaySymbols
+    func sortedWeekdayTitles(shortest: Bool) -> [String] {
+        let titles = shortest ? veryShortStandaloneWeekdaySymbols : shortStandaloneWeekdaySymbols
         let firstSlice = Array(titles[(firstWeekday - 1) ..< titles.count])
         let secondSlice = Array(titles[0 ..< firstWeekday - 1])
         return firstSlice + secondSlice

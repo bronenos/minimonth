@@ -9,6 +9,7 @@
 import SwiftUI
 import MiniMonth
 import Combine
+import WidgetKit
 
 protocol HosterViewDelegate: class {
     func didRequestStyleUpdate(_ style: ColorScheme?)
@@ -154,9 +155,13 @@ struct HosterView: View {
     }
     
     private func applyColorPicker(keyPath: PreferencesWritableKeyPath) {
-        guard let pickedColor = context.retrieveColor(forKeyPath: keyPath) else { return }
+        guard
+            let pickedColor = context.retrieveColor(forKeyPath: keyPath)
+        else { return }
+        
         preferencesDriver[keyPath: keyPath] = pickedColor
         designBook.discardCache()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 

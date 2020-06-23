@@ -34,7 +34,7 @@ public final class DesignBook: ObservableObject {
     
     public func layout(position: CalendarPosition) -> DesignBookLayout {
         switch position {
-        case .top, .center:
+        case .host, .today:
             return DesignBookLayout(
                 weekHeaderHeight: 27,
                 weekNumberWidthCoef: 0.12,
@@ -42,7 +42,15 @@ public final class DesignBook: ObservableObject {
                 eventMarkerSide: 4
             )
             
-        case .fill:
+        case .small:
+            return DesignBookLayout(
+                weekHeaderHeight: 16,
+                weekNumberWidthCoef: 0.12,
+                weekDayHeight: 16,
+                eventMarkerSide: 2
+            )
+            
+        case .medium:
             return DesignBookLayout(
                 weekHeaderHeight: 16,
                 weekNumberWidthCoef: 0.12,
@@ -116,6 +124,7 @@ public final class DesignBook: ObservableObject {
         case .weekendColor: return combine(light: .pref(\.weekendDayColorLight), dark: .pref(\.weekendDayColorDark))
         case .holidayColor: return combine(light: .pref(\.alldayEventColorLight), dark: .pref(\.alldayEventColorDark))
         case .todayColor: return combine(light: .pref(\.currentDayColorLight), dark: .pref(\.currentDayColorDark))
+        case .todayTextColor: return combine(light: .pref(\.currentDayTextColorLight), dark: .pref(\.currentDayTextColorDark))
         case .eventColor: return combine(light: .pref(\.shortEventColorLight), dark: .pref(\.shortEventColorDark))
         }
     }

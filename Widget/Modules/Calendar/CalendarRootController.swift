@@ -53,8 +53,11 @@ import NotificationCenter
         let preferencesDriver = PreferencesDriver()
         let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: self)
         
-        let rootInteractor = CalendarInteractor(style: style)
-        let rootView = CalendarView(interactor: rootInteractor, position: .top, backgroundColor: .clear)
+        let rootInteractor = CalendarInteractor(
+            style: style,
+            shortest: false)
+        
+        let rootView = CalendarView(interactor: rootInteractor, position: .today, backgroundColor: .clear)
             .environmentObject(preferencesDriver)
             .environmentObject(designBook)
         

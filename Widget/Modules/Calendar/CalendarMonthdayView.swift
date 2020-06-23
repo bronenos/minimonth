@@ -16,29 +16,24 @@ struct CalendarMonthdayView: View {
     
     var body: some View {
         ZStack {
-            Text("\(day.number)")
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .foregroundColor(captionColor(forType: day.type))
-
             Text("XX")
                 .hidden()
-                .padding(.vertical, padding.y)
-                .padding(.horizontal, padding.x)
+                .padding(
+                    convert(position) { value -> EdgeInsets in
+                        switch value {
+                        case .host: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
+                        case .today: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
+                        case .small: return EdgeInsets(top: 1, leading: 5, bottom: 1, trailing: 5)
+                        case .medium: return EdgeInsets(top: 1, leading: 5, bottom: 1, trailing: 5)
+                        }
+                    }
+                )
                 .overlay(
                     Group {
-                        if position == .fill {
-                            HStack(spacing: 0) {
-                                dayBlock
-                                VStack {
-                                    Spacer()
-                                    indicatorBlock
-                                    Spacer()
-                                }
-                                .offset(x: -relativeOffset(hasEvent: day.options.hasAnyEvent()), y: 0)
-                            }
-                            .offset(x: relativeOffset(hasEvent: day.options.hasAnyEvent()), y: 0)
+                        if !position.shouldDisplayIndicator {
+                            dayBlock
                         }
-                        else {
+                        else if position.shouldDisplayIndicatorAtBottom {
                             VStack(spacing: 0) {
                                 dayBlock
                                 HStack {
@@ -50,24 +45,31 @@ struct CalendarMonthdayView: View {
                             }
                             .offset(x: 0, y: relativeOffset(hasEvent: day.options.hasAnyEvent()))
                         }
+                        else {
+                            HStack(spacing: 0) {
+                                dayBlock
+                                VStack {
+                                    Spacer()
+                                    indicatorBlock
+                                    Spacer()
+                                }
+                                .offset(x: -relativeOffset(hasEvent: day.options.hasAnyEvent()), y: 0)
+                            }
+                            .offset(x: relativeOffset(hasEvent: day.options.hasAnyEvent()), y: 0)
+                        }
                     }
                 )
+            
+            Text("\(day.number)")
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .foregroundColor(captionColor(forType: day.type))
         }
-        .font(.system(size: 12, weight: .bold))
-    }
-    
-    private var padding: CGPoint {
-        if position == .fill {
-            return CGPoint(x: 5, y: 1)
-        }
-        else {
-            return CGPoint(x: 8, y: 5)
-        }
+        .font(.system(size: position.shouldReduceFontSize ? 10 : 12, weight: .bold))
     }
     
     private var dayBlock: some View {
         Capsule(style: .circular)
-            .stroke(designBook.cached(usage: .todayColor))
+            .fill(designBook.cached(usage: .todayColor))
             .opacity(day.options.contains(.isToday) ? 1.0 : 0)
     }
     
@@ -93,6 +95,10 @@ struct CalendarMonthdayView: View {
     }
     
     fileprivate func captionColor(forType type: CalendarDayType) -> Color {
+        if day.options.contains(.isToday) {
+            return designBook.cached(usage: .todayTextColor)
+        }
+        
         switch type {
         case .regular: return designBook.cached(usage: .workdayColor)
         case .weekend: return designBook.cached(usage: .weekendColor)

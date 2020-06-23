@@ -30,6 +30,7 @@ public enum DesignBookColorUsage {
     case weekendColor
     case holidayColor
     case todayColor
+    case todayTextColor
     case eventColor
 }
 

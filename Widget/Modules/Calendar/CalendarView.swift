@@ -9,9 +9,10 @@
 import SwiftUI
 
 public enum CalendarPosition {
-    case top
-    case center
-    case fill
+    case host
+    case today
+    case small
+    case medium
 }
 
 public struct CalendarView: View {
@@ -62,19 +63,22 @@ public struct CalendarView: View {
                 CalendarWeekdayBar(
                     captions: self.interactor.meta.weekdayTitles)
                     .frame(ownHeight: self.designBook.layout(position: position).weekHeaderHeight)
-                    .padding(.leading, self.calculateWeeknumWidth(geometry: geometry))
+                    .padding(.leading, position.shouldDisplayWeekNumbers ? self.calculateWeeknumWidth(geometry: geometry) : 0)
+                    .padding(.horizontal, position.shouldDisplayWeekNumbers ? 0 : -3)
 
-                if position == .fill {
+                if position.shouldPlaceInMiddle {
                     Spacer()
                         .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .top)
                 }
                 
                 HStack(spacing: 0) {
-                    CalendarWeeknumBar(
-                        weekNumbers: self.interactor.meta.weekNumbers)
-                        .frame(ownWidth: self.calculateWeeknumWidth(geometry: geometry), alignment: .leading)
-                        .modifier(self.calculateBodyHeightModifier(geometry: geometry))
-                        .clipped()
+                    if position.shouldDisplayWeekNumbers {
+                        CalendarWeeknumBar(
+                            weekNumbers: self.interactor.meta.weekNumbers)
+                            .frame(ownWidth: self.calculateWeeknumWidth(geometry: geometry), alignment: .leading)
+                            .modifier(self.calculateBodyHeightModifier(geometry: geometry))
+                            .clipped()
+                    }
 
                     CalendarMonthView(
                         position: position,
@@ -88,16 +92,17 @@ public struct CalendarView: View {
                 Spacer()
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, position.shouldMinimizeEdges ? 5 : 10)
         }
         .background(backgroundColor)
     }
     
     private func obtainTopSpacer() -> some View {
         switch position {
-        case .top: return Spacer().frame(idealHeight: 0, maxHeight: 0, alignment: .top)
-        case .center: return Spacer().frame(idealHeight: 0, maxHeight: .infinity, alignment: .top)
-        case .fill: return Spacer().frame(idealHeight: 5, maxHeight: 5)
+        case .host: return Spacer().frame(idealHeight: 0, maxHeight: .infinity, alignment: .top)
+        case .today: return Spacer().frame(idealHeight: 0, maxHeight: 0, alignment: .top)
+        case .small: return Spacer().frame(idealHeight: 5, maxHeight: 5)
+        case .medium: return Spacer().frame(idealHeight: 5, maxHeight: 5)
         }
     }
     
@@ -129,8 +134,10 @@ private let designBook = DesignBook(preferencesDriver: preferencesDriver, traitE
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarViewWrapper(
-            interactor: CalendarInteractor(style: .month),
-            position: .center,
+            interactor: CalendarInteractor(
+                style: .month,
+                shortest: false),
+            position: .host,
             preferencesDriver: preferencesDriver,
             designBook: designBook)
             .environment(\.verticalSizeClass, .compact)
@@ -139,3 +146,77 @@ struct CalendarView_Previews: PreviewProvider {
     }
 }
 #endif
+
+extension CalendarPosition {
+    var shouldPlaceInMiddle: Bool {
+        switch self {
+        case .host: return false
+        case .today: return false
+        case .small: return true
+        case .medium: return true
+        }
+    }
+    
+    var shouldDisplayControls: Bool {
+        switch self {
+        case .host: return true
+        case .today: return true
+        case .small: return false
+        case .medium: return false
+        }
+    }
+    
+    var shouldDisplayIndicator: Bool {
+        switch self {
+        case .host: return true
+        case .today: return true
+        case .small: return true
+        case .medium: return true
+        }
+    }
+    
+    var shouldDisplayIndicatorAtBottom: Bool {
+        switch self {
+        case .host: return true
+        case .today: return true
+        case .small: return true
+        case .medium: return false
+        }
+    }
+    
+    var shouldDisplayWeekNumbers: Bool {
+        switch self {
+        case .host: return true
+        case .today: return true
+        case .small: return false
+        case .medium: return true
+        }
+    }
+    
+    var shouldMinimizeEdges: Bool {
+        switch self {
+        case .host: return false
+        case .today: return false
+        case .small: return true
+        case .medium: return false
+        }
+    }
+    
+    var shouldReduceFontSize: Bool {
+        switch self {
+        case .host: return false
+        case .today: return false
+        case .small: return true
+        case .medium: return false
+        }
+    }
+    
+    var shouldDisplayShortestCaptions: Bool {
+        switch self {
+        case .host: return false
+        case .today: return false
+        case .small: return true
+        case .medium: return false
+        }
+    }
+}
