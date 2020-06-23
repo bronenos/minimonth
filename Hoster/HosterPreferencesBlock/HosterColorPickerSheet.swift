@@ -1,5 +1,5 @@
 //
-//  HosterColorPickerWrapper.swift
+//  HosterColorPickerSheet.swift
 //  Hoster
 //
 //  Created by Stan Potemkin on 26.10.2019.
@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 
-final class HosterColorPickerWrapper: NSObject, UIViewRepresentable, ColorPickerDelegate {
+final class HosterColorPickerSheet: NSObject, UIViewRepresentable, ColorPickerDelegate {
     private let context: HosterContext
     private let title: String
     private let keyPath: PreferencesWritableKeyPath
@@ -22,13 +22,13 @@ final class HosterColorPickerWrapper: NSObject, UIViewRepresentable, ColorPicker
         self.selectedColor = selectedColor
     }
     
-    func makeUIView(context: UIViewRepresentableContext<HosterColorPickerWrapper>) -> UIView {
+    func makeUIView(context: UIViewRepresentableContext<HosterColorPickerSheet>) -> UIView {
         let navigationController = UINavigationController(rootViewController: context.coordinator)
         navigationController.edgesForExtendedLayout = []
         return navigationController.view
     }
 
-    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<HosterColorPickerWrapper>) {
+    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<HosterColorPickerSheet>) {
     }
 
     func makeCoordinator() -> UIViewController {

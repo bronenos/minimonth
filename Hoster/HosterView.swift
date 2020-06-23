@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Widget
+import MiniMonth
 import Combine
 
 protocol HosterViewDelegate: class {
@@ -46,7 +46,7 @@ struct HosterView: View {
             }
             .padding(.horizontal, horizontalPadding)
             .sheet(
-                item: $context.colorPickingMeta,
+                item: $context.colorPickingSheet,
                 content: constructColorPicker
             )
         }
@@ -140,11 +140,12 @@ struct HosterView: View {
         HosterPreferencesBlock(
             preferencesDriver: preferencesDriver,
             colorScheme: colorScheme,
+            colorApplier: applyColorPicker,
             delegate: delegate)
     }
     
     private func constructColorPicker(item: HosterContextColorPickingMeta) -> some View {
-        HosterColorPickerWrapper(
+        HosterColorPickerSheet(
             context: context,
             title: item.title,
             keyPath: item.keyPath,

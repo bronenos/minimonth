@@ -25,7 +25,7 @@ public struct CalendarViewWrapper: View {
     }
     
     public var body: some View {
-        CalendarView(interactor: interactor, position: position)
+        CalendarView(interactor: interactor, position: position, backgroundColor: .clear)
             .environmentObject(preferencesDriver)
             .environmentObject(designBook)
     }

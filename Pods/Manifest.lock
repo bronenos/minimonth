@@ -1,16 +1,3 @@
-PODS:
-  - FlexColorPicker (1.3.1)
+PODFILE CHECKSUM: 8bea669a4a65de0f562dff5d855a6efcbd84a177
 
-DEPENDENCIES:
-  - FlexColorPicker (from `LocalPods/FlexColorPicker/`)
-
-EXTERNAL SOURCES:
-  FlexColorPicker:
-    :path: LocalPods/FlexColorPicker/
-
-SPEC CHECKSUMS:
-  FlexColorPicker: e627af3d744786378ae65e53214528cc31105921
-
-PODFILE CHECKSUM: 701dbe6816370a27942a15af73d1e5778b52347e
-
-COCOAPODS: 1.8.0.beta.1
+COCOAPODS: 1.9.1

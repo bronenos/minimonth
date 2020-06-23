@@ -32,12 +32,25 @@ public final class DesignBook: ObservableObject {
         }
     }
     
-    public let layout = DesignBookLayout(
-        weekHeaderHeight: 27,
-        weekNumberWidthCoef: 0.12,
-        weekDayHeight: 27,
-        eventMarkerSide: 4
-    )
+    public func layout(position: CalendarPosition) -> DesignBookLayout {
+        switch position {
+        case .top, .center:
+            return DesignBookLayout(
+                weekHeaderHeight: 27,
+                weekNumberWidthCoef: 0.12,
+                weekDayHeight: 27,
+                eventMarkerSide: 4
+            )
+            
+        case .fill:
+            return DesignBookLayout(
+                weekHeaderHeight: 16,
+                weekNumberWidthCoef: 0.12,
+                weekDayHeight: 16,
+                eventMarkerSide: 4
+            )
+        }
+    }
     
     public func color(usage: DesignBookColorUsage) -> UIColor {
         return color(.usage(usage))
@@ -90,11 +103,12 @@ public final class DesignBook: ObservableObject {
     private func obtainColor(forUsage usage: DesignBookColorUsage) -> UIColor {
         switch usage {
         // global
-        case .white: return UIColor.white
+        case .white: return UIColor.clear
         case .black: return UIColor.black
         // foregrounds
         case .primaryForeground: return combine(light: .native(.black), dark: .native(.white))
         // preferences
+        case .backgroundColor: return combine(light: .pref(\.backgroundColorLight), dark: .pref(\.backgroundColorDark))
         case .monthColor: return combine(light: .pref(\.monthTitleColorLight), dark: .pref(\.monthTitleColorDark))
         case .navigationColor: return combine(light: .pref(\.navigationElementsColorLight), dark: .pref(\.navigationElementsColorDark))
         case .captionColor: return combine(light: .pref(\.weekCaptionsColorLight), dark: .pref(\.weekCaptionsColorDark))
@@ -151,14 +165,14 @@ public final class DesignBook: ObservableObject {
 }
 
 fileprivate extension UIColor {
-    @objc(initWithHexCode:) convenience init(hex: Int) {
+    convenience init(hex: Int) {
         let r = CGFloat((hex & 0xFF0000) >> 16) / 255.0
         let g = CGFloat((hex & 0x00FF00) >> 8) / 255.0
         let b = CGFloat((hex & 0x0000FF) >> 0) / 255.0
         self.init(red: r, green: g, blue: b, alpha: 1.0)
     }
     
-    @objc(initWithHexString:) convenience init(hex: String) {
+    convenience init(hex: String) {
         if let code = Int(hex, radix: 16) {
             self.init(hex: code)
         }

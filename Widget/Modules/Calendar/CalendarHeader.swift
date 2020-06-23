@@ -11,6 +11,7 @@ import SwiftUI
 struct CalendarHeader: View {
     @EnvironmentObject var designBook: DesignBook
     
+    let position: CalendarPosition
     let title: String
     let year: Int?
     let fastBackwardAction: (() -> Void)?
@@ -21,14 +22,16 @@ struct CalendarHeader: View {
 
     public var body: some View {
         HStack {
-            CalendarHeaderButton(symbolName: "chevron.left.2")
-                .opacity(fastBackwardAction == nil ? 0 : 1.0)
-                .onTapGesture(perform: fastBackwardAction ?? {})
+            if position != .fill {
+                CalendarHeaderButton(symbolName: "chevron.left.2")
+                    .opacity(fastBackwardAction == nil ? 0 : 1.0)
+                    .onTapGesture(perform: fastBackwardAction ?? {})
 
-            CalendarHeaderButton(symbolName: "chevron.left")
-                .padding(.horizontal, 10)
-                .opacity(backwardAction == nil ? 0 : 1.0)
-                .onTapGesture(perform: backwardAction ?? {})
+                CalendarHeaderButton(symbolName: "chevron.left")
+                    .padding(.horizontal, 10)
+                    .opacity(backwardAction == nil ? 0 : 1.0)
+                    .onTapGesture(perform: backwardAction ?? {})
+            }
 
             Spacer()
             
@@ -37,19 +40,26 @@ struct CalendarHeader: View {
                 .kerning(2)
                 .fixedSize(horizontal: true, vertical: false)
                 .foregroundColor(designBook.cached(usage: .monthColor))
-                .padding(.vertical, 10)
+                .padding(.vertical, convert(position) { value in
+                    switch value {
+                    case .top, .center: return 10
+                    case .fill: return 2
+                    }
+                })
                 .onTapGesture(perform: titleAction)
 
             Spacer()
             
-            CalendarHeaderButton(symbolName: "chevron.right")
-                .padding(.horizontal, 10)
-                .opacity(forwardAction == nil ? 0 : 1.0)
-                .onTapGesture(perform: forwardAction ?? {})
+            if position != .fill {
+                CalendarHeaderButton(symbolName: "chevron.right")
+                    .padding(.horizontal, 10)
+                    .opacity(forwardAction == nil ? 0 : 1.0)
+                    .onTapGesture(perform: forwardAction ?? {})
 
-            CalendarHeaderButton(symbolName: "chevron.right.2")
-                .opacity(fastForwardAction == nil ? 0 : 1.0)
-                .onTapGesture(perform: fastForwardAction ?? {})
+                CalendarHeaderButton(symbolName: "chevron.right.2")
+                    .opacity(fastForwardAction == nil ? 0 : 1.0)
+                    .onTapGesture(perform: fastForwardAction ?? {})
+            }
         }
     }
     

@@ -15,6 +15,7 @@
 
 "Preferences.WeekNumbers" = "Week numbers";
 
+"Preferences.Colors.BackgroundTitle" = "Background fill (iOS 14+)";
 "Preferences.Colors.MonthTitle" = "Month title";
 "Preferences.Colors.NavigationElements" = "Navigation elements";
 "Preferences.Colors.WeekCaptions" = "Week captions";

@@ -124,7 +124,7 @@ open class ColorPickerController: NSObject, ColorPickerControllerProtocol { //su
     /// - Parameter colorControl: Control to be added.
     open func addControl(_ colorControl: ColorControl) {
         colorControls.append(colorControl)
-        colorControl.addTarget(self, action: #selector(colorPicked(by:)), for: .valueChanged)
+        colorControl.addTarget(self, action: #selector(colorPicked), for: .valueChanged)
         if type(of: colorControl).canConfirmColor {
             colorControl.addTarget(self, action: #selector(colorConfirmed(by:)), for: .primaryActionTriggered)
         }

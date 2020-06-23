@@ -15,6 +15,7 @@
 
 "Preferences.WeekNumbers" = "Номер недели";
 
+"Preferences.Colors.BackgroundTitle" = "Заливка фона (iOS 14+)";
 "Preferences.Colors.MonthTitle" = "Название месяца";
 "Preferences.Colors.NavigationElements" = "Элементы навигации";
 "Preferences.Colors.WeekCaptions" = "Обозначения недели";

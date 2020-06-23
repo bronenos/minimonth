@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct CalendarMonthView: View {
+    let position: CalendarPosition
     let weeksNumber: Int
     let monthOffset: Int
     let days: [CalendarDay]
@@ -17,7 +18,7 @@ struct CalendarMonthView: View {
         GeometryReader { geometry in
             ZStack {
                 ForEach(self.days, id: \.self) { day in
-                    CalendarMonthdayView(day: day)
+                    CalendarMonthdayView(position: position, day: day)
                         .frame(
                             width: self.step(inside: geometry).dx,
                             height: self.step(inside: geometry).dy,

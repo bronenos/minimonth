@@ -23,13 +23,17 @@ struct HosterColorsBlock: View {
     @EnvironmentObject var preferencesDriver: PreferencesDriver
     @EnvironmentObject var designBook: DesignBook
     @Environment(\.colorScheme) private var colorScheme
+    let colorApplier: (PreferencesWritableKeyPath) -> Void
     
     @State private var colorsResetAlerting = false
 
     var body: some View {
         VStack {
             ForEach(HosterColorDynamicMetaStorage().resolve(scheme: colorScheme), id: \.self) { meta in
-                HosterColorControl(caption: meta.captionKey, keyPath: meta.keyPath)
+                HosterColorControl(
+                    caption: meta.captionKey,
+                    keyPath: meta.keyPath,
+                    colorApplier: colorApplier)
             }
             
             Button(action: resetColorsAlertingPresent) {
@@ -66,6 +70,11 @@ struct HosterColorsBlock: View {
 
 fileprivate struct HosterColorDynamicMetaStorage {
     let metas: [HosterColorDynamicMeta] = [
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.BackgroundTitle",
+            lightKeyPath: \.backgroundColorLight,
+            darkKeyPath: \.backgroundColorDark
+        ),
         HosterColorDynamicMeta(
             captionKey: "Preferences.Colors.MonthTitle",
             lightKeyPath: \.monthTitleColorLight,

@@ -13,9 +13,8 @@ struct HosterCalendarWrapper: View {
     @EnvironmentObject private var designBook: DesignBook
 
     var body: some View {
-        CalendarView(
-            interactor: CalendarInteractor(style: .month),
-            position: .center)
+        let interactor = CalendarInteractor(style: .month)
+        return CalendarView(interactor: interactor, position: .center, backgroundColor: .clear)
             .frame(
                 minWidth: 250, idealWidth: 300, maxWidth: 350,
                 minHeight: 270, idealHeight: 280, maxHeight: 280,

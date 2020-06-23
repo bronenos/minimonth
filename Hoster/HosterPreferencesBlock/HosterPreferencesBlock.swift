@@ -12,8 +12,11 @@ import Combine
 struct HosterPreferencesBlock: View {
     @EnvironmentObject private var preferencesDriver: PreferencesDriver
     @ObservedObject private var interactor: HosterPreferencesInteractor
+    private let colorApplier: (PreferencesWritableKeyPath) -> Void
     
-    init(preferencesDriver: PreferencesDriver, colorScheme: ColorScheme, delegate: HosterViewDelegate?) {
+    init(preferencesDriver: PreferencesDriver, colorScheme: ColorScheme, colorApplier: @escaping (PreferencesWritableKeyPath) -> Void, delegate: HosterViewDelegate?) {
+        self.colorApplier = colorApplier
+        
         interactor = HosterPreferencesInteractor(
             preferencesDriver: preferencesDriver,
             colorScheme: colorScheme,
@@ -56,7 +59,7 @@ struct HosterPreferencesBlock: View {
             .styleAsPreferenceBlock()
             
             Section {
-                HosterColorsBlock()
+                HosterColorsBlock(colorApplier: colorApplier)
                     .padding(.top, 5)
             }
             .styleAsPreferenceBlock()

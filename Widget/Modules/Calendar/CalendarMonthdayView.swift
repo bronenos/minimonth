@@ -11,6 +11,7 @@ import SwiftUI
 struct CalendarMonthdayView: View {
     @EnvironmentObject var designBook: DesignBook
 
+    let position: CalendarPosition
     let day: CalendarDay
     
     var body: some View {
@@ -21,41 +22,74 @@ struct CalendarMonthdayView: View {
 
             Text("XX")
                 .hidden()
-                .padding(.vertical, 5)
-                .padding(.horizontal, 8)
+                .padding(.vertical, padding.y)
+                .padding(.horizontal, padding.x)
                 .overlay(
-                    VStack(spacing: 0) {
-                        Capsule(style: .circular)
-                            .stroke(designBook.cached(usage: .todayColor))
-                            .opacity(day.options.contains(.isToday) ? 1.0 : 0)
-                        
-                        HStack {
-                            Spacer()
-                            
-                            if day.options.contains(.hasLongEvent) {
-                                Circle()
-                                    .fill(designBook.cached(usage: .holidayColor))
-                                    .frame(ownSide: designBook.layout.eventMarkerSide)
+                    Group {
+                        if position == .fill {
+                            HStack(spacing: 0) {
+                                dayBlock
+                                VStack {
+                                    Spacer()
+                                    indicatorBlock
+                                    Spacer()
+                                }
+                                .offset(x: -relativeOffset(hasEvent: day.options.hasAnyEvent()), y: 0)
                             }
-                            
-                            if day.options.contains(.hasShortEvent) {
-                                Circle()
-                                    .fill(designBook.cached(usage: .eventColor))
-                                    .frame(ownSide: designBook.layout.eventMarkerSide)
-                            }
-                            
-                            Spacer()
+                            .offset(x: relativeOffset(hasEvent: day.options.hasAnyEvent()), y: 0)
                         }
-                        .offset(x: 0, y: -relativeTopOffset(hasEvent: day.options.hasAnyEvent()))
+                        else {
+                            VStack(spacing: 0) {
+                                dayBlock
+                                HStack {
+                                    Spacer()
+                                    indicatorBlock
+                                    Spacer()
+                                }
+                                .offset(x: 0, y: -relativeOffset(hasEvent: day.options.hasAnyEvent()))
+                            }
+                            .offset(x: 0, y: relativeOffset(hasEvent: day.options.hasAnyEvent()))
+                        }
                     }
-                    .offset(x: 0, y: relativeTopOffset(hasEvent: day.options.hasAnyEvent())))
+                )
         }
         .font(.system(size: 12, weight: .bold))
     }
     
-    fileprivate func relativeTopOffset(hasEvent: Bool) -> CGFloat {
+    private var padding: CGPoint {
+        if position == .fill {
+            return CGPoint(x: 5, y: 1)
+        }
+        else {
+            return CGPoint(x: 8, y: 5)
+        }
+    }
+    
+    private var dayBlock: some View {
+        Capsule(style: .circular)
+            .stroke(designBook.cached(usage: .todayColor))
+            .opacity(day.options.contains(.isToday) ? 1.0 : 0)
+    }
+    
+    private var indicatorBlock: some View {
+        Group {
+            if day.options.contains(.hasLongEvent) {
+                Circle()
+                    .fill(designBook.cached(usage: .holidayColor))
+                    .frame(ownSide: designBook.layout(position: position).eventMarkerSide)
+            }
+            
+            if day.options.contains(.hasShortEvent) {
+                Circle()
+                    .fill(designBook.cached(usage: .eventColor))
+                    .frame(ownSide: designBook.layout(position: position).eventMarkerSide)
+            }
+        }
+    }
+    
+    fileprivate func relativeOffset(hasEvent: Bool) -> CGFloat {
         guard hasEvent else { return 0 }
-        return designBook.layout.eventMarkerSide * 0.5
+        return designBook.layout(position: position).eventMarkerSide * 0.5
     }
     
     fileprivate func captionColor(forType type: CalendarDayType) -> Color {

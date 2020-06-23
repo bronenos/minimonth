@@ -14,6 +14,7 @@ struct HosterColorControl: View {
 
     let caption: String
     let keyPath: PreferencesWritableKeyPath
+    let colorApplier: (PreferencesWritableKeyPath) -> Void
     
     var body: some View {
         ZStack {
@@ -34,10 +35,21 @@ struct HosterColorControl: View {
             HStack {
                 Spacer()
                 
-                Capsule()
-                    .frame(ownWidth: 40, ownHeight: 30)
-                    .foregroundColor(resolvedColor)
-                    .padding(6)
+                if #available(iOS 14.0, *) {
+                    HosterColorPickerButton(
+                        context: context,
+                        title: caption,
+                        keyPath: keyPath,
+                        selectedColor: preferencesDriver[keyPath: keyPath],
+                        colorApplier: colorApplier)
+                        .frame(ownWidth: 33, ownHeight: 28)
+                }
+                else {
+                    Capsule()
+                        .frame(ownWidth: 40, ownHeight: 30)
+                        .foregroundColor(resolvedColor)
+                        .padding(6)
+                }
             }
         }
         .overlay(
