@@ -23,8 +23,8 @@ struct CalendarMonthdayView: View {
                         switch value {
                         case .host: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
                         case .today: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
-                        case .small: return EdgeInsets(top: 1, leading: 5, bottom: 1, trailing: 5)
-                        case .medium: return EdgeInsets(top: 1, leading: 5, bottom: 1, trailing: 5)
+                        case .small: return EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
+                        case .medium: return EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
                         }
                     }
                 )
@@ -64,7 +64,15 @@ struct CalendarMonthdayView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .foregroundColor(captionColor(forType: day.type))
         }
-        .font(.system(size: position.shouldReduceFontSize ? 10 : 12, weight: .bold))
+        .font(
+            position.shouldReduceFontSize
+                ? (day.options.contains(.isToday)
+                    ? .system(size: 10, weight: .heavy)
+                    : .system(size: 10, weight: .semibold))
+                : (day.options.contains(.isToday)
+                    ? .system(size: 12, weight: .black)
+                    : .system(size: 12, weight: .bold))
+        )
     }
     
     private var dayBlock: some View {

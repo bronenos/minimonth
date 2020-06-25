@@ -61,10 +61,11 @@ public struct CalendarView: View {
                 .padding(.horizontal, geometry.size.width * 0.035)
 
                 CalendarWeekdayBar(
+                    position: position,
                     captions: self.interactor.meta.weekdayTitles)
                     .frame(ownHeight: self.designBook.layout(position: position).weekHeaderHeight)
                     .padding(.leading, position.shouldDisplayWeekNumbers ? self.calculateWeeknumWidth(geometry: geometry) : 0)
-                    .padding(.horizontal, position.shouldDisplayWeekNumbers ? 0 : -3)
+                    .padding(.horizontal, position.shouldDisplayWeekNumbers ? 0 : -2)
 
                 if position.shouldPlaceInMiddle {
                     Spacer()
@@ -91,6 +92,11 @@ public struct CalendarView: View {
 
                 Spacer()
                     .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .bottom)
+                
+                if position.shouldReduceFontSize {
+                    Spacer()
+                        .frame(minHeight: 5, idealHeight: 5, maxHeight: 5, alignment: .bottom)
+                }
             }
             .padding(.horizontal, position.shouldMinimizeEdges ? 5 : 10)
         }
@@ -101,8 +107,8 @@ public struct CalendarView: View {
         switch position {
         case .host: return Spacer().frame(idealHeight: 0, maxHeight: .infinity, alignment: .top)
         case .today: return Spacer().frame(idealHeight: 0, maxHeight: 0, alignment: .top)
-        case .small: return Spacer().frame(idealHeight: 5, maxHeight: 5)
-        case .medium: return Spacer().frame(idealHeight: 5, maxHeight: 5)
+        case .small: return Spacer().frame(idealHeight: 7, maxHeight: 7)
+        case .medium: return Spacer().frame(idealHeight: 7, maxHeight: 7)
         }
     }
     

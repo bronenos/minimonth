@@ -22,7 +22,7 @@ struct HosterCalendarWrapper: View {
                 minWidth: 250, idealWidth: 300, maxWidth: 350,
                 minHeight: 270, idealHeight: 280, maxHeight: 280,
                 alignment: .center)
-            .background(BlurredView(style: .systemThickMaterial, backgroundColor: UIColor.label))
+            .background(Color(designBook.color(usage: .backgroundColor)))
             .cornerRadius(20)
             .disabled(true)
     }

@@ -11,6 +11,7 @@ import SwiftUI
 struct CalendarWeekdayBar: View {
     @EnvironmentObject var designBook: DesignBook
 
+    let position: CalendarPosition
     let captions: [String]
     
     var body: some View {
@@ -20,7 +21,7 @@ struct CalendarWeekdayBar: View {
             ForEach(self.captions, id: \.self) { caption in
                 Text(caption)
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .font(.system(size: 11, weight: .semibold))
+                    .font(.system(size: position.shouldReduceFontSize ? 9 : 11, weight: .semibold))
                     .foregroundColor(self.designBook.cached(usage: .captionColor))
             }
             
