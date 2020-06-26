@@ -15,17 +15,17 @@ public enum CalendarPosition {
     case medium
 }
 
-public struct CalendarView: View {
+public struct CalendarView<Background: View>: View {
     @EnvironmentObject private var designBook: DesignBook
     @EnvironmentObject private var preferencesDriver: PreferencesDriver
     @ObservedObject private var interactor: CalendarInteractor
     private let position: CalendarPosition
-    private let backgroundColor: Color
+    private let background: Background
     
-    public init(interactor: CalendarInteractor, position: CalendarPosition, backgroundColor: Color) {
+    public init(interactor: CalendarInteractor, position: CalendarPosition, background: Background) {
         self.interactor = interactor
         self.position = position
-        self.backgroundColor = backgroundColor
+        self.background = background
     }
     
     public var body: some View {
@@ -100,7 +100,7 @@ public struct CalendarView: View {
             }
             .padding(.horizontal, position.shouldMinimizeEdges ? 5 : 10)
         }
-        .background(backgroundColor)
+        .background(background)
     }
     
     private func obtainTopSpacer() -> some View {

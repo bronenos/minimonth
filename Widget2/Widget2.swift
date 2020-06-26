@@ -35,12 +35,7 @@ struct MiniMonthTimelineEntry: TimelineEntry {
 
 struct PlaceholderView : View {
     var body: some View {
-        let preferencesDriver = PreferencesDriver()
-        let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: WidgetTraits())
-        
-        let backgroundColor = designBook.cached(usage: .backgroundColor)
-        return EmptyView()
-            .background(backgroundColor)
+        return Image("paper")
     }
 }
 
@@ -80,9 +75,9 @@ fileprivate func generateCalendar(entry: MiniMonthTimelineEntry, traitEnv: UITra
     let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: traitEnv ?? WidgetTraits())
     
     let rootInteractor = CalendarInteractor(style: .month, shortest: position.shouldDisplayShortestCaptions)
-    let backgroundColor = designBook.cached(usage: .backgroundColor)
+    let background = Image("paper").resizable(resizingMode: .stretch)
     
-    return CalendarView(interactor: rootInteractor, position: position, backgroundColor: backgroundColor)
+    return CalendarView(interactor: rootInteractor, position: position, background: background)
         .environmentObject(preferencesDriver)
         .environmentObject(designBook)
 }

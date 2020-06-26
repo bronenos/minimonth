@@ -71,11 +71,6 @@ struct HosterColorsBlock: View {
 fileprivate struct HosterColorDynamicMetaStorage {
     let metas: [HosterColorDynamicMeta] = [
         HosterColorDynamicMeta(
-            captionKey: "Preferences.Colors.BackgroundTitle",
-            lightKeyPath: \.backgroundColorLight,
-            darkKeyPath: \.backgroundColorDark
-        ),
-        HosterColorDynamicMeta(
             captionKey: "Preferences.Colors.MonthTitle",
             lightKeyPath: \.monthTitleColorLight,
             darkKeyPath: \.monthTitleColorDark

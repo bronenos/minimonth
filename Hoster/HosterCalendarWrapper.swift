@@ -17,12 +17,11 @@ struct HosterCalendarWrapper: View {
             style: .month,
             shortest: false)
         
-        return CalendarView(interactor: interactor, position: .host, backgroundColor: .clear)
+        return CalendarView(interactor: interactor, position: .host, background: Color(.secondarySystemBackground))
             .frame(
                 minWidth: 250, idealWidth: 300, maxWidth: 350,
                 minHeight: 270, idealHeight: 280, maxHeight: 280,
                 alignment: .center)
-            .background(Color(designBook.color(usage: .backgroundColor)))
             .cornerRadius(20)
             .disabled(true)
     }
