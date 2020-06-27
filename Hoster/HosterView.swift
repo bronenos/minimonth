@@ -25,8 +25,6 @@ struct HosterView: View {
     let windowScene: UIWindowScene
     let delegate: HosterViewDelegate?
     
-    private var pickingColor = Color.primary
-    
     init(windowScene: UIWindowScene, delegate: HosterViewDelegate?) {
         self.windowScene = windowScene
         self.delegate = delegate
@@ -47,7 +45,7 @@ struct HosterView: View {
             }
             .padding(.horizontal, horizontalPadding)
             .sheet(
-                item: $context.colorPickingSheet,
+                item: $context.colorPickingMeta,
                 content: constructColorPicker
             )
         }
@@ -141,22 +139,36 @@ struct HosterView: View {
         HosterPreferencesBlock(
             preferencesDriver: preferencesDriver,
             colorScheme: colorScheme,
-            colorApplier: applyColorPicker,
+            colorApplier: { color in self.applyColorPicker(keyPath: color) },
             delegate: delegate)
     }
     
     private func constructColorPicker(item: HosterContextColorPickingMeta) -> some View {
-        HosterColorPickerSheet(
-            context: context,
-            title: item.title,
-            keyPath: item.keyPath,
-            selectedColor: preferencesDriver[keyPath: item.keyPath].mixWithBaseColor(UIColor.systemBackground))
-            .onDisappear { self.applyColorPicker(keyPath: item.keyPath) }
+        if #available(iOS 14.0, *) {
+            return AnyView(
+                HosterColorPickerNativeSheet(
+                    context: context,
+                    title: item.title,
+                    keyPath: item.keyPath,
+                    selectedColor: preferencesDriver[keyPath: item.keyPath].mixWithBaseColor(.systemBackground))
+                    .onDisappear { self.applyColorPicker(keyPath: item.keyPath) }
+            )
+        }
+        else {
+            return AnyView(
+                HosterColorPickerLegacySheet(
+                    context: context,
+                    title: item.title,
+                    keyPath: item.keyPath,
+                    selectedColor: preferencesDriver[keyPath: item.keyPath].mixWithBaseColor(.systemBackground))
+                    .onDisappear { self.applyColorPicker(keyPath: item.keyPath) }
+            )
+        }
     }
     
-    private func applyColorPicker(keyPath: PreferencesWritableKeyPath) {
+    private func applyColorPicker(keyPath: PreferencesWritableKeyPath, color: Color? = nil) {
         guard
-            let pickedColor = context.retrieveColor(forKeyPath: keyPath)
+            let pickedColor = color?.toUIColor() ?? context.retrieveColor(forKeyPath: keyPath)
         else { return }
         
         preferencesDriver[keyPath: keyPath] = pickedColor

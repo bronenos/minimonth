@@ -1,5 +1,5 @@
 //
-//  HosterColorPickerSheet.swift
+//  HosterColorPickerLegacySheet.swift
 //  Hoster
 //
 //  Created by Stan Potemkin on 26.10.2019.
@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 
-final class HosterColorPickerSheet: NSObject, UIViewRepresentable, ColorPickerDelegate {
+final class HosterColorPickerLegacySheet: NSObject, UIViewRepresentable, ColorPickerDelegate {
     private let context: HosterContext
     private let title: String
     private let keyPath: PreferencesWritableKeyPath
@@ -22,13 +22,13 @@ final class HosterColorPickerSheet: NSObject, UIViewRepresentable, ColorPickerDe
         self.selectedColor = selectedColor
     }
     
-    func makeUIView(context: UIViewRepresentableContext<HosterColorPickerSheet>) -> UIView {
+    func makeUIView(context: UIViewRepresentableContext<HosterColorPickerLegacySheet>) -> UIView {
         let navigationController = UINavigationController(rootViewController: context.coordinator)
         navigationController.edgesForExtendedLayout = []
         return navigationController.view
     }
 
-    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<HosterColorPickerSheet>) {
+    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<HosterColorPickerLegacySheet>) {
     }
 
     func makeCoordinator() -> UIViewController {

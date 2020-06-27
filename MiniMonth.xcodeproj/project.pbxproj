@@ -10,6 +10,8 @@
 		7AD455F213FC2B16321EF05B /* Pods_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D2EC40568CFE27EE2022DC /* Pods_Widget.framework */; };
 		7EECCB5FE343DAE90614D369 /* Pods_Hoster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1EC1421D97F8B8D435509E /* Pods_Hoster.framework */; };
 		D405D3FA236CB336000B1893 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D405D3F9236CB336000B1893 /* README.md */; };
+		D4071AE424A6AB0F00A22EC5 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4071AE324A6AB0F00A22EC5 /* Color+Ext.swift */; };
+		D4071AE624A706C400A22EC5 /* HosterColorPickerNativeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4071AE524A706C400A22EC5 /* HosterColorPickerNativeSheet.swift */; };
 		D411EE1419C2A5CD0054439F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D411EE1319C2A5CD0054439F /* NotificationCenter.framework */; };
 		D41F997E236EC854007B727F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D41F9980236EC854007B727F /* Localizable.stringsdict */; };
 		D41FCB0523642D2100499C19 /* MiniMonth.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D411EE1119C2A5CC0054439F /* MiniMonth.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -105,7 +107,7 @@
 		D4BB6A7D236B0704008BCAC0 /* DesignBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47836C3235EC8D70030238C /* DesignBook.swift */; };
 		D4BB6A88236B1B5D008BCAC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BB6A8A236B1B5D008BCAC0 /* Localizable.strings */; };
 		D4BBE01F2364CCBD00F14E24 /* HosterContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBE01E2364CCBD00F14E24 /* HosterContext.swift */; };
-		D4BBE0212364D74A00F14E24 /* HosterColorPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBE0202364D74A00F14E24 /* HosterColorPickerSheet.swift */; };
+		D4BBE0212364D74A00F14E24 /* HosterColorPickerLegacySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBE0202364D74A00F14E24 /* HosterColorPickerLegacySheet.swift */; };
 		D4CD22AA2362D9EA000409CB /* HosterAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */; };
 		D4CD22AC2362D9EA000409CB /* HosterSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22AB2362D9EA000409CB /* HosterSceneDelegate.swift */; };
 		D4CD22AE2362D9EA000409CB /* HosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22AD2362D9EA000409CB /* HosterView.swift */; };
@@ -185,6 +187,8 @@
 		AFED14423E6B7500C2DA861E /* Pods-Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Widget.release.xcconfig"; path = "Target Support Files/Pods-Widget/Pods-Widget.release.xcconfig"; sourceTree = "<group>"; };
 		B9BF114416E440853E417285 /* Pods-Hoster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoster.debug.xcconfig"; path = "Target Support Files/Pods-Hoster/Pods-Hoster.debug.xcconfig"; sourceTree = "<group>"; };
 		D405D3F9236CB336000B1893 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D4071AE324A6AB0F00A22EC5 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		D4071AE524A706C400A22EC5 /* HosterColorPickerNativeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterColorPickerNativeSheet.swift; sourceTree = "<group>"; };
 		D411EE1119C2A5CC0054439F /* MiniMonth.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MiniMonth.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D411EE1319C2A5CD0054439F /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		D411EE1719C2A5CD0054439F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -269,7 +273,7 @@
 		D4BB6A8C236B1B88008BCAC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4BB6A8D236B1BA3008BCAC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4BBE01E2364CCBD00F14E24 /* HosterContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterContext.swift; sourceTree = "<group>"; };
-		D4BBE0202364D74A00F14E24 /* HosterColorPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterColorPickerSheet.swift; sourceTree = "<group>"; };
+		D4BBE0202364D74A00F14E24 /* HosterColorPickerLegacySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterColorPickerLegacySheet.swift; sourceTree = "<group>"; };
 		D4C735AA19FFBAEC0066A6E8 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
 		D4CD22A72362D9EA000409CB /* Hoster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hoster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CD22A92362D9EA000409CB /* HosterAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterAppDelegate.swift; sourceTree = "<group>"; };
@@ -374,6 +378,14 @@
 			path = EventService;
 			sourceTree = "<group>";
 		};
+		D4071AE224A6AB0600A22EC5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4071AE324A6AB0F00A22EC5 /* Color+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D411EDE219C2A59B0054439F = {
 			isa = PBXGroup;
 			children = (
@@ -461,17 +473,10 @@
 			isa = PBXGroup;
 			children = (
 				D49AFD5A2363912B0033D98F /* Views */,
-				D468DB27236320C00085122D /* Extensions */,
+				D4071AE224A6AB0600A22EC5 /* Extensions */,
 				D41FCB0A2364B0AB00499C19 /* Wrappers */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		D468DB27236320C00085122D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D468DB2A23633DF30085122D /* HosterPreferencesBlock */ = {
@@ -481,8 +486,9 @@
 				D468DB2B23633E0C0085122D /* HosterPreferencesInteractor.swift */,
 				D4CD22E02363001C000409CB /* HosterColorsBlock.swift */,
 				D4CD22E223630048000409CB /* HosterColorControl.swift */,
-				D4BBE0202364D74A00F14E24 /* HosterColorPickerSheet.swift */,
+				D4BBE0202364D74A00F14E24 /* HosterColorPickerLegacySheet.swift */,
 				D48F9AC224A2701E000CB53D /* HosterColorPickerButton.swift */,
+				D4071AE524A706C400A22EC5 /* HosterColorPickerNativeSheet.swift */,
 			);
 			path = HosterPreferencesBlock;
 			sourceTree = "<group>";
@@ -1034,7 +1040,7 @@
 				D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */,
 				D4CD22CC2362FCAD000409CB /* CalendarTypes.swift in Sources */,
 				D4CD22D82362FCBE000409CB /* FoundationExtensions.swift in Sources */,
-				D4BBE0212364D74A00F14E24 /* HosterColorPickerSheet.swift in Sources */,
+				D4BBE0212364D74A00F14E24 /* HosterColorPickerLegacySheet.swift in Sources */,
 				D4BB6A6B236B06B5008BCAC0 /* ColorPaletteDelegate.swift in Sources */,
 				D4BB6A7A236B0703008BCAC0 /* DesignTypes.swift in Sources */,
 				D41FCB0C2364B11A00499C19 /* OrientationWatcher.swift in Sources */,
@@ -1059,7 +1065,9 @@
 				D4CD22D92362FCBE000409CB /* OptionalExtensions.swift in Sources */,
 				D4BB6A55236B06B5008BCAC0 /* LimitedGestureCircleView.swift in Sources */,
 				D4CD22C42362E9CA000409CB /* HosterCalendarWrapper.swift in Sources */,
+				D4071AE424A6AB0F00A22EC5 /* Color+Ext.swift in Sources */,
 				D4CD22CF2362FCB2000409CB /* CalendarViewWrapper.swift in Sources */,
+				D4071AE624A706C400A22EC5 /* HosterColorPickerNativeSheet.swift in Sources */,
 				D4BB6A62236B06B5008BCAC0 /* LimitedGestureViewDelegate.swift in Sources */,
 				D4CD22D62362FCB2000409CB /* CalendarMonthdayView.swift in Sources */,
 				D4BB6A76236B06B5008BCAC0 /* ColorPickerControllerProtocol.swift in Sources */,

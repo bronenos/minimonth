@@ -35,21 +35,10 @@ struct HosterColorControl: View {
             HStack {
                 Spacer()
                 
-                if #available(iOS 14.0, *) {
-                    HosterColorPickerButton(
-                        context: context,
-                        title: caption,
-                        keyPath: keyPath,
-                        selectedColor: preferencesDriver[keyPath: keyPath],
-                        colorApplier: colorApplier)
-                        .frame(ownWidth: 33, ownHeight: 28)
-                }
-                else {
-                    Capsule()
-                        .frame(ownWidth: 40, ownHeight: 30)
-                        .foregroundColor(resolvedColor)
-                        .padding(6)
-                }
+                Capsule()
+                    .frame(ownWidth: 40, ownHeight: 30)
+                    .foregroundColor(resolvedColor)
+                    .padding(6)
             }
         }
         .overlay(

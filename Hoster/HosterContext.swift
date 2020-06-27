@@ -20,26 +20,12 @@ final class HosterContext: ObservableObject {
     
     private var pickedColors = [PreferencesWritableKeyPath: UIColor]()
     
-    var colorPickingSheet: HosterContextColorPickingMeta?
     var colorPickingMeta: HosterContextColorPickingMeta? {
         didSet { objectWillChange.send() }
     }
 
     func presentColorPicker(title:String, keyPath: PreferencesWritableKeyPath) {
-        if #available(iOS 14.0, *) {
-            return
-        }
-        else {
-            let meta = HosterContextColorPickingMeta(id: UUID(), title: title, keyPath: keyPath)
-            
-            if #available(iOS 14.0, *) {
-                colorPickingMeta = meta
-            }
-            else {
-                colorPickingMeta = meta
-                colorPickingSheet = meta
-            }
-        }
+        colorPickingMeta = HosterContextColorPickingMeta(id: UUID(), title: title, keyPath: keyPath)
     }
     
     func storeColor(_ color: UIColor, forKeyPath keyPath: PreferencesWritableKeyPath) {
@@ -52,6 +38,5 @@ final class HosterContext: ObservableObject {
     
     func dismissColorPicker() {
         colorPickingMeta = nil
-        colorPickingSheet = nil
     }
 }
