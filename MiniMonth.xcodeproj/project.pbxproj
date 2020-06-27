@@ -51,7 +51,6 @@
 		D48F9ABE24A25FF3000CB53D /* CalendarViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD22C82362F721000409CB /* CalendarViewWrapper.swift */; };
 		D48F9ABF24A25FFE000CB53D /* RangeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479375A236082AD006D5EDC /* RangeExtensions.swift */; };
 		D48F9AC124A26235000CB53D /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49AFD5C2363914A0033D98F /* BlurredView.swift */; };
-		D48F9AC324A2701F000CB53D /* HosterColorPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F9AC224A2701E000CB53D /* HosterColorPickerButton.swift */; };
 		D49AFD5D2363914A0033D98F /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49AFD5C2363914A0033D98F /* BlurredView.swift */; };
 		D4A6988F236DD5D200B34EAC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4A69891236DD5D200B34EAC /* InfoPlist.strings */; };
 		D4A69894236DE37F00B34EAC /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */; };
@@ -218,7 +217,6 @@
 		D48F9A9E24A2584E000CB53D /* Widget2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget2.swift; sourceTree = "<group>"; };
 		D48F9AA024A2584F000CB53D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48F9AA224A2584F000CB53D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D48F9AC224A2701E000CB53D /* HosterColorPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosterColorPickerButton.swift; sourceTree = "<group>"; };
 		D48F9AC424A27B11000CB53D /* Widget2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget2.entitlements; sourceTree = "<group>"; };
 		D49AFD5C2363914A0033D98F /* BlurredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredView.swift; sourceTree = "<group>"; };
 		D4A69890236DD5D200B34EAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -487,7 +485,6 @@
 				D4CD22E02363001C000409CB /* HosterColorsBlock.swift */,
 				D4CD22E223630048000409CB /* HosterColorControl.swift */,
 				D4BBE0202364D74A00F14E24 /* HosterColorPickerLegacySheet.swift */,
-				D48F9AC224A2701E000CB53D /* HosterColorPickerButton.swift */,
 				D4071AE524A706C400A22EC5 /* HosterColorPickerNativeSheet.swift */,
 			);
 			path = HosterPreferencesBlock;
@@ -1086,7 +1083,6 @@
 				D4BB6A5B236B06B5008BCAC0 /* CircleShapedView.swift in Sources */,
 				D4BB6A6F236B06B5008BCAC0 /* AbstractColorControl.swift in Sources */,
 				D4BB6A5F236B06B5008BCAC0 /* DefaultColorPickerViewController.swift in Sources */,
-				D48F9AC324A2701F000CB53D /* HosterColorPickerButton.swift in Sources */,
 				D4CD22AE2362D9EA000409CB /* HosterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
