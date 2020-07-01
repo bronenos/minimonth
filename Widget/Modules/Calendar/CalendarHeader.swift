@@ -39,7 +39,7 @@ struct CalendarHeader: View {
             HStack(alignment: .lastTextBaseline) {
                 if !position.shouldDisplayWeekNumbers, !position.shouldDisplayControls, weekNumber > 0 {
                     Text("# \(weekNumber)")
-                        .font(.system(size: 12, weight: .semibold))
+                        .font(.system(size: 12, weight: .bold))
                         .fixedSize(horizontal: true, vertical: false)
                         .foregroundColor(designBook.cached(usage: .captionColor))
                     
