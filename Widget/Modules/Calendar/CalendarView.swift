@@ -35,9 +35,10 @@ public struct CalendarView<Background: View>: View {
                 
                 convert(self.interactor.style) { style -> CalendarHeader in
                     switch style {
-                    case .month:
+                    case .month where position.shouldDisplayControls:
                         return CalendarHeader(
                             position: position,
+                            weekNumber: self.interactor.meta.weekNumber,
                             title: self.interactor.meta.monthTitle,
                             year: self.interactor.meta.monthYear,
                             fastBackwardAction: self.interactor.navigateLongBackward,
@@ -46,15 +47,28 @@ public struct CalendarView<Background: View>: View {
                             forwardAction: self.interactor.navigateShortForward,
                             fastForwardAction: self.interactor.navigateLongForward)
                         
-                    case .week:
+                    case .week where position.shouldDisplayControls:
                         return CalendarHeader(
                             position: position,
+                            weekNumber: self.interactor.meta.weekNumber,
                             title: self.interactor.meta.monthTitle,
                             year: self.interactor.meta.monthYear,
                             fastBackwardAction: nil,
                             backwardAction: self.interactor.navigateShortBackward,
                             titleAction: self.interactor.navigateNowadays,
                             forwardAction: self.interactor.navigateShortForward,
+                            fastForwardAction: nil)
+                        
+                    default:
+                        return CalendarHeader(
+                            position: position,
+                            weekNumber: self.interactor.meta.weekNumber,
+                            title: self.interactor.meta.fullTitle,
+                            year: nil,
+                            fastBackwardAction: nil,
+                            backwardAction: nil,
+                            titleAction: self.interactor.navigateNowadays,
+                            forwardAction: nil,
                             fastForwardAction: nil)
                     }
                 }

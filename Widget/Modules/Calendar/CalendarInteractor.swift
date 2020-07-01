@@ -169,11 +169,10 @@ fileprivate func calculateMeta(calendar: Calendar,
                                anchorEvents: [EKEvent],
                                style: CalendarStyle,
                                shortest: Bool) -> CalendarMeta {
+    let fullFormatter = DateFormatter()
+    fullFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
+    
     let calendarUnits: Set<Calendar.Component> = [.year, .month, .weekday, .day, .weekOfMonth, .weekOfYear]
-    
-    let todayUnits = calendar.dateComponents(calendarUnits, from: Date())
-    let todayYear = todayUnits.year ?? 0
-    
     let anchorDayUnits = calendar.dateComponents(calendarUnits, from: anchorDate).normalizedWeeknum(calendar: calendar)
     let anchorMonthIndex = anchorDayUnits.month ?? 0
     let anchorYear = anchorDayUnits.year ?? 0
@@ -191,6 +190,8 @@ fileprivate func calculateMeta(calendar: Calendar,
         let monthOffset = startWeekday.offset - 1
 
         return CalendarMeta(
+            weekNumber: anchorDayUnits.weekOfYear ?? 0,
+            fullTitle: fullFormatter.string(from: Date()),
             monthTitle: ahcnorMonthTitle,
             monthYear: anchorYear, // (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
@@ -222,6 +223,8 @@ fileprivate func calculateMeta(calendar: Calendar,
         let monthOffset = (startWeekday.firstWeek ? startWeekday.offset - 1 : 0)
 
         return CalendarMeta(
+            weekNumber: anchorDayUnits.weekOfYear ?? 0,
+            fullTitle: fullFormatter.string(from: Date()),
             monthTitle: ahcnorMonthTitle,
             monthYear: anchorYear, // (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,

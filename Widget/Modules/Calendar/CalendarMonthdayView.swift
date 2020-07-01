@@ -23,8 +23,8 @@ struct CalendarMonthdayView: View {
                         switch value {
                         case .host: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
                         case .today: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
-                        case .small: return EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
-                        case .medium: return EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
+                        case .small: return EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6)
+                        case .medium: return EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6)
                         }
                     }
                 )

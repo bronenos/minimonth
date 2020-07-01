@@ -12,6 +12,7 @@ struct CalendarHeader: View {
     @EnvironmentObject var designBook: DesignBook
     
     let position: CalendarPosition
+    let weekNumber: Int
     let title: String
     let year: Int?
     let fastBackwardAction: (() -> Void)?
@@ -35,20 +36,31 @@ struct CalendarHeader: View {
 
             Spacer()
             
-            Text(computedCaption)
-                .font(.system(size: 17, weight: .semibold))
-                .kerning(2)
-                .fixedSize(horizontal: true, vertical: false)
-                .foregroundColor(designBook.cached(usage: .monthColor))
-                .padding(.vertical, convert(position) { value in
-                    switch value {
-                    case .host: return 10
-                    case .today: return 10
-                    case .small: return 2
-                    case .medium: return 2
-                    }
-                })
-                .onTapGesture(perform: titleAction)
+            HStack(alignment: .lastTextBaseline) {
+                if !position.shouldDisplayWeekNumbers, !position.shouldDisplayControls, weekNumber > 0 {
+                    Text("# \(weekNumber)")
+                        .font(.system(size: 12, weight: .semibold))
+                        .fixedSize(horizontal: true, vertical: false)
+                        .foregroundColor(designBook.cached(usage: .captionColor))
+                    
+                    Spacer()
+                }
+                
+                Text(computedCaption)
+                    .font(.system(size: 17, weight: .semibold))
+                    .kerning(2)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .foregroundColor(designBook.cached(usage: .monthColor))
+                    .padding(.vertical, convert(position) { value in
+                        switch value {
+                        case .host: return 10
+                        case .today: return 10
+                        case .small: return 3
+                        case .medium: return 3
+                        }
+                    })
+                    .onTapGesture(perform: titleAction)
+            }
 
             Spacer()
             
