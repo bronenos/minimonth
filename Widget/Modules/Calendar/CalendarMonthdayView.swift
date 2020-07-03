@@ -66,12 +66,8 @@ struct CalendarMonthdayView: View {
         }
         .font(
             position.shouldReduceFontSize
-                ? (day.options.contains(.isToday)
-                    ? .system(size: 10, weight: .heavy)
-                    : .system(size: 10, weight: .bold))
-                : (day.options.contains(.isToday)
-                    ? .system(size: 12, weight: .heavy)
-                    : .system(size: 12, weight: .bold))
+                ? .system(size: 10, weight: .bold)
+                : .system(size: 12, weight: .bold)
         )
     }
     

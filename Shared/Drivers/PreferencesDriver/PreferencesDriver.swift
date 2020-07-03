@@ -46,62 +46,62 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     }
 
     public var monthTitleColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor.label }
+        get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var monthTitleColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor.label }
+        get { getColor(for: #function) ?? UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var navigationElementsColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor.tertiaryLabel }
+        get { getColor(for: #function) ?? UIColor(red: 0.235, green: 0.235, blue: 0.262, alpha: 0.380) }
         set { setColor(newValue, for: #function) }
     }
     
     public var navigationElementsColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor.tertiaryLabel }
+        get { getColor(for: #function) ?? UIColor(red: 0.921, green: 0.921, blue: 0.960, alpha: 0.38) }
         set { setColor(newValue, for: #function) }
     }
     
     public var weekCaptionsColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor.secondaryLabel }
+        get { getColor(for: #function) ?? UIColor(red: 0.235, green: 0.235, blue: 0.262, alpha: 0.68) }
         set { setColor(newValue, for: #function) }
     }
     
     public var weekCaptionsColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor.secondaryLabel }
+        get { getColor(for: #function) ?? UIColor(red: 0.921, green: 0.921, blue: 0.960, alpha: 0.68) }
         set { setColor(newValue, for: #function) }
     }
     
     public var workingDayColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor.label }
+        get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var workingDayColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor.label }
+        get { getColor(for: #function) ?? UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var weekendDayColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0.61, green: 0.07, blue: 0.07, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 0.610, green: 0.070, blue: 0.070, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var weekendDayColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0.88, green: 0.40, blue: 0.35, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 0.880, green: 0.400, blue: 0.350, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var currentDayColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0.20, green: 0.45, blue: 0, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 0.200, green: 0.450, blue: 0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var currentDayColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0.20, green: 0.45, blue: 0, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 0.200, green: 0.450, blue: 0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
@@ -116,22 +116,22 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     }
     
     public var shortEventColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0.30, green: 0.25, blue: 0.97, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 0.300, green: 0.250, blue: 0.970, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var shortEventColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0.37, green: 0.49, blue: 0.98, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 0.370, green: 0.490, blue: 0.980, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var alldayEventColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0.61, green: 0.07, blue: 0.07, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 0.610, green: 0.070, blue: 0.070, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var alldayEventColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0.88, green: 0.40, blue: 0.35, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 0.880, green: 0.400, blue: 0.350, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
