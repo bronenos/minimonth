@@ -132,8 +132,9 @@ public final class DesignBook: ObservableObject {
             switch value {
             case .host: return .system(size: 11, weight: .semibold)
             case .today: return .system(size: 11, weight: .semibold)
+            case .small where sizeLarge: return .system(size: 10, weight: .semibold)
             case .small: return .system(size: 9, weight: .semibold)
-            case .medium where sizeLarge: return .system(size: 11, weight: .semibold)
+            case .medium where sizeLarge: return .system(size: 12, weight: .semibold)
             case .medium: return .system(size: 10, weight: .semibold)
             }
         }
