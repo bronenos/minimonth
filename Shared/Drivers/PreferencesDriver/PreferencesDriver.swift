@@ -106,12 +106,12 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
     }
     
     public var currentDayTextColorLight: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     
     public var currentDayTextColorDark: UIColor! {
-        get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 1.0) }
+        get { getColor(for: #function) ?? UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
     }
     

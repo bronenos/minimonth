@@ -16,7 +16,7 @@ struct CalendarWeeknumBar: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(weekNumbers, id: \.self) { number in
-                Text("# \(number)")
+                Text("# \(number)")
                     .frame(maxHeight: .infinity, alignment: .center)
                     .font(.system(size: 10, weight: .medium))
                     .foregroundColor(self.designBook.cached(usage: .captionColor))

@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  MiniMonth
+
+  Created by Stan Potemkin on 04.07.2020.
+  Copyright © 2020 bronenos. All rights reserved.
+*/
+
+"widget_small_caption" = "Compact Glance";
+"widget_medium_caption" = "Standard Glance";
+"widget_common_note" = "Please note that the widget for Home screen does not support navigation, unlike the widget for Today screen";

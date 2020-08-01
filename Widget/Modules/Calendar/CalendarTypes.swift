@@ -16,6 +16,7 @@ public enum CalendarStyle {
 struct CalendarMeta: Hashable {
     let weekNumber: Int
     let fullTitle: String
+    let shortTitle: String
     let monthTitle: String
     let monthYear: Int?
     let weekNumbers: Range<Int>

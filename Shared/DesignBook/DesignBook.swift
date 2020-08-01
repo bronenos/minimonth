@@ -14,52 +14,154 @@ public final class DesignBook: ObservableObject {
     public var objectWillChange = ObservableObjectPublisher()
     
     let preferencesDriver: PreferencesDriver
-    let traitEnvironment: UITraitEnvironment
+    let traitEnvironment: UITraitEnvironment?
     
     private var cachedUsages = [DesignBookColorUsage: Color]()
     
-    public init(preferencesDriver: PreferencesDriver, traitEnvironment: UITraitEnvironment) {
+    public init(preferencesDriver: PreferencesDriver, traitEnvironment: UITraitEnvironment?) {
         self.preferencesDriver = preferencesDriver
         self.traitEnvironment = traitEnvironment
     }
     
     public var horizontalSizeClass: UserInterfaceSizeClass {
-        switch traitEnvironment.traitCollection.horizontalSizeClass {
+        switch traitEnvironment?.traitCollection.horizontalSizeClass {
         case .compact: return .compact
         case .regular: return .regular
         case .unspecified: return .compact
+        case nil: return .compact
         @unknown default: return .compact
         }
     }
     
-    public func layout(position: CalendarPosition) -> DesignBookLayout {
-        switch position {
-        case .host, .today:
-            return DesignBookLayout(
-                weekHeaderHeight: 27,
-                weekNumberWidthCoef: 0.12,
-                weekDayHeight: 27,
-                eventMarkerSide: 4
-            )
-            
-        case .small:
-            return DesignBookLayout(
-                weekHeaderHeight: 16,
-                weekNumberWidthCoef: 0.12,
-                weekDayHeight: 16,
-                eventMarkerSide: 2
-            )
-            
-        case .medium:
-            return DesignBookLayout(
-                weekHeaderHeight: 16,
-                weekNumberWidthCoef: 0.12,
-                weekDayHeight: 16,
-                eventMarkerSide: 4
-            )
+    public func adjustments(position: CalendarPosition, size: CGSize) -> DesignBookAdjustments {
+        let sizeLarge = (size.height == 0 || size.height > 150)
+        
+        let topSpacer: AnyView = convert(position) { value in
+            switch value {
+            case .host: return AnyView(Spacer().frame(idealHeight: 0, maxHeight: .infinity, alignment: .top))
+            case .today: return AnyView(Spacer().frame(idealHeight: 0, maxHeight: 0, alignment: .top))
+            case .small: return AnyView(Spacer().frame(idealHeight: 7, maxHeight: 7))
+            case .medium: return AnyView(Spacer().frame(idealHeight: 7, maxHeight: 7))
+            }
         }
+        
+        let headerMargins: EdgeInsets = convert(position) { value in
+            switch value {
+            case .host: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
+            case .today: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
+            case .small where sizeLarge: return EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6)
+            case .medium where sizeLarge: return EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6)
+            case .small: return EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6)
+            case .medium: return EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6)
+            }
+        }
+        
+        let captionHeight: CGFloat = convert(position) { value in
+            switch value {
+            case .host: return 27
+            case .today: return 27
+            case .small: return 16
+            case .medium: return 16
+            }
+        }
+        
+        let rowHeight: CGFloat = convert(position) { value in
+            switch value {
+            case .host: return 27
+            case .today: return 27
+            case .small: return (size.height - 60) / 6
+            case .medium: return (size.height - 60) / 6
+            }
+        }
+        
+        let eventMarkerSide: CGFloat = convert(position) { value in
+            switch value {
+            case .host: return 4
+            case .today: return 4
+            case .small: return 2
+            case .medium: return 4
+            }
+        }
+        
+        let dynamicVerticalAlignment: Bool = convert(position) { value in
+            switch value {
+            case .host: return false
+            case .today: return false
+            case .small: return true
+            case .medium: return true
+            }
+        }
+        
+        let displayNavigationControls: Bool = convert(position) { value in
+            switch value {
+            case .host: return true
+            case .today: return true
+            case .small: return false
+            case .medium: return false
+            }
+        }
+
+        let displayEventAtBottom: Bool = convert(position) { value in
+            switch value {
+            case .host: return true
+            case .today: return true
+            case .small: return true
+            case .medium: return false
+            }
+        }
+        
+        let displayAllWeekNumbers: Bool = convert(position) { value in
+            switch value {
+            case .host: return true
+            case .today: return true
+            case .small: return false
+            case .medium: return true
+            }
+        }
+
+        let horizontalMargins: CGFloat = convert(position) { value in
+            switch value {
+            case .host: return 10
+            case .today: return 10
+            case .small: return 5
+            case .medium: return 10
+            }
+        }
+        
+        let weekdayFont: Font = convert(position) { value in
+            switch value {
+            case .host: return .system(size: 11, weight: .semibold)
+            case .today: return .system(size: 11, weight: .semibold)
+            case .small: return .system(size: 9, weight: .semibold)
+            case .medium where sizeLarge: return .system(size: 11, weight: .semibold)
+            case .medium: return .system(size: 10, weight: .semibold)
+            }
+        }
+        
+        let weekCaptionKind: DesignWeekCaptionKind = convert(position) { value in
+            switch value {
+            case .host: return .medium
+            case .today: return .medium
+            case .small: return .short
+            case .medium: return .medium
+            }
+        }
+        
+        return DesignBookAdjustments(
+            topSpacer: topSpacer,
+            headerMargins: headerMargins,
+            captionHeight: captionHeight,
+            rowHeight: rowHeight,
+            eventMarkerSide: eventMarkerSide,
+            dynamicVerticalAlignment: dynamicVerticalAlignment,
+            displayNavigationControls: displayNavigationControls,
+            displayEventAtBottom: displayEventAtBottom,
+            displayAllWeekNumbers: displayAllWeekNumbers,
+            horizontalMargins: horizontalMargins,
+            weekdayFont: weekdayFont,
+            weekCaptionKind: weekCaptionKind)
     }
-    
+        
     public func color(usage: DesignBookColorUsage) -> UIColor {
         return color(.usage(usage))
     }
@@ -76,7 +178,8 @@ public final class DesignBook: ObservableObject {
     }
     
     public func resolve(dynamicColor: UIColor) -> UIColor {
-        return dynamicColor.resolvedColor(with: traitEnvironment.traitCollection)
+        guard let env = traitEnvironment else { return dynamicColor }
+        return dynamicColor.resolvedColor(with: env.traitCollection)
     }
     
     public func font(weight: DesignBookFontWeight, category: UIFont.TextStyle, defaultSizes: DesignBookFontSize, maximumSizes: DesignBookFontSize?) -> UIFont {
@@ -152,10 +255,11 @@ public final class DesignBook: ObservableObject {
     }
     
     private func extractFontSize(_ value: DesignBookFontSize) -> CGFloat {
-        switch traitEnvironment.traitCollection.horizontalSizeClass {
+        switch traitEnvironment?.traitCollection.horizontalSizeClass {
         case .compact: return value.compact
         case .regular: return value.regular
         case .unspecified: return value.compact
+        case nil: return value.compact
         @unknown default: return value.compact
         }
     }

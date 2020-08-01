@@ -18,6 +18,7 @@ public enum CalendarPosition {
 public struct CalendarView<Background: View>: View {
     @EnvironmentObject private var designBook: DesignBook
     @EnvironmentObject private var preferencesDriver: PreferencesDriver
+    @Environment(\.adjustments) private var adjustments: DesignBookAdjustments
     @ObservedObject private var interactor: CalendarInteractor
     private let position: CalendarPosition
     private let background: Background
@@ -31,7 +32,7 @@ public struct CalendarView<Background: View>: View {
     public var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
-                self.obtainTopSpacer()
+                adjustments.topSpacer
                 
                 convert(self.interactor.style) { style -> CalendarHeader in
                     switch style {
@@ -39,7 +40,8 @@ public struct CalendarView<Background: View>: View {
                         return CalendarHeader(
                             position: position,
                             weekNumber: self.interactor.meta.weekNumber,
-                            title: self.interactor.meta.monthTitle,
+                            longTitle: self.interactor.meta.monthTitle,
+                            shortTitle: self.interactor.meta.monthTitle,
                             year: self.interactor.meta.monthYear,
                             fastBackwardAction: self.interactor.navigateLongBackward,
                             backwardAction: self.interactor.navigateShortBackward,
@@ -51,7 +53,8 @@ public struct CalendarView<Background: View>: View {
                         return CalendarHeader(
                             position: position,
                             weekNumber: self.interactor.meta.weekNumber,
-                            title: self.interactor.meta.monthTitle,
+                            longTitle: self.interactor.meta.monthTitle,
+                            shortTitle: self.interactor.meta.monthTitle,
                             year: self.interactor.meta.monthYear,
                             fastBackwardAction: nil,
                             backwardAction: self.interactor.navigateShortBackward,
@@ -63,7 +66,8 @@ public struct CalendarView<Background: View>: View {
                         return CalendarHeader(
                             position: position,
                             weekNumber: self.interactor.meta.weekNumber,
-                            title: self.interactor.meta.fullTitle,
+                            longTitle: self.interactor.meta.fullTitle,
+                            shortTitle: self.interactor.meta.shortTitle,
                             year: nil,
                             fastBackwardAction: nil,
                             backwardAction: nil,
@@ -77,11 +81,11 @@ public struct CalendarView<Background: View>: View {
                 CalendarWeekdayBar(
                     position: position,
                     captions: self.interactor.meta.weekdayTitles)
-                    .frame(ownHeight: self.designBook.layout(position: position).weekHeaderHeight)
+                    .frame(ownHeight: adjustments.captionHeight)
                     .padding(.leading, position.shouldDisplayWeekNumbers ? self.calculateWeeknumWidth(geometry: geometry) : 0)
                     .padding(.horizontal, position.shouldDisplayWeekNumbers ? 0 : -2)
 
-                if position.shouldPlaceInMiddle {
+                if adjustments.dynamicVerticalAlignment {
                     Spacer()
                         .frame(minHeight: 0, idealHeight: 0, maxHeight: .infinity, alignment: .top)
                 }
@@ -117,18 +121,9 @@ public struct CalendarView<Background: View>: View {
         .background(background)
     }
     
-    private func obtainTopSpacer() -> some View {
-        switch position {
-        case .host: return Spacer().frame(idealHeight: 0, maxHeight: .infinity, alignment: .top)
-        case .today: return Spacer().frame(idealHeight: 0, maxHeight: 0, alignment: .top)
-        case .small: return Spacer().frame(idealHeight: 7, maxHeight: 7)
-        case .medium: return Spacer().frame(idealHeight: 7, maxHeight: 7)
-        }
-    }
-    
     private func calculateWeeknumWidth(geometry: GeometryProxy) -> CGFloat {
         if preferencesDriver.shouldDisplayWeekNumbers {
-            return geometry.size.width * designBook.layout(position: position).weekNumberWidthCoef
+            return geometry.size.width * 0.12
         }
         else {
             return 0
@@ -136,7 +131,7 @@ public struct CalendarView<Background: View>: View {
     }
     
     private func calculateBodyHeightModifier(geometry: GeometryProxy) -> HeightModifier {
-        let height = CGFloat(interactor.meta.weekNumbers.count) * designBook.layout(position: position).weekDayHeight
+        let height = CGFloat(interactor.meta.weekNumbers.count) * adjustments.rowHeight
         return HeightModifier(height: height)
     }
 }
@@ -156,7 +151,8 @@ struct CalendarView_Previews: PreviewProvider {
         CalendarViewWrapper(
             interactor: CalendarInteractor(
                 style: .month,
-                shortest: false),
+                shortest: false,
+                renderEvents: false),
             position: .host,
             preferencesDriver: preferencesDriver,
             designBook: designBook)

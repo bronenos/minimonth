@@ -49,6 +49,12 @@ struct HosterView: View {
                 content: constructColorPicker
             )
         }
+        .onReceive(
+            NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification),
+            perform: { _ in
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+        )
     }
     
     private var horizontalPadding: CGFloat {
@@ -173,7 +179,6 @@ struct HosterView: View {
         
         preferencesDriver[keyPath: keyPath] = pickedColor
         designBook.discardCache()
-        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 

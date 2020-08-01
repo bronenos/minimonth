@@ -55,11 +55,13 @@ import NotificationCenter
         
         let rootInteractor = CalendarInteractor(
             style: style,
-            shortest: false)
+            shortest: false,
+            renderEvents: true)
         
         let rootView = CalendarView(interactor: rootInteractor, position: .today, background: Color.clear)
             .environmentObject(preferencesDriver)
             .environmentObject(designBook)
+            .environment(\.adjustments, designBook.adjustments(position: .today, size: .zero))
         
         let hostingController = UIHostingController(rootView: rootView)
         hostingController.view.backgroundColor = nil

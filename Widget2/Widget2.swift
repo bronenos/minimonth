@@ -9,59 +9,113 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: TimelineProvider {
+struct MiniMonthTimelineEntry: TimelineEntry {
+    public let date: Date
+    public let family: WidgetFamily
+    public let size: CGSize
+    public let isPreview: Bool
+}
+
+struct WidgetTimelineProvider: TimelineProvider {
     public func snapshot(with context: Context, completion: @escaping (MiniMonthTimelineEntry) -> ()) {
-        let entry = MiniMonthTimelineEntry(date: Date(), family: context.family)
+        let entry = MiniMonthTimelineEntry(
+            date: Date(),
+            family: context.family,
+            size: context.displaySize,
+            isPreview: context.isPreview)
+        
         completion(entry)
     }
 
     public func timeline(with context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let calendar = Calendar.current
         let currentDate = Date()
-        let numberOfDays = Calendar.current.shortWeekdaySymbols.count
-        let entries: [MiniMonthTimelineEntry] = (0 ..< numberOfDays).compactMap { dayOffset in
-            let nextDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: currentDate)
-            return nextDate.flatMap { date in MiniMonthTimelineEntry(date: date, family: context.family) }
+        
+        let defaultInternal = TimeInterval(900)
+        let defaultPoint = Date(timeIntervalSinceNow: defaultInternal)
+        
+        var nextPoints = [calendar.date(bySettingHour: 0, minute: 0, second: 0, of: currentDate) ?? defaultPoint]
+        for quarterIndex in 0 ..< 4 {
+            let point = calendar.date(byAdding: .second, value: Int(defaultInternal) * quarterIndex, to: currentDate) ?? defaultPoint
+            nextPoints.append(point)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        
+        let nextPoint = nextPoints.min() ?? defaultPoint
+        
+        let entry = MiniMonthTimelineEntry(
+            date: nextPoint,
+            family: context.family,
+            size: context.displaySize,
+            isPreview: context.isPreview)
+        
+        let timeline = Timeline(
+            entries: [entry],
+            policy: .after(nextPoint))
+        
         completion(timeline)
     }
 }
 
-struct MiniMonthTimelineEntry: TimelineEntry {
-    public let date: Date
-    public let family: WidgetFamily
-}
-
-struct PlaceholderView : View {
-    var body: some View {
-        return Image("paper")
+struct WidgetSmall: Widget {
+    public var body: some WidgetConfiguration {
+        StaticConfiguration(
+            kind: "me.bronenos.widget-small",
+            provider: WidgetTimelineProvider(),
+            placeholder: generateCalendar(
+                entry: MiniMonthTimelineEntry(
+                    date: Date(),
+                    family: .systemSmall,
+                    size: .zero,
+                    isPreview: true),
+                traitEnv: nil,
+                renderEvents: false),
+            content: { entry in
+                generateCalendar(
+                    entry: entry,
+                    traitEnv: nil,
+                    renderEvents: !entry.isPreview)
+            })
+            .configurationDisplayName(LocalizedStringKey("widget_small_caption"))
+            .description(LocalizedStringKey("widget_common_note"))
+            .supportedFamilies([.systemSmall])
     }
 }
 
-final class WidgetTraits: NSObject, UITraitEnvironment {
-    let traitCollection = UITraitCollection(userInterfaceStyle: .dark)
-    func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) { }
+struct WidgetMedium: Widget {
+    public var body: some WidgetConfiguration {
+        StaticConfiguration(
+            kind: "me.bronenos.widget-medium",
+            provider: WidgetTimelineProvider(),
+            placeholder: generateCalendar(
+                entry: MiniMonthTimelineEntry(
+                    date: Date(),
+                    family: .systemMedium,
+                    size: .zero,
+                    isPreview: true),
+                traitEnv: nil,
+                renderEvents: false),
+            content: { entry in
+                generateCalendar(
+                    entry: entry,
+                    traitEnv: nil,
+                    renderEvents: !entry.isPreview)
+            })
+            .configurationDisplayName(LocalizedStringKey("widget_medium_caption"))
+            .description(LocalizedStringKey("widget_common_note"))
+            .supportedFamilies([.systemMedium])
+    }
 }
 
 @main
-struct Widget2: Widget {
-    public var body: some WidgetConfiguration {
-        let kind = "me.bronenos.Widget2"
-        let provider = Provider()
-        let placeholder = PlaceholderView()
-        return StaticConfiguration(
-            kind: kind,
-            provider: provider,
-            placeholder: placeholder,
-            content: { entry in generateCalendar(entry: entry, traitEnv: nil) })
-            .configurationDisplayName("MiniMonth")
-            .description("Shows the compact Calendar glance")
-            .supportedFamilies([.systemSmall, .systemMedium])
+struct WidgetPack: WidgetBundle {
+    @WidgetBundleBuilder
+    var body: some Widget {
+        WidgetSmall()
+        WidgetMedium()
     }
 }
 
-fileprivate func generateCalendar(entry: MiniMonthTimelineEntry, traitEnv: UITraitEnvironment?) -> some View {
+fileprivate func generateCalendar(entry: MiniMonthTimelineEntry, traitEnv: UITraitEnvironment?, renderEvents: Bool) -> some View {
     let position: CalendarPosition = convert(entry.family) { value in
         switch value {
         case .systemSmall: return .small
@@ -72,12 +126,13 @@ fileprivate func generateCalendar(entry: MiniMonthTimelineEntry, traitEnv: UITra
     }
     
     let preferencesDriver = PreferencesDriver()
-    let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: traitEnv ?? WidgetTraits())
+    let designBook = DesignBook(preferencesDriver: preferencesDriver, traitEnvironment: nil)
     
-    let rootInteractor = CalendarInteractor(style: .month, shortest: position.shouldDisplayShortestCaptions)
+    let rootInteractor = CalendarInteractor(style: .month, shortest: position.shouldDisplayShortestCaptions, renderEvents: renderEvents)
     let background = Image("paper").resizable(resizingMode: .stretch)
     
     return CalendarView(interactor: rootInteractor, position: position, background: background)
         .environmentObject(preferencesDriver)
         .environmentObject(designBook)
+        .environment(\.adjustments, designBook.adjustments(position: position, size: entry.size))
 }

@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  MiniMonth
+
+  Created by Stan Potemkin on 04.07.2020.
+  Copyright © 2020 bronenos. All rights reserved.
+*/
+
+"widget_small_caption" = "Компактный вид";
+"widget_medium_caption" = "Стандартный вид";
+"widget_common_note" = "Обратите внимание, что виджет на домашнем экране не поддерживает навигацию, в отличие от виджета на экране Today";

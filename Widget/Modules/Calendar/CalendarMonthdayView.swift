@@ -9,31 +9,19 @@
 import SwiftUI
 
 struct CalendarMonthdayView: View {
-    @EnvironmentObject var designBook: DesignBook
+    @EnvironmentObject private var designBook: DesignBook
+    @Environment(\.adjustments) private var adjustments: DesignBookAdjustments
 
-    let position: CalendarPosition
     let day: CalendarDay
     
     var body: some View {
         ZStack {
             Text("XX")
                 .hidden()
-                .padding(
-                    convert(position) { value -> EdgeInsets in
-                        switch value {
-                        case .host: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
-                        case .today: return EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8)
-                        case .small: return EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6)
-                        case .medium: return EdgeInsets(top: 1, leading: 6, bottom: 1, trailing: 6)
-                        }
-                    }
-                )
+                .padding(adjustments.headerMargins)
                 .overlay(
                     Group {
-                        if !position.shouldDisplayIndicator {
-                            dayBlock
-                        }
-                        else if position.shouldDisplayIndicatorAtBottom {
+                        if adjustments.displayEventAtBottom {
                             VStack(spacing: 0) {
                                 dayBlock
                                 HStack {
@@ -64,11 +52,7 @@ struct CalendarMonthdayView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .foregroundColor(captionColor(forType: day.type))
         }
-        .font(
-            position.shouldReduceFontSize
-                ? .system(size: 10, weight: .bold)
-                : .system(size: 12, weight: .bold)
-        )
+        .font(adjustments.weekdayFont)
     }
     
     private var dayBlock: some View {
@@ -82,20 +66,20 @@ struct CalendarMonthdayView: View {
             if day.options.contains(.hasLongEvent) {
                 Circle()
                     .fill(designBook.cached(usage: .holidayColor))
-                    .frame(ownSide: designBook.layout(position: position).eventMarkerSide)
+                    .frame(ownSide: adjustments.eventMarkerSide)
             }
             
             if day.options.contains(.hasShortEvent) {
                 Circle()
                     .fill(designBook.cached(usage: .eventColor))
-                    .frame(ownSide: designBook.layout(position: position).eventMarkerSide)
+                    .frame(ownSide: adjustments.eventMarkerSide)
             }
         }
     }
     
     fileprivate func relativeOffset(hasEvent: Bool) -> CGFloat {
         guard hasEvent else { return 0 }
-        return designBook.layout(position: position).eventMarkerSide * 0.5
+        return adjustments.eventMarkerSide * 0.5
     }
     
     fileprivate func captionColor(forType type: CalendarDayType) -> Color {

@@ -10,10 +10,12 @@ import SwiftUI
 
 struct CalendarHeader: View {
     @EnvironmentObject var designBook: DesignBook
-    
+    @EnvironmentObject private var preferencesDriver: PreferencesDriver
+
     let position: CalendarPosition
     let weekNumber: Int
-    let title: String
+    let longTitle: String
+    let shortTitle: String
     let year: Int?
     let fastBackwardAction: (() -> Void)?
     let backwardAction: (() -> Void)?
@@ -37,8 +39,8 @@ struct CalendarHeader: View {
             Spacer()
             
             HStack(alignment: .lastTextBaseline) {
-                if !position.shouldDisplayWeekNumbers, !position.shouldDisplayControls, weekNumber > 0 {
-                    Text("# \(weekNumber)")
+                if displayWeekNumber {
+                    Text("# \(weekNumber)")
                         .font(.system(size: 12, weight: .bold))
                         .fixedSize(horizontal: true, vertical: false)
                         .foregroundColor(designBook.cached(usage: .captionColor))
@@ -55,8 +57,8 @@ struct CalendarHeader: View {
                         switch value {
                         case .host: return 10
                         case .today: return 10
-                        case .small: return 3
-                        case .medium: return 3
+                        case .small: return 2
+                        case .medium: return 2
                         }
                     })
                     .onTapGesture(perform: titleAction)
@@ -79,10 +81,20 @@ struct CalendarHeader: View {
     
     private var computedCaption: String {
         if let year = year, position.shouldDisplayControls {
-            return "\(title) ʼ\(year % 100)"
+            return "\(longTitle) ʼ\(year % 100)"
+        }
+        else if displayWeekNumber {
+            return shortTitle
         }
         else {
-            return title
+            return longTitle
         }
+    }
+    
+    private var displayWeekNumber: Bool {
+        guard preferencesDriver.shouldDisplayWeekNumbers else { return false }
+        guard !position.shouldDisplayWeekNumbers else { return false }
+        guard !position.shouldDisplayControls, weekNumber > 0 else { return false }
+        return true
     }
 }

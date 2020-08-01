@@ -29,3 +29,6 @@
 
 "Alert.ResetColors.Title" = "Revert to default colors?";
 "Alert.ResetColors.Message" = "Your preferences for both light and dark styles would be reverted to default colors";
+
+"widget_small_caption" = "Compact Glance";
+"widget_medium_caption" = "Standard Glance";

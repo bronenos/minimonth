@@ -26,6 +26,7 @@
 		D47937612360A442006D5EDC /* CalendarHeaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47937602360A442006D5EDC /* CalendarHeaderButton.swift */; };
 		D47937632360A995006D5EDC /* PerformingModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47937622360A995006D5EDC /* PerformingModifier.swift */; };
 		D47B16272360E406008A70A4 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B16262360E406008A70A4 /* EventService.swift */; };
+		D47D8F3324B0651700331446 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D47D8F3524B0651700331446 /* Localizable.strings */; };
 		D48D4C57236AAEC200A8B921 /* UIScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */; };
 		D48F9A9F24A2584E000CB53D /* Widget2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F9A9E24A2584E000CB53D /* Widget2.swift */; };
 		D48F9AA124A2584F000CB53D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48F9AA024A2584F000CB53D /* Assets.xcassets */; };
@@ -210,6 +211,8 @@
 		D47937602360A442006D5EDC /* CalendarHeaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderButton.swift; sourceTree = "<group>"; };
 		D47937622360A995006D5EDC /* PerformingModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformingModifier.swift; sourceTree = "<group>"; };
 		D47B16262360E406008A70A4 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		D47D8F3424B0651700331446 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D47D8F3624B0651B00331446 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D48D4C56236AAEC200A8B921 /* UIScreenExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExtensions.swift; sourceTree = "<group>"; };
 		D48F9A9824A2584E000CB53D /* Widget2.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget2.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48F9A9924A2584E000CB53D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -515,6 +518,7 @@
 				D48F9A9E24A2584E000CB53D /* Widget2.swift */,
 				D48F9AA024A2584F000CB53D /* Assets.xcassets */,
 				D48F9AA224A2584F000CB53D /* Info.plist */,
+				D47D8F3524B0651700331446 /* Localizable.strings */,
 			);
 			path = Widget2;
 			sourceTree = "<group>";
@@ -853,6 +857,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D48F9AA124A2584F000CB53D /* Assets.xcassets in Resources */,
+				D47D8F3324B0651700331446 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,6 +1115,15 @@
 				D41F9981236EC85A007B727F /* ru */,
 			);
 			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		D47D8F3524B0651700331446 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D47D8F3424B0651700331446 /* en */,
+				D47D8F3624B0651B00331446 /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		D4A69891236DD5D200B34EAC /* InfoPlist.strings */ = {

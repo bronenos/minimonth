@@ -63,7 +63,7 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
     private var lastAnimationDate: Date?
     private var eventsListener: AnyCancellable?
     
-    public init(style: CalendarStyle, shortest: Bool) {
+    public init(style: CalendarStyle, shortest: Bool, renderEvents: Bool) {
         self.style = style
         self.shortest = shortest
         
@@ -83,7 +83,9 @@ public final class CalendarInteractor: ICalendarInteractor, ObservableObject {
             eventsCallback: { [weak self] in self?.handleEvents($0) }
         )
         
-        requestEvents()
+        if renderEvents {
+            requestEvents()
+        }
     }
     
     var shouldAnimate: Bool {
@@ -172,6 +174,9 @@ fileprivate func calculateMeta(calendar: Calendar,
     let fullFormatter = DateFormatter()
     fullFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
     
+    let shortFormatter = DateFormatter()
+    shortFormatter.setLocalizedDateFormatFromTemplate("MMMd")
+    
     let calendarUnits: Set<Calendar.Component> = [.year, .month, .weekday, .day, .weekOfMonth, .weekOfYear]
     let anchorDayUnits = calendar.dateComponents(calendarUnits, from: anchorDate).normalizedWeeknum(calendar: calendar)
     let anchorMonthIndex = anchorDayUnits.month ?? 0
@@ -192,6 +197,7 @@ fileprivate func calculateMeta(calendar: Calendar,
         return CalendarMeta(
             weekNumber: anchorDayUnits.weekOfYear ?? 0,
             fullTitle: fullFormatter.string(from: Date()),
+            shortTitle: shortFormatter.string(from: Date()),
             monthTitle: ahcnorMonthTitle,
             monthYear: anchorYear, // (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,
@@ -225,6 +231,7 @@ fileprivate func calculateMeta(calendar: Calendar,
         return CalendarMeta(
             weekNumber: anchorDayUnits.weekOfYear ?? 0,
             fullTitle: fullFormatter.string(from: Date()),
+            shortTitle: shortFormatter.string(from: Date()),
             monthTitle: ahcnorMonthTitle,
             monthYear: anchorYear, // (anchorYear == todayYear ? nil : anchorYear),
             weekNumbers: yearlyWeeks,

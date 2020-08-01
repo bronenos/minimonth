@@ -28,5 +28,6 @@ public struct CalendarViewWrapper: View {
         CalendarView(interactor: interactor, position: position, background: Color.clear)
             .environmentObject(preferencesDriver)
             .environmentObject(designBook)
+            .environment(\.adjustments, designBook.adjustments(position: .today, size: .zero))
     }
 }
