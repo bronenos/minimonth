@@ -61,14 +61,14 @@ struct WidgetSmall: Widget {
         StaticConfiguration(
             kind: "me.bronenos.widget-small",
             provider: WidgetTimelineProvider(),
-            placeholder: generateCalendar(
-                entry: MiniMonthTimelineEntry(
-                    date: Date(),
-                    family: .systemSmall,
-                    size: .zero,
-                    isPreview: true),
-                traitEnv: nil,
-                renderEvents: false),
+//            placeholder: generateCalendar(
+//                entry: MiniMonthTimelineEntry(
+//                    date: Date(),
+//                    family: .systemSmall,
+//                    size: .zero,
+//                    isPreview: true),
+//                traitEnv: nil,
+//                renderEvents: false),
             content: { entry in
                 generateCalendar(
                     entry: entry,
@@ -86,14 +86,14 @@ struct WidgetMedium: Widget {
         StaticConfiguration(
             kind: "me.bronenos.widget-medium",
             provider: WidgetTimelineProvider(),
-            placeholder: generateCalendar(
-                entry: MiniMonthTimelineEntry(
-                    date: Date(),
-                    family: .systemMedium,
-                    size: .zero,
-                    isPreview: true),
-                traitEnv: nil,
-                renderEvents: false),
+//            placeholder: generateCalendar(
+//                entry: MiniMonthTimelineEntry(
+//                    date: Date(),
+//                    family: .systemMedium,
+//                    size: .zero,
+//                    isPreview: true),
+//                traitEnv: nil,
+//                renderEvents: false),
             content: { entry in
                 generateCalendar(
                     entry: entry,
