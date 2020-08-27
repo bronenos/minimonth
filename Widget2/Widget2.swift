@@ -17,7 +17,15 @@ struct MiniMonthTimelineEntry: TimelineEntry {
 }
 
 struct WidgetTimelineProvider: TimelineProvider {
-    public func snapshot(with context: Context, completion: @escaping (MiniMonthTimelineEntry) -> ()) {
+    func placeholder(in context: Context) -> MiniMonthTimelineEntry {
+        return MiniMonthTimelineEntry(
+            date: Date(),
+            family: .systemSmall,
+            size: .zero,
+            isPreview: true)
+    }
+    
+    public func getSnapshot(in context: Context, completion: @escaping (MiniMonthTimelineEntry) -> Void) {
         let entry = MiniMonthTimelineEntry(
             date: Date(),
             family: context.family,
@@ -26,8 +34,8 @@ struct WidgetTimelineProvider: TimelineProvider {
         
         completion(entry)
     }
-
-    public func timeline(with context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    
+    public func getTimeline(in context: Context, completion: @escaping (Timeline<MiniMonthTimelineEntry>) -> Void) {
         let calendar = Calendar.current
         let currentDate = Date()
         
@@ -61,14 +69,6 @@ struct WidgetSmall: Widget {
         StaticConfiguration(
             kind: "me.bronenos.widget-small",
             provider: WidgetTimelineProvider(),
-//            placeholder: generateCalendar(
-//                entry: MiniMonthTimelineEntry(
-//                    date: Date(),
-//                    family: .systemSmall,
-//                    size: .zero,
-//                    isPreview: true),
-//                traitEnv: nil,
-//                renderEvents: false),
             content: { entry in
                 generateCalendar(
                     entry: entry,
