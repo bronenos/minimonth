@@ -52,7 +52,9 @@ struct HosterView: View {
         .onReceive(
             NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification),
             perform: { _ in
-                WidgetCenter.shared.reloadAllTimelines()
+                if #available(iOS 14.0, *) {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
             }
         )
     }
