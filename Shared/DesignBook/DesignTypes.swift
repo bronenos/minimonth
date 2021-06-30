@@ -45,6 +45,7 @@ public enum DesignBookColorUsage {
     // foregrounds
     case primaryForeground
     // preferences
+    case backgroundColor
     case monthColor
     case navigationColor
     case captionColor

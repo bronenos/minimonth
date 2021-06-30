@@ -10,9 +10,11 @@ import SwiftUI
 import Combine
 
 public typealias PreferencesReadableKeyPath = KeyPath<PreferencesDriver, UIColor>
-public typealias PreferencesWritableKeyPath = ReferenceWritableKeyPath<PreferencesDriver, UIColor>
+public typealias PreferencesWritableKeyPath = ReferenceWritableKeyPath<PreferencesDriver, UIColor?>
 
 public protocol IPreferencesDriver: class {
+    var backgroundColorLight: UIColor! { get set }
+    var backgroundColorDark: UIColor! { get set }
     var monthTitleColorLight: UIColor! { get set }
     var monthTitleColorDark: UIColor! { get set }
     var navigationElementsColorLight: UIColor! { get set }
@@ -45,6 +47,16 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
         storage = UserDefaults(suiteName: "group.V8NCXSZ3T7.me.bronenos.minimonth") ?? .standard
     }
 
+    public var backgroundColorLight: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 0) }
+        set { setColor(newValue, for: #function) }
+    }
+    
+    public var backgroundColorDark: UIColor! {
+        get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 0) }
+        set { setColor(newValue, for: #function) }
+    }
+    
     public var monthTitleColorLight: UIColor! {
         get { getColor(for: #function) ?? UIColor(red: 0, green: 0, blue: 0, alpha: 1.0) }
         set { setColor(newValue, for: #function) }
@@ -147,6 +159,8 @@ public final class PreferencesDriver: IPreferencesDriver, ObservableObject {
             synchronizeIfNeeded()
         }
         
+        backgroundColorLight = nil
+        backgroundColorDark = nil
         monthTitleColorLight = nil
         monthTitleColorDark = nil
         navigationElementsColorLight = nil

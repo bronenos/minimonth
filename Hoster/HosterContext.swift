@@ -28,7 +28,7 @@ final class HosterContext: ObservableObject {
         colorPickingMeta = HosterContextColorPickingMeta(id: UUID(), title: title, keyPath: keyPath)
     }
     
-    func storeColor(_ color: UIColor, forKeyPath keyPath: PreferencesWritableKeyPath) {
+    func storeColor(_ color: UIColor?, forKeyPath keyPath: PreferencesWritableKeyPath) {
         pickedColors[keyPath] = color
     }
     

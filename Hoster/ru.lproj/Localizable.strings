@@ -15,6 +15,7 @@
 
 "Preferences.WeekNumbers" = "Номер недели";
 
+"Preferences.Colors.Background" = "Фон";
 "Preferences.Colors.BackgroundTitle" = "Заливка фона (iOS 14+)";
 "Preferences.Colors.MonthTitle" = "Название месяца";
 "Preferences.Colors.NavigationElements" = "Элементы навигации";
@@ -26,6 +27,8 @@
 "Preferences.Colors.ShortEvents" = "Короткие события";
 "Preferences.Colors.AllDayEvents" = "События на весь день";
 "Preferences.Colors.ResetColors" = "Вернуть изначальные цвета";
+
+"Alert.ResetColor.Message" = "Цвет будет сброшен до изначального состояния";
 
 "Alert.ResetColors.Title" = "Вернуть изначальные цвета?";
 "Alert.ResetColors.Message" = "Ваши настройки для светлой и тёмной тем будут сброшены до изначальных цветов";
