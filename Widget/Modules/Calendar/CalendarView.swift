@@ -118,6 +118,7 @@ public struct CalendarView<Background: View>: View {
             }
             .padding(.horizontal, position.shouldMinimizeEdges ? 5 : 10)
         }
+        .background(designBook.cached(usage: .backgroundColor))
         .background(background)
     }
     

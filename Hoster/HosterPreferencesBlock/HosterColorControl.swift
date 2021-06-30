@@ -58,6 +58,6 @@ struct HosterColorControl: View {
     }
     
     private var resolvedColor: Color {
-        return Color(preferencesDriver[keyPath: keyPath])
+        return Color(preferencesDriver[keyPath: keyPath] ?? .black)
     }
 }

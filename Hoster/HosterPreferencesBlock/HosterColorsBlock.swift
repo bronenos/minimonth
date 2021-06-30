@@ -20,12 +20,25 @@ struct HosterColorMeta: Hashable {
 }
 
 struct HosterColorsBlock: View {
+    enum Alerting: Identifiable {
+        case specificReset(HosterColorMeta)
+        case entireReset
+        
+        var id: String {
+            switch self {
+            case .specificReset(let meta): return meta.captionKey
+            case .entireReset: return String()
+            }
+        }
+    }
+    
     @EnvironmentObject var preferencesDriver: PreferencesDriver
     @EnvironmentObject var designBook: DesignBook
+    @EnvironmentObject private var context: HosterContext
     @Environment(\.colorScheme) private var colorScheme
     let colorApplier: (PreferencesWritableKeyPath) -> Void
     
-    @State private var colorsResetAlerting = false
+    @State private var alerting: Alerting?
 
     var body: some View {
         VStack {
@@ -34,9 +47,12 @@ struct HosterColorsBlock: View {
                     caption: meta.captionKey,
                     keyPath: meta.keyPath,
                     colorApplier: colorApplier)
+                    .onLongPressGesture {
+                        self.alerting = .specificReset(meta)
+                    }
             }
             
-            Button(action: resetColorsAlertingPresent) {
+            Button(action: {alerting = .entireReset}) {
                 Text("Preferences.Colors.ResetColors")
                     .font(.footnote)
                     .foregroundColor(.red)
@@ -45,31 +61,47 @@ struct HosterColorsBlock: View {
                     .padding(.vertical, 8)
             }
         }
-        .alert(isPresented: $colorsResetAlerting) {
-            Alert(
-                title: Text("Alert.ResetColors.Title"),
-                message: Text("Alert.ResetColors.Message"),
-                primaryButton: .destructive(
-                    Text("Common.Confirm"),
-                    action: self.resetColorsAlertingConfirm
-                ),
-                secondaryButton: .cancel()
-            )
+        .alert(item: $alerting) { value in
+            switch value {
+            case .specificReset(let meta):
+                return Alert(
+                    title: Text(LocalizedStringKey(meta.captionKey)),
+                    message: Text("Alert.ResetColor.Message"),
+                    primaryButton: .destructive(
+                        Text("Common.Confirm"),
+                        action: {
+                            context.storeColor(nil, forKeyPath: meta.keyPath)
+                            preferencesDriver[keyPath: meta.keyPath] = nil
+                            designBook.discardCache()
+                        }
+                    ),
+                    secondaryButton: .cancel()
+                )
+            case .entireReset:
+                return Alert(
+                    title: Text("Alert.ResetColors.Title"),
+                    message: Text("Alert.ResetColors.Message"),
+                    primaryButton: .destructive(
+                        Text("Common.Confirm"),
+                        action: {
+                            preferencesDriver.resetColors()
+                            designBook.discardCache()
+                        }
+                    ),
+                    secondaryButton: .cancel()
+                )
+            }
         }
-    }
-    
-    private func resetColorsAlertingPresent() {
-        colorsResetAlerting.toggle()
-    }
-    
-    private func resetColorsAlertingConfirm() {
-        preferencesDriver.resetColors()
-        designBook.discardCache()
     }
 }
 
 fileprivate struct HosterColorDynamicMetaStorage {
     let metas: [HosterColorDynamicMeta] = [
+        HosterColorDynamicMeta(
+            captionKey: "Preferences.Colors.Background",
+            lightKeyPath: \.backgroundColorLight,
+            darkKeyPath: \.backgroundColorDark
+        ),
         HosterColorDynamicMeta(
             captionKey: "Preferences.Colors.MonthTitle",
             lightKeyPath: \.monthTitleColorLight,

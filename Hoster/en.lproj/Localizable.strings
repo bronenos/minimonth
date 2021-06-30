@@ -15,6 +15,7 @@
 
 "Preferences.WeekNumbers" = "Week numbers";
 
+"Preferences.Colors.Background" = "Background";
 "Preferences.Colors.BackgroundTitle" = "Background fill (iOS 14+)";
 "Preferences.Colors.MonthTitle" = "Month title";
 "Preferences.Colors.NavigationElements" = "Navigation elements";
@@ -26,6 +27,8 @@
 "Preferences.Colors.ShortEvents" = "Short events";
 "Preferences.Colors.AllDayEvents" = "All-day events";
 "Preferences.Colors.ResetColors" = "Revert to default colors";
+
+"Alert.ResetColor.Message" = "The color will be reset to its default value";
 
 "Alert.ResetColors.Title" = "Revert to default colors?";
 "Alert.ResetColors.Message" = "Your preferences for both light and dark styles would be reverted to default colors";

@@ -220,6 +220,7 @@ public final class DesignBook: ObservableObject {
         // foregrounds
         case .primaryForeground: return combine(light: .native(.black), dark: .native(.white))
         // preferences
+        case .backgroundColor: return combine(light: .pref(\.backgroundColorLight), dark: .pref(\.backgroundColorDark))
         case .monthColor: return combine(light: .pref(\.monthTitleColorLight), dark: .pref(\.monthTitleColorDark))
         case .navigationColor: return combine(light: .pref(\.navigationElementsColorLight), dark: .pref(\.navigationElementsColorDark))
         case .captionColor: return combine(light: .pref(\.weekCaptionsColorLight), dark: .pref(\.weekCaptionsColorDark))

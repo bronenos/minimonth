@@ -158,7 +158,7 @@ struct HosterView: View {
                     context: context,
                     title: item.title,
                     keyPath: item.keyPath,
-                    selectedColor: preferencesDriver[keyPath: item.keyPath].mixWithBaseColor(.systemBackground))
+                    selectedColor: (preferencesDriver[keyPath: item.keyPath] ?? .black).mixWithBaseColor(.systemBackground))
                     .onDisappear { self.applyColorPicker(keyPath: item.keyPath) }
             )
         }
@@ -168,7 +168,7 @@ struct HosterView: View {
                     context: context,
                     title: item.title,
                     keyPath: item.keyPath,
-                    selectedColor: preferencesDriver[keyPath: item.keyPath].mixWithBaseColor(.systemBackground))
+                    selectedColor: (preferencesDriver[keyPath: item.keyPath] ?? .black).mixWithBaseColor(.systemBackground))
                     .onDisappear { self.applyColorPicker(keyPath: item.keyPath) }
             )
         }
